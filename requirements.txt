@@ -1,0 +1,38 @@
+# Core
+numpy>=1.26
+opencv-python>=4.9
+Pillow>=10.0
+tqdm>=4.66
+PyYAML>=6.0
+
+# Deep learning
+torch>=2.2
+torchvision>=0.17
+transformers>=4.45
+accelerate>=0.34
+sentence-transformers>=3.0
+
+# Detection and tracking
+# NOTE: Ultralytics is AGPL-3.0 and makes this project AGPL-3.0.
+ultralytics>=8.3
+
+# Retrieval
+faiss-cpu>=1.8
+rank-bm25>=0.2.2
+rapidfuzz>=3.9
+
+# Speech
+faster-whisper>=1.0
+
+# OCR
+paddleocr>=2.8
+paddlepaddle>=2.6
+
+# Media
+ffmpeg-python>=0.2
+
+# API and UI
+fastapi>=0.115
+uvicorn[standard]>=0.30
+gradio>=4.44
+python-multipart>=0.0.9

@@ -1,0 +1,46 @@
+# Python
+__pycache__/
+*.py[cod]
+*.egg-info/
+.venv/
+venv/
+.pytest_cache/
+.mypy_cache/
+.ruff_cache/
+
+# Secrets
+.env
+.env.*
+
+# Private planning docs — never publish
+/documentation/
+/private/
+
+# Local logs
+/logs/
+
+# Data and indexes
+/data/
+/indexes/
+/models/
+*.faiss
+*.pt
+*.pth
+*.bin
+*.safetensors
+*.onnx
+
+# Media
+*.mp4
+*.avi
+*.mov
+*.mkv
+*.webm
+*.wav
+
+# OS / editor
+.vscode/
+.idea/
+Thumbs.db
+Desktop.ini
+.DS_Store

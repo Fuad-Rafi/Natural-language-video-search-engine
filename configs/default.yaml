@@ -1,0 +1,55 @@
+# VideoSeek default configuration
+
+video:
+  sample_fps: 1.0          # frames per second for visual indexing
+  keyframe_fps: 0.5        # keyframes for OCR and captions
+  thumb_width: 320
+
+frames:
+  model: google/siglip-base-patch16-224
+  batch_size: 32
+
+objects:
+  model: yolo11n.pt
+  tracker: bytetrack.yaml
+  conf: 0.35
+  classes: [0, 2, 5, 7, 24, 26, 28]   # person, car, bus, truck, backpack, handbag, suitcase
+  min_crop_px: 32
+  max_crops_per_track: 3
+
+captions:
+  enabled: false
+  model: Qwen/Qwen2.5-VL-3B-Instruct
+  load_in_4bit: true
+  max_keyframes: 300
+
+speech:
+  enabled: true
+  model: small
+  word_timestamps: true
+  vad_filter: true
+  chunk_seconds: 30
+  overlap_seconds: 5
+
+ocr:
+  enabled: true
+  lang: en
+  min_confidence: 0.5
+  dedupe_similarity: 0.9
+
+text:
+  embedding_model: BAAI/bge-small-en-v1.5
+  use_bm25: true
+
+search:
+  top_k: 20
+  rrf_k: 60
+  merge_gap_s: 3.0
+  min_segment_s: 1.0
+  rerank_top_n: 3
+  weights:
+    frame: 1.0
+    object: 1.0
+    speech: 1.2
+    ocr: 1.2
+    caption: 0.6
