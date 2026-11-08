@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-08T14:54:01+00:00",
+  "generated_at": "2026-11-08T15:19:41+00:00",
   "items": [
     {
       "query_id": "q001",
@@ -239,7 +239,7 @@
       "top1_timestamp": 102.0,
       "top1_score": 0.11660810559988022,
       "predicted_path": "data/objects/streetcctv1/tm1000154_0.jpg",
-      "cause": "small object missed by frame embedding (P3)"
+      "cause": "object crop missed the target instance (P3)"
     },
     {
       "query_id": "q020",
@@ -271,7 +271,7 @@
       "top1_timestamp": 411.0,
       "top1_score": 0.09617309272289276,
       "predicted_path": "data/objects/streetcctv2/t000321_0.jpg",
-      "cause": "small object missed by frame embedding (P3)"
+      "cause": "object crop missed the target instance (P3)"
     },
     {
       "query_id": "q024",
@@ -287,7 +287,7 @@
       "top1_timestamp": 0.0,
       "top1_score": 0.10223779827356339,
       "predicted_path": "data/objects/streetcctv2/t000006_0.jpg",
-      "cause": "small object missed by frame embedding (P3)"
+      "cause": "object crop missed the target instance (P3)"
     },
     {
       "query_id": "q025",

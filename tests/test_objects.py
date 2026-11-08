@@ -13,7 +13,11 @@ from src.index.objects import (
     select_crop_indices,
     split_tracks,
 )
-from src.search.query import filter_object_matches, parse_object_query
+from src.search.query import (
+    collapse_object_pairs,
+    filter_object_matches,
+    parse_object_query,
+)
 
 
 class _Config:
@@ -196,6 +200,47 @@ class QueryConstraintTests(unittest.TestCase):
         records = [{"meta": {"class_name": "car", "color": "grey", "brightness": 90}}]
         pairs = filter_object_matches(records, [0.3], [0], "a green car")
         self.assertEqual(len(pairs), 1)
+
+
+class CollapseTests(unittest.TestCase):
+    def _record(self, timestamp: float, box: list[float], name: str = "car") -> dict:
+        return {
+            "meta": {
+                "class_name": name,
+                "timestamp_s": timestamp,
+                "crop_bbox": box,
+            }
+        }
+
+    def test_same_object_within_two_seconds_is_collapsed(self) -> None:
+        pairs = [
+            (0.5, self._record(10, [0, 0, 100, 100])),
+            (0.7, self._record(11, [5, 0, 100, 100])),
+        ]
+        kept = collapse_object_pairs(pairs)
+        self.assertEqual(len(kept), 1)
+        self.assertEqual(kept[0][0], 0.7)
+
+    def test_different_classes_are_kept(self) -> None:
+        pairs = [
+            (0.5, self._record(10, [0, 0, 100, 100], "car")),
+            (0.6, self._record(10, [0, 0, 100, 100], "person")),
+        ]
+        self.assertEqual(len(collapse_object_pairs(pairs)), 2)
+
+    def test_non_overlapping_boxes_are_kept(self) -> None:
+        pairs = [
+            (0.5, self._record(10, [0, 0, 50, 50])),
+            (0.6, self._record(11, [500, 500, 600, 600])),
+        ]
+        self.assertEqual(len(collapse_object_pairs(pairs)), 2)
+
+    def test_objects_far_apart_in_time_are_kept(self) -> None:
+        pairs = [
+            (0.5, self._record(10, [0, 0, 100, 100])),
+            (0.6, self._record(20, [0, 0, 100, 100])),
+        ]
+        self.assertEqual(len(collapse_object_pairs(pairs)), 2)
 
 
 class ColorTests(unittest.TestCase):

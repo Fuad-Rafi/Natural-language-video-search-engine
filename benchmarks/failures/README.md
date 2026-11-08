@@ -1,34 +1,26 @@
-# Layer A failure gallery
+# Layer A failure notes
 
-26 of 50 queries missed at rank 1; the 20 most useful are shown in `gallery.jpg`.
-Images are local only (copyrighted source frames) and are ignored by git.
+Current policy: segments (gap ≤ 3 s, minimum 1 s), evaluated on the frozen sets.
 
-| # | Query | Type | Predicted | Ground truth | Cause |
+| Set | Queries | R@1 | R@5 | R@10 | mIoU |
 |---|---|---|---|---|---|
-| q002 | where he explains what the introduction needs to do | speech | 00:133 | 02:21–02:30 | Speech layer missing; the top hit was the “Essay Introductions” slide 8 s early — a near miss. |
-| q003 | where he says lack of support at home | speech | 19:34 | 11:46–12:15 | Speech layer missing; matched the end-card playbook cover instead. |
-| q005 | where he explains the passive voice | speech | 00:11 | 15:44–16:00 | Speech layer missing; no visual cue for grammar narration. |
-| q008 | the ultimate IELTS playbook | ocr | 05:34 | 16:32–16:50 | OCR layer missing; frame embedding cannot read the cover text. |
-| q009 | where he says prove correctness and argue efficiency | speech | 08:42 | 00:15–00:32 | Speech layer missing; the late “measure ops” blackboard looked similar. |
-| q010 | where he explains the base case of zero students | speech | 05:24 | 04:48–05:09 | Speech layer missing; 15 s early on the same induction segment. |
-| q011 | where he says we measure operations instead of time | speech | 10:38 | 08:25–08:45 | Speech layer missing; repeated “ops” blackboard text. |
-| q015 | the chalkboard heading efficiency | ocr | 08:42 | 07:30–08:00 | OCR layer missing; several blackboards have the same heading. |
-| q016 | a red umbrella | object | 00:53 | 00:55–01:05 | Small object missed; the wet red pavement dominated the frame. |
-| q019 | people crossing the street in the rain | visual | 00:48 | 00:05–00:30 | Scene confusion: a later red umbrella matched “rain” more strongly than the crossing. |
-| q020 | a wide road with parked cars | visual | 02:56 | 02:10–02:35 | Repeated road geometry; near miss by 21 s. |
-| q023 | a cyclist in a green jacket | object | 05:48 | 01:35–01:45 | Small object missed; another street scene won. |
-| q024 | a red car in the distance | object | 06:29 | 00:10–00:20 | Tiny background object; frame embedding could not isolate it. |
-| q025 | a zebra crossing on a residential street | visual | 06:53 | 00:05–00:30 | The same crossing repeats later; one valid segment beat the intended one. |
-| q027 | cars driving through the intersection | action | 06:59 | 06:30–06:55 | Motion timing: predicted 4 s after the window. |
-| q031 | a man sitting at a desk with a laptop | spatial | 03:40 | 02:55–03:15 | Another desk/workspace shot won; no spatial reasoning. |
-| q033 | a family playing a game together | caption | 03:43 | 03:45–04:00 | Caption layer missing; 2 s early — visually close but no action grounding. |
-| q037 | the registry editor showing current version windows | ocr | 00:40 | 00:50–01:15 | OCR layer missing; the registry window opens 10 s later. |
-| q038 | the command sfc /scannow in command prompt | ocr | 02:22 | 02:25–02:50 | OCR layer missing; near miss by 3 s. |
-| q042 | a blue Windows desktop | visual | 01:38 | 01:56–02:06 | Repeated blue desktop backgrounds; 18 s early. |
+| Dev | 50 | 0.620 | 0.860 | 0.880 | 0.257 |
+| Held-out | 20 | 0.550 | 0.600 | 0.700 | 0.137 |
 
-## What this says about Layer A
+19 of 50 dev queries miss at rank 1; the gallery shows up to 20. The held-out
+gallery is written to `failures/heldout_a/`.
 
-- **Speech and OCR queries** are close to random without layers D/E, exactly as expected.
-- **Object queries** fail when the object is small (umbrella, distant car, cyclist); this is the case for Layer B crops.
-- **Visual scene queries** suffer from repeated scenes (roads, crossings, desktops); temporal merging (P4) and captions (P7) should help.
-- **Near misses** within a few seconds (q002, q033, q037, q038) show that timestamp precision, not just ranking, is the next problem.
+## Recurring causes
+
+- **Speech and OCR queries** are answered only through visual context until
+  Layers D/E are implemented; exact spoken phrases still fail.
+- **Repeated scenes** (roads, crossings, desktops) produce several valid
+  moments, so a single annotated interval can mark a correct result as a miss.
+- **Small objects** (distant red car, cyclist) are missed by whole-frame
+  embeddings; this is the case for Layer B crops.
+- **Action and counting** queries remain weak without captions.
+- **Night scenes** are hard: taillights and low brightness dominate colour and
+  object cues.
+
+Point-era predictions are in git history. The current gallery is generated from
+the segment evaluator; images are gitignored because they contain source frames.

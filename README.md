@@ -2,7 +2,7 @@
 
 Search long videos with plain English. Ask a question, get a timestamp, a thumbnail, and a playable clip.
 
-> **Status: P3 complete — object layer added.** Frames-only Recall@5 is 0.740 overall; Layer B lifts the object+spatial subset from 0.727 to **0.818** and spatial from 0.500 to **1.000**, with object-only R@5 tying at 0.778. Fusion, speech, OCR, captions, and UI are in progress.
+> **Status: P4 complete — segments and fusion.** Results are returned as timestamped segments with source badges. On the 50-query dev set, A+B scores Recall@5 **0.880** vs **0.860** for frames alone; on the 20-query held-out set both score **0.600**. Layer A remains the strongest standalone layer, and the object layer's earlier gain did not generalize. Speech, OCR, captions, and UI are next.
 
 ---
 
@@ -81,6 +81,19 @@ python scripts/search.py --query "a red car parked on the street" --layer object
 
 Search returns frame timestamps with cosine scores. Omitting `--video` searches every indexed video. The first run loads the SigLIP model (about 2 seconds on the RTX 3060).
 
+### Evaluate (available)
+
+```bash
+python scripts/evaluate.py --mode A    # frames
+python scripts/evaluate.py --mode B    # objects
+python scripts/evaluate.py --mode AB   # RRF fusion, segments
+
+# Held-out validation
+python scripts/evaluate.py --mode AB --queries benchmarks/heldout.csv
+```
+
+All modes merge hits into segments (gap 3 s, minimum 1 s) and report Recall@1/5/10, segment mIoU, duplicate rate, and latency.
+
 ### UI (planned, P8)
 
 ```bash
@@ -91,16 +104,17 @@ Indexing is cached at every stage: re-running the same video reuses existing fra
 
 ## Results
 
-Custom frozen benchmark: **8 videos (~75 min), 50 queries, 4,479 sampled frames**.
+Segment policy: every config merges hits with a 3-second gap and a 1-second minimum before scoring, so Recall and mIoU are comparable across A, B, and A+B.
 
-| Config | Recall@5 (all 50) | Recall@5 (object+spatial) | mIoU (B subset) | Latency p50 |
+| Config | Dev Recall@5 (50) | Held-out Recall@5 (20) | Dev mIoU | Duplicate rate (raw → merged) |
 |---|---|---|---|---|
-| A — frames only | **0.740** | 0.727 | 0.034 | 9 ms |
-| B — objects only | 0.340 | **0.818** | 0.037 | 9 ms |
+| A — frames | 0.860 | **0.600** | **0.257** | 0.458 → 0.000 |
+| B — objects | 0.440 | 0.450 | 0.042 | 0.112 → 0.000 |
+| A+B — RRF | **0.880** | **0.600** | 0.242 | 0.384 → 0.000 |
 
-Layer B is only meaningful on object/spatial queries; it cannot answer speech, OCR, or scene-level questions. Full A/B fusion arrives in P4.
+The 50-query set is the development benchmark used for tuning; the 20-query held-out set is the honest headline (`benchmarks/heldout.lock.json`). A+B improves the dev set by 2 points and the object+spatial subset from 0.909 to **1.000**, but ties frames on held-out — so fusion is reported as parity, not a gain. Duplicate results fall to **0.000** after merging in every config.
 
-mIoU uses a 1-second predicted window for frame hits; temporal merging arrives in P4. Per-type results and failure causes: `benchmarks/results/` and `benchmarks/failures/`.
+Full tables, per-type breakdowns, and failure notes: `benchmarks/results/`, `benchmarks/failures/`.
 
 ## Configuration
 
@@ -113,8 +127,13 @@ video:
 
 search:
   top_k: 20
+  rrf_k: 60
+  rrf_window_s: 2.0
   merge_gap_s: 3.0
   min_segment_s: 1.0
+  weights:
+    frame: 1.0
+    object: 1.0
 ```
 
 Override per run with `--config path/to/config.yaml`.

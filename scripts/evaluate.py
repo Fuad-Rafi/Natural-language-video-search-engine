@@ -1,13 +1,19 @@
 #!/usr/bin/env python
-"""P2 evaluation harness for the frozen custom query set.
+"""P2/P4 evaluation harness with a unified segment policy.
 
-Computes Recall@1/5/10, mIoU, and query latency for Layer A (frames).
-Layer A returns a single frame, so mIoU uses a 1-second predicted window
-centered on the top hit (``search.min_segment_s`` = 1.0). That is the honest
-baseline before temporal merging (P4).
+Modes:
+  A   frames only
+  B   objects only
+  AB  reciprocal-rank fusion of frames + objects
 
-Example:
-    python scripts/evaluate.py
+Every mode is merged into segments with the same gap/min-duration rules before
+scoring, so Recall and mIoU are comparable across configs.
+
+Examples:
+    python scripts/evaluate.py --mode A
+    python scripts/evaluate.py --mode B
+    python scripts/evaluate.py --mode AB
+    python scripts/evaluate.py --mode AB --queries benchmarks/heldout.csv
 """
 
 from __future__ import annotations
@@ -34,22 +40,32 @@ if str(REPO_ROOT) not in sys.path:
 from src.config import ConfigError, load_config  # noqa: E402
 from src.index import store  # noqa: E402
 from src.index.frames import embed_texts, load_siglip, resolve_device  # noqa: E402
+from src.search.fusion import reciprocal_rank_fusion  # noqa: E402
 from src.search.query import (  # noqa: E402
     filter_object_matches,
     load_frame_index,
     load_object_index,
+    parse_object_query,
 )
+from src.search.temporal import duplicate_rate, merge_hits  # noqa: E402
 from src.utils.logging import format_duration, get_logger, setup_logging  # noqa: E402
 
 METRIC_KS = (1, 5, 10)
-DEFAULT_TOLERANCE_S = 0.5
 DEFAULT_MIN_SEGMENT_S = 1.0
+DEFAULT_TOLERANCE_S = 0.5
+
+MODES = ("A", "B", "AB")
+MODE_LABELS = {
+    "A": "A (frames)",
+    "B": "B (objects)",
+    "AB": "A+B (RRF)",
+}
 
 _CAUSE_BY_TYPE = {
     "speech": "speech layer not implemented (P5)",
     "ocr": "OCR layer not implemented (P6)",
-    "object": "small object missed by frame embedding (P3)",
-    "spatial": "no spatial reasoning (P3)",
+    "object": "object crop missed the target instance (P3)",
+    "spatial": "no spatial reasoning beyond object boxes",
     "action": "frame embedding cannot model actions (P7)",
     "caption": "caption layer not implemented (P7)",
     "reasoning": "caption layer not implemented (P7)",
@@ -61,13 +77,13 @@ _LOG = get_logger("evaluate")
 
 
 def build_parser() -> argparse.ArgumentParser:
-    parser = argparse.ArgumentParser(description="Evaluate Layer A on the frozen query set.")
+    parser = argparse.ArgumentParser(description="Evaluate video retrieval on the frozen query set.")
     parser.add_argument("--queries", default="benchmarks/queries.csv")
     parser.add_argument(
-        "--layer",
-        default="frames",
-        choices=["frames", "objects"],
-        help="retrieval layer to evaluate (default: frames)",
+        "--mode",
+        default="A",
+        choices=MODES,
+        help="A=frames, B=objects, AB=RRF fusion",
     )
     parser.add_argument("--out", default=None)
     parser.add_argument("--markdown", default=None)
@@ -75,14 +91,19 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument("--config", default=None)
     parser.add_argument("--device", default=None, choices=["auto", "cuda", "cpu"])
     parser.add_argument("--top-k", type=int, default=10)
+    parser.add_argument("--candidates", type=int, default=50, help="hits per layer before merging")
     parser.add_argument("--max-failures", type=int, default=20)
     parser.add_argument("--no-gallery", action="store_true")
     parser.add_argument("--log-level", default="INFO", choices=["DEBUG", "INFO", "WARNING", "ERROR"])
     return parser
 
 
+# ---------------------------------------------------------------------------
+# Query parsing and metrics
+# ---------------------------------------------------------------------------
+
+
 def read_queries(path: Path) -> list[dict[str, Any]]:
-    """Read and validate the frozen query CSV."""
     if not path.is_file():
         raise FileNotFoundError(f"query file not found: {path}")
     required = {"query_id", "video_id", "query", "type", "start", "end"}
@@ -121,7 +142,6 @@ def read_queries(path: Path) -> list[dict[str, Any]]:
 
 
 def group_queries(rows: list[dict[str, Any]]) -> list[dict[str, Any]]:
-    """Group repeated query ids so multiple GT intervals evaluate the best one."""
     groups: dict[tuple[str, str], dict[str, Any]] = {}
     for row in rows:
         key = (row["query_id"], row["video_id"])
@@ -168,8 +188,13 @@ def is_hit(timestamp: float, intervals: list[tuple[float, float]], tolerance: fl
 
 def best_iou(timestamp: float, intervals: list[tuple[float, float]], min_segment_s: float) -> float:
     pred_start, pred_end = predicted_window(timestamp, min_segment_s)
+    return max(temporal_iou(pred_start, pred_end, start, end) for start, end in intervals)
+
+
+def segment_best_iou(segment: dict[str, Any], intervals: list[tuple[float, float]]) -> float:
     return max(
-        temporal_iou(pred_start, pred_end, start, end) for start, end in intervals
+        temporal_iou(float(segment["start"]), float(segment["end"]), start, end)
+        for start, end in intervals
     )
 
 
@@ -187,13 +212,86 @@ def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
     for k in METRIC_KS:
         hits = sum(1 for result in results if result["hits"][k])
         summary[f"recall@{k}"] = hits / count if count else 0.0
-    summary["miou"] = (
-        sum(result["miou"] for result in results) / count if count else 0.0
-    )
+    summary["miou"] = sum(result["miou"] for result in results) / count if count else 0.0
     latencies = [result["latency_ms"] for result in results]
     summary["latency_p50_ms"] = percentile(latencies, 0.50)
     summary["latency_p95_ms"] = percentile(latencies, 0.95)
+    summary["duplicate_raw"] = (
+        sum(result["duplicate_raw"] for result in results) / count if count else 0.0
+    )
+    summary["duplicate_segment"] = (
+        sum(result["duplicate_segment"] for result in results) / count if count else 0.0
+    )
     return summary
+
+
+# ---------------------------------------------------------------------------
+# Ranking helpers
+# ---------------------------------------------------------------------------
+
+
+def rank_frames(
+    index: Any,
+    records: list[dict[str, Any]],
+    vector: np.ndarray,
+    video_id: str,
+    limit: int,
+) -> list[dict[str, Any]]:
+    scores, positions = store.search(index, vector, min(limit, int(index.ntotal)))
+    hits = []
+    for score, position in zip(scores, positions):
+        if position < 0 or position >= len(records):
+            continue
+        record = records[int(position)]
+        hits.append(
+            {
+                "video_id": video_id,
+                "layer": "frame",
+                "timestamp": float(record["start"]),
+                "score": float(score),
+                "path": record["path"],
+                "doc_id": record["doc_id"],
+            }
+        )
+    return hits
+
+
+def rank_objects(
+    index: Any,
+    records: list[dict[str, Any]],
+    vector: np.ndarray,
+    query: str,
+    video_id: str,
+    limit: int,
+) -> list[dict[str, Any]]:
+    if index is None or int(index.ntotal) == 0:
+        return []
+    scores, positions = store.search(index, vector, int(index.ntotal))
+    best_by_track: dict[int, dict[str, Any]] = {}
+    for score, record in filter_object_matches(records, scores, positions, query):
+        meta = record.get("meta") or {}
+        track_id = int(meta.get("track_id", 0))
+        candidate = {
+            "video_id": video_id,
+            "layer": "object",
+            "timestamp": float(meta.get("timestamp_s", record["start"])),
+            "start": float(record["start"]),
+            "end": float(record["end"]),
+            "score": float(score),
+            "path": record["path"],
+            "doc_id": record["doc_id"],
+            "class_name": meta.get("class_name"),
+            "track_id": track_id,
+        }
+        existing = best_by_track.get(track_id)
+        if existing is None or candidate["score"] > existing["score"]:
+            best_by_track[track_id] = candidate
+    return sorted(best_by_track.values(), key=lambda item: item["score"], reverse=True)[:limit]
+
+
+# ---------------------------------------------------------------------------
+# Gallery and markdown
+# ---------------------------------------------------------------------------
 
 
 def build_gallery(
@@ -202,13 +300,11 @@ def build_gallery(
     out_dir: Path,
     max_items: int,
 ) -> Path | None:
-    """Render up to 20 failed top-1 results into one labeled contact sheet."""
     tiles = []
     for failure in failures[:max_items]:
         if not failure.get("predicted_path"):
             continue
-        frame_path = config.resolve(failure["predicted_path"])
-        image = cv2.imread(str(frame_path), cv2.IMREAD_COLOR)
+        image = cv2.imread(str(config.resolve(failure["predicted_path"])), cv2.IMREAD_COLOR)
         if image is None:
             continue
         tile_width, tile_height = 320, 180
@@ -226,7 +322,7 @@ def build_gallery(
         gt = failure["intervals"][0]
         lines = [
             failure["query"][:44],
-            f"pred {failure['top1_timestamp']:.1f}s | GT {gt[0]:.1f}-{gt[1]:.1f}s",
+            f"peak {failure['top1_timestamp']:.1f}s | GT {gt[0]:.1f}-{gt[1]:.1f}s",
             failure["cause"][:52],
         ]
         for row, text in enumerate(lines):
@@ -244,7 +340,6 @@ def build_gallery(
 
     if not tiles:
         return None
-
     columns = 4
     while len(tiles) % columns:
         tiles.append(np.zeros_like(tiles[0]))
@@ -258,17 +353,15 @@ def build_gallery(
     return gallery_path
 
 
-def write_markdown(
-    path: Path,
-    payload: dict[str, Any],
-) -> None:
+def write_markdown(path: Path, payload: dict[str, Any]) -> None:
     aggregate = payload["aggregate"]
     lines = [
-        f"# Baseline results — {payload['config']}",
+        f"# Results — {payload['config']}",
         "",
         f"- Generated: {payload['generated_at']}",
         f"- Model: `{payload['model']}`",
-        f"- Layer: `{payload['layer']}`",
+        f"- Mode: `{payload['mode']}`",
+        f"- Temporal: gap {payload['temporal']['gap_s']} s, min {payload['temporal']['min_segment_s']} s",
         f"- Queries: {aggregate['queries']} across {len(payload['per_video'])} videos",
         f"- Query file SHA-256: `{payload['queries_sha256'][:16]}…`",
         "",
@@ -277,19 +370,22 @@ def write_markdown(
         f"| Recall@1 | {aggregate['recall@1']:.3f} |",
         f"| Recall@5 | {aggregate['recall@5']:.3f} |",
         f"| Recall@10 | {aggregate['recall@10']:.3f} |",
-        f"| mIoU (1 s window) | {aggregate['miou']:.3f} |",
+        f"| mIoU (segments) | {aggregate['miou']:.3f} |",
+        f"| Duplicate rate (raw top-10) | {aggregate['duplicate_raw']:.3f} |",
+        f"| Duplicate rate (merged) | {aggregate['duplicate_segment']:.3f} |",
         f"| Latency p50 | {aggregate['latency_p50_ms']:.0f} ms |",
         f"| Latency p95 | {aggregate['latency_p95_ms']:.0f} ms |",
         "",
         "## Per query type",
         "",
-        "| Type | Queries | R@1 | R@5 | R@10 | mIoU |",
-        "|---|---|---|---|---|---|",
+        "| Type | Queries | R@1 | R@5 | R@10 | mIoU | Dup raw | Dup merged |",
+        "|---|---|---|---|---|---|---|---|",
     ]
     for query_type, summary in sorted(payload["per_type"].items()):
         lines.append(
             f"| {query_type} | {summary['queries']} | {summary['recall@1']:.3f} | "
-            f"{summary['recall@5']:.3f} | {summary['recall@10']:.3f} | {summary['miou']:.3f} |"
+            f"{summary['recall@5']:.3f} | {summary['recall@10']:.3f} | {summary['miou']:.3f} | "
+            f"{summary['duplicate_raw']:.3f} | {summary['duplicate_segment']:.3f} |"
         )
     lines.extend(
         [
@@ -310,6 +406,11 @@ def write_markdown(
     path.write_text("\n".join(lines), encoding="utf-8")
 
 
+# ---------------------------------------------------------------------------
+# Main
+# ---------------------------------------------------------------------------
+
+
 def main(argv: list[str] | None = None) -> int:
     args = build_parser().parse_args(argv)
     started = time.perf_counter()
@@ -320,20 +421,19 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 2
 
+    mode = args.mode
     queries_path = config.resolve(args.queries)
-    layer = args.layer
-    if layer == "frames":
-        default_out = "benchmarks/results/baseline.json"
-        default_markdown = "benchmarks/results/baseline.md"
-        default_failures = "benchmarks/failures"
-    else:
-        default_out = "benchmarks/results/objects.json"
-        default_markdown = "benchmarks/results/objects.md"
-        default_failures = "benchmarks/failures/objects"
-    out_path = config.resolve(args.out or default_out)
-    markdown_path = config.resolve(args.markdown or default_markdown)
-    failures_dir = config.resolve(args.failures_dir or default_failures)
-    log_path = config.logs_dir / f"evaluate-{datetime.now():%Y%m%d-%H%M%S}.log"
+    heldout = queries_path.stem.lower().startswith("heldout")
+    prefix = "heldout_" if heldout else ""
+    defaults = {
+        "A": (f"benchmarks/results/{prefix}baseline.json", f"benchmarks/results/{prefix}baseline.md", f"benchmarks/failures/{prefix}a" if heldout else "benchmarks/failures"),
+        "B": (f"benchmarks/results/{prefix}objects.json", f"benchmarks/results/{prefix}objects.md", f"benchmarks/failures/{prefix}b" if heldout else "benchmarks/failures/objects"),
+        "AB": (f"benchmarks/results/{prefix}ab.json", f"benchmarks/results/{prefix}ab.md", f"benchmarks/failures/{prefix}ab" if heldout else "benchmarks/failures/ab"),
+    }[mode]
+    out_path = config.resolve(args.out or defaults[0])
+    markdown_path = config.resolve(args.markdown or defaults[1])
+    failures_dir = config.resolve(args.failures_dir or defaults[2])
+    log_path = config.logs_dir / f"evaluate-{mode}-{datetime.now():%Y%m%d-%H%M%S}.log"
     setup_logging(log_path, level=getattr(logging, args.log_level), console=True)
 
     try:
@@ -350,72 +450,90 @@ def main(argv: list[str] | None = None) -> int:
     device = resolve_device(args.device or config.get("frames.device", "auto"))
     model_name = str(config.get("frames.model"))
 
-    _LOG.info("loading %s on %s", model_name, device)
+    _LOG.info("mode %s: loading %s on %s", mode, model_name, device)
     processor, model = load_siglip(model_name, device)
 
-    indexes: dict[str, tuple[Any, dict[str, Any]]] = {}
-    loader = load_frame_index if layer == "frames" else load_object_index
-    for video_id in video_ids:
-        _LOG.info("loading %s index for %s", layer, video_id)
-        indexes[video_id] = loader(config, video_id)
+    frame_indexes: dict[str, tuple[Any, dict[str, Any]]] = {}
+    object_indexes: dict[str, tuple[Any, dict[str, Any]]] = {}
+    if mode in ("A", "AB"):
+        for video_id in video_ids:
+            frame_indexes[video_id] = load_frame_index(config, video_id)
+    if mode in ("B", "AB"):
+        for video_id in video_ids:
+            try:
+                object_indexes[video_id] = load_object_index(config, video_id)
+            except store.StoreError as exc:
+                _LOG.warning("no object index for %s: %s", video_id, exc)
+                object_indexes[video_id] = (None, {"records": [], "empty": True})
 
-    # Warm up CUDA so the first measured query is not inflated.
     embed_texts(["warmup"], processor, model, device=device)
+
+    gap_s = float(config.get("search.merge_gap_s", 3.0))
+    min_segment_s = float(config.get("search.min_segment_s", 1.0))
+    rrf_k = int(config.get("search.rrf_k", 60))
+    rrf_window_s = float(config.get("search.rrf_window_s", 2.0))
+    weights = {
+        "frame": float(config.get("search.weights.frame", 1.0)),
+        "object": float(config.get("search.weights.object", 1.0)),
+    }
 
     results: list[dict[str, Any]] = []
     for number, group in enumerate(groups, start=1):
-        index, sidecar = indexes[group["video_id"]]
-        records = sidecar["records"]
-
         query_started = time.perf_counter()
         vector = embed_texts([group["query"]], processor, model, device=device)[0]
-        if index is None or int(index.ntotal) == 0:
-            scores, positions = [], []
-        else:
-            fetch_k = (
-                args.top_k
-                if layer == "frames"
-                else int(index.ntotal)
-            )
-            scores, positions = store.search(index, vector, fetch_k)
-        latency_ms = (time.perf_counter() - query_started) * 1000.0
 
-        matches = []
-        if layer == "frames":
-            for score, position in zip(scores, positions):
-                if position < 0 or position >= len(records):
-                    continue
-                record = records[int(position)]
-                matches.append(
-                    {
-                        "timestamp": float(record["start"]),
-                        "score": float(score),
-                        "path": record["path"],
-                        "doc_id": record["doc_id"],
-                    }
+        frame_hits: list[dict[str, Any]] = []
+        object_hits: list[dict[str, Any]] = []
+        if mode in ("A", "AB"):
+            index, sidecar = frame_indexes[group["video_id"]]
+            frame_hits = rank_frames(
+                index, sidecar["records"], vector, group["video_id"], args.candidates
+            )
+        if mode in ("B", "AB"):
+            index, sidecar = object_indexes[group["video_id"]]
+            _, class_constraints, night = parse_object_query(group["query"])
+            use_objects = mode == "B" or (
+                group["type"] in ("object", "spatial")
+                and bool(class_constraints)
+                and not night
+            )
+            if use_objects:
+                object_hits = rank_objects(
+                    index,
+                    sidecar["records"],
+                    vector,
+                    group["query"],
+                    group["video_id"],
+                    args.candidates,
                 )
+
+        if mode == "A":
+            raw = frame_hits
+        elif mode == "B":
+            raw = object_hits
+        elif object_hits:
+            raw = reciprocal_rank_fusion(
+                {"frame": frame_hits, "object": object_hits},
+                k=rrf_k,
+                weights=weights,
+                window_s=rrf_window_s,
+                max_per_layer=args.candidates,
+            )
         else:
-            best_by_track: dict[int, dict[str, Any]] = {}
-            for score, record in filter_object_matches(
-                records, scores, positions, group["query"]
-            ):
-                meta = record.get("meta") or {}
-                track_id = int(meta.get("track_id", 0))
-                candidate = {
-                    "timestamp": float(meta.get("timestamp_s", record["start"])),
-                    "score": float(score),
-                    "path": record["path"],
-                    "doc_id": record["doc_id"],
-                    "track_id": track_id,
-                    "class_name": meta.get("class_name"),
-                }
-                existing = best_by_track.get(track_id)
-                if existing is None or candidate["score"] > existing["score"]:
-                    best_by_track[track_id] = candidate
-            matches = sorted(
-                best_by_track.values(), key=lambda item: item["score"], reverse=True
-            )[: args.top_k]
-        if not matches:
+            # No object candidates for this query: fall back to the frame ranking.
+            raw = frame_hits
+
+        raw = list(raw)
+        segments = merge_hits(
+            raw,
+            gap_s=gap_s,
+            min_segment_s=min_segment_s,
+        )
+        latency_ms = (time.perf_counter() - query_started) * 1000.0
+        duplicate_raw = duplicate_rate(raw, gap_s=gap_s, top_k=10)
+        duplicate_segment = duplicate_rate(segments, gap_s=gap_s, top_k=10)
+
+        if not segments:
             results.append(
                 {
                     "query_id": group["query_id"],
@@ -427,6 +545,8 @@ def main(argv: list[str] | None = None) -> int:
                     "hits": {k: False for k in METRIC_KS},
                     "miou": 0.0,
                     "latency_ms": latency_ms,
+                    "duplicate_raw": duplicate_raw,
+                    "duplicate_segment": duplicate_segment,
                     "top1_timestamp": None,
                     "top1_score": 0.0,
                     "predicted_path": None,
@@ -446,13 +566,13 @@ def main(argv: list[str] | None = None) -> int:
 
         hits = {
             k: any(
-                is_hit(match["timestamp"], group["intervals"], DEFAULT_TOLERANCE_S)
-                for match in matches[:k]
+                segment_best_iou(segment, group["intervals"]) > 1e-9
+                for segment in segments[:k]
             )
             for k in METRIC_KS
         }
-        top1 = matches[0]
-        miou = best_iou(top1["timestamp"], group["intervals"], DEFAULT_MIN_SEGMENT_S)
+        top1 = segments[0]
+        miou = segment_best_iou(top1, group["intervals"])
 
         results.append(
             {
@@ -465,24 +585,35 @@ def main(argv: list[str] | None = None) -> int:
                 "hits": hits,
                 "miou": miou,
                 "latency_ms": latency_ms,
-                "top1_timestamp": top1["timestamp"],
-                "top1_score": top1["score"],
-                "predicted_path": top1["path"],
+                "duplicate_raw": duplicate_raw,
+                "duplicate_segment": duplicate_segment,
+                "top1_timestamp": float(top1["peak_timestamp"]),
+                "top1_score": float(top1["score"]),
+                "predicted_path": top1.get("peak_path"),
                 "top5": [
-                    {"timestamp": match["timestamp"], "score": match["score"], "path": match["path"]}
-                    for match in matches[:5]
+                    {
+                        "timestamp": float(segment["peak_timestamp"]),
+                        "start": float(segment["start"]),
+                        "end": float(segment["end"]),
+                        "score": float(segment["score"]),
+                        "path": segment.get("peak_path"),
+                        "layers": segment.get("layers", []),
+                    }
+                    for segment in segments[:5]
                 ],
             }
         )
         top1_mark = "HIT" if hits[1] else "miss"
         _LOG.info(
-            "[%2d/%2d] %-7s %-4s %-42s pred=%7.1fs gt=%s",
+            "[%2d/%2d] %-7s %-4s %-42s peak=%7.1fs seg=%5.1f-%5.1fs gt=%s",
             number,
             len(groups),
             group["type"],
             top1_mark,
             group["query"][:42],
-            top1["timestamp"],
+            float(top1["peak_timestamp"]),
+            float(top1["start"]),
+            float(top1["end"]),
             ",".join(f"{start:.0f}-{end:.0f}" for start, end in group["intervals"]),
         )
 
@@ -516,23 +647,26 @@ def main(argv: list[str] | None = None) -> int:
         )
 
     payload = {
-        "schema_version": 1,
+        "schema_version": 2,
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
-        "config": "A (frames)" if layer == "frames" else "B (objects)",
-        "layer": layer,
+        "mode": mode,
+        "config": MODE_LABELS[mode],
         "model": model_name,
         "device": device,
         "queries_file": store.relative_path(queries_path, config.repo_root),
         "queries_sha256": sha256_file(queries_path),
         "query_count": len(results),
+        "temporal": {"gap_s": gap_s, "min_segment_s": min_segment_s},
+        "fusion": (
+            {"k": rrf_k, "weights": weights, "window_s": rrf_window_s}
+            if mode == "AB"
+            else None
+        ),
         "aggregate": summarize(results),
         "per_type": {key: summarize(value) for key, value in sorted(per_type.items())},
         "per_video": {key: summarize(value) for key, value in sorted(per_video.items())},
         "per_query": results,
-        "failures": {
-            "count": len(failures),
-            "items": failures[: args.max_failures],
-        },
+        "failures": {"count": len(failures), "items": failures[: args.max_failures]},
     }
 
     store.write_json(out_path, payload)
@@ -551,19 +685,21 @@ def main(argv: list[str] | None = None) -> int:
     elapsed = time.perf_counter() - started
     aggregate = payload["aggregate"]
     print()
-    print(f"  {'Layer A baseline' if layer == 'frames' else 'Layer B object baseline'}")
-    print(f"  Queries      : {aggregate['queries']}")
-    print(f"  Recall@1     : {aggregate['recall@1']:.3f}")
-    print(f"  Recall@5     : {aggregate['recall@5']:.3f}")
-    print(f"  Recall@10    : {aggregate['recall@10']:.3f}")
-    print(f"  mIoU (1 s)   : {aggregate['miou']:.3f}")
-    print(f"  Latency p50  : {aggregate['latency_p50_ms']:.0f} ms")
-    print(f"  Latency p95  : {aggregate['latency_p95_ms']:.0f} ms")
-    print(f"  Results      : {out_path}")
-    print(f"  Markdown     : {markdown_path}")
+    print(f"  {MODE_LABELS[mode]} — segments")
+    print(f"  Queries          : {aggregate['queries']}")
+    print(f"  Recall@1         : {aggregate['recall@1']:.3f}")
+    print(f"  Recall@5         : {aggregate['recall@5']:.3f}")
+    print(f"  Recall@10        : {aggregate['recall@10']:.3f}")
+    print(f"  mIoU (segments)  : {aggregate['miou']:.3f}")
+    print(f"  Dup rate (raw)   : {aggregate['duplicate_raw']:.3f}")
+    print(f"  Dup rate (merged): {aggregate['duplicate_segment']:.3f}")
+    print(f"  Latency p50      : {aggregate['latency_p50_ms']:.0f} ms")
+    print(f"  Latency p95      : {aggregate['latency_p95_ms']:.0f} ms")
+    print(f"  Results          : {out_path}")
+    print(f"  Markdown         : {markdown_path}")
     if gallery_path is not None:
-        print(f"  Gallery      : {gallery_path}")
-    print(f"  Elapsed      : {format_duration(elapsed)}")
+        print(f"  Gallery          : {gallery_path}")
+    print(f"  Elapsed          : {format_duration(elapsed)}")
     return 0
 
 

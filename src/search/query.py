@@ -67,6 +67,51 @@ def parse_object_query(text: str) -> tuple[set[str], Optional[set[str]], bool]:
     return colors, (classes or None), night
 
 
+def _bbox_iou(first: Any, second: Any) -> float:
+    if not first or not second or len(first) < 4 or len(second) < 4:
+        return 0.0
+    ax1, ay1, ax2, ay2 = (float(value) for value in first[:4])
+    bx1, by1, bx2, by2 = (float(value) for value in second[:4])
+    inter_width = max(0.0, min(ax2, bx2) - max(ax1, bx1))
+    inter_height = max(0.0, min(ay2, by2) - max(ay1, by1))
+    intersection = inter_width * inter_height
+    if intersection <= 0:
+        return 0.0
+    area_a = max(0.0, ax2 - ax1) * max(0.0, ay2 - ay1)
+    area_b = max(0.0, bx2 - bx1) * max(0.0, by2 - by1)
+    union = area_a + area_b - intersection
+    return intersection / union if union > 0 else 0.0
+
+
+def collapse_object_pairs(
+    pairs: list[tuple[float, dict[str, Any]]],
+    *,
+    window_s: float = 2.0,
+    iou_threshold: float = 0.3,
+) -> list[tuple[float, dict[str, Any]]]:
+    """Collapse repeated anchor crops of the same physical object."""
+    ordered = sorted(pairs, key=lambda pair: pair[0], reverse=True)
+    kept: list[tuple[float, dict[str, Any]]] = []
+    for score, record in ordered:
+        meta = record.get("meta") or {}
+        timestamp = float(meta.get("timestamp_s", 0.0))
+        box = meta.get("crop_bbox") or meta.get("bbox")
+        duplicate = False
+        for _, other in kept:
+            other_meta = other.get("meta") or {}
+            if other_meta.get("class_name") != meta.get("class_name"):
+                continue
+            if abs(float(other_meta.get("timestamp_s", 0.0)) - timestamp) > window_s:
+                continue
+            other_box = other_meta.get("crop_bbox") or other_meta.get("bbox")
+            if _bbox_iou(box, other_box) >= iou_threshold:
+                duplicate = True
+                break
+        if not duplicate:
+            kept.append((score, record))
+    return kept
+
+
 def filter_object_matches(
     records: list[dict[str, Any]],
     scores: Any,
@@ -109,7 +154,7 @@ def filter_object_matches(
         if subset:
             pairs = subset
 
-    return pairs
+    return collapse_object_pairs(pairs)
 
 
 def list_indexed_videos(config: Config, layer: str = "frame") -> list[str]:

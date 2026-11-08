@@ -1,5 +1,5 @@
 {
-  "generated_at": "2026-11-08T13:37:15+00:00",
+  "generated_at": "2026-11-08T15:18:54+00:00",
   "items": [
     {
       "query_id": "q002",
@@ -130,38 +130,6 @@
       "cause": "OCR layer not implemented (P6)"
     },
     {
-      "query_id": "q016",
-      "video_id": "streetcctv1",
-      "type": "object",
-      "query": "a red umbrella",
-      "intervals": [
-        [
-          55.0,
-          65.0
-        ]
-      ],
-      "top1_timestamp": 53.0,
-      "top1_score": 0.07820607721805573,
-      "predicted_path": "data/frames/streetcctv1/000053.jpg",
-      "cause": "small object missed by frame embedding (P3)"
-    },
-    {
-      "query_id": "q019",
-      "video_id": "streetcctv1",
-      "type": "visual",
-      "query": "people crossing the street in the rain",
-      "intervals": [
-        [
-          5.0,
-          30.0
-        ]
-      ],
-      "top1_timestamp": 48.0,
-      "top1_score": 0.1253058761358261,
-      "predicted_path": "data/frames/streetcctv1/000048.jpg",
-      "cause": "scene confusion in frame embedding"
-    },
-    {
       "query_id": "q020",
       "video_id": "streetcctv1",
       "type": "visual",
@@ -191,7 +159,7 @@
       "top1_timestamp": 348.0,
       "top1_score": 0.07463976740837097,
       "predicted_path": "data/frames/streetcctv2/000348.jpg",
-      "cause": "small object missed by frame embedding (P3)"
+      "cause": "object crop missed the target instance (P3)"
     },
     {
       "query_id": "q024",
@@ -207,7 +175,7 @@
       "top1_timestamp": 389.0,
       "top1_score": 0.09293002635240555,
       "predicted_path": "data/frames/streetcctv2/000389.jpg",
-      "cause": "small object missed by frame embedding (P3)"
+      "cause": "object crop missed the target instance (P3)"
     },
     {
       "query_id": "q025",
@@ -226,22 +194,6 @@
       "cause": "scene confusion in frame embedding"
     },
     {
-      "query_id": "q027",
-      "video_id": "streetcctv2",
-      "type": "action",
-      "query": "cars driving through the intersection",
-      "intervals": [
-        [
-          390.0,
-          415.0
-        ]
-      ],
-      "top1_timestamp": 419.0,
-      "top1_score": 0.10986015945672989,
-      "predicted_path": "data/frames/streetcctv2/000419.jpg",
-      "cause": "frame embedding cannot model actions (P7)"
-    },
-    {
       "query_id": "q031",
       "video_id": "indoor1",
       "type": "spatial",
@@ -255,23 +207,7 @@
       "top1_timestamp": 220.0,
       "top1_score": 0.10739222168922424,
       "predicted_path": "data/frames/indoor1/000220.jpg",
-      "cause": "no spatial reasoning (P3)"
-    },
-    {
-      "query_id": "q033",
-      "video_id": "indoor2",
-      "type": "caption",
-      "query": "a family playing a game together",
-      "intervals": [
-        [
-          225.0,
-          240.0
-        ]
-      ],
-      "top1_timestamp": 222.999999,
-      "top1_score": 0.09807045757770538,
-      "predicted_path": "data/frames/indoor2/000223.jpg",
-      "cause": "caption layer not implemented (P7)"
+      "cause": "no spatial reasoning beyond object boxes"
     },
     {
       "query_id": "q037",
@@ -290,22 +226,6 @@
       "cause": "OCR layer not implemented (P6)"
     },
     {
-      "query_id": "q038",
-      "video_id": "screen-recording",
-      "type": "ocr",
-      "query": "the command sfc /scannow in command prompt",
-      "intervals": [
-        [
-          145.0,
-          170.0
-        ]
-      ],
-      "top1_timestamp": 142.0,
-      "top1_score": 0.1962391883134842,
-      "predicted_path": "data/frames/screen-recording/000142.jpg",
-      "cause": "OCR layer not implemented (P6)"
-    },
-    {
       "query_id": "q042",
       "video_id": "screen-recording",
       "type": "visual",
@@ -319,6 +239,70 @@
       "top1_timestamp": 98.0,
       "top1_score": 0.14039185643196106,
       "predicted_path": "data/frames/screen-recording/000098.jpg",
+      "cause": "scene confusion in frame embedding"
+    },
+    {
+      "query_id": "q044",
+      "video_id": "dashcam",
+      "type": "visual",
+      "query": "driving through a city at night",
+      "intervals": [
+        [
+          15.0,
+          45.0
+        ]
+      ],
+      "top1_timestamp": 3.0,
+      "top1_score": 0.1183229461312294,
+      "predicted_path": "data/frames/dashcam/000003.jpg",
+      "cause": "scene confusion in frame embedding"
+    },
+    {
+      "query_id": "q045",
+      "video_id": "dashcam",
+      "type": "object",
+      "query": "a white car driving ahead at night",
+      "intervals": [
+        [
+          85.0,
+          100.0
+        ]
+      ],
+      "top1_timestamp": 134.0,
+      "top1_score": 0.14096808433532715,
+      "predicted_path": "data/frames/dashcam/000134.jpg",
+      "cause": "object crop missed the target instance (P3)"
+    },
+    {
+      "query_id": "q048",
+      "video_id": "dashcam",
+      "type": "object",
+      "query": "a red car parked on the street",
+      "intervals": [
+        [
+          255.0,
+          270.0
+        ]
+      ],
+      "top1_timestamp": 226.0,
+      "top1_score": 0.12522506713867188,
+      "predicted_path": "data/frames/dashcam/000226.jpg",
+      "cause": "object crop missed the target instance (P3)"
+    },
+    {
+      "query_id": "q049",
+      "video_id": "dashcam",
+      "type": "visual",
+      "query": "driving on a wide city street in daytime",
+      "intervals": [
+        [
+          410.0,
+          440.0
+        ]
+      ],
+      "top1_timestamp": 398.0,
+      "top1_score": 0.12492217123508453,
+      "predicted_path": "data/frames/dashcam/000398.jpg",
       "cause": "scene confusion in frame embedding"
     }
   ]

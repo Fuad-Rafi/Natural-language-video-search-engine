@@ -1,0 +1,21 @@
+query_id,video_id,query,type,start,end,notes
+h001,lecture1,"where he plans ideas for the first body paragraph",speech,379,413,body paragraph planning
+h002,lecture1,"where he explains the conclusion for the first essay",speech,1012,1045,conclusion section
+h003,lecture1,"the slide titled essay 2 introduction",ocr,240,270,essay 2 slide
+h004,lecture2,"where he defines an algorithm as a procedure",speech,144,164,algorithm definition
+h005,lecture2,"where he explains theta notation is tight",speech,704,716,asymptotic notation
+h006,lecture2,"the chalkboard says algorithm f from i to o",ocr,60,100,blackboard definition
+h007,streetcctv1,"a man walking with a cane",object,15,28,foreground pedestrian
+h008,streetcctv1,"a wet street with shops in the background",visual,0,20,rainy crossing
+h009,streetcctv1,"a silver car crossing the street",visual,15,30,silver hatchback
+h010,streetcctv2,"a black car crossing the zebra crossing",object,40,50,black car
+h011,streetcctv2,"a residential street corner with a white building",visual,5,30,Abbey Road corner
+h012,indoor1,"a man standing by a window",action,125,140,cafe window
+h013,indoor1,"a person watching television in a dark room",caption,435,450,TV and candles
+h014,indoor2,"a yellow mug",object,10,20,ornate yellow mug
+h015,indoor2,"a man in a suit standing by a door",visual,115,130,entrance
+h016,screen-recording,"Windows 8 compatibility mode",ocr,95,115,compatibility troubleshooter
+h017,screen-recording,"the command chkdsk c: /f /r",ocr,125,140,command prompt
+h018,dashcam,"a blue car driving ahead",object,415,430,blue car
+h019,dashcam,"a white box truck",object,295,310,box truck
+h020,dashcam,"an empty city street",visual,335,350,quiet block
