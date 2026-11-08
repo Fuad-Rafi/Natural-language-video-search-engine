@@ -1,0 +1,51 @@
+query_id,video_id,query,type,start,end,notes
+q001,lecture1,"where he says young people who break the law",speech,148,175,paraphrase example
+q002,lecture1,"where he explains what the introduction needs to do",speech,141,150,three jobs of an introduction
+q003,lecture1,"where he says lack of support at home",speech,706,735,cause of youth crime
+q004,lecture1,"where he says peer pressure plays a role",speech,911,930,third cause
+q005,lecture1,"where he explains the passive voice",speech,944,960,grammar point
+q006,lecture1,"the slide titled essay introductions",ocr,132,140,title slide
+q007,lecture1,"the slide that says our goal present the topic",ocr,140,156,introduction goals
+q008,lecture1,"the ultimate IELTS playbook",ocr,992,1010,pdf cover
+q009,lecture2,"where he says prove correctness and argue efficiency",speech,15,32,goals of the course
+q010,lecture2,"where he explains the base case of zero students",speech,288,309,induction base case
+q011,lecture2,"where he says we measure operations instead of time",speech,505,525,efficiency motivation
+q012,lecture2,"where he explains big O is an upper bound",speech,686,704,asymptotic notation
+q013,lecture2,"the chalkboard says 6.006 lecture 1",ocr,30,55,title on blackboard
+q014,lecture2,"the chalkboard heading correctness",ocr,180,210,proof section
+q015,lecture2,"the chalkboard heading efficiency",ocr,450,480,efficiency section
+q016,streetcctv1,"a red umbrella",object,55,65,rainy crossing
+q017,streetcctv1,"a white van",object,235,245,parked on the right
+q018,streetcctv1,"a red car driving past",object,185,195,red hatchback
+q019,streetcctv1,"people crossing the street in the rain",visual,5,30,umbrellas and pedestrians
+q020,streetcctv1,"a wide road with parked cars",visual,130,155,elevated view
+q021,streetcctv1,"a yellow taxi near the shops",spatial,10,30,left side of the crossing
+q022,streetcctv2,"a white SUV",object,160,175,foreground at the crossing
+q023,streetcctv2,"a cyclist in a green jacket",object,95,105,crossing the road
+q024,streetcctv2,"a red car in the distance",object,10,20,small background object
+q025,streetcctv2,"a zebra crossing on a residential street",visual,5,30,Abbey Road style crossing
+q026,streetcctv2,"pedestrians walking on the sidewalk",visual,35,55,group on the right
+q027,streetcctv2,"cars driving through the intersection",action,390,415,continuous traffic
+q028,indoor1,"a man making espresso",action,145,172,espresso machine close-up
+q029,indoor1,"hands holding an open book",action,275,285,reading in a chair
+q030,indoor1,"a record player with a red vinyl record",object,288,305,turntable
+q031,indoor1,"a man sitting at a desk with a laptop",spatial,175,195,workspace
+q032,indoor2,"a man wearing headphones sitting at a desk",action,145,155,gaming setup
+q033,indoor2,"a family playing a game together",caption,225,240,three people with a controller
+q034,indoor2,"an outdoor patio with a round sofa",visual,165,180,poolside seating
+q035,indoor2,"two people standing in a doorway",counting,5,14,couple at the entrance
+q036,screen-recording,"the application was unable to start correctly 0xc0000142",ocr,15,30,error dialog
+q037,screen-recording,"the registry editor showing current version windows",ocr,50,75,registry path
+q038,screen-recording,the command sfc /scannow in command prompt,ocr,145,170,system file check
+q039,screen-recording,"chkdsk cannot run because the volume is in use",ocr,175,190,drive locked error
+q040,screen-recording,"download .NET framework 4.8.1",ocr,285,300,download page
+q041,screen-recording,building C and C++ apps,ocr,270,280,Visual Studio page
+q042,screen-recording,"a blue Windows desktop",visual,116,126,plain desktop
+q043,screen-recording,"the YouTube end screen with a subscribe button",visual,310,325,outro
+q044,dashcam,"driving through a city at night",visual,15,45,night section
+q045,dashcam,"a white car driving ahead at night",object,85,100,tail lights
+q046,dashcam,"two tall towers beside the road",visual,195,210,twin buildings
+q047,dashcam,"a street lined with autumn trees",visual,215,245,daytime avenue
+q048,dashcam,"a red car parked on the street",object,255,270,right side
+q049,dashcam,"driving on a wide city street in daytime",visual,410,440,multi lane road
+q050,dashcam,"a red car at an intersection",action,590,605,traffic light crossing

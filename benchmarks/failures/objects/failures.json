@@ -1,0 +1,325 @@
+{
+  "generated_at": "2026-11-08T14:54:01+00:00",
+  "items": [
+    {
+      "query_id": "q001",
+      "video_id": "lecture1",
+      "type": "speech",
+      "query": "where he says young people who break the law",
+      "intervals": [
+        [
+          148.0,
+          175.0
+        ]
+      ],
+      "top1_timestamp": 1138.137,
+      "top1_score": 0.059966523200273514,
+      "predicted_path": "data/objects/lecture1/t000074_1.jpg",
+      "cause": "speech layer not implemented (P5)"
+    },
+    {
+      "query_id": "q002",
+      "video_id": "lecture1",
+      "type": "speech",
+      "query": "where he explains what the introduction needs to do",
+      "intervals": [
+        [
+          141.0,
+          150.0
+        ]
+      ],
+      "top1_timestamp": 14.014,
+      "top1_score": 0.10740776360034943,
+      "predicted_path": "data/objects/lecture1/tm1000006_0.jpg",
+      "cause": "speech layer not implemented (P5)"
+    },
+    {
+      "query_id": "q003",
+      "video_id": "lecture1",
+      "type": "speech",
+      "query": "where he says lack of support at home",
+      "intervals": [
+        [
+          706.0,
+          735.0
+        ]
+      ],
+      "top1_timestamp": 484.484,
+      "top1_score": 0.07818547636270523,
+      "predicted_path": "data/objects/lecture1/t000041_0.jpg",
+      "cause": "speech layer not implemented (P5)"
+    },
+    {
+      "query_id": "q004",
+      "video_id": "lecture1",
+      "type": "speech",
+      "query": "where he says peer pressure plays a role",
+      "intervals": [
+        [
+          911.0,
+          930.0
+        ]
+      ],
+      "top1_timestamp": 643.643,
+      "top1_score": 0.05359518155455589,
+      "predicted_path": "data/objects/lecture1/t000044_0.jpg",
+      "cause": "speech layer not implemented (P5)"
+    },
+    {
+      "query_id": "q005",
+      "video_id": "lecture1",
+      "type": "speech",
+      "query": "where he explains the passive voice",
+      "intervals": [
+        [
+          944.0,
+          960.0
+        ]
+      ],
+      "top1_timestamp": 1138.137,
+      "top1_score": 0.07628557085990906,
+      "predicted_path": "data/objects/lecture1/t000074_1.jpg",
+      "cause": "speech layer not implemented (P5)"
+    },
+    {
+      "query_id": "q006",
+      "video_id": "lecture1",
+      "type": "ocr",
+      "query": "the slide titled essay introductions",
+      "intervals": [
+        [
+          132.0,
+          140.0
+        ]
+      ],
+      "top1_timestamp": 14.014,
+      "top1_score": 0.09554648399353027,
+      "predicted_path": "data/objects/lecture1/tm1000006_0.jpg",
+      "cause": "OCR layer not implemented (P6)"
+    },
+    {
+      "query_id": "q007",
+      "video_id": "lecture1",
+      "type": "ocr",
+      "query": "the slide that says our goal present the topic",
+      "intervals": [
+        [
+          140.0,
+          156.0
+        ]
+      ],
+      "top1_timestamp": 17.017,
+      "top1_score": 0.02504619024693966,
+      "predicted_path": "data/objects/lecture1/t000002_1.jpg",
+      "cause": "OCR layer not implemented (P6)"
+    },
+    {
+      "query_id": "q008",
+      "video_id": "lecture1",
+      "type": "ocr",
+      "query": "the ultimate IELTS playbook",
+      "intervals": [
+        [
+          992.0,
+          1010.0
+        ]
+      ],
+      "top1_timestamp": 988.988,
+      "top1_score": 0.07139325141906738,
+      "predicted_path": "data/objects/lecture1/t000063_2.jpg",
+      "cause": "OCR layer not implemented (P6)"
+    },
+    {
+      "query_id": "q009",
+      "video_id": "lecture2",
+      "type": "speech",
+      "query": "where he says prove correctness and argue efficiency",
+      "intervals": [
+        [
+          15.0,
+          32.0
+        ]
+      ],
+      "top1_timestamp": 508.0,
+      "top1_score": 0.1037677675485611,
+      "predicted_path": "data/objects/lecture2/tm1000261_0.jpg",
+      "cause": "speech layer not implemented (P5)"
+    },
+    {
+      "query_id": "q010",
+      "video_id": "lecture2",
+      "type": "speech",
+      "query": "where he explains the base case of zero students",
+      "intervals": [
+        [
+          288.0,
+          309.0
+        ]
+      ],
+      "top1_timestamp": 100.0,
+      "top1_score": 0.11749790608882904,
+      "predicted_path": "data/objects/lecture2/tm1000051_0.jpg",
+      "cause": "speech layer not implemented (P5)"
+    },
+    {
+      "query_id": "q011",
+      "video_id": "lecture2",
+      "type": "speech",
+      "query": "where he says we measure operations instead of time",
+      "intervals": [
+        [
+          505.0,
+          525.0
+        ]
+      ],
+      "top1_timestamp": 594.0,
+      "top1_score": 0.10857820510864258,
+      "predicted_path": "data/objects/lecture2/tm1000311_0.jpg",
+      "cause": "speech layer not implemented (P5)"
+    },
+    {
+      "query_id": "q012",
+      "video_id": "lecture2",
+      "type": "speech",
+      "query": "where he explains big O is an upper bound",
+      "intervals": [
+        [
+          686.0,
+          704.0
+        ]
+      ],
+      "top1_timestamp": 433.0,
+      "top1_score": 0.11702562868595123,
+      "predicted_path": "data/objects/lecture2/t000053_1.jpg",
+      "cause": "speech layer not implemented (P5)"
+    },
+    {
+      "query_id": "q013",
+      "video_id": "lecture2",
+      "type": "ocr",
+      "query": "the chalkboard says 6.006 lecture 1",
+      "intervals": [
+        [
+          30.0,
+          55.0
+        ]
+      ],
+      "top1_timestamp": 22.0,
+      "top1_score": 0.1318015158176422,
+      "predicted_path": "data/objects/lecture2/tm1000012_0.jpg",
+      "cause": "OCR layer not implemented (P6)"
+    },
+    {
+      "query_id": "q015",
+      "video_id": "lecture2",
+      "type": "ocr",
+      "query": "the chalkboard heading efficiency",
+      "intervals": [
+        [
+          450.0,
+          480.0
+        ]
+      ],
+      "top1_timestamp": 508.0,
+      "top1_score": 0.14924466609954834,
+      "predicted_path": "data/objects/lecture2/tm1000261_0.jpg",
+      "cause": "OCR layer not implemented (P6)"
+    },
+    {
+      "query_id": "q018",
+      "video_id": "streetcctv1",
+      "type": "object",
+      "query": "a red car driving past",
+      "intervals": [
+        [
+          185.0,
+          195.0
+        ]
+      ],
+      "top1_timestamp": 102.0,
+      "top1_score": 0.11660810559988022,
+      "predicted_path": "data/objects/streetcctv1/tm1000154_0.jpg",
+      "cause": "small object missed by frame embedding (P3)"
+    },
+    {
+      "query_id": "q020",
+      "video_id": "streetcctv1",
+      "type": "visual",
+      "query": "a wide road with parked cars",
+      "intervals": [
+        [
+          130.0,
+          155.0
+        ]
+      ],
+      "top1_timestamp": 118.0,
+      "top1_score": 0.08060383796691895,
+      "predicted_path": "data/objects/streetcctv1/t000021_1.jpg",
+      "cause": "scene confusion in frame embedding"
+    },
+    {
+      "query_id": "q022",
+      "video_id": "streetcctv2",
+      "type": "object",
+      "query": "a white SUV",
+      "intervals": [
+        [
+          160.0,
+          175.0
+        ]
+      ],
+      "top1_timestamp": 411.0,
+      "top1_score": 0.09617309272289276,
+      "predicted_path": "data/objects/streetcctv2/t000321_0.jpg",
+      "cause": "small object missed by frame embedding (P3)"
+    },
+    {
+      "query_id": "q024",
+      "video_id": "streetcctv2",
+      "type": "object",
+      "query": "a red car in the distance",
+      "intervals": [
+        [
+          10.0,
+          20.0
+        ]
+      ],
+      "top1_timestamp": 0.0,
+      "top1_score": 0.10223779827356339,
+      "predicted_path": "data/objects/streetcctv2/t000006_0.jpg",
+      "cause": "small object missed by frame embedding (P3)"
+    },
+    {
+      "query_id": "q025",
+      "video_id": "streetcctv2",
+      "type": "visual",
+      "query": "a zebra crossing on a residential street",
+      "intervals": [
+        [
+          5.0,
+          30.0
+        ]
+      ],
+      "top1_timestamp": 46.0,
+      "top1_score": 0.09677974879741669,
+      "predicted_path": "data/objects/streetcctv2/tm1000071_0.jpg",
+      "cause": "scene confusion in frame embedding"
+    },
+    {
+      "query_id": "q026",
+      "video_id": "streetcctv2",
+      "type": "visual",
+      "query": "pedestrians walking on the sidewalk",
+      "intervals": [
+        [
+          35.0,
+          55.0
+        ]
+      ],
+      "top1_timestamp": 13.0,
+      "top1_score": 0.10190016031265259,
+      "predicted_path": "data/objects/streetcctv2/t000035_1.jpg",
+      "cause": "scene confusion in frame embedding"
+    }
+  ]
+}

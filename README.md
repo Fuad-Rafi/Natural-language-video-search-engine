@@ -2,7 +2,7 @@
 
 Search long videos with plain English. Ask a question, get a timestamp, a thumbnail, and a playable clip.
 
-> **Status: P0 complete — timestamped frame extraction works.** `scripts/index_video.py` indexes a video into 1 fps JPEGs plus metadata, and `scripts/verify_frames.py` checks them against the source. Retrieval (P1) and the remaining layers are being implemented phase by phase; the search and web UI commands below describe the target interface.
+> **Status: P3 complete — object layer added.** Frames-only Recall@5 is 0.740 overall; Layer B lifts the object+spatial subset from 0.727 to **0.818** and spatial from 0.500 to **1.000**, with object-only R@5 tying at 0.778. Fusion, speech, OCR, captions, and UI are in progress.
 
 ---
 
@@ -65,14 +65,42 @@ python scripts/verify_frames.py --video data/videos/sample.mp4
 
 Frames are written to `data/frames/<video_id>/` (`000000.jpg`, `metadata.json`, `frames.jsonl`), with a per-run log in `logs/`.
 
-### Search (planned, P1+)
+### Search (available)
 
 ```bash
-python scripts/search.py --query "where he says gradient descent"
+# 3. Build the Layer A index (SigLIP + FAISS; downloads ~400 MB on first run)
+python scripts/index_frames.py --video data/videos/sample.mp4
+
+# 4. Search it
+python scripts/search.py --query "a close-up of a human eye" --video sample
+
+# 5. Build the object layer and search crops
+python scripts/index_objects.py --video data/videos/streetcctv1.mp4
+python scripts/search.py --query "a red car parked on the street" --layer objects --video dashcam
+```
+
+Search returns frame timestamps with cosine scores. Omitting `--video` searches every indexed video. The first run loads the SigLIP model (about 2 seconds on the RTX 3060).
+
+### UI (planned, P8)
+
+```bash
 python app.py
 ```
 
-Indexing is cached: re-running the same video reuses existing frames.
+Indexing is cached at every stage: re-running the same video reuses existing frames and embeddings.
+
+## Results
+
+Custom frozen benchmark: **8 videos (~75 min), 50 queries, 4,479 sampled frames**.
+
+| Config | Recall@5 (all 50) | Recall@5 (object+spatial) | mIoU (B subset) | Latency p50 |
+|---|---|---|---|---|
+| A — frames only | **0.740** | 0.727 | 0.034 | 9 ms |
+| B — objects only | 0.340 | **0.818** | 0.037 | 9 ms |
+
+Layer B is only meaningful on object/spatial queries; it cannot answer speech, OCR, or scene-level questions. Full A/B fusion arrives in P4.
+
+mIoU uses a 1-second predicted window for frame hits; temporal merging arrives in P4. Per-type results and failure causes: `benchmarks/results/` and `benchmarks/failures/`.
 
 ## Configuration
 

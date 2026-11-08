@@ -13,12 +13,14 @@ PyYAML>=6.0
 torch>=2.2
 torchvision>=0.17
 transformers>=4.45
+sentencepiece>=0.2      # SigLIP tokenizer
 accelerate>=0.34
 sentence-transformers>=3.0
 
 # Detection and tracking
 # NOTE: Ultralytics is AGPL-3.0 and makes this project AGPL-3.0.
 ultralytics>=8.3
+lap>=0.5.12            # ByteTrack association
 
 # Retrieval
 faiss-cpu>=1.8

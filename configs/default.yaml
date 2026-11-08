@@ -12,14 +12,22 @@ video:
 frames:
   model: google/siglip-base-patch16-224
   batch_size: 32
+  device: auto             # auto | cuda | cpu
 
 objects:
   model: yolo11n.pt
   tracker: bytetrack.yaml
   conf: 0.35
-  classes: [0, 2, 5, 7, 24, 26, 28]   # person, car, bus, truck, backpack, handbag, suitcase
+  classes: [0, 1, 2, 3, 5, 7, 24, 26, 28]   # person, bicycle, car, motorcycle, bus, truck, backpack, handbag, suitcase
   min_crop_px: 32
   max_crops_per_track: 3
+  max_segment_s: 12.0      # split long-lived track ids into retrieval-friendly segments
+  max_gap_s: 2.5           # split when a track disappears for longer than this
+  anchor_interval_s: 2.0   # add top detections at this interval, independent of track ids
+  anchor_max_per_frame: 3
+  crop_margin: 0.1
+  max_crops_per_video: 2000
+  device: auto
 
 captions:
   enabled: false

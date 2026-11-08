@@ -1,4 +1,5 @@
-﻿# VideoSeek pinned environment (Python 3.10, Windows, CUDA 13)
+﻿# VideoSeek pinned environment (Python 3.10, Windows)
+# Torch 2.14 CUDA 13 wheels + CUDA 12 runtime DLLs for faster-whisper (P5).
 # Generated 2026-11-08 from .venv after installing requirements.txt
 # Reproduce:
 #   py -3.10 -m venv .venv
@@ -61,6 +62,7 @@ imagesize==2.0.1
 Jinja2==3.1.6
 joblib==1.6.0
 kiwisolver==1.5.1
+lap==0.5.14
 markdown-it-py==4.2.0
 MarkupSafe==3.0.4
 matplotlib==3.10.9
@@ -71,6 +73,10 @@ mpmath==1.3.0
 multidict==7.1.0
 networkx==3.4.2
 numpy==2.2.6
+nvidia-cublas-cu12==12.9.2.10
+nvidia-cuda-nvrtc-cu12==12.9.86
+nvidia-cuda-runtime-cu12==12.9.79
+nvidia-cudnn-cu12==9.28.1.4
 nvidia-ml-py==13.615.71
 onnxruntime==1.23.2
 opencv-contrib-python==4.10.0.84
@@ -119,6 +125,7 @@ scikit-learn==1.7.2
 scipy==1.15.3
 semantic-version==2.10.0
 sentence-transformers==6.2.0
+sentencepiece==0.2.3
 shapely==2.1.2
 shellingham==1.5.4
 six==1.17.0

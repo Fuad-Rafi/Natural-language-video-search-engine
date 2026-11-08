@@ -38,6 +38,12 @@ venv/
 *.webm
 *.wav
 
+# Benchmark gallery images (copyrighted source frames)
+/benchmarks/failures/*.jpg
+/benchmarks/failures/*.png
+/benchmarks/failures/**/*.jpg
+/benchmarks/failures/**/*.png
+
 # OS / editor
 .vscode/
 .idea/

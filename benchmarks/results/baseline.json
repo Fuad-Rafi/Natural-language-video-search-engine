@@ -1,0 +1,2994 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-08T13:37:15+00:00",
+  "config": "A (frames)",
+  "model": "google/siglip-base-patch16-224",
+  "device": "cuda",
+  "queries_file": "benchmarks/queries.csv",
+  "queries_sha256": "0b728db337406e3195e9063323eaf0938ac241e5e96ab499bfa377c9885f62bd",
+  "query_count": 50,
+  "aggregate": {
+    "queries": 50,
+    "recall@1": 0.48,
+    "recall@5": 0.74,
+    "recall@10": 0.82,
+    "miou": 0.032217572895975974,
+    "latency_p50_ms": 9.091299958527088,
+    "latency_p95_ms": 17.30229996610433
+  },
+  "per_type": {
+    "action": {
+      "queries": 5,
+      "recall@1": 0.6,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.04740740740740741,
+      "latency_p50_ms": 9.491899982094765,
+      "latency_p95_ms": 10.199000011198223
+    },
+    "caption": {
+      "queries": 1,
+      "recall@1": 0.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.0,
+      "latency_p50_ms": 7.733499980531633,
+      "latency_p95_ms": 7.733499980531633
+    },
+    "counting": {
+      "queries": 1,
+      "recall@1": 1.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.1111111111111111,
+      "latency_p50_ms": 8.41410004068166,
+      "latency_p95_ms": 8.41410004068166
+    },
+    "object": {
+      "queries": 9,
+      "recall@1": 0.4444444444444444,
+      "recall@5": 0.7777777777777778,
+      "recall@10": 0.8888888888888888,
+      "miou": 0.03616557734204793,
+      "latency_p50_ms": 10.423500032629818,
+      "latency_p95_ms": 12.02169997850433
+    },
+    "ocr": {
+      "queries": 12,
+      "recall@1": 0.6666666666666666,
+      "recall@5": 0.8333333333333334,
+      "recall@10": 0.8333333333333334,
+      "miou": 0.043868727598566304,
+      "latency_p50_ms": 8.91319999936968,
+      "latency_p95_ms": 10.714300035033375
+    },
+    "spatial": {
+      "queries": 2,
+      "recall@1": 0.5,
+      "recall@5": 0.5,
+      "recall@10": 0.5,
+      "miou": 0.025,
+      "latency_p50_ms": 8.573799976147711,
+      "latency_p95_ms": 13.077399984467775
+    },
+    "speech": {
+      "queries": 9,
+      "recall@1": 0.3333333333333333,
+      "recall@5": 0.4444444444444444,
+      "recall@10": 0.6666666666666666,
+      "miou": 0.016136019059995666,
+      "latency_p50_ms": 9.831200004555285,
+      "latency_p95_ms": 166.38599999714643
+    },
+    "visual": {
+      "queries": 11,
+      "recall@1": 0.36363636363636365,
+      "recall@5": 0.7272727272727273,
+      "recall@10": 0.8181818181818182,
+      "miou": 0.019599217986314758,
+      "latency_p50_ms": 9.452399972360581,
+      "latency_p95_ms": 11.208899959456176
+    }
+  },
+  "per_video": {
+    "dashcam": {
+      "queries": 7,
+      "recall@1": 0.14285714285714285,
+      "recall@5": 0.7142857142857143,
+      "recall@10": 0.8571428571428571,
+      "miou": 0.009523809523809523,
+      "latency_p50_ms": 10.409399983473122,
+      "latency_p95_ms": 10.76669996837154
+    },
+    "indoor1": {
+      "queries": 4,
+      "recall@1": 0.75,
+      "recall@5": 0.75,
+      "recall@10": 0.75,
+      "miou": 0.04896514161220043,
+      "latency_p50_ms": 12.02169997850433,
+      "latency_p95_ms": 13.077399984467775
+    },
+    "indoor2": {
+      "queries": 4,
+      "recall@1": 0.75,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.060842293906810035,
+      "latency_p50_ms": 9.19489999068901,
+      "latency_p95_ms": 9.491899982094765
+    },
+    "lecture1": {
+      "queries": 8,
+      "recall@1": 0.5,
+      "recall@5": 0.625,
+      "recall@10": 0.75,
+      "miou": 0.03464607699805068,
+      "latency_p50_ms": 12.205799983348697,
+      "latency_p95_ms": 166.38599999714643
+    },
+    "lecture2": {
+      "queries": 7,
+      "recall@1": 0.42857142857142855,
+      "recall@5": 0.5714285714285714,
+      "recall@10": 0.7142857142857143,
+      "miou": 0.018412698412698412,
+      "latency_p50_ms": 8.671299961861223,
+      "latency_p95_ms": 9.038400021381676
+    },
+    "screen-recording": {
+      "queries": 8,
+      "recall@1": 0.625,
+      "recall@5": 0.875,
+      "recall@10": 0.875,
+      "miou": 0.04153225806451613,
+      "latency_p50_ms": 9.220700012519956,
+      "latency_p95_ms": 16.74789999378845
+    },
+    "streetcctv1": {
+      "queries": 6,
+      "recall@1": 0.5,
+      "recall@5": 0.8333333333333334,
+      "recall@10": 1.0,
+      "miou": 0.041666666666666664,
+      "latency_p50_ms": 8.634899975731969,
+      "latency_p95_ms": 11.62619999377057
+    },
+    "streetcctv2": {
+      "queries": 6,
+      "recall@1": 0.3333333333333333,
+      "recall@5": 0.6666666666666666,
+      "recall@10": 0.6666666666666666,
+      "miou": 0.019444444444444445,
+      "latency_p50_ms": 8.92939994810149,
+      "latency_p95_ms": 9.452399972360581
+    }
+  },
+  "per_query": [
+    {
+      "query_id": "q001",
+      "video_id": "lecture1",
+      "query": "where he says young people who break the law",
+      "type": "speech",
+      "notes": "paraphrase example",
+      "intervals": [
+        [
+          148.0,
+          175.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.037037037037037035,
+      "latency_ms": 166.38599999714643,
+      "top1_timestamp": 171.171,
+      "top1_score": 0.10942314565181732,
+      "predicted_path": "data/frames/lecture1/000171.jpg",
+      "top5": [
+        {
+          "timestamp": 171.171,
+          "score": 0.10942314565181732,
+          "path": "data/frames/lecture1/000171.jpg"
+        },
+        {
+          "timestamp": 172.172,
+          "score": 0.10686136782169342,
+          "path": "data/frames/lecture1/000172.jpg"
+        },
+        {
+          "timestamp": 170.17,
+          "score": 0.10591313242912292,
+          "path": "data/frames/lecture1/000170.jpg"
+        },
+        {
+          "timestamp": 173.173,
+          "score": 0.10091991722583771,
+          "path": "data/frames/lecture1/000173.jpg"
+        },
+        {
+          "timestamp": 176.176,
+          "score": 0.10042429715394974,
+          "path": "data/frames/lecture1/000176.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q002",
+      "video_id": "lecture1",
+      "query": "where he explains what the introduction needs to do",
+      "type": "speech",
+      "notes": "three jobs of an introduction",
+      "intervals": [
+        [
+          141.0,
+          150.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 30.20969999488443,
+      "top1_timestamp": 133.133,
+      "top1_score": 0.09829017519950867,
+      "predicted_path": "data/frames/lecture1/000133.jpg",
+      "top5": [
+        {
+          "timestamp": 133.133,
+          "score": 0.09829017519950867,
+          "path": "data/frames/lecture1/000133.jpg"
+        },
+        {
+          "timestamp": 695.695,
+          "score": 0.09747590869665146,
+          "path": "data/frames/lecture1/000695.jpg"
+        },
+        {
+          "timestamp": 693.693,
+          "score": 0.09546864032745361,
+          "path": "data/frames/lecture1/000693.jpg"
+        },
+        {
+          "timestamp": 291.291,
+          "score": 0.09447091817855835,
+          "path": "data/frames/lecture1/000291.jpg"
+        },
+        {
+          "timestamp": 692.692,
+          "score": 0.0944511666893959,
+          "path": "data/frames/lecture1/000692.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q003",
+      "video_id": "lecture1",
+      "query": "where he says lack of support at home",
+      "type": "speech",
+      "notes": "cause of youth crime",
+      "intervals": [
+        [
+          706.0,
+          735.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": false,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 17.30229996610433,
+      "top1_timestamp": 1174.173,
+      "top1_score": 0.0789441466331482,
+      "predicted_path": "data/frames/lecture1/001173.jpg",
+      "top5": [
+        {
+          "timestamp": 1174.173,
+          "score": 0.0789441466331482,
+          "path": "data/frames/lecture1/001173.jpg"
+        },
+        {
+          "timestamp": 1173.172,
+          "score": 0.07444753497838974,
+          "path": "data/frames/lecture1/001172.jpg"
+        },
+        {
+          "timestamp": 741.741,
+          "score": 0.07009848207235336,
+          "path": "data/frames/lecture1/000741.jpg"
+        },
+        {
+          "timestamp": 755.755,
+          "score": 0.0683702677488327,
+          "path": "data/frames/lecture1/000755.jpg"
+        },
+        {
+          "timestamp": 748.748,
+          "score": 0.06830121576786041,
+          "path": "data/frames/lecture1/000748.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q004",
+      "video_id": "lecture1",
+      "query": "where he says peer pressure plays a role",
+      "type": "speech",
+      "notes": "third cause",
+      "intervals": [
+        [
+          911.0,
+          930.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.05263157894736842,
+      "latency_ms": 12.205799983348697,
+      "top1_timestamp": 915.915,
+      "top1_score": 0.061217084527015686,
+      "predicted_path": "data/frames/lecture1/000915.jpg",
+      "top5": [
+        {
+          "timestamp": 915.915,
+          "score": 0.061217084527015686,
+          "path": "data/frames/lecture1/000915.jpg"
+        },
+        {
+          "timestamp": 914.914,
+          "score": 0.061217084527015686,
+          "path": "data/frames/lecture1/000914.jpg"
+        },
+        {
+          "timestamp": 913.913,
+          "score": 0.06118588149547577,
+          "path": "data/frames/lecture1/000913.jpg"
+        },
+        {
+          "timestamp": 917.917,
+          "score": 0.06092599779367447,
+          "path": "data/frames/lecture1/000917.jpg"
+        },
+        {
+          "timestamp": 916.916,
+          "score": 0.06092599779367447,
+          "path": "data/frames/lecture1/000916.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q005",
+      "video_id": "lecture1",
+      "query": "where he explains the passive voice",
+      "type": "speech",
+      "notes": "grammar point",
+      "intervals": [
+        [
+          944.0,
+          960.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 9.831200004555285,
+      "top1_timestamp": 11.011,
+      "top1_score": 0.06104766204953194,
+      "predicted_path": "data/frames/lecture1/000011.jpg",
+      "top5": [
+        {
+          "timestamp": 11.011,
+          "score": 0.06104766204953194,
+          "path": "data/frames/lecture1/000011.jpg"
+        },
+        {
+          "timestamp": 1136.135,
+          "score": 0.057726092636585236,
+          "path": "data/frames/lecture1/001135.jpg"
+        },
+        {
+          "timestamp": 342.342,
+          "score": 0.05599714070558548,
+          "path": "data/frames/lecture1/000342.jpg"
+        },
+        {
+          "timestamp": 1137.136,
+          "score": 0.055929116904735565,
+          "path": "data/frames/lecture1/001136.jpg"
+        },
+        {
+          "timestamp": 3.003,
+          "score": 0.054554931819438934,
+          "path": "data/frames/lecture1/000003.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q006",
+      "video_id": "lecture1",
+      "query": "the slide titled essay introductions",
+      "type": "ocr",
+      "notes": "title slide",
+      "intervals": [
+        [
+          132.0,
+          140.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.125,
+      "latency_ms": 10.714300035033375,
+      "top1_timestamp": 133.133,
+      "top1_score": 0.1509709358215332,
+      "predicted_path": "data/frames/lecture1/000133.jpg",
+      "top5": [
+        {
+          "timestamp": 133.133,
+          "score": 0.1509709358215332,
+          "path": "data/frames/lecture1/000133.jpg"
+        },
+        {
+          "timestamp": 134.134,
+          "score": 0.15046219527721405,
+          "path": "data/frames/lecture1/000134.jpg"
+        },
+        {
+          "timestamp": 135.135,
+          "score": 0.14963269233703613,
+          "path": "data/frames/lecture1/000135.jpg"
+        },
+        {
+          "timestamp": 309.309,
+          "score": 0.13868552446365356,
+          "path": "data/frames/lecture1/000309.jpg"
+        },
+        {
+          "timestamp": 305.305,
+          "score": 0.13817007839679718,
+          "path": "data/frames/lecture1/000305.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q007",
+      "video_id": "lecture1",
+      "query": "the slide that says our goal present the topic",
+      "type": "ocr",
+      "notes": "introduction goals",
+      "intervals": [
+        [
+          140.0,
+          156.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0625,
+      "latency_ms": 9.091299958527088,
+      "top1_timestamp": 150.15,
+      "top1_score": 0.09557473659515381,
+      "predicted_path": "data/frames/lecture1/000150.jpg",
+      "top5": [
+        {
+          "timestamp": 150.15,
+          "score": 0.09557473659515381,
+          "path": "data/frames/lecture1/000150.jpg"
+        },
+        {
+          "timestamp": 145.145,
+          "score": 0.09551015496253967,
+          "path": "data/frames/lecture1/000145.jpg"
+        },
+        {
+          "timestamp": 148.148,
+          "score": 0.09369848668575287,
+          "path": "data/frames/lecture1/000148.jpg"
+        },
+        {
+          "timestamp": 146.146,
+          "score": 0.09125742316246033,
+          "path": "data/frames/lecture1/000146.jpg"
+        },
+        {
+          "timestamp": 149.149,
+          "score": 0.09049028158187866,
+          "path": "data/frames/lecture1/000149.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q008",
+      "video_id": "lecture1",
+      "query": "the ultimate IELTS playbook",
+      "type": "ocr",
+      "notes": "pdf cover",
+      "intervals": [
+        [
+          992.0,
+          1010.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 8.71790002565831,
+      "top1_timestamp": 334.334,
+      "top1_score": 0.18418951332569122,
+      "predicted_path": "data/frames/lecture1/000334.jpg",
+      "top5": [
+        {
+          "timestamp": 334.334,
+          "score": 0.18418951332569122,
+          "path": "data/frames/lecture1/000334.jpg"
+        },
+        {
+          "timestamp": 325.325,
+          "score": 0.18318405747413635,
+          "path": "data/frames/lecture1/000325.jpg"
+        },
+        {
+          "timestamp": 1001.0,
+          "score": 0.18314290046691895,
+          "path": "data/frames/lecture1/001000.jpg"
+        },
+        {
+          "timestamp": 1183.182,
+          "score": 0.1828208714723587,
+          "path": "data/frames/lecture1/001182.jpg"
+        },
+        {
+          "timestamp": 1182.181,
+          "score": 0.182328999042511,
+          "path": "data/frames/lecture1/001181.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q009",
+      "video_id": "lecture2",
+      "query": "where he says prove correctness and argue efficiency",
+      "type": "speech",
+      "notes": "goals of the course",
+      "intervals": [
+        [
+          15.0,
+          32.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 9.038400021381676,
+      "top1_timestamp": 522.0,
+      "top1_score": 0.13108806312084198,
+      "predicted_path": "data/frames/lecture2/000522.jpg",
+      "top5": [
+        {
+          "timestamp": 522.0,
+          "score": 0.13108806312084198,
+          "path": "data/frames/lecture2/000522.jpg"
+        },
+        {
+          "timestamp": 676.0,
+          "score": 0.1233905553817749,
+          "path": "data/frames/lecture2/000676.jpg"
+        },
+        {
+          "timestamp": 585.0,
+          "score": 0.12048928439617157,
+          "path": "data/frames/lecture2/000585.jpg"
+        },
+        {
+          "timestamp": 683.0,
+          "score": 0.11923366785049438,
+          "path": "data/frames/lecture2/000683.jpg"
+        },
+        {
+          "timestamp": 582.0,
+          "score": 0.11916142702102661,
+          "path": "data/frames/lecture2/000582.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q010",
+      "video_id": "lecture2",
+      "query": "where he explains the base case of zero students",
+      "type": "speech",
+      "notes": "induction base case",
+      "intervals": [
+        [
+          288.0,
+          309.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": false,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 8.879899978637695,
+      "top1_timestamp": 324.0,
+      "top1_score": 0.11698077619075775,
+      "predicted_path": "data/frames/lecture2/000324.jpg",
+      "top5": [
+        {
+          "timestamp": 324.0,
+          "score": 0.11698077619075775,
+          "path": "data/frames/lecture2/000324.jpg"
+        },
+        {
+          "timestamp": 716.0,
+          "score": 0.1143253892660141,
+          "path": "data/frames/lecture2/000716.jpg"
+        },
+        {
+          "timestamp": 317.0,
+          "score": 0.11194416880607605,
+          "path": "data/frames/lecture2/000317.jpg"
+        },
+        {
+          "timestamp": 393.0,
+          "score": 0.11022267490625381,
+          "path": "data/frames/lecture2/000393.jpg"
+        },
+        {
+          "timestamp": 584.0,
+          "score": 0.10991601645946503,
+          "path": "data/frames/lecture2/000584.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q011",
+      "video_id": "lecture2",
+      "query": "where he says we measure operations instead of time",
+      "type": "speech",
+      "notes": "efficiency motivation",
+      "intervals": [
+        [
+          505.0,
+          525.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 8.637999999336898,
+      "top1_timestamp": 638.0,
+      "top1_score": 0.0861063301563263,
+      "predicted_path": "data/frames/lecture2/000638.jpg",
+      "top5": [
+        {
+          "timestamp": 638.0,
+          "score": 0.0861063301563263,
+          "path": "data/frames/lecture2/000638.jpg"
+        },
+        {
+          "timestamp": 235.0,
+          "score": 0.08140304684638977,
+          "path": "data/frames/lecture2/000235.jpg"
+        },
+        {
+          "timestamp": 522.0,
+          "score": 0.08101697266101837,
+          "path": "data/frames/lecture2/000522.jpg"
+        },
+        {
+          "timestamp": 134.0,
+          "score": 0.08058503270149231,
+          "path": "data/frames/lecture2/000134.jpg"
+        },
+        {
+          "timestamp": 622.0,
+          "score": 0.08017775416374207,
+          "path": "data/frames/lecture2/000622.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q012",
+      "video_id": "lecture2",
+      "query": "where he explains big O is an upper bound",
+      "type": "speech",
+      "notes": "asymptotic notation",
+      "intervals": [
+        [
+          686.0,
+          704.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.05555555555555555,
+      "latency_ms": 8.284000039566308,
+      "top1_timestamp": 688.0,
+      "top1_score": 0.1256493330001831,
+      "predicted_path": "data/frames/lecture2/000688.jpg",
+      "top5": [
+        {
+          "timestamp": 688.0,
+          "score": 0.1256493330001831,
+          "path": "data/frames/lecture2/000688.jpg"
+        },
+        {
+          "timestamp": 694.0,
+          "score": 0.12200719118118286,
+          "path": "data/frames/lecture2/000694.jpg"
+        },
+        {
+          "timestamp": 689.0,
+          "score": 0.11970704048871994,
+          "path": "data/frames/lecture2/000689.jpg"
+        },
+        {
+          "timestamp": 719.0,
+          "score": 0.11669415235519409,
+          "path": "data/frames/lecture2/000719.jpg"
+        },
+        {
+          "timestamp": 916.0,
+          "score": 0.11429627239704132,
+          "path": "data/frames/lecture2/000916.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q013",
+      "video_id": "lecture2",
+      "query": "the chalkboard says 6.006 lecture 1",
+      "type": "ocr",
+      "notes": "title on blackboard",
+      "intervals": [
+        [
+          30.0,
+          55.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.04,
+      "latency_ms": 8.653500000946224,
+      "top1_timestamp": 40.0,
+      "top1_score": 0.1844000220298767,
+      "predicted_path": "data/frames/lecture2/000040.jpg",
+      "top5": [
+        {
+          "timestamp": 40.0,
+          "score": 0.1844000220298767,
+          "path": "data/frames/lecture2/000040.jpg"
+        },
+        {
+          "timestamp": 1.0,
+          "score": 0.18350066244602203,
+          "path": "data/frames/lecture2/000001.jpg"
+        },
+        {
+          "timestamp": 22.0,
+          "score": 0.18288196623325348,
+          "path": "data/frames/lecture2/000022.jpg"
+        },
+        {
+          "timestamp": 28.0,
+          "score": 0.18210607767105103,
+          "path": "data/frames/lecture2/000028.jpg"
+        },
+        {
+          "timestamp": 12.0,
+          "score": 0.18065765500068665,
+          "path": "data/frames/lecture2/000012.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q014",
+      "video_id": "lecture2",
+      "query": "the chalkboard heading correctness",
+      "type": "ocr",
+      "notes": "proof section",
+      "intervals": [
+        [
+          180.0,
+          210.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.03333333333333333,
+      "latency_ms": 8.97399999666959,
+      "top1_timestamp": 197.0,
+      "top1_score": 0.16830015182495117,
+      "predicted_path": "data/frames/lecture2/000197.jpg",
+      "top5": [
+        {
+          "timestamp": 197.0,
+          "score": 0.16830015182495117,
+          "path": "data/frames/lecture2/000197.jpg"
+        },
+        {
+          "timestamp": 199.0,
+          "score": 0.16647106409072876,
+          "path": "data/frames/lecture2/000199.jpg"
+        },
+        {
+          "timestamp": 196.0,
+          "score": 0.16211777925491333,
+          "path": "data/frames/lecture2/000196.jpg"
+        },
+        {
+          "timestamp": 211.0,
+          "score": 0.1603991687297821,
+          "path": "data/frames/lecture2/000211.jpg"
+        },
+        {
+          "timestamp": 188.0,
+          "score": 0.15974923968315125,
+          "path": "data/frames/lecture2/000188.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q015",
+      "video_id": "lecture2",
+      "query": "the chalkboard heading efficiency",
+      "type": "ocr",
+      "notes": "efficiency section",
+      "intervals": [
+        [
+          450.0,
+          480.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 8.671299961861223,
+      "top1_timestamp": 522.0,
+      "top1_score": 0.18082737922668457,
+      "predicted_path": "data/frames/lecture2/000522.jpg",
+      "top5": [
+        {
+          "timestamp": 522.0,
+          "score": 0.18082737922668457,
+          "path": "data/frames/lecture2/000522.jpg"
+        },
+        {
+          "timestamp": 608.0,
+          "score": 0.1800922304391861,
+          "path": "data/frames/lecture2/000608.jpg"
+        },
+        {
+          "timestamp": 524.0,
+          "score": 0.17714181542396545,
+          "path": "data/frames/lecture2/000524.jpg"
+        },
+        {
+          "timestamp": 518.0,
+          "score": 0.17668312788009644,
+          "path": "data/frames/lecture2/000518.jpg"
+        },
+        {
+          "timestamp": 692.0,
+          "score": 0.1738164722919464,
+          "path": "data/frames/lecture2/000692.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q016",
+      "video_id": "streetcctv1",
+      "query": "a red umbrella",
+      "type": "object",
+      "notes": "rainy crossing",
+      "intervals": [
+        [
+          55.0,
+          65.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 10.423500032629818,
+      "top1_timestamp": 53.0,
+      "top1_score": 0.07820607721805573,
+      "predicted_path": "data/frames/streetcctv1/000053.jpg",
+      "top5": [
+        {
+          "timestamp": 53.0,
+          "score": 0.07820607721805573,
+          "path": "data/frames/streetcctv1/000053.jpg"
+        },
+        {
+          "timestamp": 61.0,
+          "score": 0.07624927908182144,
+          "path": "data/frames/streetcctv1/000061.jpg"
+        },
+        {
+          "timestamp": 60.0,
+          "score": 0.06591372191905975,
+          "path": "data/frames/streetcctv1/000060.jpg"
+        },
+        {
+          "timestamp": 57.0,
+          "score": 0.06308897584676743,
+          "path": "data/frames/streetcctv1/000057.jpg"
+        },
+        {
+          "timestamp": 50.0,
+          "score": 0.06263907253742218,
+          "path": "data/frames/streetcctv1/000050.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q017",
+      "video_id": "streetcctv1",
+      "query": "a white van",
+      "type": "object",
+      "notes": "parked on the right",
+      "intervals": [
+        [
+          235.0,
+          245.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.1,
+      "latency_ms": 11.62619999377057,
+      "top1_timestamp": 240.0,
+      "top1_score": 0.061215683817863464,
+      "predicted_path": "data/frames/streetcctv1/000240.jpg",
+      "top5": [
+        {
+          "timestamp": 240.0,
+          "score": 0.061215683817863464,
+          "path": "data/frames/streetcctv1/000240.jpg"
+        },
+        {
+          "timestamp": 224.0,
+          "score": 0.04951171204447746,
+          "path": "data/frames/streetcctv1/000224.jpg"
+        },
+        {
+          "timestamp": 160.0,
+          "score": 0.04876580834388733,
+          "path": "data/frames/streetcctv1/000160.jpg"
+        },
+        {
+          "timestamp": 228.0,
+          "score": 0.04812788963317871,
+          "path": "data/frames/streetcctv1/000228.jpg"
+        },
+        {
+          "timestamp": 174.0,
+          "score": 0.04193156957626343,
+          "path": "data/frames/streetcctv1/000174.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q018",
+      "video_id": "streetcctv1",
+      "query": "a red car driving past",
+      "type": "object",
+      "notes": "red hatchback",
+      "intervals": [
+        [
+          185.0,
+          195.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.1,
+      "latency_ms": 8.482900040689856,
+      "top1_timestamp": 186.0,
+      "top1_score": 0.07131051272153854,
+      "predicted_path": "data/frames/streetcctv1/000186.jpg",
+      "top5": [
+        {
+          "timestamp": 186.0,
+          "score": 0.07131051272153854,
+          "path": "data/frames/streetcctv1/000186.jpg"
+        },
+        {
+          "timestamp": 101.0,
+          "score": 0.07070113718509674,
+          "path": "data/frames/streetcctv1/000101.jpg"
+        },
+        {
+          "timestamp": 224.0,
+          "score": 0.07019922137260437,
+          "path": "data/frames/streetcctv1/000224.jpg"
+        },
+        {
+          "timestamp": 162.0,
+          "score": 0.06731050461530685,
+          "path": "data/frames/streetcctv1/000162.jpg"
+        },
+        {
+          "timestamp": 170.0,
+          "score": 0.06661080569028854,
+          "path": "data/frames/streetcctv1/000170.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q019",
+      "video_id": "streetcctv1",
+      "query": "people crossing the street in the rain",
+      "type": "visual",
+      "notes": "umbrellas and pedestrians",
+      "intervals": [
+        [
+          5.0,
+          30.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": false,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 8.650400035548955,
+      "top1_timestamp": 48.0,
+      "top1_score": 0.1253058761358261,
+      "predicted_path": "data/frames/streetcctv1/000048.jpg",
+      "top5": [
+        {
+          "timestamp": 48.0,
+          "score": 0.1253058761358261,
+          "path": "data/frames/streetcctv1/000048.jpg"
+        },
+        {
+          "timestamp": 4.0,
+          "score": 0.12267611920833588,
+          "path": "data/frames/streetcctv1/000004.jpg"
+        },
+        {
+          "timestamp": 55.0,
+          "score": 0.12210611999034882,
+          "path": "data/frames/streetcctv1/000055.jpg"
+        },
+        {
+          "timestamp": 47.0,
+          "score": 0.12049964815378189,
+          "path": "data/frames/streetcctv1/000047.jpg"
+        },
+        {
+          "timestamp": 54.0,
+          "score": 0.12023511528968811,
+          "path": "data/frames/streetcctv1/000054.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q020",
+      "video_id": "streetcctv1",
+      "query": "a wide road with parked cars",
+      "type": "visual",
+      "notes": "elevated view",
+      "intervals": [
+        [
+          130.0,
+          155.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 8.634899975731969,
+      "top1_timestamp": 176.0,
+      "top1_score": 0.11506195366382599,
+      "predicted_path": "data/frames/streetcctv1/000176.jpg",
+      "top5": [
+        {
+          "timestamp": 176.0,
+          "score": 0.11506195366382599,
+          "path": "data/frames/streetcctv1/000176.jpg"
+        },
+        {
+          "timestamp": 92.0,
+          "score": 0.11157608032226562,
+          "path": "data/frames/streetcctv1/000092.jpg"
+        },
+        {
+          "timestamp": 148.0,
+          "score": 0.11151356995105743,
+          "path": "data/frames/streetcctv1/000148.jpg"
+        },
+        {
+          "timestamp": 186.0,
+          "score": 0.11072824150323868,
+          "path": "data/frames/streetcctv1/000186.jpg"
+        },
+        {
+          "timestamp": 214.0,
+          "score": 0.11053255945444107,
+          "path": "data/frames/streetcctv1/000214.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q021",
+      "video_id": "streetcctv1",
+      "query": "a yellow taxi near the shops",
+      "type": "spatial",
+      "notes": "left side of the crossing",
+      "intervals": [
+        [
+          10.0,
+          30.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.05,
+      "latency_ms": 8.573799976147711,
+      "top1_timestamp": 13.0,
+      "top1_score": 0.08300970494747162,
+      "predicted_path": "data/frames/streetcctv1/000013.jpg",
+      "top5": [
+        {
+          "timestamp": 13.0,
+          "score": 0.08300970494747162,
+          "path": "data/frames/streetcctv1/000013.jpg"
+        },
+        {
+          "timestamp": 59.0,
+          "score": 0.07995849847793579,
+          "path": "data/frames/streetcctv1/000059.jpg"
+        },
+        {
+          "timestamp": 44.0,
+          "score": 0.0785161554813385,
+          "path": "data/frames/streetcctv1/000044.jpg"
+        },
+        {
+          "timestamp": 32.0,
+          "score": 0.07748551666736603,
+          "path": "data/frames/streetcctv1/000032.jpg"
+        },
+        {
+          "timestamp": 43.0,
+          "score": 0.07619556039571762,
+          "path": "data/frames/streetcctv1/000043.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q022",
+      "video_id": "streetcctv2",
+      "query": "a white SUV",
+      "type": "object",
+      "notes": "foreground at the crossing",
+      "intervals": [
+        [
+          160.0,
+          175.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.06666666666666667,
+      "latency_ms": 8.847099961712956,
+      "top1_timestamp": 164.0,
+      "top1_score": 0.024093827232718468,
+      "predicted_path": "data/frames/streetcctv2/000164.jpg",
+      "top5": [
+        {
+          "timestamp": 164.0,
+          "score": 0.024093827232718468,
+          "path": "data/frames/streetcctv2/000164.jpg"
+        },
+        {
+          "timestamp": 419.0,
+          "score": 0.021876994520425797,
+          "path": "data/frames/streetcctv2/000419.jpg"
+        },
+        {
+          "timestamp": 165.0,
+          "score": 0.01613645814359188,
+          "path": "data/frames/streetcctv2/000165.jpg"
+        },
+        {
+          "timestamp": 420.0,
+          "score": 0.013792794197797775,
+          "path": "data/frames/streetcctv2/000420.jpg"
+        },
+        {
+          "timestamp": 378.0,
+          "score": 0.012780183926224709,
+          "path": "data/frames/streetcctv2/000378.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q023",
+      "video_id": "streetcctv2",
+      "query": "a cyclist in a green jacket",
+      "type": "object",
+      "notes": "crossing the road",
+      "intervals": [
+        [
+          95.0,
+          105.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 8.92939994810149,
+      "top1_timestamp": 348.0,
+      "top1_score": 0.07463976740837097,
+      "predicted_path": "data/frames/streetcctv2/000348.jpg",
+      "top5": [
+        {
+          "timestamp": 348.0,
+          "score": 0.07463976740837097,
+          "path": "data/frames/streetcctv2/000348.jpg"
+        },
+        {
+          "timestamp": 225.0,
+          "score": 0.06578011065721512,
+          "path": "data/frames/streetcctv2/000225.jpg"
+        },
+        {
+          "timestamp": 346.0,
+          "score": 0.06503207981586456,
+          "path": "data/frames/streetcctv2/000346.jpg"
+        },
+        {
+          "timestamp": 8.0,
+          "score": 0.06455542892217636,
+          "path": "data/frames/streetcctv2/000008.jpg"
+        },
+        {
+          "timestamp": 100.0,
+          "score": 0.06220322847366333,
+          "path": "data/frames/streetcctv2/000100.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q024",
+      "video_id": "streetcctv2",
+      "query": "a red car in the distance",
+      "type": "object",
+      "notes": "small background object",
+      "intervals": [
+        [
+          10.0,
+          20.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 8.703700033947825,
+      "top1_timestamp": 389.0,
+      "top1_score": 0.09293002635240555,
+      "predicted_path": "data/frames/streetcctv2/000389.jpg",
+      "top5": [
+        {
+          "timestamp": 389.0,
+          "score": 0.09293002635240555,
+          "path": "data/frames/streetcctv2/000389.jpg"
+        },
+        {
+          "timestamp": 390.0,
+          "score": 0.0875791534781456,
+          "path": "data/frames/streetcctv2/000390.jpg"
+        },
+        {
+          "timestamp": 196.0,
+          "score": 0.08711303025484085,
+          "path": "data/frames/streetcctv2/000196.jpg"
+        },
+        {
+          "timestamp": 394.0,
+          "score": 0.08411359041929245,
+          "path": "data/frames/streetcctv2/000394.jpg"
+        },
+        {
+          "timestamp": 195.0,
+          "score": 0.08132277429103851,
+          "path": "data/frames/streetcctv2/000195.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q025",
+      "video_id": "streetcctv2",
+      "query": "a zebra crossing on a residential street",
+      "type": "visual",
+      "notes": "Abbey Road style crossing",
+      "intervals": [
+        [
+          5.0,
+          30.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 9.207400027662516,
+      "top1_timestamp": 413.0,
+      "top1_score": 0.11136846989393234,
+      "predicted_path": "data/frames/streetcctv2/000413.jpg",
+      "top5": [
+        {
+          "timestamp": 413.0,
+          "score": 0.11136846989393234,
+          "path": "data/frames/streetcctv2/000413.jpg"
+        },
+        {
+          "timestamp": 366.0,
+          "score": 0.11123347282409668,
+          "path": "data/frames/streetcctv2/000366.jpg"
+        },
+        {
+          "timestamp": 392.0,
+          "score": 0.10697576403617859,
+          "path": "data/frames/streetcctv2/000392.jpg"
+        },
+        {
+          "timestamp": 320.0,
+          "score": 0.10660918802022934,
+          "path": "data/frames/streetcctv2/000320.jpg"
+        },
+        {
+          "timestamp": 383.0,
+          "score": 0.10482488572597504,
+          "path": "data/frames/streetcctv2/000383.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q026",
+      "video_id": "streetcctv2",
+      "query": "pedestrians walking on the sidewalk",
+      "type": "visual",
+      "notes": "group on the right",
+      "intervals": [
+        [
+          35.0,
+          55.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.05,
+      "latency_ms": 9.452399972360581,
+      "top1_timestamp": 51.0,
+      "top1_score": 0.07473498582839966,
+      "predicted_path": "data/frames/streetcctv2/000051.jpg",
+      "top5": [
+        {
+          "timestamp": 51.0,
+          "score": 0.07473498582839966,
+          "path": "data/frames/streetcctv2/000051.jpg"
+        },
+        {
+          "timestamp": 110.0,
+          "score": 0.07460642606019974,
+          "path": "data/frames/streetcctv2/000110.jpg"
+        },
+        {
+          "timestamp": 304.0,
+          "score": 0.0719335600733757,
+          "path": "data/frames/streetcctv2/000304.jpg"
+        },
+        {
+          "timestamp": 53.0,
+          "score": 0.07123155146837234,
+          "path": "data/frames/streetcctv2/000053.jpg"
+        },
+        {
+          "timestamp": 35.0,
+          "score": 0.07121393084526062,
+          "path": "data/frames/streetcctv2/000035.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q027",
+      "video_id": "streetcctv2",
+      "query": "cars driving through the intersection",
+      "type": "action",
+      "notes": "continuous traffic",
+      "intervals": [
+        [
+          390.0,
+          415.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 8.98159999633208,
+      "top1_timestamp": 419.0,
+      "top1_score": 0.10986015945672989,
+      "predicted_path": "data/frames/streetcctv2/000419.jpg",
+      "top5": [
+        {
+          "timestamp": 419.0,
+          "score": 0.10986015945672989,
+          "path": "data/frames/streetcctv2/000419.jpg"
+        },
+        {
+          "timestamp": 412.0,
+          "score": 0.10532039403915405,
+          "path": "data/frames/streetcctv2/000412.jpg"
+        },
+        {
+          "timestamp": 368.0,
+          "score": 0.09990604221820831,
+          "path": "data/frames/streetcctv2/000368.jpg"
+        },
+        {
+          "timestamp": 410.0,
+          "score": 0.09981092810630798,
+          "path": "data/frames/streetcctv2/000410.jpg"
+        },
+        {
+          "timestamp": 353.0,
+          "score": 0.09976795315742493,
+          "path": "data/frames/streetcctv2/000353.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q028",
+      "video_id": "indoor1",
+      "query": "a man making espresso",
+      "type": "action",
+      "notes": "espresso machine close-up",
+      "intervals": [
+        [
+          145.0,
+          172.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.037037037037037035,
+      "latency_ms": 10.199000011198223,
+      "top1_timestamp": 154.0,
+      "top1_score": 0.12433204799890518,
+      "predicted_path": "data/frames/indoor1/000154.jpg",
+      "top5": [
+        {
+          "timestamp": 154.0,
+          "score": 0.12433204799890518,
+          "path": "data/frames/indoor1/000154.jpg"
+        },
+        {
+          "timestamp": 391.0,
+          "score": 0.12410278618335724,
+          "path": "data/frames/indoor1/000391.jpg"
+        },
+        {
+          "timestamp": 155.0,
+          "score": 0.12328385561704636,
+          "path": "data/frames/indoor1/000155.jpg"
+        },
+        {
+          "timestamp": 156.0,
+          "score": 0.12045805156230927,
+          "path": "data/frames/indoor1/000156.jpg"
+        },
+        {
+          "timestamp": 134.0,
+          "score": 0.11973343789577484,
+          "path": "data/frames/indoor1/000134.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q029",
+      "video_id": "indoor1",
+      "query": "hands holding an open book",
+      "type": "action",
+      "notes": "reading in a chair",
+      "intervals": [
+        [
+          275.0,
+          285.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.1,
+      "latency_ms": 9.792299999389797,
+      "top1_timestamp": 279.0,
+      "top1_score": 0.10943464934825897,
+      "predicted_path": "data/frames/indoor1/000279.jpg",
+      "top5": [
+        {
+          "timestamp": 279.0,
+          "score": 0.10943464934825897,
+          "path": "data/frames/indoor1/000279.jpg"
+        },
+        {
+          "timestamp": 280.0,
+          "score": 0.10662296414375305,
+          "path": "data/frames/indoor1/000280.jpg"
+        },
+        {
+          "timestamp": 276.0,
+          "score": 0.10631871968507767,
+          "path": "data/frames/indoor1/000276.jpg"
+        },
+        {
+          "timestamp": 275.0,
+          "score": 0.10535715520381927,
+          "path": "data/frames/indoor1/000275.jpg"
+        },
+        {
+          "timestamp": 277.0,
+          "score": 0.10264814645051956,
+          "path": "data/frames/indoor1/000277.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q030",
+      "video_id": "indoor1",
+      "query": "a record player with a red vinyl record",
+      "type": "object",
+      "notes": "turntable",
+      "intervals": [
+        [
+          288.0,
+          305.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.058823529411764705,
+      "latency_ms": 12.02169997850433,
+      "top1_timestamp": 297.0,
+      "top1_score": 0.1365365982055664,
+      "predicted_path": "data/frames/indoor1/000297.jpg",
+      "top5": [
+        {
+          "timestamp": 297.0,
+          "score": 0.1365365982055664,
+          "path": "data/frames/indoor1/000297.jpg"
+        },
+        {
+          "timestamp": 296.0,
+          "score": 0.13641086220741272,
+          "path": "data/frames/indoor1/000296.jpg"
+        },
+        {
+          "timestamp": 295.0,
+          "score": 0.13504263758659363,
+          "path": "data/frames/indoor1/000295.jpg"
+        },
+        {
+          "timestamp": 298.0,
+          "score": 0.13387249410152435,
+          "path": "data/frames/indoor1/000298.jpg"
+        },
+        {
+          "timestamp": 299.0,
+          "score": 0.13125789165496826,
+          "path": "data/frames/indoor1/000299.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q031",
+      "video_id": "indoor1",
+      "query": "a man sitting at a desk with a laptop",
+      "type": "spatial",
+      "notes": "workspace",
+      "intervals": [
+        [
+          175.0,
+          195.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 13.077399984467775,
+      "top1_timestamp": 220.0,
+      "top1_score": 0.10739222168922424,
+      "predicted_path": "data/frames/indoor1/000220.jpg",
+      "top5": [
+        {
+          "timestamp": 220.0,
+          "score": 0.10739222168922424,
+          "path": "data/frames/indoor1/000220.jpg"
+        },
+        {
+          "timestamp": 341.0,
+          "score": 0.10189560055732727,
+          "path": "data/frames/indoor1/000341.jpg"
+        },
+        {
+          "timestamp": 345.0,
+          "score": 0.10051040351390839,
+          "path": "data/frames/indoor1/000345.jpg"
+        },
+        {
+          "timestamp": 343.0,
+          "score": 0.0998806357383728,
+          "path": "data/frames/indoor1/000343.jpg"
+        },
+        {
+          "timestamp": 221.0,
+          "score": 0.09954442828893661,
+          "path": "data/frames/indoor1/000221.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q032",
+      "video_id": "indoor2",
+      "query": "a man wearing headphones sitting at a desk",
+      "type": "action",
+      "notes": "gaming setup",
+      "intervals": [
+        [
+          145.0,
+          155.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.1,
+      "latency_ms": 9.491899982094765,
+      "top1_timestamp": 146.0,
+      "top1_score": 0.12215102463960648,
+      "predicted_path": "data/frames/indoor2/000146.jpg",
+      "top5": [
+        {
+          "timestamp": 146.0,
+          "score": 0.12215102463960648,
+          "path": "data/frames/indoor2/000146.jpg"
+        },
+        {
+          "timestamp": 154.0,
+          "score": 0.1172739788889885,
+          "path": "data/frames/indoor2/000154.jpg"
+        },
+        {
+          "timestamp": 152.0,
+          "score": 0.11596707999706268,
+          "path": "data/frames/indoor2/000152.jpg"
+        },
+        {
+          "timestamp": 147.0,
+          "score": 0.11110362410545349,
+          "path": "data/frames/indoor2/000147.jpg"
+        },
+        {
+          "timestamp": 157.0,
+          "score": 0.11015893518924713,
+          "path": "data/frames/indoor2/000157.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q033",
+      "video_id": "indoor2",
+      "query": "a family playing a game together",
+      "type": "caption",
+      "notes": "three people with a controller",
+      "intervals": [
+        [
+          225.0,
+          240.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 7.733499980531633,
+      "top1_timestamp": 222.999999,
+      "top1_score": 0.09807045757770538,
+      "predicted_path": "data/frames/indoor2/000223.jpg",
+      "top5": [
+        {
+          "timestamp": 222.999999,
+          "score": 0.09807045757770538,
+          "path": "data/frames/indoor2/000223.jpg"
+        },
+        {
+          "timestamp": 236.999999,
+          "score": 0.08942940831184387,
+          "path": "data/frames/indoor2/000237.jpg"
+        },
+        {
+          "timestamp": 238.999999,
+          "score": 0.08515407890081406,
+          "path": "data/frames/indoor2/000239.jpg"
+        },
+        {
+          "timestamp": 240.999999,
+          "score": 0.08397862315177917,
+          "path": "data/frames/indoor2/000241.jpg"
+        },
+        {
+          "timestamp": 252.999999,
+          "score": 0.08031758666038513,
+          "path": "data/frames/indoor2/000253.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q034",
+      "video_id": "indoor2",
+      "query": "an outdoor patio with a round sofa",
+      "type": "visual",
+      "notes": "poolside seating",
+      "intervals": [
+        [
+          165.0,
+          180.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.03225806451612903,
+      "latency_ms": 9.19489999068901,
+      "top1_timestamp": 165.0,
+      "top1_score": 0.12237629294395447,
+      "predicted_path": "data/frames/indoor2/000165.jpg",
+      "top5": [
+        {
+          "timestamp": 165.0,
+          "score": 0.12237629294395447,
+          "path": "data/frames/indoor2/000165.jpg"
+        },
+        {
+          "timestamp": 163.0,
+          "score": 0.11847150325775146,
+          "path": "data/frames/indoor2/000163.jpg"
+        },
+        {
+          "timestamp": 164.0,
+          "score": 0.1135106310248375,
+          "path": "data/frames/indoor2/000164.jpg"
+        },
+        {
+          "timestamp": 90.0,
+          "score": 0.10837437212467194,
+          "path": "data/frames/indoor2/000090.jpg"
+        },
+        {
+          "timestamp": 92.0,
+          "score": 0.10572653263807297,
+          "path": "data/frames/indoor2/000092.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q035",
+      "video_id": "indoor2",
+      "query": "two people standing in a doorway",
+      "type": "counting",
+      "notes": "couple at the entrance",
+      "intervals": [
+        [
+          5.0,
+          14.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.1111111111111111,
+      "latency_ms": 8.41410004068166,
+      "top1_timestamp": 7.0,
+      "top1_score": 0.14303620159626007,
+      "predicted_path": "data/frames/indoor2/000007.jpg",
+      "top5": [
+        {
+          "timestamp": 7.0,
+          "score": 0.14303620159626007,
+          "path": "data/frames/indoor2/000007.jpg"
+        },
+        {
+          "timestamp": 9.0,
+          "score": 0.13387425243854523,
+          "path": "data/frames/indoor2/000009.jpg"
+        },
+        {
+          "timestamp": 4.0,
+          "score": 0.12299825251102448,
+          "path": "data/frames/indoor2/000004.jpg"
+        },
+        {
+          "timestamp": 1.0,
+          "score": 0.11960899829864502,
+          "path": "data/frames/indoor2/000001.jpg"
+        },
+        {
+          "timestamp": 5.0,
+          "score": 0.11654315143823624,
+          "path": "data/frames/indoor2/000005.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q036",
+      "video_id": "screen-recording",
+      "query": "the application was unable to start correctly 0xc0000142",
+      "type": "ocr",
+      "notes": "error dialog",
+      "intervals": [
+        [
+          15.0,
+          30.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.03225806451612903,
+      "latency_ms": 8.115400036331266,
+      "top1_timestamp": 15.0,
+      "top1_score": 0.16774433851242065,
+      "predicted_path": "data/frames/screen-recording/000015.jpg",
+      "top5": [
+        {
+          "timestamp": 15.0,
+          "score": 0.16774433851242065,
+          "path": "data/frames/screen-recording/000015.jpg"
+        },
+        {
+          "timestamp": 16.0,
+          "score": 0.16632893681526184,
+          "path": "data/frames/screen-recording/000016.jpg"
+        },
+        {
+          "timestamp": 14.0,
+          "score": 0.16197752952575684,
+          "path": "data/frames/screen-recording/000014.jpg"
+        },
+        {
+          "timestamp": 19.0,
+          "score": 0.14498573541641235,
+          "path": "data/frames/screen-recording/000019.jpg"
+        },
+        {
+          "timestamp": 20.0,
+          "score": 0.1448231190443039,
+          "path": "data/frames/screen-recording/000020.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q037",
+      "video_id": "screen-recording",
+      "query": "the registry editor showing current version windows",
+      "type": "ocr",
+      "notes": "registry path",
+      "intervals": [
+        [
+          50.0,
+          75.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 9.220700012519956,
+      "top1_timestamp": 40.0,
+      "top1_score": 0.16718460619449615,
+      "predicted_path": "data/frames/screen-recording/000040.jpg",
+      "top5": [
+        {
+          "timestamp": 40.0,
+          "score": 0.16718460619449615,
+          "path": "data/frames/screen-recording/000040.jpg"
+        },
+        {
+          "timestamp": 39.0,
+          "score": 0.16428110003471375,
+          "path": "data/frames/screen-recording/000039.jpg"
+        },
+        {
+          "timestamp": 36.0,
+          "score": 0.16323094069957733,
+          "path": "data/frames/screen-recording/000036.jpg"
+        },
+        {
+          "timestamp": 35.0,
+          "score": 0.14905288815498352,
+          "path": "data/frames/screen-recording/000035.jpg"
+        },
+        {
+          "timestamp": 38.0,
+          "score": 0.14104004204273224,
+          "path": "data/frames/screen-recording/000038.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q038",
+      "video_id": "screen-recording",
+      "query": "the command sfc /scannow in command prompt",
+      "type": "ocr",
+      "notes": "system file check",
+      "intervals": [
+        [
+          145.0,
+          170.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 8.667200047057122,
+      "top1_timestamp": 142.0,
+      "top1_score": 0.1962391883134842,
+      "predicted_path": "data/frames/screen-recording/000142.jpg",
+      "top5": [
+        {
+          "timestamp": 142.0,
+          "score": 0.1962391883134842,
+          "path": "data/frames/screen-recording/000142.jpg"
+        },
+        {
+          "timestamp": 143.0,
+          "score": 0.19353064894676208,
+          "path": "data/frames/screen-recording/000143.jpg"
+        },
+        {
+          "timestamp": 141.0,
+          "score": 0.19201940298080444,
+          "path": "data/frames/screen-recording/000141.jpg"
+        },
+        {
+          "timestamp": 144.0,
+          "score": 0.189035102725029,
+          "path": "data/frames/screen-recording/000144.jpg"
+        },
+        {
+          "timestamp": 145.0,
+          "score": 0.18742674589157104,
+          "path": "data/frames/screen-recording/000145.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q039",
+      "video_id": "screen-recording",
+      "query": "chkdsk cannot run because the volume is in use",
+      "type": "ocr",
+      "notes": "drive locked error",
+      "intervals": [
+        [
+          175.0,
+          190.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.06666666666666667,
+      "latency_ms": 8.91319999936968,
+      "top1_timestamp": 181.0,
+      "top1_score": 0.15771105885505676,
+      "predicted_path": "data/frames/screen-recording/000181.jpg",
+      "top5": [
+        {
+          "timestamp": 181.0,
+          "score": 0.15771105885505676,
+          "path": "data/frames/screen-recording/000181.jpg"
+        },
+        {
+          "timestamp": 180.0,
+          "score": 0.15767410397529602,
+          "path": "data/frames/screen-recording/000180.jpg"
+        },
+        {
+          "timestamp": 158.0,
+          "score": 0.1545075625181198,
+          "path": "data/frames/screen-recording/000158.jpg"
+        },
+        {
+          "timestamp": 163.0,
+          "score": 0.15434464812278748,
+          "path": "data/frames/screen-recording/000163.jpg"
+        },
+        {
+          "timestamp": 157.0,
+          "score": 0.15408679842948914,
+          "path": "data/frames/screen-recording/000157.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q040",
+      "video_id": "screen-recording",
+      "query": "download .NET framework 4.8.1",
+      "type": "ocr",
+      "notes": "download page",
+      "intervals": [
+        [
+          285.0,
+          300.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.06666666666666667,
+      "latency_ms": 8.78450000891462,
+      "top1_timestamp": 289.0,
+      "top1_score": 0.22047480940818787,
+      "predicted_path": "data/frames/screen-recording/000289.jpg",
+      "top5": [
+        {
+          "timestamp": 289.0,
+          "score": 0.22047480940818787,
+          "path": "data/frames/screen-recording/000289.jpg"
+        },
+        {
+          "timestamp": 291.0,
+          "score": 0.2200964391231537,
+          "path": "data/frames/screen-recording/000291.jpg"
+        },
+        {
+          "timestamp": 293.0,
+          "score": 0.21995775401592255,
+          "path": "data/frames/screen-recording/000293.jpg"
+        },
+        {
+          "timestamp": 290.0,
+          "score": 0.21989476680755615,
+          "path": "data/frames/screen-recording/000290.jpg"
+        },
+        {
+          "timestamp": 288.0,
+          "score": 0.21986529231071472,
+          "path": "data/frames/screen-recording/000288.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q041",
+      "video_id": "screen-recording",
+      "query": "building C and C++ apps",
+      "type": "ocr",
+      "notes": "Visual Studio page",
+      "intervals": [
+        [
+          270.0,
+          280.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.1,
+      "latency_ms": 16.74789999378845,
+      "top1_timestamp": 273.0,
+      "top1_score": 0.1309177279472351,
+      "predicted_path": "data/frames/screen-recording/000273.jpg",
+      "top5": [
+        {
+          "timestamp": 273.0,
+          "score": 0.1309177279472351,
+          "path": "data/frames/screen-recording/000273.jpg"
+        },
+        {
+          "timestamp": 274.0,
+          "score": 0.1299194097518921,
+          "path": "data/frames/screen-recording/000274.jpg"
+        },
+        {
+          "timestamp": 275.0,
+          "score": 0.1294940561056137,
+          "path": "data/frames/screen-recording/000275.jpg"
+        },
+        {
+          "timestamp": 270.0,
+          "score": 0.11655165255069733,
+          "path": "data/frames/screen-recording/000270.jpg"
+        },
+        {
+          "timestamp": 271.0,
+          "score": 0.11226481199264526,
+          "path": "data/frames/screen-recording/000271.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q042",
+      "video_id": "screen-recording",
+      "query": "a blue Windows desktop",
+      "type": "visual",
+      "notes": "plain desktop",
+      "intervals": [
+        [
+          116.0,
+          126.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 10.477600037120283,
+      "top1_timestamp": 98.0,
+      "top1_score": 0.14039185643196106,
+      "predicted_path": "data/frames/screen-recording/000098.jpg",
+      "top5": [
+        {
+          "timestamp": 98.0,
+          "score": 0.14039185643196106,
+          "path": "data/frames/screen-recording/000098.jpg"
+        },
+        {
+          "timestamp": 240.0,
+          "score": 0.13621479272842407,
+          "path": "data/frames/screen-recording/000240.jpg"
+        },
+        {
+          "timestamp": 312.0,
+          "score": 0.1356419324874878,
+          "path": "data/frames/screen-recording/000312.jpg"
+        },
+        {
+          "timestamp": 125.0,
+          "score": 0.13545647263526917,
+          "path": "data/frames/screen-recording/000125.jpg"
+        },
+        {
+          "timestamp": 255.0,
+          "score": 0.1322241872549057,
+          "path": "data/frames/screen-recording/000255.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q043",
+      "video_id": "screen-recording",
+      "query": "the YouTube end screen with a subscribe button",
+      "type": "visual",
+      "notes": "outro",
+      "intervals": [
+        [
+          310.0,
+          325.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.06666666666666667,
+      "latency_ms": 11.208899959456176,
+      "top1_timestamp": 315.0,
+      "top1_score": 0.10719400644302368,
+      "predicted_path": "data/frames/screen-recording/000315.jpg",
+      "top5": [
+        {
+          "timestamp": 315.0,
+          "score": 0.10719400644302368,
+          "path": "data/frames/screen-recording/000315.jpg"
+        },
+        {
+          "timestamp": 313.0,
+          "score": 0.10602998733520508,
+          "path": "data/frames/screen-recording/000313.jpg"
+        },
+        {
+          "timestamp": 314.0,
+          "score": 0.1017352044582367,
+          "path": "data/frames/screen-recording/000314.jpg"
+        },
+        {
+          "timestamp": 317.0,
+          "score": 0.10170792043209076,
+          "path": "data/frames/screen-recording/000317.jpg"
+        },
+        {
+          "timestamp": 342.0,
+          "score": 0.09813471138477325,
+          "path": "data/frames/screen-recording/000342.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q044",
+      "video_id": "dashcam",
+      "query": "driving through a city at night",
+      "type": "visual",
+      "notes": "night section",
+      "intervals": [
+        [
+          15.0,
+          45.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 8.613000041805208,
+      "top1_timestamp": 3.0,
+      "top1_score": 0.1183229461312294,
+      "predicted_path": "data/frames/dashcam/000003.jpg",
+      "top5": [
+        {
+          "timestamp": 3.0,
+          "score": 0.1183229461312294,
+          "path": "data/frames/dashcam/000003.jpg"
+        },
+        {
+          "timestamp": 2.0,
+          "score": 0.11527729034423828,
+          "path": "data/frames/dashcam/000002.jpg"
+        },
+        {
+          "timestamp": 162.0,
+          "score": 0.11503167450428009,
+          "path": "data/frames/dashcam/000162.jpg"
+        },
+        {
+          "timestamp": 1.0,
+          "score": 0.11409658938646317,
+          "path": "data/frames/dashcam/000001.jpg"
+        },
+        {
+          "timestamp": 165.0,
+          "score": 0.11295615136623383,
+          "path": "data/frames/dashcam/000165.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q045",
+      "video_id": "dashcam",
+      "query": "a white car driving ahead at night",
+      "type": "object",
+      "notes": "tail lights",
+      "intervals": [
+        [
+          85.0,
+          100.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": false,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 10.76669996837154,
+      "top1_timestamp": 134.0,
+      "top1_score": 0.14096808433532715,
+      "predicted_path": "data/frames/dashcam/000134.jpg",
+      "top5": [
+        {
+          "timestamp": 134.0,
+          "score": 0.14096808433532715,
+          "path": "data/frames/dashcam/000134.jpg"
+        },
+        {
+          "timestamp": 139.0,
+          "score": 0.14030718803405762,
+          "path": "data/frames/dashcam/000139.jpg"
+        },
+        {
+          "timestamp": 138.0,
+          "score": 0.13841544091701508,
+          "path": "data/frames/dashcam/000138.jpg"
+        },
+        {
+          "timestamp": 135.0,
+          "score": 0.13726268708705902,
+          "path": "data/frames/dashcam/000135.jpg"
+        },
+        {
+          "timestamp": 136.0,
+          "score": 0.13511383533477783,
+          "path": "data/frames/dashcam/000136.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q046",
+      "video_id": "dashcam",
+      "query": "two tall towers beside the road",
+      "type": "visual",
+      "notes": "twin buildings",
+      "intervals": [
+        [
+          195.0,
+          210.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.06666666666666667,
+      "latency_ms": 9.733499959111214,
+      "top1_timestamp": 199.0,
+      "top1_score": 0.11888621747493744,
+      "predicted_path": "data/frames/dashcam/000199.jpg",
+      "top5": [
+        {
+          "timestamp": 199.0,
+          "score": 0.11888621747493744,
+          "path": "data/frames/dashcam/000199.jpg"
+        },
+        {
+          "timestamp": 200.0,
+          "score": 0.1153189092874527,
+          "path": "data/frames/dashcam/000200.jpg"
+        },
+        {
+          "timestamp": 197.0,
+          "score": 0.11336123943328857,
+          "path": "data/frames/dashcam/000197.jpg"
+        },
+        {
+          "timestamp": 202.0,
+          "score": 0.1124819964170456,
+          "path": "data/frames/dashcam/000202.jpg"
+        },
+        {
+          "timestamp": 198.0,
+          "score": 0.11031177639961243,
+          "path": "data/frames/dashcam/000198.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q047",
+      "video_id": "dashcam",
+      "query": "a street lined with autumn trees",
+      "type": "visual",
+      "notes": "daytime avenue",
+      "intervals": [
+        [
+          215.0,
+          245.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 10.409399983473122,
+      "top1_timestamp": 213.0,
+      "top1_score": 0.14135728776454926,
+      "predicted_path": "data/frames/dashcam/000213.jpg",
+      "top5": [
+        {
+          "timestamp": 213.0,
+          "score": 0.14135728776454926,
+          "path": "data/frames/dashcam/000213.jpg"
+        },
+        {
+          "timestamp": 218.0,
+          "score": 0.13951091468334198,
+          "path": "data/frames/dashcam/000218.jpg"
+        },
+        {
+          "timestamp": 220.0,
+          "score": 0.1344456970691681,
+          "path": "data/frames/dashcam/000220.jpg"
+        },
+        {
+          "timestamp": 225.0,
+          "score": 0.1309632807970047,
+          "path": "data/frames/dashcam/000225.jpg"
+        },
+        {
+          "timestamp": 215.0,
+          "score": 0.12982343137264252,
+          "path": "data/frames/dashcam/000215.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q048",
+      "video_id": "dashcam",
+      "query": "a red car parked on the street",
+      "type": "object",
+      "notes": "right side",
+      "intervals": [
+        [
+          255.0,
+          270.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 10.671199997887015,
+      "top1_timestamp": 226.0,
+      "top1_score": 0.12522506713867188,
+      "predicted_path": "data/frames/dashcam/000226.jpg",
+      "top5": [
+        {
+          "timestamp": 226.0,
+          "score": 0.12522506713867188,
+          "path": "data/frames/dashcam/000226.jpg"
+        },
+        {
+          "timestamp": 256.0,
+          "score": 0.12415701895952225,
+          "path": "data/frames/dashcam/000256.jpg"
+        },
+        {
+          "timestamp": 307.0,
+          "score": 0.12025173008441925,
+          "path": "data/frames/dashcam/000307.jpg"
+        },
+        {
+          "timestamp": 260.0,
+          "score": 0.1163724735379219,
+          "path": "data/frames/dashcam/000260.jpg"
+        },
+        {
+          "timestamp": 259.0,
+          "score": 0.11586418747901917,
+          "path": "data/frames/dashcam/000259.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q049",
+      "video_id": "dashcam",
+      "query": "driving on a wide city street in daytime",
+      "type": "visual",
+      "notes": "multi lane road",
+      "intervals": [
+        [
+          410.0,
+          440.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 10.513999965041876,
+      "top1_timestamp": 398.0,
+      "top1_score": 0.12492217123508453,
+      "predicted_path": "data/frames/dashcam/000398.jpg",
+      "top5": [
+        {
+          "timestamp": 398.0,
+          "score": 0.12492217123508453,
+          "path": "data/frames/dashcam/000398.jpg"
+        },
+        {
+          "timestamp": 431.0,
+          "score": 0.12424527108669281,
+          "path": "data/frames/dashcam/000431.jpg"
+        },
+        {
+          "timestamp": 343.0,
+          "score": 0.12332803010940552,
+          "path": "data/frames/dashcam/000343.jpg"
+        },
+        {
+          "timestamp": 353.0,
+          "score": 0.12327741086483002,
+          "path": "data/frames/dashcam/000353.jpg"
+        },
+        {
+          "timestamp": 342.0,
+          "score": 0.12317028641700745,
+          "path": "data/frames/dashcam/000342.jpg"
+        }
+      ]
+    },
+    {
+      "query_id": "q050",
+      "video_id": "dashcam",
+      "query": "a red car at an intersection",
+      "type": "action",
+      "notes": "traffic light crossing",
+      "intervals": [
+        [
+          590.0,
+          605.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 8.694600022863597,
+      "top1_timestamp": 608.0,
+      "top1_score": 0.15604932606220245,
+      "predicted_path": "data/frames/dashcam/000608.jpg",
+      "top5": [
+        {
+          "timestamp": 608.0,
+          "score": 0.15604932606220245,
+          "path": "data/frames/dashcam/000608.jpg"
+        },
+        {
+          "timestamp": 607.0,
+          "score": 0.1543278694152832,
+          "path": "data/frames/dashcam/000607.jpg"
+        },
+        {
+          "timestamp": 105.0,
+          "score": 0.14991095662117004,
+          "path": "data/frames/dashcam/000105.jpg"
+        },
+        {
+          "timestamp": 606.0,
+          "score": 0.1479852795600891,
+          "path": "data/frames/dashcam/000606.jpg"
+        },
+        {
+          "timestamp": 598.0,
+          "score": 0.1477091908454895,
+          "path": "data/frames/dashcam/000598.jpg"
+        }
+      ]
+    }
+  ],
+  "failures": {
+    "count": 26,
+    "items": [
+      {
+        "query_id": "q002",
+        "video_id": "lecture1",
+        "type": "speech",
+        "query": "where he explains what the introduction needs to do",
+        "intervals": [
+          [
+            141.0,
+            150.0
+          ]
+        ],
+        "top1_timestamp": 133.133,
+        "top1_score": 0.09829017519950867,
+        "predicted_path": "data/frames/lecture1/000133.jpg",
+        "cause": "speech layer not implemented (P5)"
+      },
+      {
+        "query_id": "q003",
+        "video_id": "lecture1",
+        "type": "speech",
+        "query": "where he says lack of support at home",
+        "intervals": [
+          [
+            706.0,
+            735.0
+          ]
+        ],
+        "top1_timestamp": 1174.173,
+        "top1_score": 0.0789441466331482,
+        "predicted_path": "data/frames/lecture1/001173.jpg",
+        "cause": "speech layer not implemented (P5)"
+      },
+      {
+        "query_id": "q005",
+        "video_id": "lecture1",
+        "type": "speech",
+        "query": "where he explains the passive voice",
+        "intervals": [
+          [
+            944.0,
+            960.0
+          ]
+        ],
+        "top1_timestamp": 11.011,
+        "top1_score": 0.06104766204953194,
+        "predicted_path": "data/frames/lecture1/000011.jpg",
+        "cause": "speech layer not implemented (P5)"
+      },
+      {
+        "query_id": "q008",
+        "video_id": "lecture1",
+        "type": "ocr",
+        "query": "the ultimate IELTS playbook",
+        "intervals": [
+          [
+            992.0,
+            1010.0
+          ]
+        ],
+        "top1_timestamp": 334.334,
+        "top1_score": 0.18418951332569122,
+        "predicted_path": "data/frames/lecture1/000334.jpg",
+        "cause": "OCR layer not implemented (P6)"
+      },
+      {
+        "query_id": "q009",
+        "video_id": "lecture2",
+        "type": "speech",
+        "query": "where he says prove correctness and argue efficiency",
+        "intervals": [
+          [
+            15.0,
+            32.0
+          ]
+        ],
+        "top1_timestamp": 522.0,
+        "top1_score": 0.13108806312084198,
+        "predicted_path": "data/frames/lecture2/000522.jpg",
+        "cause": "speech layer not implemented (P5)"
+      },
+      {
+        "query_id": "q010",
+        "video_id": "lecture2",
+        "type": "speech",
+        "query": "where he explains the base case of zero students",
+        "intervals": [
+          [
+            288.0,
+            309.0
+          ]
+        ],
+        "top1_timestamp": 324.0,
+        "top1_score": 0.11698077619075775,
+        "predicted_path": "data/frames/lecture2/000324.jpg",
+        "cause": "speech layer not implemented (P5)"
+      },
+      {
+        "query_id": "q011",
+        "video_id": "lecture2",
+        "type": "speech",
+        "query": "where he says we measure operations instead of time",
+        "intervals": [
+          [
+            505.0,
+            525.0
+          ]
+        ],
+        "top1_timestamp": 638.0,
+        "top1_score": 0.0861063301563263,
+        "predicted_path": "data/frames/lecture2/000638.jpg",
+        "cause": "speech layer not implemented (P5)"
+      },
+      {
+        "query_id": "q015",
+        "video_id": "lecture2",
+        "type": "ocr",
+        "query": "the chalkboard heading efficiency",
+        "intervals": [
+          [
+            450.0,
+            480.0
+          ]
+        ],
+        "top1_timestamp": 522.0,
+        "top1_score": 0.18082737922668457,
+        "predicted_path": "data/frames/lecture2/000522.jpg",
+        "cause": "OCR layer not implemented (P6)"
+      },
+      {
+        "query_id": "q016",
+        "video_id": "streetcctv1",
+        "type": "object",
+        "query": "a red umbrella",
+        "intervals": [
+          [
+            55.0,
+            65.0
+          ]
+        ],
+        "top1_timestamp": 53.0,
+        "top1_score": 0.07820607721805573,
+        "predicted_path": "data/frames/streetcctv1/000053.jpg",
+        "cause": "small object missed by frame embedding (P3)"
+      },
+      {
+        "query_id": "q019",
+        "video_id": "streetcctv1",
+        "type": "visual",
+        "query": "people crossing the street in the rain",
+        "intervals": [
+          [
+            5.0,
+            30.0
+          ]
+        ],
+        "top1_timestamp": 48.0,
+        "top1_score": 0.1253058761358261,
+        "predicted_path": "data/frames/streetcctv1/000048.jpg",
+        "cause": "scene confusion in frame embedding"
+      },
+      {
+        "query_id": "q020",
+        "video_id": "streetcctv1",
+        "type": "visual",
+        "query": "a wide road with parked cars",
+        "intervals": [
+          [
+            130.0,
+            155.0
+          ]
+        ],
+        "top1_timestamp": 176.0,
+        "top1_score": 0.11506195366382599,
+        "predicted_path": "data/frames/streetcctv1/000176.jpg",
+        "cause": "scene confusion in frame embedding"
+      },
+      {
+        "query_id": "q023",
+        "video_id": "streetcctv2",
+        "type": "object",
+        "query": "a cyclist in a green jacket",
+        "intervals": [
+          [
+            95.0,
+            105.0
+          ]
+        ],
+        "top1_timestamp": 348.0,
+        "top1_score": 0.07463976740837097,
+        "predicted_path": "data/frames/streetcctv2/000348.jpg",
+        "cause": "small object missed by frame embedding (P3)"
+      },
+      {
+        "query_id": "q024",
+        "video_id": "streetcctv2",
+        "type": "object",
+        "query": "a red car in the distance",
+        "intervals": [
+          [
+            10.0,
+            20.0
+          ]
+        ],
+        "top1_timestamp": 389.0,
+        "top1_score": 0.09293002635240555,
+        "predicted_path": "data/frames/streetcctv2/000389.jpg",
+        "cause": "small object missed by frame embedding (P3)"
+      },
+      {
+        "query_id": "q025",
+        "video_id": "streetcctv2",
+        "type": "visual",
+        "query": "a zebra crossing on a residential street",
+        "intervals": [
+          [
+            5.0,
+            30.0
+          ]
+        ],
+        "top1_timestamp": 413.0,
+        "top1_score": 0.11136846989393234,
+        "predicted_path": "data/frames/streetcctv2/000413.jpg",
+        "cause": "scene confusion in frame embedding"
+      },
+      {
+        "query_id": "q027",
+        "video_id": "streetcctv2",
+        "type": "action",
+        "query": "cars driving through the intersection",
+        "intervals": [
+          [
+            390.0,
+            415.0
+          ]
+        ],
+        "top1_timestamp": 419.0,
+        "top1_score": 0.10986015945672989,
+        "predicted_path": "data/frames/streetcctv2/000419.jpg",
+        "cause": "frame embedding cannot model actions (P7)"
+      },
+      {
+        "query_id": "q031",
+        "video_id": "indoor1",
+        "type": "spatial",
+        "query": "a man sitting at a desk with a laptop",
+        "intervals": [
+          [
+            175.0,
+            195.0
+          ]
+        ],
+        "top1_timestamp": 220.0,
+        "top1_score": 0.10739222168922424,
+        "predicted_path": "data/frames/indoor1/000220.jpg",
+        "cause": "no spatial reasoning (P3)"
+      },
+      {
+        "query_id": "q033",
+        "video_id": "indoor2",
+        "type": "caption",
+        "query": "a family playing a game together",
+        "intervals": [
+          [
+            225.0,
+            240.0
+          ]
+        ],
+        "top1_timestamp": 222.999999,
+        "top1_score": 0.09807045757770538,
+        "predicted_path": "data/frames/indoor2/000223.jpg",
+        "cause": "caption layer not implemented (P7)"
+      },
+      {
+        "query_id": "q037",
+        "video_id": "screen-recording",
+        "type": "ocr",
+        "query": "the registry editor showing current version windows",
+        "intervals": [
+          [
+            50.0,
+            75.0
+          ]
+        ],
+        "top1_timestamp": 40.0,
+        "top1_score": 0.16718460619449615,
+        "predicted_path": "data/frames/screen-recording/000040.jpg",
+        "cause": "OCR layer not implemented (P6)"
+      },
+      {
+        "query_id": "q038",
+        "video_id": "screen-recording",
+        "type": "ocr",
+        "query": "the command sfc /scannow in command prompt",
+        "intervals": [
+          [
+            145.0,
+            170.0
+          ]
+        ],
+        "top1_timestamp": 142.0,
+        "top1_score": 0.1962391883134842,
+        "predicted_path": "data/frames/screen-recording/000142.jpg",
+        "cause": "OCR layer not implemented (P6)"
+      },
+      {
+        "query_id": "q042",
+        "video_id": "screen-recording",
+        "type": "visual",
+        "query": "a blue Windows desktop",
+        "intervals": [
+          [
+            116.0,
+            126.0
+          ]
+        ],
+        "top1_timestamp": 98.0,
+        "top1_score": 0.14039185643196106,
+        "predicted_path": "data/frames/screen-recording/000098.jpg",
+        "cause": "scene confusion in frame embedding"
+      }
+    ]
+  }
+}
