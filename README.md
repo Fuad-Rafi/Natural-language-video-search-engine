@@ -79,7 +79,7 @@ python scripts/index_objects.py --video data/videos/streetcctv1.mp4
 python scripts/search.py --query "a red car parked on the street" --layer objects --video dashcam
 ```
 
-Search returns frame timestamps with cosine scores. Omitting `--video` searches every indexed video. The first run loads the SigLIP model (about 2 seconds on the RTX 3060).
+Search returns frame or object hits with cosine scores; the evaluator merges them into segments. Omitting `--video` searches every indexed video. The first run loads the SigLIP model (about 2 seconds on the RTX 3060).
 
 ### Evaluate (available)
 

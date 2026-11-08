@@ -56,9 +56,9 @@ before scoring, so A, B, and A+B are comparable.
 
 | Config | R@1 | R@5 | R@10 | mIoU | Dup raw | Dup merged | p50 |
 |---|---|---|---|---|---|---|---|
-| A — frames | 0.620 | 0.860 | 0.880 | **0.257** | 0.458 | 0.000 | 9 ms |
-| B — objects | 0.220 | 0.440 | 0.520 | 0.042 | 0.112 | 0.000 | 22 ms |
-| A+B — RRF | 0.620 | **0.880** | **0.900** | 0.242 | 0.384 | 0.000 | 12 ms |
+| A — frames | 0.620 | 0.860 | 0.880 | **0.257** | 0.458 | 0.000 | 8 ms |
+| B — objects | 0.220 | 0.440 | 0.520 | 0.042 | 0.112 | 0.000 | 25 ms |
+| A+B — RRF | 0.620 | **0.880** | **0.900** | 0.242 | 0.384 | 0.000 | 13 ms |
 
 Object/spatial subset (11 queries): A 0.909, B 0.818, A+B **1.000**.
 Per-type tables: `results/baseline.md`, `results/objects.md`, `results/ab.md`.
