@@ -1,5 +1,9 @@
 # VideoSeek default configuration
 
+paths:
+  data_dir: data            # frames, audio, transcripts, ocr, indexes live below this
+  logs_dir: logs            # per-run logs (gitignored)
+
 video:
   sample_fps: 1.0          # frames per second for visual indexing
   keyframe_fps: 0.5        # keyframes for OCR and captions

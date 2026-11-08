@@ -2,7 +2,7 @@
 
 Search long videos with plain English. Ask a question, get a timestamp, a thumbnail, and a playable clip.
 
-> **Status: early scaffold.** The repository currently contains the public setup guide, requirements, and configuration. The indexing and search pipeline is being implemented phase by phase. The commands below describe the target interface and will be enabled as soon as the first pipeline version lands.
+> **Status: P0 complete — timestamped frame extraction works.** `scripts/index_video.py` indexes a video into 1 fps JPEGs plus metadata, and `scripts/verify_frames.py` checks them against the source. Retrieval (P1) and the remaining layers are being implemented phase by phase; the search and web UI commands below describe the target interface.
 
 ---
 
@@ -43,26 +43,36 @@ source .venv/bin/activate
 pip install -r requirements.txt
 ```
 
+Exact versions from the verified Windows + CUDA 13 environment are pinned in `requirements-lock.txt`.
+
 Verify FFmpeg:
 
 ```bash
 ffmpeg -version
 ```
 
-## Usage (planned interface)
+## Usage
+
+### Index a video (available)
 
 ```bash
 # 1. Put a video in data/videos/ (or pass any path)
 python scripts/index_video.py --video data/videos/sample.mp4
 
-# 2. Search it
-python scripts/search.py --query "where he says gradient descent"
+# 2. Verify frames and timestamps against the source
+python scripts/verify_frames.py --video data/videos/sample.mp4
+```
 
-# 3. Or use the web UI
+Frames are written to `data/frames/<video_id>/` (`000000.jpg`, `metadata.json`, `frames.jsonl`), with a per-run log in `logs/`.
+
+### Search (planned, P1+)
+
+```bash
+python scripts/search.py --query "where he says gradient descent"
 python app.py
 ```
 
-Indexing is cached: re-running the same video reuses existing frames, transcripts, and embeddings.
+Indexing is cached: re-running the same video reuses existing frames.
 
 ## Configuration
 
