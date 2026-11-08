@@ -1,0 +1,1509 @@
+{
+  "schema_version": 3,
+  "generated_at": "2026-11-08T20:39:39+00:00",
+  "mode": "E",
+  "config": "E (OCR)",
+  "model": "BAAI/bge-small-en-v1.5",
+  "text_model": "BAAI/bge-small-en-v1.5",
+  "device": "cuda",
+  "queries_file": "benchmarks/queries.csv",
+  "queries_sha256": "0b728db337406e3195e9063323eaf0938ac241e5e96ab499bfa377c9885f62bd",
+  "query_count": 12,
+  "temporal": {
+    "gap_s": 3.0,
+    "min_segment_s": 1.0
+  },
+  "fusion": null,
+  "text": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "use_bm25": true
+  },
+  "aggregate": {
+    "queries": 12,
+    "recall@1": 0.5833333333333334,
+    "recall@3": 0.75,
+    "recall@5": 0.75,
+    "recall@10": 0.8333333333333334,
+    "miou": 0.2699653402153405,
+    "latency_p50_ms": 23.688599991146475,
+    "latency_p95_ms": 36.42359998775646,
+    "duplicate_raw": 0.11666666666666665,
+    "duplicate_segment": 0.0
+  },
+  "per_type": {
+    "ocr": {
+      "queries": 12,
+      "recall@1": 0.5833333333333334,
+      "recall@3": 0.75,
+      "recall@5": 0.75,
+      "recall@10": 0.8333333333333334,
+      "miou": 0.2699653402153405,
+      "latency_p50_ms": 23.688599991146475,
+      "latency_p95_ms": 36.42359998775646,
+      "duplicate_raw": 0.11666666666666665,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_video": {
+    "lecture1": {
+      "queries": 3,
+      "recall@1": 0.6666666666666666,
+      "recall@3": 0.6666666666666666,
+      "recall@5": 0.6666666666666666,
+      "recall@10": 0.6666666666666666,
+      "miou": 0.5000002497502509,
+      "latency_p50_ms": 24.35000002151355,
+      "latency_p95_ms": 526.8458000500686,
+      "duplicate_raw": 0.06666666666666667,
+      "duplicate_segment": 0.0
+    },
+    "lecture2": {
+      "queries": 3,
+      "recall@1": 0.0,
+      "recall@3": 0.3333333333333333,
+      "recall@5": 0.3333333333333333,
+      "recall@10": 0.6666666666666666,
+      "miou": 0.0,
+      "latency_p50_ms": 23.619099985808134,
+      "latency_p95_ms": 23.688599991146475,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "screen-recording": {
+      "queries": 6,
+      "recall@1": 0.8333333333333334,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.2899305555555555,
+      "latency_p50_ms": 23.150499968323857,
+      "latency_p95_ms": 36.42359998775646,
+      "duplicate_raw": 0.20000000000000004,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_query": [
+    {
+      "query_id": "q006",
+      "video_id": "lecture1",
+      "query": "the slide titled essay introductions",
+      "type": "ocr",
+      "notes": "title slide",
+      "intervals": [
+        [
+          132.0,
+          140.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.75075,
+      "latency_ms": 526.8458000500686,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 133.133,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/lecture1/000135.jpg",
+      "predicted_text": "ESSAY INTRODUCTIONS",
+      "top3": [
+        {
+          "timestamp": 133.133,
+          "start": 133.133,
+          "end": 139.139,
+          "score": 0.03278688524590164,
+          "path": "data/frames/lecture1/000135.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 285.285,
+          "start": 285.285,
+          "end": 315.315,
+          "score": 0.02946912242686891,
+          "path": "data/frames/lecture1/000300.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 154.154,
+          "start": 154.154,
+          "end": 184.184,
+          "score": 0.029206349206349208,
+          "path": "data/frames/lecture1/000154.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 133.133,
+          "start": 133.133,
+          "end": 139.139,
+          "score": 0.03278688524590164,
+          "path": "data/frames/lecture1/000135.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 285.285,
+          "start": 285.285,
+          "end": 315.315,
+          "score": 0.02946912242686891,
+          "path": "data/frames/lecture1/000300.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 154.154,
+          "start": 154.154,
+          "end": 184.184,
+          "score": 0.029206349206349208,
+          "path": "data/frames/lecture1/000154.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 523.523,
+          "start": 523.523,
+          "end": 540.54,
+          "score": 0.028814262023217248,
+          "path": "data/frames/lecture1/000523.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 33.033,
+          "start": 33.033,
+          "end": 48.048,
+          "score": 0.026860955056179775,
+          "path": "data/frames/lecture1/000033.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q007",
+      "video_id": "lecture1",
+      "query": "the slide that says our goal present the topic",
+      "type": "ocr",
+      "notes": "introduction goals",
+      "intervals": [
+        [
+          140.0,
+          156.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 18.106200033798814,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 1053.052,
+      "top1_score": 0.029051670471052088,
+      "predicted_path": "data/frames/lecture1/001067.jpg",
+      "predicted_text": "ESSAY1 CONCLUSION In conclusion, while strict punishments may seem like a strong response,I believe that education and support are more effective when it comes to young people. It offers a real chance to change, which benefits both the individual and society. Sentence 1:acknowledges the other side and restates our own opinion •Sentence 2: gives a short reason why",
+      "top3": [
+        {
+          "timestamp": 1053.052,
+          "start": 1053.052,
+          "end": 1078.077,
+          "score": 0.029051670471052088,
+          "path": "data/frames/lecture1/001067.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 517.517,
+          "start": 517.517,
+          "end": 523.523,
+          "score": 0.02844163539403516,
+          "path": "data/frames/lecture1/000517.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 692.692,
+          "start": 692.692,
+          "end": 697.697,
+          "score": 0.02797067901234568,
+          "path": "data/frames/lecture1/000692.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 1053.052,
+          "start": 1053.052,
+          "end": 1078.077,
+          "score": 0.029051670471052088,
+          "path": "data/frames/lecture1/001067.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 517.517,
+          "start": 517.517,
+          "end": 523.523,
+          "score": 0.02844163539403516,
+          "path": "data/frames/lecture1/000517.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 692.692,
+          "start": 692.692,
+          "end": 697.697,
+          "score": 0.02797067901234568,
+          "path": "data/frames/lecture1/000692.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 523.523,
+          "start": 523.523,
+          "end": 540.54,
+          "score": 0.027893738140417457,
+          "path": "data/frames/lecture1/000523.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 33.033,
+          "start": 33.033,
+          "end": 48.048,
+          "score": 0.027526395173453996,
+          "path": "data/frames/lecture1/000033.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q008",
+      "video_id": "lecture1",
+      "query": "the ultimate IELTS playbook",
+      "type": "ocr",
+      "notes": "pdf cover",
+      "intervals": [
+        [
+          992.0,
+          1010.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.7492507492507527,
+      "latency_ms": 24.35000002151355,
+      "duplicate_raw": 0.2,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 988.988,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": "data/frames/lecture1/001003.jpg",
+      "predicted_text": "THE ULTIMATE IELTS PLAYBOOK Proven IELTs Strategies, Band 9 Sample Answers, and Practice Exercises PDF Asiya Miart FasTrack IELTS",
+      "top3": [
+        {
+          "timestamp": 988.988,
+          "start": 988.988,
+          "end": 1013.012,
+          "score": 0.03252247488101534,
+          "path": "data/frames/lecture1/001003.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 327.327,
+          "start": 325.325,
+          "end": 342.342,
+          "score": 0.032266458495966696,
+          "path": "data/frames/lecture1/000327.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 1179.178,
+          "start": 1173.172,
+          "end": 1185.184,
+          "score": 0.03200204813108039,
+          "path": "data/frames/lecture1/001178.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 988.988,
+          "start": 988.988,
+          "end": 1013.012,
+          "score": 0.03252247488101534,
+          "path": "data/frames/lecture1/001003.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 327.327,
+          "start": 325.325,
+          "end": 342.342,
+          "score": 0.032266458495966696,
+          "path": "data/frames/lecture1/000327.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 1179.178,
+          "start": 1173.172,
+          "end": 1185.184,
+          "score": 0.03200204813108039,
+          "path": "data/frames/lecture1/001178.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 315.315,
+          "start": 315.315,
+          "end": 325.325,
+          "score": 0.031009615384615385,
+          "path": "data/frames/lecture1/000315.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 1185.184,
+          "start": 1185.184,
+          "end": 1199.264218,
+          "score": 0.029631255487269532,
+          "path": "data/frames/lecture1/001184.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q013",
+      "video_id": "lecture2",
+      "query": "the chalkboard says 6.006 lecture 1",
+      "type": "ocr",
+      "notes": "title on blackboard",
+      "intervals": [
+        [
+          30.0,
+          55.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 23.688599991146475,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 15.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/lecture2/000015.jpg",
+      "predicted_text": "006 lecture L Gral:0 Sake amahil peldens",
+      "top3": [
+        {
+          "timestamp": 15.0,
+          "start": 15.0,
+          "end": 30.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/lecture2/000015.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 45.0,
+          "start": 45.0,
+          "end": 56.0,
+          "score": 0.031024531024531024,
+          "path": "data/frames/lecture2/000045.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 443.0,
+          "start": 443.0,
+          "end": 458.0,
+          "score": 0.030309988518943745,
+          "path": "data/frames/lecture2/000443.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 15.0,
+          "start": 15.0,
+          "end": 30.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/lecture2/000015.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 45.0,
+          "start": 45.0,
+          "end": 56.0,
+          "score": 0.031024531024531024,
+          "path": "data/frames/lecture2/000045.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 443.0,
+          "start": 443.0,
+          "end": 458.0,
+          "score": 0.030309988518943745,
+          "path": "data/frames/lecture2/000443.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 291.0,
+          "start": 291.0,
+          "end": 307.0,
+          "score": 0.02844551282051282,
+          "path": "data/frames/lecture2/000291.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 136.0,
+          "start": 136.0,
+          "end": 146.0,
+          "score": 0.028404512489927477,
+          "path": "data/frames/lecture2/000136.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q014",
+      "video_id": "lecture2",
+      "query": "the chalkboard heading correctness",
+      "type": "ocr",
+      "notes": "proof section",
+      "intervals": [
+        [
+          180.0,
+          210.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 23.619099985808134,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 165.0,
+      "top1_score": 0.01639344262295082,
+      "predicted_path": "data/frames/lecture2/000165.jpg",
+      "predicted_text": "ntenievsTndents h sae ode -Cheek Sbnfay read -addewstdent -ifsoretrn Retm Nore",
+      "top3": [
+        {
+          "timestamp": 165.0,
+          "start": 165.0,
+          "end": 175.0,
+          "score": 0.01639344262295082,
+          "path": "data/frames/lecture2/000165.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 56.0,
+          "start": 56.0,
+          "end": 71.0,
+          "score": 0.016129032258064516,
+          "path": "data/frames/lecture2/000056.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 325.0,
+          "start": 325.0,
+          "end": 343.0,
+          "score": 0.015873015873015872,
+          "path": "data/frames/lecture2/000325.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 165.0,
+          "start": 165.0,
+          "end": 175.0,
+          "score": 0.01639344262295082,
+          "path": "data/frames/lecture2/000165.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 56.0,
+          "start": 56.0,
+          "end": 71.0,
+          "score": 0.016129032258064516,
+          "path": "data/frames/lecture2/000056.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 325.0,
+          "start": 325.0,
+          "end": 343.0,
+          "score": 0.015873015873015872,
+          "path": "data/frames/lecture2/000325.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 240.0,
+          "start": 240.0,
+          "end": 256.0,
+          "score": 0.015625,
+          "path": "data/frames/lecture2/000240.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 863.0,
+          "start": 863.0,
+          "end": 872.0,
+          "score": 0.015384615384615385,
+          "path": "data/frames/lecture2/000863.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q015",
+      "video_id": "lecture2",
+      "query": "the chalkboard heading efficiency",
+      "type": "ocr",
+      "notes": "efficiency section",
+      "intervals": [
+        [
+          450.0,
+          480.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 22.673300001770258,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 509.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/lecture2/000509.jpg",
+      "predicted_text": "Efficiency",
+      "top3": [
+        {
+          "timestamp": 509.0,
+          "start": 509.0,
+          "end": 524.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/lecture2/000509.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 524.0,
+          "start": 524.0,
+          "end": 531.0,
+          "score": 0.03200204813108039,
+          "path": "data/frames/lecture2/000524.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 688.0,
+          "start": 688.0,
+          "end": 703.0,
+          "score": 0.031054405392392875,
+          "path": "data/frames/lecture2/000688.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 509.0,
+          "start": 509.0,
+          "end": 524.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/lecture2/000509.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 524.0,
+          "start": 524.0,
+          "end": 531.0,
+          "score": 0.03200204813108039,
+          "path": "data/frames/lecture2/000524.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 688.0,
+          "start": 688.0,
+          "end": 703.0,
+          "score": 0.031054405392392875,
+          "path": "data/frames/lecture2/000688.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 624.0,
+          "start": 624.0,
+          "end": 627.0,
+          "score": 0.031009615384615385,
+          "path": "data/frames/lecture2/000624.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 703.0,
+          "start": 703.0,
+          "end": 715.0,
+          "score": 0.02964426877470356,
+          "path": "data/frames/lecture2/000703.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q036",
+      "video_id": "screen-recording",
+      "query": "the application was unable to start correctly 0xc0000142",
+      "type": "ocr",
+      "notes": "error dialog",
+      "intervals": [
+        [
+          15.0,
+          30.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.4666666666666667,
+      "latency_ms": 36.42359998775646,
+      "duplicate_raw": 0.1,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 19.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/screen-recording/000019.jpg",
+      "predicted_text": "WINWORD.EXE - Application Error The application was unable to start correctly (0xc0000142). Click OK to close the application. OK OType here to search",
+      "top3": [
+        {
+          "timestamp": 19.0,
+          "start": 19.0,
+          "end": 26.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/screen-recording/000019.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 95.0,
+          "start": 95.0,
+          "end": 100.0,
+          "score": 0.028958333333333336,
+          "path": "data/frames/screen-recording/000095.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 180.0,
+          "start": 180.0,
+          "end": 182.0,
+          "score": 0.027730294396961064,
+          "path": "data/frames/screen-recording/000180.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 19.0,
+          "start": 19.0,
+          "end": 26.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/screen-recording/000019.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 95.0,
+          "start": 95.0,
+          "end": 100.0,
+          "score": 0.028958333333333336,
+          "path": "data/frames/screen-recording/000095.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 180.0,
+          "start": 180.0,
+          "end": 182.0,
+          "score": 0.027730294396961064,
+          "path": "data/frames/screen-recording/000180.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 35.0,
+          "start": 33.0,
+          "end": 44.0,
+          "score": 0.027252906976744186,
+          "path": "data/frames/screen-recording/000035.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 131.0,
+          "start": 131.0,
+          "end": 137.0,
+          "score": 0.026984126984126985,
+          "path": "data/frames/screen-recording/000131.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q037",
+      "video_id": "screen-recording",
+      "query": "the registry editor showing current version windows",
+      "type": "ocr",
+      "notes": "registry path",
+      "intervals": [
+        [
+          50.0,
+          75.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 26.546999986749142,
+      "duplicate_raw": 0.1,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 35.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/screen-recording/000035.jpg",
+      "predicted_text": "App Search the web O registry editor - See web results > registry editor windows 10 O registry editor app Open Run as administr registry editor download Open file locatio registry editor open Pin to Start registry editor command Pin to taskbar registry editor pc 7",
+      "top3": [
+        {
+          "timestamp": 35.0,
+          "start": 33.0,
+          "end": 44.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/screen-recording/000035.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 68.0,
+          "start": 68.0,
+          "end": 81.0,
+          "score": 0.03125763125763126,
+          "path": "data/frames/screen-recording/000068.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 105.0,
+          "start": 105.0,
+          "end": 110.0,
+          "score": 0.029437229437229435,
+          "path": "data/frames/screen-recording/000105.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 35.0,
+          "start": 33.0,
+          "end": 44.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/screen-recording/000035.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 68.0,
+          "start": 68.0,
+          "end": 81.0,
+          "score": 0.03125763125763126,
+          "path": "data/frames/screen-recording/000068.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 105.0,
+          "start": 105.0,
+          "end": 110.0,
+          "score": 0.029437229437229435,
+          "path": "data/frames/screen-recording/000105.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 137.0,
+          "start": 137.0,
+          "end": 146.0,
+          "score": 0.029437229437229435,
+          "path": "data/frames/screen-recording/000137.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 156.0,
+          "start": 156.0,
+          "end": 175.0,
+          "score": 0.02919863597612958,
+          "path": "data/frames/screen-recording/000171.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q038",
+      "video_id": "screen-recording",
+      "query": "the command sfc /scannow in command prompt",
+      "type": "ocr",
+      "notes": "system file check",
+      "intervals": [
+        [
+          145.0,
+          170.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.4,
+      "latency_ms": 21.65339997736737,
+      "duplicate_raw": 0.1,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 146.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/screen-recording/000146.jpg",
+      "predicted_text": "Administrator: Command Prompt -sfc /scannow Microsoft windows [Version 10.0.19041.1415] (c) Microsoft Corporation. All rights reserved. C:\\windows\\system32>sfc /scannow Beginning system scan. Beginning verification phase of system scan. Verification 6% complete.",
+      "top3": [
+        {
+          "timestamp": 146.0,
+          "start": 146.0,
+          "end": 156.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/screen-recording/000146.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 156.0,
+          "start": 156.0,
+          "end": 175.0,
+          "score": 0.03200204813108039,
+          "path": "data/frames/screen-recording/000171.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 131.0,
+          "start": 131.0,
+          "end": 137.0,
+          "score": 0.0315136476426799,
+          "path": "data/frames/screen-recording/000131.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 146.0,
+          "start": 146.0,
+          "end": 156.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/screen-recording/000146.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 156.0,
+          "start": 156.0,
+          "end": 175.0,
+          "score": 0.03200204813108039,
+          "path": "data/frames/screen-recording/000171.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 131.0,
+          "start": 131.0,
+          "end": 137.0,
+          "score": 0.0315136476426799,
+          "path": "data/frames/screen-recording/000131.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 137.0,
+          "start": 137.0,
+          "end": 146.0,
+          "score": 0.03149801587301587,
+          "path": "data/frames/screen-recording/000137.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 105.0,
+          "start": 105.0,
+          "end": 110.0,
+          "score": 0.027972027972027972,
+          "path": "data/frames/screen-recording/000105.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q039",
+      "video_id": "screen-recording",
+      "query": "chkdsk cannot run because the volume is in use",
+      "type": "ocr",
+      "notes": "drive locked error",
+      "intervals": [
+        [
+          175.0,
+          190.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.13333333333333333,
+      "latency_ms": 23.150499968323857,
+      "duplicate_raw": 0.1,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 180.0,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": "data/frames/screen-recording/000180.jpg",
+      "predicted_text": "Verification 1eo% complete. Windows Resource Protection found corrupt files and successfully repaired them. For online repairs, details are included in the CBs log file located at windir\\Logs\\CBS\\cBS.log. For example C:\\windows\\Logs\\CBs\\CBS.log. For offline repairs, details are included in the log file provided by the /OFFLoGFILE flag. C:\\windows\\system32>chkdsk c: /f /r The type of the file system is NTFS. Cannot lock current drive. process. Would you like to schedule this volume to be checked the next time the system restarts? (Y/N) y This volume will be checked the next time the system restarts. C:\\windows\\system32>e",
+      "top3": [
+        {
+          "timestamp": 180.0,
+          "start": 180.0,
+          "end": 182.0,
+          "score": 0.03252247488101534,
+          "path": "data/frames/screen-recording/000180.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 83.0,
+          "start": 83.0,
+          "end": 88.0,
+          "score": 0.03007688828584351,
+          "path": "data/frames/screen-recording/000083.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 105.0,
+          "start": 105.0,
+          "end": 110.0,
+          "score": 0.03007688828584351,
+          "path": "data/frames/screen-recording/000105.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 180.0,
+          "start": 180.0,
+          "end": 182.0,
+          "score": 0.03252247488101534,
+          "path": "data/frames/screen-recording/000180.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 83.0,
+          "start": 83.0,
+          "end": 88.0,
+          "score": 0.03007688828584351,
+          "path": "data/frames/screen-recording/000083.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 105.0,
+          "start": 105.0,
+          "end": 110.0,
+          "score": 0.03007688828584351,
+          "path": "data/frames/screen-recording/000105.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 156.0,
+          "start": 156.0,
+          "end": 175.0,
+          "score": 0.02946236559139785,
+          "path": "data/frames/screen-recording/000171.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 100.0,
+          "start": 100.0,
+          "end": 105.0,
+          "score": 0.029411764705882353,
+          "path": "data/frames/screen-recording/000100.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q040",
+      "video_id": "screen-recording",
+      "query": "download .NET framework 4.8.1",
+      "type": "ocr",
+      "notes": "download page",
+      "intervals": [
+        [
+          285.0,
+          300.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.40625,
+      "latency_ms": 21.387699991464615,
+      "duplicate_raw": 0.4,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 287.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/screen-recording/000287.jpg",
+      "predicted_text": "Download .NET Framework .NET Framework is a Windows-only version of.NET for building any type of app that runs on Windows. ③ Not sure what to download? See recommended downloads for the latest version of .NET. ヘ Supported versions Version Release date End of support NET FrameworHlmy.8.1 August 9, 2022 .NET Framework 4.8 (recommended) April 18, 2019 .NET Framework 4.7.2 April 30, 2018 .NET Framework 4.7.1 October 17,2017 .NET Framework 4.7 April 5, 2017",
+      "top3": [
+        {
+          "timestamp": 287.0,
+          "start": 268.0,
+          "end": 298.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/screen-recording/000287.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 105.0,
+          "start": 105.0,
+          "end": 110.0,
+          "score": 0.02946912242686891,
+          "path": "data/frames/screen-recording/000105.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 63.0,
+          "start": 63.0,
+          "end": 68.0,
+          "score": 0.028381642512077296,
+          "path": "data/frames/screen-recording/000063.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 287.0,
+          "start": 268.0,
+          "end": 298.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/screen-recording/000287.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 105.0,
+          "start": 105.0,
+          "end": 110.0,
+          "score": 0.02946912242686891,
+          "path": "data/frames/screen-recording/000105.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 63.0,
+          "start": 63.0,
+          "end": 68.0,
+          "score": 0.028381642512077296,
+          "path": "data/frames/screen-recording/000063.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 100.0,
+          "start": 100.0,
+          "end": 105.0,
+          "score": 0.02819138376017471,
+          "path": "data/frames/screen-recording/000100.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 83.0,
+          "start": 81.0,
+          "end": 88.0,
+          "score": 0.02761904761904762,
+          "path": "data/frames/screen-recording/000083.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q041",
+      "video_id": "screen-recording",
+      "query": "building C and C++ apps",
+      "type": "ocr",
+      "notes": "Visual Studio page",
+      "intervals": [
+        [
+          270.0,
+          280.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.3333333333333333,
+      "latency_ms": 23.761000018566847,
+      "duplicate_raw": 0.4,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 270.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/screen-recording/000270.jpg",
+      "predicted_text": "Visual StudioC/C-+ID and Cox ←→Cvisualstudio.microsoft.com/vs/features/cplusplus/ MicrosoftVisual Studio More Free Visual studio All Microsoftv Sign in Develop C and C+ + applications Build modern C and C+ + apps for Windows using tools of your choice, including MSVC, Clang, CMake, and MSBuild Install the Building native components Windows applications in Visual Studio 2Q22 you need for building C and C++ apps • Contains C/C++ components for desktop, mobile, Linux, and game development • Get a light and simplified installation installtion, or update Visual Studio after installation Type here to search",
+      "top3": [
+        {
+          "timestamp": 270.0,
+          "start": 268.0,
+          "end": 298.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/screen-recording/000270.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 95.0,
+          "start": 95.0,
+          "end": 100.0,
+          "score": 0.029273504273504274,
+          "path": "data/frames/screen-recording/000095.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 90.0,
+          "start": 88.0,
+          "end": 95.0,
+          "score": 0.028006267136701922,
+          "path": "data/frames/screen-recording/000090.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 270.0,
+          "start": 268.0,
+          "end": 298.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/screen-recording/000270.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 95.0,
+          "start": 95.0,
+          "end": 100.0,
+          "score": 0.029273504273504274,
+          "path": "data/frames/screen-recording/000095.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 90.0,
+          "start": 88.0,
+          "end": 95.0,
+          "score": 0.028006267136701922,
+          "path": "data/frames/screen-recording/000090.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 70.0,
+          "start": 68.0,
+          "end": 72.0,
+          "score": 0.027106227106227107,
+          "path": "data/frames/screen-recording/000070.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 35.0,
+          "start": 33.0,
+          "end": 44.0,
+          "score": 0.025694893341952164,
+          "path": "data/frames/screen-recording/000035.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    }
+  ],
+  "failures": {
+    "count": 5,
+    "items": [
+      {
+        "query_id": "q007",
+        "video_id": "lecture1",
+        "type": "ocr",
+        "query": "the slide that says our goal present the topic",
+        "intervals": [
+          [
+            140.0,
+            156.0
+          ]
+        ],
+        "top1_timestamp": 1053.052,
+        "top1_score": 0.029051670471052088,
+        "predicted_path": "data/frames/lecture1/001067.jpg",
+        "predicted_text": "ESSAY1 CONCLUSION In conclusion, while strict punishments may seem like a strong response,I believe that education and support are more effective when it comes to young people. It offers a real chance to change, which benefits both the individual and society. Sentence 1:acknowledges the other side and restates our own opinion •Sentence 2: gives a short reason why",
+        "cause": "OCR retrieval or keyframe/text miss (P6)"
+      },
+      {
+        "query_id": "q013",
+        "video_id": "lecture2",
+        "type": "ocr",
+        "query": "the chalkboard says 6.006 lecture 1",
+        "intervals": [
+          [
+            30.0,
+            55.0
+          ]
+        ],
+        "top1_timestamp": 15.0,
+        "top1_score": 0.03278688524590164,
+        "predicted_path": "data/frames/lecture2/000015.jpg",
+        "predicted_text": "006 lecture L Gral:0 Sake amahil peldens",
+        "cause": "OCR retrieval or keyframe/text miss (P6)"
+      },
+      {
+        "query_id": "q014",
+        "video_id": "lecture2",
+        "type": "ocr",
+        "query": "the chalkboard heading correctness",
+        "intervals": [
+          [
+            180.0,
+            210.0
+          ]
+        ],
+        "top1_timestamp": 165.0,
+        "top1_score": 0.01639344262295082,
+        "predicted_path": "data/frames/lecture2/000165.jpg",
+        "predicted_text": "ntenievsTndents h sae ode -Cheek Sbnfay read -addewstdent -ifsoretrn Retm Nore",
+        "cause": "OCR retrieval or keyframe/text miss (P6)"
+      },
+      {
+        "query_id": "q015",
+        "video_id": "lecture2",
+        "type": "ocr",
+        "query": "the chalkboard heading efficiency",
+        "intervals": [
+          [
+            450.0,
+            480.0
+          ]
+        ],
+        "top1_timestamp": 509.0,
+        "top1_score": 0.03278688524590164,
+        "predicted_path": "data/frames/lecture2/000509.jpg",
+        "predicted_text": "Efficiency",
+        "cause": "OCR retrieval or keyframe/text miss (P6)"
+      },
+      {
+        "query_id": "q037",
+        "video_id": "screen-recording",
+        "type": "ocr",
+        "query": "the registry editor showing current version windows",
+        "intervals": [
+          [
+            50.0,
+            75.0
+          ]
+        ],
+        "top1_timestamp": 35.0,
+        "top1_score": 0.03278688524590164,
+        "predicted_path": "data/frames/screen-recording/000035.jpg",
+        "predicted_text": "App Search the web O registry editor - See web results > registry editor windows 10 O registry editor app Open Run as administr registry editor download Open file locatio registry editor open Pin to Start registry editor command Pin to taskbar registry editor pc 7",
+        "cause": "OCR retrieval or keyframe/text miss (P6)"
+      }
+    ]
+  }
+}

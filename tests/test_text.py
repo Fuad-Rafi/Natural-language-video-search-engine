@@ -18,6 +18,10 @@ class TokenizeTests(unittest.TestCase):
         self.assertEqual(tokenize(""), [])
         self.assertEqual(tokenize(None), [])  # type: ignore[arg-type]
 
+    def test_camel_case_is_split_but_hex_codes_are_not(self) -> None:
+        self.assertEqual(tokenize("CurrentVersion\\Windows"), ["current", "version", "windows"])
+        self.assertEqual(tokenize("0xC0000142"), ["0xc0000142"])
+
 
 class Bm25Tests(unittest.TestCase):
     def test_matching_document_ranks_first(self) -> None:

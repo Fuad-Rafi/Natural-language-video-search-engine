@@ -50,8 +50,10 @@ from src.search.query import (  # noqa: E402
     filter_object_matches,
     load_frame_index,
     load_object_index,
+    load_ocr_index,
     load_speech_index,
     parse_object_query,
+    rank_ocr_hits,
     rank_speech_hits,
 )
 from src.search.temporal import duplicate_rate, merge_hits  # noqa: E402
@@ -61,18 +63,20 @@ METRIC_KS = (1, 3, 5, 10)
 DEFAULT_MIN_SEGMENT_S = 1.0
 DEFAULT_TOLERANCE_S = 0.5
 
-MODES = ("A", "B", "D", "AB", "ABD")
+MODES = ("A", "B", "D", "E", "AB", "ABD", "ABDE")
 MODE_LABELS = {
     "A": "A (frames)",
     "B": "B (objects)",
     "D": "D (speech)",
+    "E": "E (OCR)",
     "AB": "A+B (RRF)",
     "ABD": "A+B+D (routed)",
+    "ABDE": "A+B+D+E (routed)",
 }
 
 _CAUSE_BY_TYPE = {
     "speech": "speech retrieval or transcript miss (P5)",
-    "ocr": "OCR layer not implemented (P6)",
+    "ocr": "OCR retrieval or keyframe/text miss (P6)",
     "object": "object crop missed the target instance (P3)",
     "spatial": "no spatial reasoning beyond object boxes",
     "action": "frame embedding cannot model actions (P7)",
@@ -92,7 +96,7 @@ def build_parser() -> argparse.ArgumentParser:
         "--mode",
         default="A",
         choices=MODES,
-        help="A=frames, B=objects, D=speech, AB/ABD=RRF fusion",
+        help="A=frames, B=objects, D=speech, E=OCR, AB/ABD/ABDE=fusion+routing",
     )
     parser.add_argument(
         "--types",
@@ -482,8 +486,10 @@ def main(argv: list[str] | None = None) -> int:
         "A": (f"benchmarks/results/{prefix}baseline.json", f"benchmarks/results/{prefix}baseline.md", f"benchmarks/failures/{prefix}a" if heldout else "benchmarks/failures"),
         "B": (f"benchmarks/results/{prefix}objects.json", f"benchmarks/results/{prefix}objects.md", f"benchmarks/failures/{prefix}b" if heldout else "benchmarks/failures/objects"),
         "D": (f"benchmarks/results/{prefix}speech.json", f"benchmarks/results/{prefix}speech.md", f"benchmarks/failures/{prefix}d" if heldout else "benchmarks/failures/speech"),
+        "E": (f"benchmarks/results/{prefix}ocr.json", f"benchmarks/results/{prefix}ocr.md", f"benchmarks/failures/{prefix}e" if heldout else "benchmarks/failures/ocr"),
         "AB": (f"benchmarks/results/{prefix}ab.json", f"benchmarks/results/{prefix}ab.md", f"benchmarks/failures/{prefix}ab" if heldout else "benchmarks/failures/ab"),
         "ABD": (f"benchmarks/results/{prefix}abd.json", f"benchmarks/results/{prefix}abd.md", f"benchmarks/failures/{prefix}abd" if heldout else "benchmarks/failures/abd"),
+        "ABDE": (f"benchmarks/results/{prefix}abde.json", f"benchmarks/results/{prefix}abde.md", f"benchmarks/failures/{prefix}abde" if heldout else "benchmarks/failures/abde"),
     }[mode]
     out_path = config.resolve(args.out or defaults[0])
     markdown_path = config.resolve(args.markdown or defaults[1])
@@ -516,8 +522,10 @@ def main(argv: list[str] | None = None) -> int:
         return 2
 
     video_ids = sorted({group["video_id"] for group in groups})
-    need_siglip = mode in ("A", "B", "AB", "ABD")
-    need_speech = mode in ("D", "ABD")
+    need_siglip = mode in ("A", "B", "AB", "ABD", "ABDE")
+    need_speech = mode in ("D", "ABD", "ABDE")
+    need_ocr = mode in ("E", "ABDE")
+    need_text = need_speech or need_ocr
 
     device = resolve_device(args.device or config.get("frames.device", "auto"))
     siglip_model = str(config.get("frames.model"))
@@ -534,17 +542,18 @@ def main(argv: list[str] | None = None) -> int:
         processor, model = load_siglip(siglip_model, device)
 
     text_encoder = None
-    if need_speech:
+    if need_text:
         _LOG.info("mode %s: loading %s on %s", mode, text_model_name, text_device)
         text_encoder = load_text_encoder(text_model_name, text_device)
 
     frame_indexes: dict[str, tuple[Any, dict[str, Any]]] = {}
     object_indexes: dict[str, tuple[Any, dict[str, Any]]] = {}
     speech_indexes: dict[str, tuple[Any, dict[str, Any]]] = {}
-    if mode in ("A", "AB", "ABD"):
+    ocr_indexes: dict[str, tuple[Any, dict[str, Any]]] = {}
+    if mode in ("A", "AB", "ABD", "ABDE"):
         for video_id in video_ids:
             frame_indexes[video_id] = load_frame_index(config, video_id)
-    if mode in ("B", "AB", "ABD"):
+    if mode in ("B", "AB", "ABD", "ABDE"):
         for video_id in video_ids:
             try:
                 object_indexes[video_id] = load_object_index(config, video_id)
@@ -558,6 +567,13 @@ def main(argv: list[str] | None = None) -> int:
             except store.StoreError as exc:
                 _LOG.warning("no speech index for %s: %s", video_id, exc)
                 speech_indexes[video_id] = (None, {"records": [], "empty": True})
+    if need_ocr:
+        for video_id in video_ids:
+            try:
+                ocr_indexes[video_id] = load_ocr_index(config, video_id)
+            except store.StoreError as exc:
+                _LOG.warning("no OCR index for %s: %s", video_id, exc)
+                ocr_indexes[video_id] = (None, {"records": [], "empty": True})
 
     if need_siglip and processor is not None and model is not None:
         embed_texts(["warmup"], processor, model, device=device)
@@ -570,11 +586,13 @@ def main(argv: list[str] | None = None) -> int:
         "frame": float(config.get("search.weights.frame", 1.0)),
         "object": float(config.get("search.weights.object", 1.0)),
         "speech": float(config.get("search.weights.speech", 1.2)),
+        "ocr": float(config.get("search.weights.ocr", 1.2)),
     }
     use_bm25 = bool(config.get("text.use_bm25", True))
     text_batch_size = int(config.get("text.batch_size", 32))
     text_query_prefix = bool(config.get("text.query_prefix", True))
     route_speech = bool(config.get("search.route_speech", True))
+    route_ocr = bool(config.get("search.route_ocr", True))
 
     results: list[dict[str, Any]] = []
     for number, group in enumerate(groups, start=1):
@@ -586,13 +604,26 @@ def main(argv: list[str] | None = None) -> int:
         frame_hits: list[dict[str, Any]] = []
         object_hits: list[dict[str, Any]] = []
         speech_hits: list[dict[str, Any]] = []
+        ocr_hits: list[dict[str, Any]] = []
 
-        if mode in ("A", "AB", "ABD"):
+        use_speech = need_speech and (mode == "D" or group["type"] == "speech")
+        use_ocr = need_ocr and (mode == "E" or group["type"] == "ocr")
+        text_vector = None
+        if (use_speech or use_ocr) and text_encoder is not None:
+            text_vector = encode_texts(
+                [group["query"]],
+                text_encoder,
+                batch_size=text_batch_size,
+                query=True,
+                query_prefix=text_query_prefix,
+            )[0]
+
+        if mode in ("A", "AB", "ABD", "ABDE"):
             index, sidecar = frame_indexes[group["video_id"]]
             frame_hits = rank_frames(
                 index, sidecar["records"], vector, group["video_id"], args.candidates
             )
-        if mode in ("B", "AB", "ABD"):
+        if mode in ("B", "AB", "ABD", "ABDE"):
             index, sidecar = object_indexes[group["video_id"]]
             _, class_constraints, night = parse_object_query(group["query"])
             use_objects = mode == "B" or (
@@ -609,30 +640,32 @@ def main(argv: list[str] | None = None) -> int:
                     group["video_id"],
                     args.candidates,
                 )
-        if need_speech:
-            use_speech = mode == "D" or group["type"] == "speech"
-            if use_speech and text_encoder is not None:
-                text_vector = encode_texts(
-                    [group["query"]],
-                    text_encoder,
-                    batch_size=text_batch_size,
-                    query=True,
-                    query_prefix=text_query_prefix,
-                )[0]
-                index, sidecar = speech_indexes[group["video_id"]]
-                if index is not None and int(index.ntotal) > 0:
-                    scores, positions = store.search(
-                        index, text_vector, int(index.ntotal)
-                    )
-                    speech_hits = rank_speech_hits(
-                        sidecar.get("records") or [],
-                        scores,
-                        positions,
-                        group["query"],
-                        video_id=group["video_id"],
-                        use_bm25=use_bm25,
-                        rrf_k=rrf_k,
-                    )[: args.candidates]
+        if use_speech and text_vector is not None:
+            index, sidecar = speech_indexes[group["video_id"]]
+            if index is not None and int(index.ntotal) > 0:
+                scores, positions = store.search(index, text_vector, int(index.ntotal))
+                speech_hits = rank_speech_hits(
+                    sidecar.get("records") or [],
+                    scores,
+                    positions,
+                    group["query"],
+                    video_id=group["video_id"],
+                    use_bm25=use_bm25,
+                    rrf_k=rrf_k,
+                )[: args.candidates]
+        if use_ocr and text_vector is not None:
+            index, sidecar = ocr_indexes[group["video_id"]]
+            if index is not None and int(index.ntotal) > 0:
+                scores, positions = store.search(index, text_vector, int(index.ntotal))
+                ocr_hits = rank_ocr_hits(
+                    sidecar.get("records") or [],
+                    scores,
+                    positions,
+                    group["query"],
+                    video_id=group["video_id"],
+                    use_bm25=use_bm25,
+                    rrf_k=rrf_k,
+                )[: args.candidates]
 
         if mode == "A":
             raw = frame_hits
@@ -640,6 +673,8 @@ def main(argv: list[str] | None = None) -> int:
             raw = object_hits
         elif mode == "D":
             raw = speech_hits
+        elif mode == "E":
+            raw = ocr_hits
         elif mode == "AB":
             if object_hits:
                 raw = reciprocal_rank_fusion(
@@ -652,18 +687,33 @@ def main(argv: list[str] | None = None) -> int:
             else:
                 # No object candidates for this query: fall back to frames.
                 raw = frame_hits
-        else:  # ABD
-            if speech_hits and route_speech:
-                # Frame hits saturate the transcript timeline, so RRF would let
-                # a strong visual cluster outrank the correct spoken passage.
-                # Speech queries are routed to Layer D; other queries fuse.
+        else:  # ABD or ABDE
+            route_to_speech = (
+                speech_hits
+                and route_speech
+                and (
+                    mode == "ABD"
+                    or (mode == "ABDE" and group["type"] == "speech")
+                )
+            )
+            route_to_ocr = (
+                ocr_hits
+                and route_ocr
+                and mode == "ABDE"
+                and group["type"] == "ocr"
+            )
+            if route_to_speech:
                 raw = speech_hits
+            elif route_to_ocr:
+                raw = ocr_hits
             else:
                 rankings: dict[str, list[dict[str, Any]]] = {"frame": frame_hits}
                 if object_hits:
                     rankings["object"] = object_hits
                 if speech_hits:
                     rankings["speech"] = speech_hits
+                if ocr_hits:
+                    rankings["ocr"] = ocr_hits
                 if len(rankings) > 1:
                     raw = reciprocal_rank_fusion(
                         rankings,
@@ -799,7 +849,7 @@ def main(argv: list[str] | None = None) -> int:
         "mode": mode,
         "config": MODE_LABELS[mode],
         "model": model_name,
-        "text_model": text_model_name if need_speech else None,
+        "text_model": text_model_name if need_text else None,
         "device": device if need_siglip else text_device,
         "queries_file": store.relative_path(queries_path, config.repo_root),
         "queries_sha256": sha256_file(queries_path),
@@ -810,15 +860,17 @@ def main(argv: list[str] | None = None) -> int:
                 "k": rrf_k,
                 "weights": weights,
                 "window_s": rrf_window_s,
-                "speech_gated_to_speech_queries": mode == "ABD",
-                "speech_routed_to_layer_d": mode == "ABD" and route_speech,
+                "speech_gated_to_speech_queries": mode in ("ABD", "ABDE"),
+                "speech_routed_to_layer_d": mode in ("ABD", "ABDE") and route_speech,
+                "ocr_gated_to_ocr_queries": mode == "ABDE",
+                "ocr_routed_to_layer_e": mode == "ABDE" and route_ocr,
             }
-            if mode in ("AB", "ABD")
+            if mode in ("AB", "ABD", "ABDE")
             else None
         ),
         "text": (
             {"model": text_model_name, "use_bm25": use_bm25}
-            if need_speech
+            if need_text
             else None
         ),
         "aggregate": summarize(results),

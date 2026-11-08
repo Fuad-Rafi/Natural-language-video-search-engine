@@ -1,0 +1,587 @@
+{
+  "schema_version": 3,
+  "generated_at": "2026-11-08T20:40:56+00:00",
+  "mode": "E",
+  "config": "E (OCR)",
+  "model": "BAAI/bge-small-en-v1.5",
+  "text_model": "BAAI/bge-small-en-v1.5",
+  "device": "cuda",
+  "queries_file": "benchmarks/heldout.csv",
+  "queries_sha256": "64b80d920204d73dae31c75341880a83c7f0b007d6dc27151c2b16da261b6868",
+  "query_count": 4,
+  "temporal": {
+    "gap_s": 3.0,
+    "min_segment_s": 1.0
+  },
+  "fusion": null,
+  "text": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "use_bm25": true
+  },
+  "aggregate": {
+    "queries": 4,
+    "recall@1": 0.25,
+    "recall@3": 0.25,
+    "recall@5": 0.5,
+    "recall@10": 0.5,
+    "miou": 0.0625,
+    "latency_p50_ms": 81.8542999913916,
+    "latency_p95_ms": 302.7274000342004,
+    "duplicate_raw": 0.05,
+    "duplicate_segment": 0.0
+  },
+  "per_type": {
+    "ocr": {
+      "queries": 4,
+      "recall@1": 0.25,
+      "recall@3": 0.25,
+      "recall@5": 0.5,
+      "recall@10": 0.5,
+      "miou": 0.0625,
+      "latency_p50_ms": 81.8542999913916,
+      "latency_p95_ms": 302.7274000342004,
+      "duplicate_raw": 0.05,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_video": {
+    "lecture1": {
+      "queries": 1,
+      "recall@1": 0.0,
+      "recall@3": 0.0,
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "miou": 0.0,
+      "latency_p50_ms": 302.7274000342004,
+      "latency_p95_ms": 302.7274000342004,
+      "duplicate_raw": 0.1,
+      "duplicate_segment": 0.0
+    },
+    "lecture2": {
+      "queries": 1,
+      "recall@1": 0.0,
+      "recall@3": 0.0,
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "miou": 0.0,
+      "latency_p50_ms": 17.39850000012666,
+      "latency_p95_ms": 17.39850000012666,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "screen-recording": {
+      "queries": 2,
+      "recall@1": 0.5,
+      "recall@3": 0.5,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.125,
+      "latency_p50_ms": 26.137600012589246,
+      "latency_p95_ms": 81.8542999913916,
+      "duplicate_raw": 0.05,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_query": [
+    {
+      "query_id": "h003",
+      "video_id": "lecture1",
+      "query": "the slide titled essay 2 introduction",
+      "type": "ocr",
+      "notes": "essay 2 slide",
+      "intervals": [
+        [
+          240.0,
+          270.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 302.7274000342004,
+      "duplicate_raw": 0.1,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 17.017,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": "data/frames/lecture1/000017.jpg",
+      "predicted_text": "ESSAY1 ESSAY 2 Introduction Introduction Body Paragraph 1 Body Paragraph 1 Body Paragraph 2 Body Paragraph 2 Conclusion Conclusion",
+      "top3": [
+        {
+          "timestamp": 17.017,
+          "start": 17.017,
+          "end": 20.02,
+          "score": 0.03252247488101534,
+          "path": "data/frames/lecture1/000017.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 692.692,
+          "start": 692.692,
+          "end": 697.697,
+          "score": 0.031746031746031744,
+          "path": "data/frames/lecture1/000692.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 697.697,
+          "start": 697.697,
+          "end": 714.714,
+          "score": 0.0315136476426799,
+          "path": "data/frames/lecture1/000697.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 17.017,
+          "start": 17.017,
+          "end": 20.02,
+          "score": 0.03252247488101534,
+          "path": "data/frames/lecture1/000017.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 692.692,
+          "start": 692.692,
+          "end": 697.697,
+          "score": 0.031746031746031744,
+          "path": "data/frames/lecture1/000692.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 697.697,
+          "start": 697.697,
+          "end": 714.714,
+          "score": 0.0315136476426799,
+          "path": "data/frames/lecture1/000697.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 365.365,
+          "start": 365.365,
+          "end": 381.365,
+          "score": 0.03125,
+          "path": "data/frames/lecture1/000365.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 285.285,
+          "start": 285.285,
+          "end": 315.315,
+          "score": 0.02904040404040404,
+          "path": "data/frames/lecture1/000300.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h006",
+      "video_id": "lecture2",
+      "query": "the chalkboard says algorithm f from i to o",
+      "type": "ocr",
+      "notes": "blackboard definition",
+      "intervals": [
+        [
+          60.0,
+          100.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 17.39850000012666,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 131.0,
+      "top1_score": 0.03177805800756621,
+      "predicted_path": "data/frames/lecture2/000131.jpg",
+      "predicted_text": "Algorithmf{I→O Sor Bithdny preblen: -mainthin record -Inteniew stndents h sme order -Check f brthday record Par",
+      "top3": [
+        {
+          "timestamp": 131.0,
+          "start": 131.0,
+          "end": 136.0,
+          "score": 0.03177805800756621,
+          "path": "data/frames/lecture2/000131.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 863.0,
+          "start": 863.0,
+          "end": 872.0,
+          "score": 0.03149801587301587,
+          "path": "data/frames/lecture2/000863.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 844.0,
+          "start": 844.0,
+          "end": 860.0,
+          "score": 0.029910714285714284,
+          "path": "data/frames/lecture2/000844.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 131.0,
+          "start": 131.0,
+          "end": 136.0,
+          "score": 0.03177805800756621,
+          "path": "data/frames/lecture2/000131.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 863.0,
+          "start": 863.0,
+          "end": 872.0,
+          "score": 0.03149801587301587,
+          "path": "data/frames/lecture2/000863.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 844.0,
+          "start": 844.0,
+          "end": 860.0,
+          "score": 0.029910714285714284,
+          "path": "data/frames/lecture2/000844.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 893.0,
+          "start": 893.0,
+          "end": 909.0,
+          "score": 0.029236022193768675,
+          "path": "data/frames/lecture2/000893.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 688.0,
+          "start": 688.0,
+          "end": 703.0,
+          "score": 0.029206349206349208,
+          "path": "data/frames/lecture2/000688.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h016",
+      "video_id": "screen-recording",
+      "query": "Windows 8 compatibility mode",
+      "type": "ocr",
+      "notes": "compatibility troubleshooter",
+      "intervals": [
+        [
+          95.0,
+          115.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.25,
+      "latency_ms": 81.8542999913916,
+      "duplicate_raw": 0.1,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 105.0,
+      "top1_score": 0.032266458495966696,
+      "predicted_path": "data/frames/screen-recording/000105.jpg",
+      "predicted_text": "GC Ch Security Details Previous Versions General Shortcut Compatibility ifthis program isnt working comecty on this version of Windows. try running the compatibility troubleshooter. Run compatibility troubleshooter How do I choose compatibilty settings manually? Compatibility mode Run thisprogram in compatitymodefor: Windows 8 V Windows Vista Windows Vista (Service Pack 1) Windows Vista (Service Pack 2) Winws7 Windows 8 8-bit (256)color Run in 640× 480 screen resolution Run this program as an administrator Register this program for restat Change high DPI settings Change settings for lusers OK Cancel Apply",
+      "top3": [
+        {
+          "timestamp": 105.0,
+          "start": 105.0,
+          "end": 110.0,
+          "score": 0.032266458495966696,
+          "path": "data/frames/screen-recording/000105.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 83.0,
+          "start": 81.0,
+          "end": 88.0,
+          "score": 0.032018442622950824,
+          "path": "data/frames/screen-recording/000083.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 100.0,
+          "start": 100.0,
+          "end": 105.0,
+          "score": 0.03200204813108039,
+          "path": "data/frames/screen-recording/000100.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 105.0,
+          "start": 105.0,
+          "end": 110.0,
+          "score": 0.032266458495966696,
+          "path": "data/frames/screen-recording/000105.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 83.0,
+          "start": 81.0,
+          "end": 88.0,
+          "score": 0.032018442622950824,
+          "path": "data/frames/screen-recording/000083.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 100.0,
+          "start": 100.0,
+          "end": 105.0,
+          "score": 0.03200204813108039,
+          "path": "data/frames/screen-recording/000100.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 110.0,
+          "start": 110.0,
+          "end": 115.0,
+          "score": 0.031754032258064516,
+          "path": "data/frames/screen-recording/000110.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 90.0,
+          "start": 88.0,
+          "end": 95.0,
+          "score": 0.030536130536130537,
+          "path": "data/frames/screen-recording/000090.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h017",
+      "video_id": "screen-recording",
+      "query": "the command chkdsk c: /f /r",
+      "type": "ocr",
+      "notes": "command prompt",
+      "intervals": [
+        [
+          125.0,
+          140.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 26.137600012589246,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 156.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/screen-recording/000171.jpg",
+      "predicted_text": "Select Administrator: Command Prompt Microsoft windows [Version 10.0.19041.1415] (C) Microsoft Corporation. All rights reserved. C:\\windows\\system32>sfc /scannow Beginning system scan. This process will take some time. Beginning verification phase of system scan. Verification 1eo% complete. Windows Resource Protection found corrupt files and successfully repaired them. For online repairs, details are included in the CBs log file located at windir\\Logs\\CBS\\CBS.log. For example C:\\windows\\Logs\\CBS\\CBS.log. For offline repairs, details are included in the log file provided by the /OFFLoGFILE flag. C:\\windows\\system32>chkdsk c /f /r chkdsk c: /f /r",
+      "top3": [
+        {
+          "timestamp": 156.0,
+          "start": 156.0,
+          "end": 175.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/screen-recording/000171.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 180.0,
+          "start": 180.0,
+          "end": 182.0,
+          "score": 0.03200204813108039,
+          "path": "data/frames/screen-recording/000180.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 146.0,
+          "start": 146.0,
+          "end": 156.0,
+          "score": 0.030776515151515152,
+          "path": "data/frames/screen-recording/000146.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 156.0,
+          "start": 156.0,
+          "end": 175.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/screen-recording/000171.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 180.0,
+          "start": 180.0,
+          "end": 182.0,
+          "score": 0.03200204813108039,
+          "path": "data/frames/screen-recording/000180.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 146.0,
+          "start": 146.0,
+          "end": 156.0,
+          "score": 0.030776515151515152,
+          "path": "data/frames/screen-recording/000146.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 137.0,
+          "start": 137.0,
+          "end": 146.0,
+          "score": 0.030158730158730156,
+          "path": "data/frames/screen-recording/000137.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 70.0,
+          "start": 68.0,
+          "end": 81.0,
+          "score": 0.028125,
+          "path": "data/frames/screen-recording/000070.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    }
+  ],
+  "failures": {
+    "count": 3,
+    "items": [
+      {
+        "query_id": "h003",
+        "video_id": "lecture1",
+        "type": "ocr",
+        "query": "the slide titled essay 2 introduction",
+        "intervals": [
+          [
+            240.0,
+            270.0
+          ]
+        ],
+        "top1_timestamp": 17.017,
+        "top1_score": 0.03252247488101534,
+        "predicted_path": "data/frames/lecture1/000017.jpg",
+        "predicted_text": "ESSAY1 ESSAY 2 Introduction Introduction Body Paragraph 1 Body Paragraph 1 Body Paragraph 2 Body Paragraph 2 Conclusion Conclusion",
+        "cause": "OCR retrieval or keyframe/text miss (P6)"
+      },
+      {
+        "query_id": "h006",
+        "video_id": "lecture2",
+        "type": "ocr",
+        "query": "the chalkboard says algorithm f from i to o",
+        "intervals": [
+          [
+            60.0,
+            100.0
+          ]
+        ],
+        "top1_timestamp": 131.0,
+        "top1_score": 0.03177805800756621,
+        "predicted_path": "data/frames/lecture2/000131.jpg",
+        "predicted_text": "Algorithmf{I→O Sor Bithdny preblen: -mainthin record -Inteniew stndents h sme order -Check f brthday record Par",
+        "cause": "OCR retrieval or keyframe/text miss (P6)"
+      },
+      {
+        "query_id": "h017",
+        "video_id": "screen-recording",
+        "type": "ocr",
+        "query": "the command chkdsk c: /f /r",
+        "intervals": [
+          [
+            125.0,
+            140.0
+          ]
+        ],
+        "top1_timestamp": 156.0,
+        "top1_score": 0.03278688524590164,
+        "predicted_path": "data/frames/screen-recording/000171.jpg",
+        "predicted_text": "Select Administrator: Command Prompt Microsoft windows [Version 10.0.19041.1415] (C) Microsoft Corporation. All rights reserved. C:\\windows\\system32>sfc /scannow Beginning system scan. This process will take some time. Beginning verification phase of system scan. Verification 1eo% complete. Windows Resource Protection found corrupt files and successfully repaired them. For online repairs, details are included in the CBs log file located at windir\\Logs\\CBS\\CBS.log. For example C:\\windows\\Logs\\CBS\\CBS.log. For offline repairs, details are included in the log file provided by the /OFFLoGFILE flag. C:\\windows\\system32>chkdsk c /f /r chkdsk c: /f /r",
+        "cause": "OCR retrieval or keyframe/text miss (P6)"
+      }
+    ]
+  }
+}

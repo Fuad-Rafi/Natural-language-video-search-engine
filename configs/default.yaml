@@ -52,6 +52,19 @@ ocr:
   lang: en
   min_confidence: 0.5
   dedupe_similarity: 0.9
+  enable_mkldnn: false     # Paddle 3.x oneDNN crashes on this Windows build
+  text_detection_model_name: PP-OCRv5_mobile_det   # mobile = ~5x faster on CPU
+  text_recognition_model_name: PP-OCRv5_mobile_rec
+  text_det_limit_side_len: 640
+  text_det_limit_type: max
+  text_recognition_batch_size: 8
+  allow_non_ascii: false   # English-first; drops Chinese/gibberish misreads
+  keyframe_min_interval_s: 2.0
+  keyframe_max_interval_s: 15.0
+  scene_threshold: 0.08
+  blank_std_threshold: 0.01
+  max_keyframes: 0         # 0 = unlimited
+  max_gap_s: 16.0          # max time a slide's text is assumed to persist
 
 text:
   embedding_model: BAAI/bge-small-en-v1.5
@@ -67,6 +80,7 @@ search:
   merge_gap_s: 3.0
   min_segment_s: 1.0
   route_speech: true       # speech queries use the transcript layer, not RRF
+  route_ocr: false         # fuse frames + OCR for OCR queries (visual context helps)
   rerank_top_n: 3
   weights:
     frame: 1.0

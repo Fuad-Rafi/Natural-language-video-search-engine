@@ -21,6 +21,9 @@ gallery is written to `failures/heldout_a/`.
 - **Small objects** (distant red car, cyclist) are missed by whole-frame
   embeddings; this is the case for Layer B crops.
 - **Action and counting** queries remain weak without captions.
+- **OCR slide failures** often come from repeated titles (many slides say
+  "essay 2 introduction") or handwritten chalkboards; unique screen/UI text
+  ranks correctly (`failures/ocr/`).
 - **Night scenes** are hard: taillights and low brightness dominate colour and
   object cues.
 

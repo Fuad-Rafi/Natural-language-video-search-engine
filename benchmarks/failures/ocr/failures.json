@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-11-08T20:39:39+00:00",
+  "items": [
+    {
+      "query_id": "q007",
+      "video_id": "lecture1",
+      "type": "ocr",
+      "query": "the slide that says our goal present the topic",
+      "intervals": [
+        [
+          140.0,
+          156.0
+        ]
+      ],
+      "top1_timestamp": 1053.052,
+      "top1_score": 0.029051670471052088,
+      "predicted_path": "data/frames/lecture1/001067.jpg",
+      "predicted_text": "ESSAY1 CONCLUSION In conclusion, while strict punishments may seem like a strong response,I believe that education and support are more effective when it comes to young people. It offers a real chance to change, which benefits both the individual and society. Sentence 1:acknowledges the other side and restates our own opinion •Sentence 2: gives a short reason why",
+      "cause": "OCR retrieval or keyframe/text miss (P6)"
+    },
+    {
+      "query_id": "q013",
+      "video_id": "lecture2",
+      "type": "ocr",
+      "query": "the chalkboard says 6.006 lecture 1",
+      "intervals": [
+        [
+          30.0,
+          55.0
+        ]
+      ],
+      "top1_timestamp": 15.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/lecture2/000015.jpg",
+      "predicted_text": "006 lecture L Gral:0 Sake amahil peldens",
+      "cause": "OCR retrieval or keyframe/text miss (P6)"
+    },
+    {
+      "query_id": "q014",
+      "video_id": "lecture2",
+      "type": "ocr",
+      "query": "the chalkboard heading correctness",
+      "intervals": [
+        [
+          180.0,
+          210.0
+        ]
+      ],
+      "top1_timestamp": 165.0,
+      "top1_score": 0.01639344262295082,
+      "predicted_path": "data/frames/lecture2/000165.jpg",
+      "predicted_text": "ntenievsTndents h sae ode -Cheek Sbnfay read -addewstdent -ifsoretrn Retm Nore",
+      "cause": "OCR retrieval or keyframe/text miss (P6)"
+    },
+    {
+      "query_id": "q015",
+      "video_id": "lecture2",
+      "type": "ocr",
+      "query": "the chalkboard heading efficiency",
+      "intervals": [
+        [
+          450.0,
+          480.0
+        ]
+      ],
+      "top1_timestamp": 509.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/lecture2/000509.jpg",
+      "predicted_text": "Efficiency",
+      "cause": "OCR retrieval or keyframe/text miss (P6)"
+    },
+    {
+      "query_id": "q037",
+      "video_id": "screen-recording",
+      "type": "ocr",
+      "query": "the registry editor showing current version windows",
+      "intervals": [
+        [
+          50.0,
+          75.0
+        ]
+      ],
+      "top1_timestamp": 35.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/screen-recording/000035.jpg",
+      "predicted_text": "App Search the web O registry editor - See web results > registry editor windows 10 O registry editor app Open Run as administr registry editor download Open file locatio registry editor open Pin to Start registry editor command Pin to taskbar registry editor pc 7",
+      "cause": "OCR retrieval or keyframe/text miss (P6)"
+    }
+  ]
+}

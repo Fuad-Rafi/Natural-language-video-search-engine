@@ -25,11 +25,17 @@ DEFAULT_TEXT_MODEL = "BAAI/bge-small-en-v1.5"
 DEFAULT_QUERY_PREFIX = "Represent this sentence for searching relevant passages: "
 
 _TOKEN = re.compile(r"[a-z0-9]+")
+_CAMEL = re.compile(r"(?<=[a-z])(?=[A-Z][a-z])")
 
 
 def tokenize(text: str) -> list[str]:
-    """Lowercase word tokens; punctuation is dropped."""
-    return _TOKEN.findall(str(text or "").lower())
+    """Lowercase word tokens; punctuation is dropped.
+
+    CamelCase is split so OCR strings such as ``CurrentVersion`` match a query
+    for ``current version``. Hex codes like ``0xC0000142`` stay intact.
+    """
+    value = _CAMEL.sub(" ", str(text or ""))
+    return _TOKEN.findall(value.lower())
 
 
 @lru_cache(maxsize=2)
