@@ -12,8 +12,10 @@ gallery is written to `failures/heldout_a/`.
 
 ## Recurring causes
 
-- **Speech and OCR queries** are answered only through visual context until
-  Layers D/E are implemented; exact spoken phrases still fail.
+- **Speech and OCR queries** are answered only through visual context in Layer
+  A; exact spoken phrases still fail there. Layer D now handles speech, and its
+  failure gallery (`failures/speech/`) uses text tiles because transcripts have
+  no frame thumbnail.
 - **Repeated scenes** (roads, crossings, desktops) produce several valid
   moments, so a single annotated interval can mark a correct result as a miss.
 - **Small objects** (distant red car, cyclist) are missed by whole-frame

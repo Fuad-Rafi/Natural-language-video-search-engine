@@ -1,0 +1,1113 @@
+{
+  "schema_version": 3,
+  "generated_at": "2026-11-08T18:02:41+00:00",
+  "mode": "D",
+  "config": "D (speech)",
+  "model": "BAAI/bge-small-en-v1.5",
+  "text_model": "BAAI/bge-small-en-v1.5",
+  "device": "cuda",
+  "queries_file": "benchmarks/queries.csv",
+  "queries_sha256": "0b728db337406e3195e9063323eaf0938ac241e5e96ab499bfa377c9885f62bd",
+  "query_count": 9,
+  "temporal": {
+    "gap_s": 3.0,
+    "min_segment_s": 1.0
+  },
+  "fusion": null,
+  "text": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "use_bm25": true
+  },
+  "aggregate": {
+    "queries": 9,
+    "recall@1": 0.7777777777777778,
+    "recall@3": 1.0,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "miou": 0.30981366895874846,
+    "latency_p50_ms": 16.546200029551983,
+    "latency_p95_ms": 1238.3870999910869,
+    "duplicate_raw": 0.0,
+    "duplicate_segment": 0.0
+  },
+  "per_type": {
+    "speech": {
+      "queries": 9,
+      "recall@1": 0.7777777777777778,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.30981366895874846,
+      "latency_p50_ms": 16.546200029551983,
+      "latency_p95_ms": 1238.3870999910869,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_video": {
+    "lecture1": {
+      "queries": 5,
+      "recall@1": 0.6,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.26751222528458374,
+      "latency_p50_ms": 16.65330003015697,
+      "latency_p95_ms": 1238.3870999910869,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "lecture2": {
+      "queries": 4,
+      "recall@1": 1.0,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.3626904735514544,
+      "latency_p50_ms": 16.546200029551983,
+      "latency_p95_ms": 18.502800026908517,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_query": [
+    {
+      "query_id": "q001",
+      "video_id": "lecture1",
+      "query": "where he says young people who break the law",
+      "type": "speech",
+      "notes": "paraphrase example",
+      "intervals": [
+        [
+          148.0,
+          175.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.5331550802139036,
+      "latency_ms": 1238.3870999910869,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 155.06,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": null,
+      "predicted_text": "people who break the law. The first sentence introduces the topic. We don't copy the task word for word. For example, instead of young people who commit crimes, we say young people who break the law. And that change shows the examiner you can paraphrase and counts towards your vocabulary score. Next, some believe they should face the same punishments as",
+      "top3": [
+        {
+          "timestamp": 155.06,
+          "start": 155.06,
+          "end": 185.4,
+          "score": 0.03252247488101534,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 384.14,
+          "start": 384.14,
+          "end": 414.3,
+          "score": 0.031746031746031744,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 485.24,
+          "start": 485.24,
+          "end": 515.3,
+          "score": 0.03131881575727918,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 155.06,
+          "start": 155.06,
+          "end": 185.4,
+          "score": 0.03252247488101534,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 384.14,
+          "start": 384.14,
+          "end": 414.3,
+          "score": 0.031746031746031744,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 485.24,
+          "start": 485.24,
+          "end": 515.3,
+          "score": 0.03131881575727918,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 409.48,
+          "start": 409.48,
+          "end": 439.72,
+          "score": 0.030776515151515152,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 587.48,
+          "start": 587.48,
+          "end": 617.64,
+          "score": 0.030330882352941176,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q002",
+      "video_id": "lecture1",
+      "query": "where he explains what the introduction needs to do",
+      "type": "speech",
+      "notes": "three jobs of an introduction",
+      "intervals": [
+        [
+          141.0,
+          150.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.2927781392322706,
+      "latency_ms": 16.052399994805455,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 129.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": null,
+      "predicted_text": "So let's see exactly how, starting with our introductions. Let's start with the introduction to our first topic, two views and your opinion. The introduction needs to do three things. Present the topic, show both sides and state our opinion. Here is how it looks. There are different opinions about how to deal with young people who break the law. The first sentence introduces",
+      "top3": [
+        {
+          "timestamp": 129.0,
+          "start": 129.0,
+          "end": 159.74,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 102.42,
+          "start": 102.42,
+          "end": 132.48,
+          "score": 0.031746031746031744,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 561.94,
+          "start": 561.94,
+          "end": 592.1,
+          "score": 0.031054405392392875,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 129.0,
+          "start": 129.0,
+          "end": 159.74,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 102.42,
+          "start": 102.42,
+          "end": 132.48,
+          "score": 0.031746031746031744,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 561.94,
+          "start": 561.94,
+          "end": 592.1,
+          "score": 0.031054405392392875,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 333.86,
+          "start": 333.86,
+          "end": 363.96,
+          "score": 0.029411764705882353,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 282.82,
+          "start": 282.82,
+          "end": 313.42,
+          "score": 0.028814262023217248,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q003",
+      "video_id": "lecture1",
+      "query": "where he says lack of support at home",
+      "type": "speech",
+      "notes": "cause of youth crime",
+      "intervals": [
+        [
+          706.0,
+          735.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 16.65330003015697,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 765.2,
+      "top1_score": 0.032266458495966696,
+      "predicted_path": null,
+      "predicted_text": "they need. This sentence develops the idea by explaining what lack of support actually looks like in practice. And the phrase where parents are absent or struggling financially is a relative clause so it sits inside the sentence and adds detail without needing a separate sentence. That's a useful structure for your grammar score. Next,",
+      "top3": [
+        {
+          "timestamp": 765.2,
+          "start": 765.2,
+          "end": 795.68,
+          "score": 0.032266458495966696,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 714.64,
+          "start": 714.64,
+          "end": 744.78,
+          "score": 0.03200204813108039,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 688.76,
+          "start": 688.76,
+          "end": 719.16,
+          "score": 0.03177805800756621,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 765.2,
+          "start": 765.2,
+          "end": 795.68,
+          "score": 0.032266458495966696,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 714.64,
+          "start": 714.64,
+          "end": 744.78,
+          "score": 0.03200204813108039,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 688.76,
+          "start": 688.76,
+          "end": 719.16,
+          "score": 0.03177805800756621,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 739.8,
+          "start": 739.8,
+          "end": 769.84,
+          "score": 0.031754032258064516,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 1020.98,
+          "start": 1020.98,
+          "end": 1051.44,
+          "score": 0.028991596638655463,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q004",
+      "video_id": "lecture1",
+      "query": "where he says peer pressure plays a role",
+      "type": "speech",
+      "notes": "third cause",
+      "intervals": [
+        [
+          911.0,
+          930.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 15.16120001906529,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 714.64,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": null,
+      "predicted_text": "pressure. So they see examples of their friends and peer pressure and environment. Let's write about it. One of the main reasons young people turn to crime is a lack of support at home. Just like in essay one we start with a topic sentence but notice the difference. In essay one we wrote those who support equal punishment argue because",
+      "top3": [
+        {
+          "timestamp": 714.64,
+          "start": 714.64,
+          "end": 744.78,
+          "score": 0.03252247488101534,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 892.96,
+          "start": 892.96,
+          "end": 923.38,
+          "score": 0.031099324975891997,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 180.84,
+          "start": 180.84,
+          "end": 211.0,
+          "score": 0.028693528693528692,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 714.64,
+          "start": 714.64,
+          "end": 744.78,
+          "score": 0.03252247488101534,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 892.96,
+          "start": 892.96,
+          "end": 923.38,
+          "score": 0.031099324975891997,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 180.84,
+          "start": 180.84,
+          "end": 211.0,
+          "score": 0.028693528693528692,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 536.02,
+          "start": 536.02,
+          "end": 566.56,
+          "score": 0.028629032258064516,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 1020.98,
+          "start": 1020.98,
+          "end": 1051.44,
+          "score": 0.02797067901234568,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q005",
+      "video_id": "lecture1",
+      "query": "where he explains the passive voice",
+      "type": "speech",
+      "notes": "grammar point",
+      "intervals": [
+        [
+          944.0,
+          960.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.5116279069767447,
+      "latency_ms": 202.26439996622503,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 944.16,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": null,
+      "predicted_text": "The last sentence uses the passive voice. Crime may be seen as normal. The passive voice works here because we are talking about a general situation not a specific person doing the action. And it's a good example of using the passive naturally to increase your grammatical range. Let's look at the whole paragraph together. Three causes each one explained and connected to the next. No",
+      "top3": [
+        {
+          "timestamp": 944.16,
+          "start": 944.16,
+          "end": 974.96,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 918.38,
+          "start": 918.38,
+          "end": 948.58,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 536.02,
+          "start": 536.02,
+          "end": 566.56,
+          "score": 0.031009615384615385,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 944.16,
+          "start": 944.16,
+          "end": 974.96,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 918.38,
+          "start": 918.38,
+          "end": 948.58,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 536.02,
+          "start": 536.02,
+          "end": 566.56,
+          "score": 0.031009615384615385,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 485.24,
+          "start": 485.24,
+          "end": 515.3,
+          "score": 0.030330882352941176,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 970.02,
+          "start": 970.02,
+          "end": 1000.08,
+          "score": 0.02976190476190476,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q009",
+      "video_id": "lecture2",
+      "query": "where he says prove correctness and argue efficiency",
+      "type": "speech",
+      "notes": "goals of the course",
+      "intervals": [
+        [
+          15.0,
+          32.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.5192425167990226,
+      "latency_ms": 18.502800026908517,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 0.53,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": null,
+      "predicted_text": "Goal 1, solve computational problems. But it's more than that. It's also about communicating things, prove correctness, argue efficiency. And",
+      "top3": [
+        {
+          "timestamp": 0.53,
+          "start": 0.53,
+          "end": 33.27,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 544.04,
+          "start": 544.04,
+          "end": 574.44,
+          "score": 0.03149801587301587,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 856.66,
+          "start": 856.66,
+          "end": 887.0,
+          "score": 0.030090497737556562,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 0.53,
+          "start": 0.53,
+          "end": 33.27,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 544.04,
+          "start": 544.04,
+          "end": 574.44,
+          "score": 0.03149801587301587,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 856.66,
+          "start": 856.66,
+          "end": 887.0,
+          "score": 0.030090497737556562,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 517.78,
+          "start": 517.78,
+          "end": 548.3,
+          "score": 0.029709507042253523,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 164.29,
+          "start": 164.29,
+          "end": 195.59,
+          "score": 0.02946236559139785,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q010",
+      "video_id": "lecture2",
+      "query": "where he explains the base case of zero students",
+      "type": "speech",
+      "notes": "induction base case",
+      "intervals": [
+        [
+          288.0,
+          309.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.18073938840712042,
+      "latency_ms": 15.665400016587228,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 301.08,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": null,
+      "predicted_text": "an even easier base case than 1. 0, right? After interviewing 0 students, I haven't done any work, right? Certainly the first 0 can't have a match, right? And so this predicate, this inductive hypothesis, is true just because this initial predicate is false, right? So I can say base case 0, check. Definitely this",
+      "top3": [
+        {
+          "timestamp": 301.08,
+          "start": 301.08,
+          "end": 331.82,
+          "score": 0.03252247488101534,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 326.96,
+          "start": 326.96,
+          "end": 358.39,
+          "score": 0.03200204813108039,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 383.96,
+          "start": 383.96,
+          "end": 414.42,
+          "score": 0.03149801587301587,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 301.08,
+          "start": 301.08,
+          "end": 331.82,
+          "score": 0.03252247488101534,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 326.96,
+          "start": 326.96,
+          "end": 358.39,
+          "score": 0.03200204813108039,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 383.96,
+          "start": 383.96,
+          "end": 414.42,
+          "score": 0.03149801587301587,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 274.7,
+          "start": 274.7,
+          "end": 305.72,
+          "score": 0.031099324975891997,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 464.38,
+          "start": 464.38,
+          "end": 494.66,
+          "score": 0.030309988518943745,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q011",
+      "video_id": "lecture2",
+      "query": "where he says we measure operations instead of time",
+      "type": "speech",
+      "notes": "efficiency motivation",
+      "intervals": [
+        [
+          505.0,
+          525.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.16674364896073984,
+      "latency_ms": 16.546200029551983,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 517.78,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": null,
+      "predicted_text": "count kind of fundamental operations, OK? We'll get to what some of those fundamental operations are in a second, but the idea is we want a measure of how well an algorithm performs, not necessarily an implementation of that algorithm, right? Kind of an abstract notion of how well this algorithm does. What we're going to use to measure time or efficiency",
+      "top3": [
+        {
+          "timestamp": 517.78,
+          "start": 517.78,
+          "end": 548.3,
+          "score": 0.03252247488101534,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 569.44,
+          "start": 569.44,
+          "end": 602.94,
+          "score": 0.03252247488101534,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 489.76,
+          "start": 489.76,
+          "end": 520.64,
+          "score": 0.03149801587301587,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 517.78,
+          "start": 517.78,
+          "end": 548.3,
+          "score": 0.03252247488101534,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 569.44,
+          "start": 569.44,
+          "end": 602.94,
+          "score": 0.03252247488101534,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 489.76,
+          "start": 489.76,
+          "end": 520.64,
+          "score": 0.03149801587301587,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 544.04,
+          "start": 544.04,
+          "end": 574.44,
+          "score": 0.03149801587301587,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 803.63,
+          "start": 803.63,
+          "end": 835.3,
+          "score": 0.030536130536130537,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q012",
+      "video_id": "lecture2",
+      "query": "where he explains big O is an upper bound",
+      "type": "speech",
+      "notes": "asymptotic notation",
+      "intervals": [
+        [
+          686.0,
+          704.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.5840363400389348,
+      "latency_ms": 15.872999967541546,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 674.66,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": null,
+      "predicted_text": "fast an algorithm is with respect to the size of the input, right? And if that, we will use the asymptotic notation. We have big O notation, which corresponds to upper bounds. We will have omega, which corresponds to lower bounds. And",
+      "top3": [
+        {
+          "timestamp": 674.66,
+          "start": 674.66,
+          "end": 705.48,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 648.82,
+          "start": 648.82,
+          "end": 678.84,
+          "score": 0.030834914611005692,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 569.44,
+          "start": 569.44,
+          "end": 602.94,
+          "score": 0.030303030303030304,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 674.66,
+          "start": 674.66,
+          "end": 705.48,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 648.82,
+          "start": 648.82,
+          "end": 678.84,
+          "score": 0.030834914611005692,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 569.44,
+          "start": 569.44,
+          "end": 602.94,
+          "score": 0.030303030303030304,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 777.81,
+          "start": 777.81,
+          "end": 808.45,
+          "score": 0.02919863597612958,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 700.6,
+          "start": 700.6,
+          "end": 731.22,
+          "score": 0.02878726010616578,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    }
+  ],
+  "failures": {
+    "count": 2,
+    "items": [
+      {
+        "query_id": "q003",
+        "video_id": "lecture1",
+        "type": "speech",
+        "query": "where he says lack of support at home",
+        "intervals": [
+          [
+            706.0,
+            735.0
+          ]
+        ],
+        "top1_timestamp": 765.2,
+        "top1_score": 0.032266458495966696,
+        "predicted_path": null,
+        "predicted_text": "they need. This sentence develops the idea by explaining what lack of support actually looks like in practice. And the phrase where parents are absent or struggling financially is a relative clause so it sits inside the sentence and adds detail without needing a separate sentence. That's a useful structure for your grammar score. Next,",
+        "cause": "speech retrieval or transcript miss (P5)"
+      },
+      {
+        "query_id": "q004",
+        "video_id": "lecture1",
+        "type": "speech",
+        "query": "where he says peer pressure plays a role",
+        "intervals": [
+          [
+            911.0,
+            930.0
+          ]
+        ],
+        "top1_timestamp": 714.64,
+        "top1_score": 0.03252247488101534,
+        "predicted_path": null,
+        "predicted_text": "pressure. So they see examples of their friends and peer pressure and environment. Let's write about it. One of the main reasons young people turn to crime is a lack of support at home. Just like in essay one we start with a topic sentence but notice the difference. In essay one we wrote those who support equal punishment argue because",
+        "cause": "speech retrieval or transcript miss (P5)"
+      }
+    ]
+  }
+}

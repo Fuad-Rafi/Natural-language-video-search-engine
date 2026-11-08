@@ -16,11 +16,19 @@ from src.index.frames import (
     resolve_device,
 )
 from src.index.objects import object_index_paths
+from src.index.speech import speech_index_paths
+from src.index.text import (
+    DEFAULT_TEXT_MODEL,
+    bm25_rank,
+    encode_texts,
+    load_text_encoder,
+    reciprocal_rank_scores,
+)
 from src.utils.logging import get_logger
 
 _LOG = get_logger("search.query")
 
-LAYERS = ("frame", "object")
+LAYERS = ("frame", "object", "speech")
 
 _COLOR_ALIASES = {
     "red": "red",
@@ -161,7 +169,11 @@ def list_indexed_videos(config: Config, layer: str = "frame") -> list[str]:
     """Return video ids that have a complete index for the requested layer."""
     if layer not in LAYERS:
         raise ValueError(f"unknown layer {layer!r}; use {LAYERS}")
-    paths_for = frame_index_paths if layer == "frame" else object_index_paths
+    paths_for = {
+        "frame": frame_index_paths,
+        "object": object_index_paths,
+        "speech": speech_index_paths,
+    }[layer]
     base = config.indexes_dir
     if not base.is_dir():
         return []
@@ -189,11 +201,15 @@ def _load_index(
         index_path, ids_path = object_index_paths(config, video_id)
         hint = "scripts/index_objects.py"
         model_key = "embedding_model"
+    elif layer == "speech":
+        index_path, ids_path = speech_index_paths(config, video_id)
+        hint = "scripts/index_speech.py"
+        model_key = "embedding_model"
     else:
         raise ValueError(f"unknown layer {layer!r}")
 
     if not index_path.is_file() or not ids_path.is_file():
-        if layer == "object" and ids_path.is_file():
+        if layer in ("object", "speech") and ids_path.is_file():
             payload = store.read_json(ids_path)
             if payload.get("empty"):
                 return None, payload, model_key, hint
@@ -217,6 +233,11 @@ def load_frame_index(config: Config, video_id: str) -> tuple[Any, dict[str, Any]
 
 def load_object_index(config: Config, video_id: str) -> tuple[Any, dict[str, Any]]:
     index, payload, _, _ = _load_index(config, video_id, "object")
+    return index, payload
+
+
+def load_speech_index(config: Config, video_id: str) -> tuple[Any, dict[str, Any]]:
+    index, payload, _, _ = _load_index(config, video_id, "speech")
     return index, payload
 
 
@@ -392,6 +413,149 @@ def search_objects(
         "query": text,
         "layer": "object",
         "model": model_name,
+        "device": resolved_device,
+        "videos": video_ids,
+        "total_records": total_records,
+        "results": matches[:resolved_top_k],
+    }
+
+
+def rank_speech_hits(
+    records: list[dict[str, Any]],
+    scores: Any,
+    positions: Any,
+    query_text: str,
+    *,
+    video_id: str,
+    use_bm25: bool = True,
+    rrf_k: int = 60,
+) -> list[dict[str, Any]]:
+    """Combine dense and BM25 speech rankings into one RRF-ranked hit list."""
+    texts = [str(record.get("text") or "") for record in records]
+
+    dense_pairs: list[tuple[int, float]] = []
+    for score, position in zip(scores, positions):
+        index = int(position)
+        if index < 0 or index >= len(records):
+            continue
+        dense_pairs.append((index, float(score)))
+    dense_pairs.sort(key=lambda pair: pair[1], reverse=True)
+    dense_ranked = [index for index, _ in dense_pairs]
+    dense_scores = {index: score for index, score in dense_pairs}
+
+    sparse_ranked: list[int] = []
+    sparse_scores: dict[int, float] = {}
+    if use_bm25 and any(texts):
+        sparse_pairs = bm25_rank(query_text, texts)
+        sparse_ranked = [index for index, _ in sparse_pairs]
+        sparse_scores = {index: score for index, score in sparse_pairs}
+
+    rankings = [ranking for ranking in (dense_ranked, sparse_ranked) if ranking]
+    combined = reciprocal_rank_scores(rankings, k=rrf_k)
+
+    hits: list[dict[str, Any]] = []
+    for position, score in sorted(combined.items(), key=lambda pair: pair[1], reverse=True):
+        record = records[position]
+        hits.append(
+            {
+                "doc_id": record["doc_id"],
+                "video_id": video_id,
+                "layer": "speech",
+                "start": float(record["start"]),
+                "end": float(record["end"]),
+                "segment_end": float(record["end"]),
+                "timestamp": float(record["start"]),
+                "path": record.get("path"),
+                "text": record.get("text"),
+                "score": float(score),
+                "dense_score": dense_scores.get(position),
+                "bm25_score": sparse_scores.get(position),
+            }
+        )
+    return hits
+
+
+def search_speech(
+    query: str,
+    config: Config,
+    *,
+    video_id: Optional[str] = None,
+    top_k: Optional[int] = None,
+    device: Optional[str] = None,
+    model_name: Optional[str] = None,
+    use_bm25: Optional[bool] = None,
+) -> dict[str, Any]:
+    """Search the speech transcript layer (dense + BM25, fused with RRF)."""
+    text = query.strip()
+    if not text:
+        raise ValueError("query must not be empty")
+
+    resolved_top_k = int(top_k or config.get("search.top_k", 20))
+    if resolved_top_k <= 0:
+        raise ValueError(f"top_k must be positive, got {resolved_top_k}")
+
+    video_ids = [video_id] if video_id else list_indexed_videos(config, "speech")
+    if not video_ids:
+        raise FileNotFoundError(
+            "no speech indexes found under "
+            f"{config.indexes_dir}; build one with scripts/index_speech.py"
+        )
+
+    resolved_model = str(
+        model_name or config.get("text.embedding_model") or DEFAULT_TEXT_MODEL
+    )
+    resolved_device = resolve_device(device or config.get("text.device", "auto"))
+    encoder = load_text_encoder(resolved_model, resolved_device)
+    query_vector = encode_texts(
+        [text],
+        encoder,
+        batch_size=int(config.get("text.batch_size", 32)),
+        query=True,
+        query_prefix=bool(config.get("text.query_prefix", True)),
+    )[0]
+
+    if use_bm25 is None:
+        use_bm25 = bool(config.get("text.use_bm25", True))
+    rrf_k = int(config.get("search.rrf_k", 60))
+
+    matches: list[dict[str, Any]] = []
+    total_records = 0
+    for current_id in video_ids:
+        index, payload = load_speech_index(config, current_id)
+        if index is None or int(index.ntotal) == 0:
+            continue
+        total_records += int(index.ntotal)
+        if payload.get("embedding_model") != resolved_model:
+            _LOG.warning(
+                "speech index %s was built with %s but the query uses %s",
+                current_id,
+                payload.get("embedding_model"),
+                resolved_model,
+            )
+        if payload.get("dim") and int(payload["dim"]) != int(index.d):
+            raise store.StoreError(
+                f"speech index {current_id!r} dimension {index.d} does not match "
+                f"sidecar dimension {payload['dim']}"
+            )
+
+        scores, positions = store.search(index, query_vector, int(index.ntotal))
+        matches.extend(
+            rank_speech_hits(
+                payload.get("records") or [],
+                scores,
+                positions,
+                text,
+                video_id=current_id,
+                use_bm25=use_bm25,
+                rrf_k=rrf_k,
+            )
+        )
+
+    matches.sort(key=lambda item: item["score"], reverse=True)
+    return {
+        "query": text,
+        "layer": "speech",
+        "model": resolved_model,
         "device": resolved_device,
         "videos": video_ids,
         "total_records": total_records,

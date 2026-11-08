@@ -1,0 +1,22 @@
+{
+  "generated_at": "2026-11-08T18:03:45+00:00",
+  "items": [
+    {
+      "query_id": "h002",
+      "video_id": "lecture1",
+      "type": "speech",
+      "query": "where he explains the conclusion for the first essay",
+      "intervals": [
+        [
+          1012.0,
+          1045.0
+        ]
+      ],
+      "top1_timestamp": 358.98,
+      "top1_score": 0.03225806451612903,
+      "predicted_path": null,
+      "predicted_text": "is to write an introduction, body paragraph one for the first view, body paragraph two for the second view and a conclusion. There is a more advanced structure we're learning in my courses but for now let's stick to this one because it works in most cases really well. Now let's plan our ideas for the first body paragraph. We're looking at the view we disagree with that young people should be",
+      "cause": "speech retrieval or transcript miss (P5)"
+    }
+  ]
+}

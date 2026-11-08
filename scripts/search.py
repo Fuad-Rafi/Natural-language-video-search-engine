@@ -20,7 +20,12 @@ if str(REPO_ROOT) not in sys.path:
     sys.path.insert(0, str(REPO_ROOT))
 
 from src.config import ConfigError, load_config  # noqa: E402
-from src.search.query import find_video_id, search_frames, search_objects  # noqa: E402
+from src.search.query import (  # noqa: E402
+    find_video_id,
+    search_frames,
+    search_objects,
+    search_speech,
+)
 from src.utils.logging import setup_logging  # noqa: E402
 
 
@@ -35,7 +40,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--layer",
         default="frames",
-        choices=["frames", "objects"],
+        choices=["frames", "objects", "speech"],
         help="retrieval layer to query (default: frames)",
     )
     parser.add_argument("--top-k", type=int, default=None, help="number of results")
@@ -68,7 +73,11 @@ def main(argv: list[str] | None = None) -> int:
     logger = setup_logging(log_path, level=getattr(logging, args.log_level), console=False)
 
     video_id = find_video_id(args.video) if args.video else None
-    search = search_frames if args.layer == "frames" else search_objects
+    search = {
+        "frames": search_frames,
+        "objects": search_objects,
+        "speech": search_speech,
+    }[args.layer]
     try:
         payload = search(
             args.query,
@@ -101,6 +110,14 @@ def main(argv: list[str] | None = None) -> int:
             print(
                 f"  {rank:>3}  {format_timestamp(result['timestamp']):>9}  "
                 f"{result['score']:>7.4f}  {str(result.get('class_name')):<12}  {result['path']}"
+            )
+    elif payload["layer"] == "speech":
+        print(f"  {'#':>3}  {'Time':>9}  {'Score':>7}  Transcript")
+        for rank, result in enumerate(payload["results"], start=1):
+            text = str(result.get("text") or "").replace("\n", " ")[:100]
+            print(
+                f"  {rank:>3}  {format_timestamp(result['timestamp']):>9}  "
+                f"{result['score']:>7.4f}  {text}"
             )
     else:
         print(f"  {'#':>3}  {'Time':>9}  {'Score':>7}  Frame")

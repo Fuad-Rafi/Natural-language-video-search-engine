@@ -1,0 +1,541 @@
+{
+  "schema_version": 3,
+  "generated_at": "2026-11-08T18:03:45+00:00",
+  "mode": "D",
+  "config": "D (speech)",
+  "model": "BAAI/bge-small-en-v1.5",
+  "text_model": "BAAI/bge-small-en-v1.5",
+  "device": "cuda",
+  "queries_file": "benchmarks/heldout.csv",
+  "queries_sha256": "64b80d920204d73dae31c75341880a83c7f0b007d6dc27151c2b16da261b6868",
+  "query_count": 4,
+  "temporal": {
+    "gap_s": 3.0,
+    "min_segment_s": 1.0
+  },
+  "fusion": null,
+  "text": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "use_bm25": true
+  },
+  "aggregate": {
+    "queries": 4,
+    "recall@1": 0.75,
+    "recall@3": 0.75,
+    "recall@5": 1.0,
+    "recall@10": 1.0,
+    "miou": 0.3111061187794992,
+    "latency_p50_ms": 18.431900010909885,
+    "latency_p95_ms": 279.53870000783354,
+    "duplicate_raw": 0.0,
+    "duplicate_segment": 0.0
+  },
+  "per_type": {
+    "speech": {
+      "queries": 4,
+      "recall@1": 0.75,
+      "recall@3": 0.75,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.3111061187794992,
+      "latency_p50_ms": 18.431900010909885,
+      "latency_p95_ms": 279.53870000783354,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_video": {
+    "lecture1": {
+      "queries": 2,
+      "recall@1": 0.5,
+      "recall@3": 0.5,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.09292854498333973,
+      "latency_p50_ms": 18.431900010909885,
+      "latency_p95_ms": 279.53870000783354,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "lecture2": {
+      "queries": 2,
+      "recall@1": 1.0,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.5292836925756585,
+      "latency_p50_ms": 16.236099996604025,
+      "latency_p95_ms": 17.6470999722369,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_query": [
+    {
+      "query_id": "h001",
+      "video_id": "lecture1",
+      "query": "where he plans ideas for the first body paragraph",
+      "type": "speech",
+      "notes": "body paragraph planning",
+      "intervals": [
+        [
+          379.0,
+          413.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.18585708996667946,
+      "latency_ms": 279.53870000783354,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 358.98,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": null,
+      "predicted_text": "is to write an introduction, body paragraph one for the first view, body paragraph two for the second view and a conclusion. There is a more advanced structure we're learning in my courses but for now let's stick to this one because it works in most cases really well. Now let's plan our ideas for the first body paragraph. We're looking at the view we disagree with that young people should be",
+      "top3": [
+        {
+          "timestamp": 358.98,
+          "start": 358.98,
+          "end": 389.04,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 333.86,
+          "start": 333.86,
+          "end": 363.96,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 612.78,
+          "start": 612.78,
+          "end": 642.86,
+          "score": 0.031009615384615385,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 358.98,
+          "start": 358.98,
+          "end": 389.04,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 333.86,
+          "start": 333.86,
+          "end": 363.96,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 612.78,
+          "start": 612.78,
+          "end": 642.86,
+          "score": 0.031009615384615385,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 637.86,
+          "start": 637.86,
+          "end": 667.9,
+          "score": 0.03057889822595705,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 102.42,
+          "start": 102.42,
+          "end": 132.48,
+          "score": 0.029857397504456328,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h002",
+      "video_id": "lecture1",
+      "query": "where he explains the conclusion for the first essay",
+      "type": "speech",
+      "notes": "conclusion section",
+      "intervals": [
+        [
+          1012.0,
+          1045.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 18.431900010909885,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 358.98,
+      "top1_score": 0.03225806451612903,
+      "predicted_path": null,
+      "predicted_text": "is to write an introduction, body paragraph one for the first view, body paragraph two for the second view and a conclusion. There is a more advanced structure we're learning in my courses but for now let's stick to this one because it works in most cases really well. Now let's plan our ideas for the first body paragraph. We're looking at the view we disagree with that young people should be",
+      "top3": [
+        {
+          "timestamp": 358.98,
+          "start": 358.98,
+          "end": 389.04,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 1097.96,
+          "start": 1097.96,
+          "end": 1128.44,
+          "score": 0.03149801587301587,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 1123.7,
+          "start": 1123.7,
+          "end": 1154.0,
+          "score": 0.03125763125763126,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 358.98,
+          "start": 358.98,
+          "end": 389.04,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 1097.96,
+          "start": 1097.96,
+          "end": 1128.44,
+          "score": 0.03149801587301587,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 1123.7,
+          "start": 1123.7,
+          "end": 1154.0,
+          "score": 0.03125763125763126,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 333.86,
+          "start": 333.86,
+          "end": 363.96,
+          "score": 0.031099324975891997,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 995.1,
+          "start": 995.1,
+          "end": 1025.8,
+          "score": 0.030117753623188408,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h004",
+      "video_id": "lecture2",
+      "query": "where he defines an algorithm as a procedure",
+      "type": "speech",
+      "notes": "algorithm definition",
+      "intervals": [
+        [
+          144.0,
+          164.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.6666666666666666,
+      "latency_ms": 16.236099996604025,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 138.19,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": null,
+      "predicted_text": "of the level of description that we'll be looking for you in the theory parts of this. I can do whatever I want, but I have to take one of these inputs and I have to produce an output. And at the end, it better be correct. So it's just a procedure. You can think of it as like a recipe. You can think of it as it's just some kind of procedure. It's a sequence of things that you should do. And then at the end, you will return an output. OK, so here's a possible algorithm for solving",
+      "top3": [
+        {
+          "timestamp": 138.19,
+          "start": 138.19,
+          "end": 168.19,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 517.78,
+          "start": 517.78,
+          "end": 548.3,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 726.88,
+          "start": 726.88,
+          "end": 757.09,
+          "score": 0.030117753623188408,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 138.19,
+          "start": 138.19,
+          "end": 168.19,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 517.78,
+          "start": 517.78,
+          "end": 548.3,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 726.88,
+          "start": 726.88,
+          "end": 757.09,
+          "score": 0.030117753623188408,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 249.36,
+          "start": 249.36,
+          "end": 279.48,
+          "score": 0.029877369007803793,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 752.29,
+          "start": 752.29,
+          "end": 782.53,
+          "score": 0.02976190476190476,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h005",
+      "video_id": "lecture2",
+      "query": "where he explains theta notation is tight",
+      "type": "speech",
+      "notes": "asymptotic notation",
+      "intervals": [
+        [
+          704.0,
+          716.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.3919007184846505,
+      "latency_ms": 17.6470999722369,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 700.6,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": null,
+      "predicted_text": "to lower bounds. And we have theta, which corresponds to both, right? This thing is tight. It is bounded from above and below by a function of this form, OK? Now, we have a couple common ways, a couple common functions that algorithms,",
+      "top3": [
+        {
+          "timestamp": 700.6,
+          "start": 700.6,
+          "end": 731.22,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 674.66,
+          "start": 674.66,
+          "end": 705.48,
+          "score": 0.03200204813108039,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 803.63,
+          "start": 803.63,
+          "end": 835.3,
+          "score": 0.031754032258064516,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 700.6,
+          "start": 700.6,
+          "end": 731.22,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 674.66,
+          "start": 674.66,
+          "end": 705.48,
+          "score": 0.03200204813108039,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 803.63,
+          "start": 803.63,
+          "end": 835.3,
+          "score": 0.031754032258064516,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 544.04,
+          "start": 544.04,
+          "end": 574.44,
+          "score": 0.03125763125763126,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 882.48,
+          "start": 882.48,
+          "end": 912.88,
+          "score": 0.031009615384615385,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    }
+  ],
+  "failures": {
+    "count": 1,
+    "items": [
+      {
+        "query_id": "h002",
+        "video_id": "lecture1",
+        "type": "speech",
+        "query": "where he explains the conclusion for the first essay",
+        "intervals": [
+          [
+            1012.0,
+            1045.0
+          ]
+        ],
+        "top1_timestamp": 358.98,
+        "top1_score": 0.03225806451612903,
+        "predicted_path": null,
+        "predicted_text": "is to write an introduction, body paragraph one for the first view, body paragraph two for the second view and a conclusion. There is a more advanced structure we're learning in my courses but for now let's stick to this one because it works in most cases really well. Now let's plan our ideas for the first body paragraph. We're looking at the view we disagree with that young people should be",
+        "cause": "speech retrieval or transcript miss (P5)"
+      }
+    ]
+  }
+}

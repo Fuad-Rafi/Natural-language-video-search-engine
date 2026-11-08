@@ -1,9 +1,10 @@
 {
-  "schema_version": 2,
-  "generated_at": "2026-11-08T15:19:41+00:00",
+  "schema_version": 3,
+  "generated_at": "2026-11-08T17:58:27+00:00",
   "mode": "B",
   "config": "B (objects)",
   "model": "google/siglip-base-patch16-224",
+  "text_model": null,
   "device": "cuda",
   "queries_file": "benchmarks/queries.csv",
   "queries_sha256": "0b728db337406e3195e9063323eaf0938ac241e5e96ab499bfa377c9885f62bd",
@@ -13,14 +14,16 @@
     "min_segment_s": 1.0
   },
   "fusion": null,
+  "text": null,
   "aggregate": {
     "queries": 50,
     "recall@1": 0.22,
+    "recall@3": 0.34,
     "recall@5": 0.44,
     "recall@10": 0.52,
     "miou": 0.04237314319667261,
-    "latency_p50_ms": 25.013100006617606,
-    "latency_p95_ms": 229.5674000051804,
+    "latency_p50_ms": 25.721099984366447,
+    "latency_p95_ms": 226.91339999437332,
     "duplicate_raw": 0.11199999999999996,
     "duplicate_segment": 0.0
   },
@@ -28,88 +31,96 @@
     "action": {
       "queries": 5,
       "recall@1": 0.6,
+      "recall@3": 0.6,
       "recall@5": 0.8,
       "recall@10": 1.0,
       "miou": 0.1511111111111111,
-      "latency_p50_ms": 25.013100006617606,
-      "latency_p95_ms": 65.9686999861151,
+      "latency_p50_ms": 22.885699989274144,
+      "latency_p95_ms": 58.87629999779165,
       "duplicate_raw": 0.08,
       "duplicate_segment": 0.0
     },
     "caption": {
       "queries": 1,
       "recall@1": 0.0,
+      "recall@3": 1.0,
       "recall@5": 1.0,
       "recall@10": 1.0,
       "miou": 0.0,
-      "latency_p50_ms": 22.18859997810796,
-      "latency_p95_ms": 22.18859997810796,
+      "latency_p50_ms": 24.103099945932627,
+      "latency_p95_ms": 24.103099945932627,
       "duplicate_raw": 0.1,
       "duplicate_segment": 0.0
     },
     "counting": {
       "queries": 1,
       "recall@1": 0.0,
+      "recall@3": 0.0,
       "recall@5": 1.0,
       "recall@10": 1.0,
       "miou": 0.0,
-      "latency_p50_ms": 23.371099960058928,
-      "latency_p95_ms": 23.371099960058928,
+      "latency_p50_ms": 19.860200001858175,
+      "latency_p95_ms": 19.860200001858175,
       "duplicate_raw": 0.3,
       "duplicate_segment": 0.0
     },
     "object": {
       "queries": 9,
       "recall@1": 0.4444444444444444,
+      "recall@3": 0.6666666666666666,
       "recall@5": 0.7777777777777778,
       "recall@10": 0.8888888888888888,
       "miou": 0.08936423054070113,
-      "latency_p50_ms": 12.871799990534782,
-      "latency_p95_ms": 24.349800019990653,
+      "latency_p50_ms": 13.46340001327917,
+      "latency_p95_ms": 25.721099984366447,
       "duplicate_raw": 0.13333333333333336,
       "duplicate_segment": 0.0
     },
     "ocr": {
       "queries": 12,
       "recall@1": 0.08333333333333333,
+      "recall@3": 0.08333333333333333,
       "recall@5": 0.16666666666666666,
       "recall@10": 0.16666666666666666,
       "miou": 0.002777777777777778,
-      "latency_p50_ms": 51.560599997173995,
-      "latency_p95_ms": 77.8705999837257,
+      "latency_p50_ms": 49.142699979711324,
+      "latency_p95_ms": 63.000099966302514,
       "duplicate_raw": 0.09166666666666667,
       "duplicate_segment": 0.0
     },
     "spatial": {
       "queries": 2,
       "recall@1": 0.5,
+      "recall@3": 1.0,
       "recall@5": 1.0,
       "recall@10": 1.0,
       "miou": 0.025,
-      "latency_p50_ms": 24.75919999415055,
-      "latency_p95_ms": 47.950100037269294,
+      "latency_p50_ms": 20.164899993687868,
+      "latency_p95_ms": 49.22390001593158,
       "duplicate_raw": 0.2,
       "duplicate_segment": 0.0
     },
     "speech": {
       "queries": 9,
       "recall@1": 0.0,
+      "recall@3": 0.1111111111111111,
       "recall@5": 0.1111111111111111,
       "recall@10": 0.1111111111111111,
       "miou": 0.0,
-      "latency_p50_ms": 54.49380003847182,
-      "latency_p95_ms": 351.9555000239052,
+      "latency_p50_ms": 56.620099989231676,
+      "latency_p95_ms": 311.0131000285037,
       "duplicate_raw": 0.18888888888888886,
       "duplicate_segment": 0.0
     },
     "visual": {
       "queries": 11,
       "recall@1": 0.18181818181818182,
+      "recall@3": 0.2727272727272727,
       "recall@5": 0.36363636363636365,
       "recall@10": 0.5454545454545454,
       "miou": 0.04322638146167558,
-      "latency_p50_ms": 53.81209996994585,
-      "latency_p95_ms": 320.8161999937147,
+      "latency_p50_ms": 49.94160000933334,
+      "latency_p95_ms": 230.94069998478517,
       "duplicate_raw": 0.03636363636363637,
       "duplicate_segment": 0.0
     }
@@ -118,88 +129,96 @@
     "dashcam": {
       "queries": 7,
       "recall@1": 0.0,
+      "recall@3": 0.14285714285714285,
       "recall@5": 0.2857142857142857,
       "recall@10": 0.5714285714285714,
       "miou": 0.0,
-      "latency_p50_ms": 25.96090000588447,
-      "latency_p95_ms": 320.8161999937147,
+      "latency_p50_ms": 26.654599991161376,
+      "latency_p95_ms": 230.94069998478517,
       "duplicate_raw": 0.05714285714285715,
       "duplicate_segment": 0.0
     },
     "indoor1": {
       "queries": 4,
       "recall@1": 0.75,
+      "recall@3": 1.0,
       "recall@5": 1.0,
       "recall@10": 1.0,
       "miou": 0.17859477124183007,
-      "latency_p50_ms": 25.013100006617606,
-      "latency_p95_ms": 26.66020003380254,
+      "latency_p50_ms": 22.45839999523014,
+      "latency_p95_ms": 22.885699989274144,
       "duplicate_raw": 0.1,
       "duplicate_segment": 0.0
     },
     "indoor2": {
       "queries": 4,
       "recall@1": 0.5,
+      "recall@3": 0.75,
       "recall@5": 1.0,
       "recall@10": 1.0,
       "miou": 0.039705882352941174,
-      "latency_p50_ms": 23.371099960058928,
-      "latency_p95_ms": 24.98589997412637,
+      "latency_p50_ms": 21.471200045198202,
+      "latency_p95_ms": 24.103099945932627,
       "duplicate_raw": 0.1,
       "duplicate_segment": 0.0
     },
     "lecture1": {
       "queries": 8,
       "recall@1": 0.0,
+      "recall@3": 0.0,
       "recall@5": 0.0,
       "recall@10": 0.0,
       "miou": 0.0,
-      "latency_p50_ms": 72.11239996831864,
-      "latency_p95_ms": 351.9555000239052,
+      "latency_p50_ms": 56.917999987490475,
+      "latency_p95_ms": 311.0131000285037,
       "duplicate_raw": 0.35,
       "duplicate_segment": 0.0
     },
     "lecture2": {
       "queries": 7,
       "recall@1": 0.14285714285714285,
+      "recall@3": 0.2857142857142857,
       "recall@5": 0.42857142857142855,
       "recall@10": 0.42857142857142855,
       "miou": 0.0047619047619047615,
-      "latency_p50_ms": 51.65189999388531,
-      "latency_p95_ms": 54.351900005713105,
+      "latency_p50_ms": 56.844200007617474,
+      "latency_p95_ms": 68.6495000263676,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0
     },
     "screen-recording": {
       "queries": 8,
       "recall@1": 0.0,
+      "recall@3": 0.0,
       "recall@5": 0.0,
       "recall@10": 0.0,
       "miou": 0.0,
-      "latency_p50_ms": 11.222500004805624,
-      "latency_p95_ms": 13.305299973580986,
+      "latency_p50_ms": 11.419699992984533,
+      "latency_p95_ms": 12.670099968090653,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0
     },
     "streetcctv1": {
       "queries": 6,
       "recall@1": 0.6666666666666666,
+      "recall@3": 0.8333333333333334,
       "recall@5": 0.8333333333333334,
       "recall@10": 1.0,
       "miou": 0.18535353535353535,
-      "latency_p50_ms": 12.0691999909468,
-      "latency_p95_ms": 70.27349999407306,
+      "latency_p50_ms": 13.530600001104176,
+      "latency_p95_ms": 70.60949999140576,
       "duplicate_raw": 0.18333333333333335,
       "duplicate_segment": 0.0
     },
     "streetcctv2": {
       "queries": 6,
       "recall@1": 0.16666666666666666,
+      "recall@3": 0.3333333333333333,
       "recall@5": 0.6666666666666666,
       "recall@10": 0.8333333333333334,
       "miou": 0.016666666666666666,
-      "latency_p50_ms": 13.058400014415383,
-      "latency_p95_ms": 65.9686999861151,
+      "latency_p50_ms": 13.174900028388947,
+      "latency_p95_ms": 58.87629999779165,
       "duplicate_raw": 0.08333333333333333,
       "duplicate_segment": 0.0
     }
@@ -219,16 +238,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 351.9555000239052,
+      "latency_ms": 311.0131000285037,
       "duplicate_raw": 0.2,
       "duplicate_segment": 0.0,
       "top1_timestamp": 1138.137,
       "top1_score": 0.059966523200273514,
       "predicted_path": "data/objects/lecture1/t000074_1.jpg",
+      "top3": [
+        {
+          "timestamp": 1138.137,
+          "start": 1134.133,
+          "end": 1140.139,
+          "score": 0.059966523200273514,
+          "path": "data/objects/lecture1/t000074_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 643.643,
+          "start": 643.643,
+          "end": 644.643,
+          "score": 0.05361408740282059,
+          "path": "data/objects/lecture1/t000044_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 484.484,
+          "start": 484.484,
+          "end": 486.486,
+          "score": 0.05231252312660217,
+          "path": "data/objects/lecture1/t000041_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 1138.137,
@@ -296,16 +348,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 72.11239996831864,
+      "latency_ms": 56.037799979094416,
       "duplicate_raw": 0.5,
       "duplicate_segment": 0.0,
       "top1_timestamp": 14.014,
       "top1_score": 0.10740776360034943,
       "predicted_path": "data/objects/lecture1/tm1000006_0.jpg",
+      "top3": [
+        {
+          "timestamp": 14.014,
+          "start": 12.012,
+          "end": 16.016,
+          "score": 0.10740776360034943,
+          "path": "data/objects/lecture1/tm1000006_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 1138.137,
+          "start": 1136.135,
+          "end": 1140.139,
+          "score": 0.0743367001414299,
+          "path": "data/objects/lecture1/tm1000400_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 6.006,
+          "start": 4.004,
+          "end": 6.006,
+          "score": 0.07265585660934448,
+          "path": "data/objects/lecture1/tm1000002_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 14.014,
@@ -373,16 +458,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 61.74410000676289,
+      "latency_ms": 56.620099989231676,
       "duplicate_raw": 0.2,
       "duplicate_segment": 0.0,
       "top1_timestamp": 484.484,
       "top1_score": 0.07818547636270523,
       "predicted_path": "data/objects/lecture1/t000041_0.jpg",
+      "top3": [
+        {
+          "timestamp": 484.484,
+          "start": 484.484,
+          "end": 486.486,
+          "score": 0.07818547636270523,
+          "path": "data/objects/lecture1/t000041_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 68.068,
+          "start": 64.064,
+          "end": 68.068,
+          "score": 0.07040483504533768,
+          "path": "data/objects/lecture1/tm1000028_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 94.094,
+          "start": 90.09,
+          "end": 98.098,
+          "score": 0.06867848336696625,
+          "path": "data/objects/lecture1/tm1000041_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 484.484,
@@ -450,16 +568,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 54.49380003847182,
+      "latency_ms": 56.917999987490475,
       "duplicate_raw": 0.4,
       "duplicate_segment": 0.0,
       "top1_timestamp": 643.643,
       "top1_score": 0.05359518155455589,
       "predicted_path": "data/objects/lecture1/t000044_0.jpg",
+      "top3": [
+        {
+          "timestamp": 643.643,
+          "start": 643.643,
+          "end": 644.643,
+          "score": 0.05359518155455589,
+          "path": "data/objects/lecture1/t000044_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 6.006,
+          "start": 4.004,
+          "end": 6.006,
+          "score": 0.04823163151741028,
+          "path": "data/objects/lecture1/tm1000002_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 1138.137,
+          "start": 1130.129,
+          "end": 1140.139,
+          "score": 0.047617971897125244,
+          "path": "data/objects/lecture1/t000074_1.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 643.643,
@@ -527,16 +678,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 62.45379999745637,
+      "latency_ms": 54.636600019875914,
       "duplicate_raw": 0.4,
       "duplicate_segment": 0.0,
       "top1_timestamp": 1138.137,
       "top1_score": 0.07628557085990906,
       "predicted_path": "data/objects/lecture1/t000074_1.jpg",
+      "top3": [
+        {
+          "timestamp": 1138.137,
+          "start": 1136.135,
+          "end": 1140.139,
+          "score": 0.07628557085990906,
+          "path": "data/objects/lecture1/t000074_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 94.094,
+          "start": 72.072,
+          "end": 102.102,
+          "score": 0.06886369735002518,
+          "path": "data/objects/lecture1/tm1000041_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 16.016,
+          "start": 12.012,
+          "end": 16.016,
+          "score": 0.06231632083654404,
+          "path": "data/objects/lecture1/tm1000007_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 1138.137,
@@ -604,16 +788,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 66.58569996943697,
+      "latency_ms": 53.319200000260025,
       "duplicate_raw": 0.3,
       "duplicate_segment": 0.0,
       "top1_timestamp": 14.014,
       "top1_score": 0.09554648399353027,
       "predicted_path": "data/objects/lecture1/tm1000006_0.jpg",
+      "top3": [
+        {
+          "timestamp": 14.014,
+          "start": 12.012,
+          "end": 16.016,
+          "score": 0.09554648399353027,
+          "path": "data/objects/lecture1/tm1000006_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 6.006,
+          "start": 4.004,
+          "end": 6.006,
+          "score": 0.03345714509487152,
+          "path": "data/objects/lecture1/tm1000002_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 94.094,
+          "start": 66.066,
+          "end": 108.108,
+          "score": 0.031777478754520416,
+          "path": "data/objects/lecture1/tm1000041_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 14.014,
@@ -681,16 +898,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 78.67499999701977,
+      "latency_ms": 59.33040002128109,
       "duplicate_raw": 0.3,
       "duplicate_segment": 0.0,
       "top1_timestamp": 17.017,
       "top1_score": 0.02504619024693966,
       "predicted_path": "data/objects/lecture1/t000002_1.jpg",
+      "top3": [
+        {
+          "timestamp": 17.017,
+          "start": 17.017,
+          "end": 18.017,
+          "score": 0.02504619024693966,
+          "path": "data/objects/lecture1/t000002_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 14.014,
+          "start": 12.012,
+          "end": 14.014,
+          "score": 0.021876070648431778,
+          "path": "data/objects/lecture1/tm1000006_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 94.094,
+          "start": 64.064,
+          "end": 108.108,
+          "score": 0.017921900376677513,
+          "path": "data/objects/lecture1/tm1000041_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 17.017,
@@ -758,16 +1008,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 77.8705999837257,
+      "latency_ms": 58.996800042223185,
       "duplicate_raw": 0.5,
       "duplicate_segment": 0.0,
       "top1_timestamp": 988.988,
       "top1_score": 0.07139325141906738,
       "predicted_path": "data/objects/lecture1/t000063_2.jpg",
+      "top3": [
+        {
+          "timestamp": 988.988,
+          "start": 988.988,
+          "end": 989.988,
+          "score": 0.07139325141906738,
+          "path": "data/objects/lecture1/t000063_2.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 14.014,
+          "start": 12.012,
+          "end": 16.016,
+          "score": 0.06176658719778061,
+          "path": "data/objects/lecture1/t000002_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 1136.135,
+          "start": 1136.135,
+          "end": 1140.139,
+          "score": 0.0454191118478775,
+          "path": "data/objects/lecture1/tm1000399_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 988.988,
@@ -835,16 +1118,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 54.351900005713105,
+      "latency_ms": 62.61989998165518,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 508.0,
       "top1_score": 0.1037677675485611,
       "predicted_path": "data/objects/lecture2/tm1000261_0.jpg",
+      "top3": [
+        {
+          "timestamp": 508.0,
+          "start": 508.0,
+          "end": 509.0,
+          "score": 0.1037677675485611,
+          "path": "data/objects/lecture2/tm1000261_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 328.0,
+          "start": 328.0,
+          "end": 329.0,
+          "score": 0.09821981936693192,
+          "path": "data/objects/lecture2/tm1000171_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 32.0,
+          "start": 32.0,
+          "end": 34.0,
+          "score": 0.09520706534385681,
+          "path": "data/objects/lecture2/tm1000017_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 508.0,
@@ -912,16 +1228,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 51.196200016420335,
+      "latency_ms": 48.272699990775436,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 100.0,
       "top1_score": 0.11749790608882904,
       "predicted_path": "data/objects/lecture2/tm1000051_0.jpg",
+      "top3": [
+        {
+          "timestamp": 100.0,
+          "start": 100.0,
+          "end": 101.0,
+          "score": 0.11749790608882904,
+          "path": "data/objects/lecture2/tm1000051_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 362.0,
+          "start": 360.0,
+          "end": 362.0,
+          "score": 0.11673551052808762,
+          "path": "data/objects/lecture2/tm1000188_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 286.0,
+          "start": 286.0,
+          "end": 287.0,
+          "score": 0.11619135737419128,
+          "path": "data/objects/lecture2/tm1000147_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 100.0,
@@ -989,16 +1338,49 @@
       ],
       "hits": {
         "1": false,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 49.54010003712028,
+      "latency_ms": 51.212399965152144,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 594.0,
       "top1_score": 0.10857820510864258,
       "predicted_path": "data/objects/lecture2/tm1000311_0.jpg",
+      "top3": [
+        {
+          "timestamp": 594.0,
+          "start": 594.0,
+          "end": 595.0,
+          "score": 0.10857820510864258,
+          "path": "data/objects/lecture2/tm1000311_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 514.0,
+          "start": 514.0,
+          "end": 515.0,
+          "score": 0.08903113007545471,
+          "path": "data/objects/lecture2/tm1000264_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 694.0,
+          "start": 694.0,
+          "end": 695.0,
+          "score": 0.08623842895030975,
+          "path": "data/objects/lecture2/tm1000376_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 594.0,
@@ -1066,16 +1448,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 51.65189999388531,
+      "latency_ms": 56.844200007617474,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 433.0,
       "top1_score": 0.11702562868595123,
       "predicted_path": "data/objects/lecture2/t000053_1.jpg",
+      "top3": [
+        {
+          "timestamp": 433.0,
+          "start": 430.0,
+          "end": 436.0,
+          "score": 0.11702562868595123,
+          "path": "data/objects/lecture2/t000053_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 452.0,
+          "start": 452.0,
+          "end": 453.0,
+          "score": 0.11508798599243164,
+          "path": "data/objects/lecture2/tm1000233_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 660.0,
+          "start": 660.0,
+          "end": 661.0,
+          "score": 0.11305887997150421,
+          "path": "data/objects/lecture2/tm1000357_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 433.0,
@@ -1143,16 +1558,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": true,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 52.85480001475662,
+      "latency_ms": 63.000099966302514,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 22.0,
       "top1_score": 0.1318015158176422,
       "predicted_path": "data/objects/lecture2/tm1000012_0.jpg",
+      "top3": [
+        {
+          "timestamp": 22.0,
+          "start": 22.0,
+          "end": 23.0,
+          "score": 0.1318015158176422,
+          "path": "data/objects/lecture2/tm1000012_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 10.0,
+          "start": 10.0,
+          "end": 13.0,
+          "score": 0.13031400740146637,
+          "path": "data/objects/lecture2/tm1000006_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 6.0,
+          "start": 6.0,
+          "end": 7.0,
+          "score": 0.11848609149456024,
+          "path": "data/objects/lecture2/tm1000004_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 22.0,
@@ -1220,16 +1668,49 @@
       ],
       "hits": {
         "1": true,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.03333333333333333,
-      "latency_ms": 51.560599997173995,
+      "latency_ms": 68.6495000263676,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 189.0,
       "top1_score": 0.14525958895683289,
       "predicted_path": "data/objects/lecture2/t000022_2.jpg",
+      "top3": [
+        {
+          "timestamp": 189.0,
+          "start": 189.0,
+          "end": 190.0,
+          "score": 0.14525958895683289,
+          "path": "data/objects/lecture2/t000022_2.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 284.0,
+          "start": 284.0,
+          "end": 285.0,
+          "score": 0.13844701647758484,
+          "path": "data/objects/lecture2/t000031_2.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 198.0,
+          "start": 198.0,
+          "end": 199.0,
+          "score": 0.12153872847557068,
+          "path": "data/objects/lecture2/tm1000101_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 189.0,
@@ -1297,16 +1778,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 53.78329998347908,
+      "latency_ms": 49.142699979711324,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 508.0,
       "top1_score": 0.14924466609954834,
       "predicted_path": "data/objects/lecture2/tm1000261_0.jpg",
+      "top3": [
+        {
+          "timestamp": 508.0,
+          "start": 508.0,
+          "end": 509.0,
+          "score": 0.14924466609954834,
+          "path": "data/objects/lecture2/tm1000261_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 98.0,
+          "start": 98.0,
+          "end": 99.0,
+          "score": 0.09752446413040161,
+          "path": "data/objects/lecture2/tm1000050_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 188.0,
+          "start": 188.0,
+          "end": 189.0,
+          "score": 0.0973653793334961,
+          "path": "data/objects/lecture2/tm1000096_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 508.0,
@@ -1374,16 +1888,49 @@
       ],
       "hits": {
         "1": true,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.5454545454545454,
-      "latency_ms": 12.0691999909468,
+      "latency_ms": 10.767800034955144,
       "duplicate_raw": 0.4,
       "duplicate_segment": 0.0,
       "top1_timestamp": 58.0,
       "top1_score": 0.06347515434026718,
       "predicted_path": "data/objects/streetcctv1/t000127_0.jpg",
+      "top3": [
+        {
+          "timestamp": 58.0,
+          "start": 54.0,
+          "end": 61.0,
+          "score": 0.06347515434026718,
+          "path": "data/objects/streetcctv1/t000127_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 6.0,
+          "start": 6.0,
+          "end": 10.0,
+          "score": 0.05132029205560684,
+          "path": "data/objects/streetcctv1/tm1000010_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 163.0,
+          "start": 163.0,
+          "end": 164.0,
+          "score": 0.039587508887052536,
+          "path": "data/objects/streetcctv1/t000264_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 58.0,
@@ -1451,16 +1998,49 @@
       ],
       "hits": {
         "1": true,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.1,
-      "latency_ms": 11.439599969889969,
+      "latency_ms": 13.46340001327917,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 240.0,
       "top1_score": 0.11039642244577408,
       "predicted_path": "data/objects/streetcctv1/tm1000360_0.jpg",
+      "top3": [
+        {
+          "timestamp": 240.0,
+          "start": 240.0,
+          "end": 241.0,
+          "score": 0.11039642244577408,
+          "path": "data/objects/streetcctv1/tm1000360_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 174.0,
+          "start": 174.0,
+          "end": 175.0,
+          "score": 0.10515369474887848,
+          "path": "data/objects/streetcctv1/tm1000261_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 5.0,
+          "start": 5.0,
+          "end": 6.0,
+          "score": 0.0725448951125145,
+          "path": "data/objects/streetcctv1/t000039_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 240.0,
@@ -1508,16 +2088,49 @@
       ],
       "hits": {
         "1": false,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 9.29419999010861,
+      "latency_ms": 13.530600001104176,
       "duplicate_raw": 0.2,
       "duplicate_segment": 0.0,
       "top1_timestamp": 102.0,
       "top1_score": 0.11660810559988022,
       "predicted_path": "data/objects/streetcctv1/tm1000154_0.jpg",
+      "top3": [
+        {
+          "timestamp": 102.0,
+          "start": 101.0,
+          "end": 102.0,
+          "score": 0.11660810559988022,
+          "path": "data/objects/streetcctv1/tm1000154_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 190.0,
+          "start": 190.0,
+          "end": 191.0,
+          "score": 0.10263940691947937,
+          "path": "data/objects/streetcctv1/tm1000285_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 58.0,
+          "start": 58.0,
+          "end": 59.0,
+          "score": 0.09120474755764008,
+          "path": "data/objects/streetcctv1/t000127_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 102.0,
@@ -1575,16 +2188,29 @@
       ],
       "hits": {
         "1": true,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.4166666666666667,
-      "latency_ms": 14.666199975181371,
+      "latency_ms": 16.62229996873066,
       "duplicate_raw": 0.2,
       "duplicate_segment": 0.0,
       "top1_timestamp": 26.0,
       "top1_score": 0.11089906096458435,
       "predicted_path": "data/objects/streetcctv1/tm1000040_0.jpg",
+      "top3": [
+        {
+          "timestamp": 26.0,
+          "start": 0.0,
+          "end": 60.0,
+          "score": 0.11089906096458435,
+          "path": "data/objects/streetcctv1/tm1000040_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 26.0,
@@ -1612,16 +2238,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 70.27349999407306,
+      "latency_ms": 70.60949999140576,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 118.0,
       "top1_score": 0.08060383796691895,
       "predicted_path": "data/objects/streetcctv1/t000021_1.jpg",
+      "top3": [
+        {
+          "timestamp": 118.0,
+          "start": 118.0,
+          "end": 121.0,
+          "score": 0.08060383796691895,
+          "path": "data/objects/streetcctv1/t000021_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 159.0,
+          "start": 158.0,
+          "end": 159.0,
+          "score": 0.08037415891885757,
+          "path": "data/objects/streetcctv1/t000024_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 92.0,
+          "start": 92.0,
+          "end": 93.0,
+          "score": 0.0762377455830574,
+          "path": "data/objects/streetcctv1/t000019_1.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 118.0,
@@ -1689,16 +2348,49 @@
       ],
       "hits": {
         "1": true,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.05,
-      "latency_ms": 47.950100037269294,
+      "latency_ms": 49.22390001593158,
       "duplicate_raw": 0.3,
       "duplicate_segment": 0.0,
       "top1_timestamp": 22.0,
       "top1_score": 0.11707187443971634,
       "predicted_path": "data/objects/streetcctv1/t000072_2.jpg",
+      "top3": [
+        {
+          "timestamp": 22.0,
+          "start": 22.0,
+          "end": 23.0,
+          "score": 0.11707187443971634,
+          "path": "data/objects/streetcctv1/t000072_2.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 58.0,
+          "start": 52.0,
+          "end": 60.0,
+          "score": 0.1139005795121193,
+          "path": "data/objects/streetcctv1/t000099_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 44.0,
+          "start": 39.0,
+          "end": 48.0,
+          "score": 0.10466781258583069,
+          "path": "data/objects/streetcctv1/t000074_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 22.0,
@@ -1766,16 +2458,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": true,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 12.871799990534782,
+      "latency_ms": 13.174900028388947,
       "duplicate_raw": 0.3,
       "duplicate_segment": 0.0,
       "top1_timestamp": 411.0,
       "top1_score": 0.09617309272289276,
       "predicted_path": "data/objects/streetcctv2/t000321_0.jpg",
+      "top3": [
+        {
+          "timestamp": 411.0,
+          "start": 411.0,
+          "end": 412.0,
+          "score": 0.09617309272289276,
+          "path": "data/objects/streetcctv2/t000321_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 264.0,
+          "start": 262.0,
+          "end": 264.0,
+          "score": 0.09407468140125275,
+          "path": "data/objects/streetcctv2/tm1000381_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 374.0,
+          "start": 374.0,
+          "end": 378.0,
+          "score": 0.09407338500022888,
+          "path": "data/objects/streetcctv2/tm1000534_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 411.0,
@@ -1843,16 +2568,29 @@
       ],
       "hits": {
         "1": true,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.1,
-      "latency_ms": 12.463799968827516,
+      "latency_ms": 12.246199999935925,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 100.0,
       "top1_score": 0.07395428419113159,
       "predicted_path": "data/objects/streetcctv2/tm1000151_0.jpg",
+      "top3": [
+        {
+          "timestamp": 100.0,
+          "start": 100.0,
+          "end": 101.0,
+          "score": 0.07395428419113159,
+          "path": "data/objects/streetcctv2/tm1000151_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 100.0,
@@ -1880,16 +2618,49 @@
       ],
       "hits": {
         "1": false,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 13.058400014415383,
+      "latency_ms": 10.424300038721412,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 0.0,
       "top1_score": 0.10223779827356339,
       "predicted_path": "data/objects/streetcctv2/t000006_0.jpg",
+      "top3": [
+        {
+          "timestamp": 0.0,
+          "start": 0.0,
+          "end": 1.0,
+          "score": 0.10223779827356339,
+          "path": "data/objects/streetcctv2/t000006_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 11.0,
+          "start": 11.0,
+          "end": 12.0,
+          "score": 0.09854521602392197,
+          "path": "data/objects/streetcctv2/t000007_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 198.0,
+          "start": 198.0,
+          "end": 199.0,
+          "score": 0.08900612592697144,
+          "path": "data/objects/streetcctv2/tm1000296_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 0.0,
@@ -1937,16 +2708,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 55.725299986079335,
+      "latency_ms": 55.66370004089549,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 46.0,
       "top1_score": 0.09677974879741669,
       "predicted_path": "data/objects/streetcctv2/tm1000071_0.jpg",
+      "top3": [
+        {
+          "timestamp": 46.0,
+          "start": 46.0,
+          "end": 47.0,
+          "score": 0.09677974879741669,
+          "path": "data/objects/streetcctv2/tm1000071_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 220.0,
+          "start": 218.0,
+          "end": 220.0,
+          "score": 0.08619137108325958,
+          "path": "data/objects/streetcctv2/tm1000327_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 396.0,
+          "start": 396.0,
+          "end": 406.0,
+          "score": 0.08283843845129013,
+          "path": "data/objects/streetcctv2/tm1000566_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 46.0,
@@ -2014,16 +2818,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": true,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 53.81209996994585,
+      "latency_ms": 49.94160000933334,
       "duplicate_raw": 0.1,
       "duplicate_segment": 0.0,
       "top1_timestamp": 13.0,
       "top1_score": 0.10190016031265259,
       "predicted_path": "data/objects/streetcctv2/t000035_1.jpg",
+      "top3": [
+        {
+          "timestamp": 13.0,
+          "start": 8.0,
+          "end": 16.0,
+          "score": 0.10190016031265259,
+          "path": "data/objects/streetcctv2/t000035_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 1.0,
+          "start": 0.0,
+          "end": 4.0,
+          "score": 0.09691204875707626,
+          "path": "data/objects/streetcctv2/t000008_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 328.0,
+          "start": 328.0,
+          "end": 333.0,
+          "score": 0.09550799429416656,
+          "path": "data/objects/streetcctv2/tm1000471_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 13.0,
@@ -2091,16 +2928,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 65.9686999861151,
+      "latency_ms": 58.87629999779165,
       "duplicate_raw": 0.1,
       "duplicate_segment": 0.0,
       "top1_timestamp": 46.0,
       "top1_score": 0.09925475716590881,
       "predicted_path": "data/objects/streetcctv2/tm1000071_0.jpg",
+      "top3": [
+        {
+          "timestamp": 46.0,
+          "start": 46.0,
+          "end": 47.0,
+          "score": 0.09925475716590881,
+          "path": "data/objects/streetcctv2/tm1000071_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 132.0,
+          "start": 132.0,
+          "end": 133.0,
+          "score": 0.09860319644212723,
+          "path": "data/objects/streetcctv2/t000110_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 258.0,
+          "start": 258.0,
+          "end": 259.0,
+          "score": 0.09571433812379837,
+          "path": "data/objects/streetcctv2/tm1000373_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 46.0,
@@ -2168,16 +3038,49 @@
       ],
       "hits": {
         "1": true,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.5555555555555556,
-      "latency_ms": 26.66020003380254,
+      "latency_ms": 22.885699989274144,
       "duplicate_raw": 0.3,
       "duplicate_segment": 0.0,
       "top1_timestamp": 165.0,
       "top1_score": 0.12149221450090408,
       "predicted_path": "data/objects/indoor1/t000017_1.jpg",
+      "top3": [
+        {
+          "timestamp": 165.0,
+          "start": 150.0,
+          "end": 165.0,
+          "score": 0.12149221450090408,
+          "path": "data/objects/indoor1/t000017_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 100.0,
+          "start": 100.0,
+          "end": 101.0,
+          "score": 0.11871545761823654,
+          "path": "data/objects/indoor1/tm1000053_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 52.0,
+          "start": 46.0,
+          "end": 52.0,
+          "score": 0.11327104270458221,
+          "path": "data/objects/indoor1/tm1000024_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 165.0,
@@ -2245,16 +3148,49 @@
       ],
       "hits": {
         "1": true,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.1,
-      "latency_ms": 25.013100006617606,
+      "latency_ms": 22.45839999523014,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 280.0,
       "top1_score": 0.10813361406326294,
       "predicted_path": "data/objects/indoor1/t000056_0.jpg",
+      "top3": [
+        {
+          "timestamp": 280.0,
+          "start": 280.0,
+          "end": 281.0,
+          "score": 0.10813361406326294,
+          "path": "data/objects/indoor1/t000056_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 276.0,
+          "start": 276.0,
+          "end": 277.0,
+          "score": 0.09685974568128586,
+          "path": "data/objects/indoor1/tm1000152_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 64.0,
+          "start": 64.0,
+          "end": 65.0,
+          "score": 0.06792879849672318,
+          "path": "data/objects/indoor1/t000006_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 280.0,
@@ -2322,16 +3258,49 @@
       ],
       "hits": {
         "1": true,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.058823529411764705,
-      "latency_ms": 15.811300021596253,
+      "latency_ms": 14.541300013661385,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 300.0,
       "top1_score": 0.13119618594646454,
       "predicted_path": "data/objects/indoor1/t000040_0.jpg",
+      "top3": [
+        {
+          "timestamp": 300.0,
+          "start": 300.0,
+          "end": 301.0,
+          "score": 0.13119618594646454,
+          "path": "data/objects/indoor1/t000040_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 82.0,
+          "start": 82.0,
+          "end": 83.0,
+          "score": 0.10454447567462921,
+          "path": "data/objects/indoor1/tm1000041_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 292.0,
+          "start": 292.0,
+          "end": 293.0,
+          "score": 0.09677235782146454,
+          "path": "data/objects/indoor1/t000055_2.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 300.0,
@@ -2399,16 +3368,49 @@
       ],
       "hits": {
         "1": false,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 24.75919999415055,
+      "latency_ms": 20.164899993687868,
       "duplicate_raw": 0.1,
       "duplicate_segment": 0.0,
       "top1_timestamp": 218.0,
       "top1_score": 0.10702334344387054,
       "predicted_path": "data/objects/indoor1/t000045_1.jpg",
+      "top3": [
+        {
+          "timestamp": 218.0,
+          "start": 218.0,
+          "end": 219.0,
+          "score": 0.10702334344387054,
+          "path": "data/objects/indoor1/t000045_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 192.0,
+          "start": 192.0,
+          "end": 193.0,
+          "score": 0.09413909912109375,
+          "path": "data/objects/indoor1/tm1000105_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 251.0,
+          "start": 250.0,
+          "end": 251.0,
+          "score": 0.08942998945713043,
+          "path": "data/objects/indoor1/t000046_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 218.0,
@@ -2476,16 +3478,49 @@
       ],
       "hits": {
         "1": true,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.1,
-      "latency_ms": 20.600799995008856,
+      "latency_ms": 19.67860001605004,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 148.0,
       "top1_score": 0.12272380292415619,
       "predicted_path": "data/objects/indoor2/tm1000095_0.jpg",
+      "top3": [
+        {
+          "timestamp": 148.0,
+          "start": 148.0,
+          "end": 149.0,
+          "score": 0.12272380292415619,
+          "path": "data/objects/indoor2/tm1000095_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 152.0,
+          "start": 152.0,
+          "end": 153.0,
+          "score": 0.11712973564863205,
+          "path": "data/objects/indoor2/t000029_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 162.0,
+          "start": 162.0,
+          "end": 163.0,
+          "score": 0.11331380158662796,
+          "path": "data/objects/indoor2/tm1000101_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 148.0,
@@ -2553,16 +3588,49 @@
       ],
       "hits": {
         "1": false,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 22.18859997810796,
+      "latency_ms": 24.103099945932627,
       "duplicate_raw": 0.1,
       "duplicate_segment": 0.0,
       "top1_timestamp": 257.999999,
       "top1_score": 0.07518206536769867,
       "predicted_path": "data/objects/indoor2/tm1000193_0.jpg",
+      "top3": [
+        {
+          "timestamp": 257.999999,
+          "start": 249.999999,
+          "end": 257.999999,
+          "score": 0.07518206536769867,
+          "path": "data/objects/indoor2/tm1000193_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 239.999999,
+          "start": 236.999999,
+          "end": 239.999999,
+          "score": 0.07459433376789093,
+          "path": "data/objects/indoor2/tm1000166_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 222.999999,
+          "start": 221.999999,
+          "end": 229.999999,
+          "score": 0.06420882791280746,
+          "path": "data/objects/indoor2/t000048_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 257.999999,
@@ -2630,16 +3698,49 @@
       ],
       "hits": {
         "1": true,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.058823529411764705,
-      "latency_ms": 24.98589997412637,
+      "latency_ms": 21.471200045198202,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 163.0,
       "top1_score": 0.12711191177368164,
       "predicted_path": "data/objects/indoor2/t000041_0.jpg",
+      "top3": [
+        {
+          "timestamp": 163.0,
+          "start": 163.0,
+          "end": 166.0,
+          "score": 0.12711191177368164,
+          "path": "data/objects/indoor2/t000041_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 90.0,
+          "start": 88.0,
+          "end": 90.0,
+          "score": 0.08482654392719269,
+          "path": "data/objects/indoor2/tm1000062_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 96.0,
+          "start": 96.0,
+          "end": 99.0,
+          "score": 0.03972192108631134,
+          "path": "data/objects/indoor2/tm1000065_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 163.0,
@@ -2707,16 +3808,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": true,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 23.371099960058928,
+      "latency_ms": 19.860200001858175,
       "duplicate_raw": 0.3,
       "duplicate_segment": 0.0,
       "top1_timestamp": 204.999999,
       "top1_score": 0.10803854465484619,
       "predicted_path": "data/objects/indoor2/t000046_0.jpg",
+      "top3": [
+        {
+          "timestamp": 204.999999,
+          "start": 198.0,
+          "end": 207.999999,
+          "score": 0.10803854465484619,
+          "path": "data/objects/indoor2/t000046_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 75.0,
+          "start": 69.0,
+          "end": 75.0,
+          "score": 0.0992165356874466,
+          "path": "data/objects/indoor2/t000019_2.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 193.0,
+          "start": 193.0,
+          "end": 194.0,
+          "score": 0.09352278709411621,
+          "path": "data/objects/indoor2/t000049_1.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 204.999999,
@@ -2784,16 +3918,18 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 13.305299973580986,
+      "latency_ms": 11.419699992984533,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": null,
       "top1_score": 0.0,
       "predicted_path": null,
+      "top3": [],
       "top5": []
     },
     {
@@ -2810,16 +3946,18 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 12.939599982928485,
+      "latency_ms": 10.203199984971434,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": null,
       "top1_score": 0.0,
       "predicted_path": null,
+      "top3": [],
       "top5": []
     },
     {
@@ -2836,16 +3974,18 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 8.70140001643449,
+      "latency_ms": 9.387800004333258,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": null,
       "top1_score": 0.0,
       "predicted_path": null,
+      "top3": [],
       "top5": []
     },
     {
@@ -2862,16 +4002,18 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 10.75200003106147,
+      "latency_ms": 12.670099968090653,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": null,
       "top1_score": 0.0,
       "predicted_path": null,
+      "top3": [],
       "top5": []
     },
     {
@@ -2888,16 +4030,18 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 7.887899992056191,
+      "latency_ms": 12.321299989707768,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": null,
       "top1_score": 0.0,
       "predicted_path": null,
+      "top3": [],
       "top5": []
     },
     {
@@ -2914,16 +4058,18 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 11.51209999807179,
+      "latency_ms": 9.324099984951317,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": null,
       "top1_score": 0.0,
       "predicted_path": null,
+      "top3": [],
       "top5": []
     },
     {
@@ -2940,16 +4086,18 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 11.222500004805624,
+      "latency_ms": 12.21869996516034,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": null,
       "top1_score": 0.0,
       "predicted_path": null,
+      "top3": [],
       "top5": []
     },
     {
@@ -2966,16 +4114,18 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 8.74289998319,
+      "latency_ms": 11.011100024916232,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": null,
       "top1_score": 0.0,
       "predicted_path": null,
+      "top3": [],
       "top5": []
     },
     {
@@ -2992,16 +4142,49 @@
       ],
       "hits": {
         "1": false,
+        "3": true,
         "5": true,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 25.96090000588447,
+      "latency_ms": 25.815800006967038,
       "duplicate_raw": 0.1,
       "duplicate_segment": 0.0,
       "top1_timestamp": 46.0,
       "top1_score": 0.09755273908376694,
       "predicted_path": "data/objects/dashcam/tm1000020_0.jpg",
+      "top3": [
+        {
+          "timestamp": 46.0,
+          "start": 46.0,
+          "end": 52.0,
+          "score": 0.09755273908376694,
+          "path": "data/objects/dashcam/tm1000020_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 14.0,
+          "start": 12.0,
+          "end": 20.0,
+          "score": 0.09741725027561188,
+          "path": "data/objects/dashcam/tm1000010_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 488.0,
+          "start": 488.0,
+          "end": 489.0,
+          "score": 0.09370964020490646,
+          "path": "data/objects/dashcam/tm1000600_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 46.0,
@@ -3069,16 +4252,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 24.349800019990653,
+      "latency_ms": 25.721099984366447,
       "duplicate_raw": 0.2,
       "duplicate_segment": 0.0,
       "top1_timestamp": 108.0,
       "top1_score": 0.1348382830619812,
       "predicted_path": "data/objects/dashcam/tm1000085_0.jpg",
+      "top3": [
+        {
+          "timestamp": 108.0,
+          "start": 106.0,
+          "end": 108.0,
+          "score": 0.1348382830619812,
+          "path": "data/objects/dashcam/tm1000085_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 353.0,
+          "start": 352.0,
+          "end": 353.0,
+          "score": 0.12119924277067184,
+          "path": "data/objects/dashcam/t000185_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 64.0,
+          "start": 64.0,
+          "end": 72.0,
+          "score": 0.11510252207517624,
+          "path": "data/objects/dashcam/tm1000036_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 108.0,
@@ -3146,16 +4362,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 320.8161999937147,
+      "latency_ms": 230.94069998478517,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 178.0,
       "top1_score": 0.05226866528391838,
       "predicted_path": "data/objects/dashcam/tm1000140_0.jpg",
+      "top3": [
+        {
+          "timestamp": 178.0,
+          "start": 178.0,
+          "end": 179.0,
+          "score": 0.05226866528391838,
+          "path": "data/objects/dashcam/tm1000140_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 606.0,
+          "start": 606.0,
+          "end": 607.0,
+          "score": 0.03740872070193291,
+          "path": "data/objects/dashcam/tm1000778_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 526.0,
+          "start": 523.0,
+          "end": 526.0,
+          "score": 0.037280723452568054,
+          "path": "data/objects/dashcam/t000354_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 178.0,
@@ -3223,16 +4472,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 229.5674000051804,
+      "latency_ms": 226.91339999437332,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 196.0,
       "top1_score": 0.03997088968753815,
       "predicted_path": "data/objects/dashcam/tm1000169_0.jpg",
+      "top3": [
+        {
+          "timestamp": 196.0,
+          "start": 188.0,
+          "end": 196.0,
+          "score": 0.03997088968753815,
+          "path": "data/objects/dashcam/tm1000169_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 522.0,
+          "start": 522.0,
+          "end": 523.0,
+          "score": 0.037675898522138596,
+          "path": "data/objects/dashcam/t000353_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 526.0,
+          "start": 526.0,
+          "end": 527.0,
+          "score": 0.03497295454144478,
+          "path": "data/objects/dashcam/t000354_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 196.0,
@@ -3300,16 +4582,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": false
       },
       "miou": 0.0,
-      "latency_ms": 22.02229999238625,
+      "latency_ms": 24.18150001903996,
       "duplicate_raw": 0.1,
       "duplicate_segment": 0.0,
       "top1_timestamp": 228.0,
       "top1_score": 0.13019487261772156,
       "predicted_path": "data/objects/dashcam/t000064_0.jpg",
+      "top3": [
+        {
+          "timestamp": 228.0,
+          "start": 226.0,
+          "end": 228.0,
+          "score": 0.13019487261772156,
+          "path": "data/objects/dashcam/t000064_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 366.0,
+          "start": 366.0,
+          "end": 367.0,
+          "score": 0.12930883467197418,
+          "path": "data/objects/dashcam/tm1000418_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 370.0,
+          "start": 370.0,
+          "end": 372.0,
+          "score": 0.12835943698883057,
+          "path": "data/objects/dashcam/t000074_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 228.0,
@@ -3377,16 +4692,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": false,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 227.0579999894835,
+      "latency_ms": 208.8664000038989,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 490.0,
       "top1_score": 0.07800401747226715,
       "predicted_path": "data/objects/dashcam/t000293_1.jpg",
+      "top3": [
+        {
+          "timestamp": 490.0,
+          "start": 490.0,
+          "end": 491.0,
+          "score": 0.07800401747226715,
+          "path": "data/objects/dashcam/t000293_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 370.0,
+          "start": 370.0,
+          "end": 371.0,
+          "score": 0.07521085441112518,
+          "path": "data/objects/dashcam/t000227_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 282.0,
+          "start": 282.0,
+          "end": 283.0,
+          "score": 0.07378141582012177,
+          "path": "data/objects/dashcam/t000114_1.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 490.0,
@@ -3454,16 +4802,49 @@
       ],
       "hits": {
         "1": false,
+        "3": false,
         "5": true,
         "10": true
       },
       "miou": 0.0,
-      "latency_ms": 22.668900026474148,
+      "latency_ms": 26.654599991161376,
       "duplicate_raw": 0.0,
       "duplicate_segment": 0.0,
       "top1_timestamp": 416.0,
       "top1_score": 0.1256522238254547,
       "predicted_path": "data/objects/dashcam/tm1000493_0.jpg",
+      "top3": [
+        {
+          "timestamp": 416.0,
+          "start": 415.0,
+          "end": 416.0,
+          "score": 0.1256522238254547,
+          "path": "data/objects/dashcam/tm1000493_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 498.0,
+          "start": 498.0,
+          "end": 499.0,
+          "score": 0.12243127077817917,
+          "path": "data/objects/dashcam/t000324_1.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 228.0,
+          "start": 227.0,
+          "end": 228.0,
+          "score": 0.12241417914628983,
+          "path": "data/objects/dashcam/tm1000212_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ],
       "top5": [
         {
           "timestamp": 416.0,
@@ -3535,7 +4916,7 @@
         "top1_timestamp": 1138.137,
         "top1_score": 0.059966523200273514,
         "predicted_path": "data/objects/lecture1/t000074_1.jpg",
-        "cause": "speech layer not implemented (P5)"
+        "cause": "speech retrieval or transcript miss (P5)"
       },
       {
         "query_id": "q002",
@@ -3551,7 +4932,7 @@
         "top1_timestamp": 14.014,
         "top1_score": 0.10740776360034943,
         "predicted_path": "data/objects/lecture1/tm1000006_0.jpg",
-        "cause": "speech layer not implemented (P5)"
+        "cause": "speech retrieval or transcript miss (P5)"
       },
       {
         "query_id": "q003",
@@ -3567,7 +4948,7 @@
         "top1_timestamp": 484.484,
         "top1_score": 0.07818547636270523,
         "predicted_path": "data/objects/lecture1/t000041_0.jpg",
-        "cause": "speech layer not implemented (P5)"
+        "cause": "speech retrieval or transcript miss (P5)"
       },
       {
         "query_id": "q004",
@@ -3583,7 +4964,7 @@
         "top1_timestamp": 643.643,
         "top1_score": 0.05359518155455589,
         "predicted_path": "data/objects/lecture1/t000044_0.jpg",
-        "cause": "speech layer not implemented (P5)"
+        "cause": "speech retrieval or transcript miss (P5)"
       },
       {
         "query_id": "q005",
@@ -3599,7 +4980,7 @@
         "top1_timestamp": 1138.137,
         "top1_score": 0.07628557085990906,
         "predicted_path": "data/objects/lecture1/t000074_1.jpg",
-        "cause": "speech layer not implemented (P5)"
+        "cause": "speech retrieval or transcript miss (P5)"
       },
       {
         "query_id": "q006",
@@ -3663,7 +5044,7 @@
         "top1_timestamp": 508.0,
         "top1_score": 0.1037677675485611,
         "predicted_path": "data/objects/lecture2/tm1000261_0.jpg",
-        "cause": "speech layer not implemented (P5)"
+        "cause": "speech retrieval or transcript miss (P5)"
       },
       {
         "query_id": "q010",
@@ -3679,7 +5060,7 @@
         "top1_timestamp": 100.0,
         "top1_score": 0.11749790608882904,
         "predicted_path": "data/objects/lecture2/tm1000051_0.jpg",
-        "cause": "speech layer not implemented (P5)"
+        "cause": "speech retrieval or transcript miss (P5)"
       },
       {
         "query_id": "q011",
@@ -3695,7 +5076,7 @@
         "top1_timestamp": 594.0,
         "top1_score": 0.10857820510864258,
         "predicted_path": "data/objects/lecture2/tm1000311_0.jpg",
-        "cause": "speech layer not implemented (P5)"
+        "cause": "speech retrieval or transcript miss (P5)"
       },
       {
         "query_id": "q012",
@@ -3711,7 +5092,7 @@
         "top1_timestamp": 433.0,
         "top1_score": 0.11702562868595123,
         "predicted_path": "data/objects/lecture2/t000053_1.jpg",
-        "cause": "speech layer not implemented (P5)"
+        "cause": "speech retrieval or transcript miss (P5)"
       },
       {
         "query_id": "q013",

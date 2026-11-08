@@ -1,0 +1,260 @@
+{
+  "generated_at": "2026-11-08T18:03:10+00:00",
+  "items": [
+    {
+      "query_id": "q003",
+      "video_id": "lecture1",
+      "type": "speech",
+      "query": "where he says lack of support at home",
+      "intervals": [
+        [
+          706.0,
+          735.0
+        ]
+      ],
+      "top1_timestamp": 765.2,
+      "top1_score": 0.032266458495966696,
+      "predicted_path": null,
+      "predicted_text": "they need. This sentence develops the idea by explaining what lack of support actually looks like in practice. And the phrase where parents are absent or struggling financially is a relative clause so it sits inside the sentence and adds detail without needing a separate sentence. That's a useful structure for your grammar score. Next,",
+      "cause": "speech retrieval or transcript miss (P5)"
+    },
+    {
+      "query_id": "q004",
+      "video_id": "lecture1",
+      "type": "speech",
+      "query": "where he says peer pressure plays a role",
+      "intervals": [
+        [
+          911.0,
+          930.0
+        ]
+      ],
+      "top1_timestamp": 714.64,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": null,
+      "predicted_text": "pressure. So they see examples of their friends and peer pressure and environment. Let's write about it. One of the main reasons young people turn to crime is a lack of support at home. Just like in essay one we start with a topic sentence but notice the difference. In essay one we wrote those who support equal punishment argue because",
+      "cause": "speech retrieval or transcript miss (P5)"
+    },
+    {
+      "query_id": "q008",
+      "video_id": "lecture1",
+      "type": "ocr",
+      "query": "the ultimate IELTS playbook",
+      "intervals": [
+        [
+          992.0,
+          1010.0
+        ]
+      ],
+      "top1_timestamp": 334.334,
+      "top1_score": 0.18418951332569122,
+      "predicted_path": "data/frames/lecture1/000334.jpg",
+      "predicted_text": null,
+      "cause": "OCR layer not implemented (P6)"
+    },
+    {
+      "query_id": "q015",
+      "video_id": "lecture2",
+      "type": "ocr",
+      "query": "the chalkboard heading efficiency",
+      "intervals": [
+        [
+          450.0,
+          480.0
+        ]
+      ],
+      "top1_timestamp": 522.0,
+      "top1_score": 0.18082737922668457,
+      "predicted_path": "data/frames/lecture2/000522.jpg",
+      "predicted_text": null,
+      "cause": "OCR layer not implemented (P6)"
+    },
+    {
+      "query_id": "q018",
+      "video_id": "streetcctv1",
+      "type": "object",
+      "query": "a red car driving past",
+      "intervals": [
+        [
+          185.0,
+          195.0
+        ]
+      ],
+      "top1_timestamp": 102.0,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": "data/objects/streetcctv1/tm1000154_0.jpg",
+      "predicted_text": null,
+      "cause": "object crop missed the target instance (P3)"
+    },
+    {
+      "query_id": "q020",
+      "video_id": "streetcctv1",
+      "type": "visual",
+      "query": "a wide road with parked cars",
+      "intervals": [
+        [
+          130.0,
+          155.0
+        ]
+      ],
+      "top1_timestamp": 176.0,
+      "top1_score": 0.11506195366382599,
+      "predicted_path": "data/frames/streetcctv1/000176.jpg",
+      "predicted_text": null,
+      "cause": "scene confusion in frame embedding"
+    },
+    {
+      "query_id": "q024",
+      "video_id": "streetcctv2",
+      "type": "object",
+      "query": "a red car in the distance",
+      "intervals": [
+        [
+          10.0,
+          20.0
+        ]
+      ],
+      "top1_timestamp": 198.0,
+      "top1_score": 0.031746031746031744,
+      "predicted_path": "data/objects/streetcctv2/tm1000296_0.jpg",
+      "predicted_text": null,
+      "cause": "object crop missed the target instance (P3)"
+    },
+    {
+      "query_id": "q025",
+      "video_id": "streetcctv2",
+      "type": "visual",
+      "query": "a zebra crossing on a residential street",
+      "intervals": [
+        [
+          5.0,
+          30.0
+        ]
+      ],
+      "top1_timestamp": 413.0,
+      "top1_score": 0.11136846989393234,
+      "predicted_path": "data/frames/streetcctv2/000413.jpg",
+      "predicted_text": null,
+      "cause": "scene confusion in frame embedding"
+    },
+    {
+      "query_id": "q031",
+      "video_id": "indoor1",
+      "type": "spatial",
+      "query": "a man sitting at a desk with a laptop",
+      "intervals": [
+        [
+          175.0,
+          195.0
+        ]
+      ],
+      "top1_timestamp": 220.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/indoor1/000220.jpg",
+      "predicted_text": null,
+      "cause": "no spatial reasoning beyond object boxes"
+    },
+    {
+      "query_id": "q037",
+      "video_id": "screen-recording",
+      "type": "ocr",
+      "query": "the registry editor showing current version windows",
+      "intervals": [
+        [
+          50.0,
+          75.0
+        ]
+      ],
+      "top1_timestamp": 40.0,
+      "top1_score": 0.16718460619449615,
+      "predicted_path": "data/frames/screen-recording/000040.jpg",
+      "predicted_text": null,
+      "cause": "OCR layer not implemented (P6)"
+    },
+    {
+      "query_id": "q042",
+      "video_id": "screen-recording",
+      "type": "visual",
+      "query": "a blue Windows desktop",
+      "intervals": [
+        [
+          116.0,
+          126.0
+        ]
+      ],
+      "top1_timestamp": 98.0,
+      "top1_score": 0.14039185643196106,
+      "predicted_path": "data/frames/screen-recording/000098.jpg",
+      "predicted_text": null,
+      "cause": "scene confusion in frame embedding"
+    },
+    {
+      "query_id": "q044",
+      "video_id": "dashcam",
+      "type": "visual",
+      "query": "driving through a city at night",
+      "intervals": [
+        [
+          15.0,
+          45.0
+        ]
+      ],
+      "top1_timestamp": 3.0,
+      "top1_score": 0.1183229461312294,
+      "predicted_path": "data/frames/dashcam/000003.jpg",
+      "predicted_text": null,
+      "cause": "scene confusion in frame embedding"
+    },
+    {
+      "query_id": "q045",
+      "video_id": "dashcam",
+      "type": "object",
+      "query": "a white car driving ahead at night",
+      "intervals": [
+        [
+          85.0,
+          100.0
+        ]
+      ],
+      "top1_timestamp": 134.0,
+      "top1_score": 0.14096808433532715,
+      "predicted_path": "data/frames/dashcam/000134.jpg",
+      "predicted_text": null,
+      "cause": "object crop missed the target instance (P3)"
+    },
+    {
+      "query_id": "q048",
+      "video_id": "dashcam",
+      "type": "object",
+      "query": "a red car parked on the street",
+      "intervals": [
+        [
+          255.0,
+          270.0
+        ]
+      ],
+      "top1_timestamp": 228.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/objects/dashcam/t000064_0.jpg",
+      "predicted_text": null,
+      "cause": "object crop missed the target instance (P3)"
+    },
+    {
+      "query_id": "q049",
+      "video_id": "dashcam",
+      "type": "visual",
+      "query": "driving on a wide city street in daytime",
+      "intervals": [
+        [
+          410.0,
+          440.0
+        ]
+      ],
+      "top1_timestamp": 398.0,
+      "top1_score": 0.12492217123508453,
+      "predicted_path": "data/frames/dashcam/000398.jpg",
+      "predicted_text": null,
+      "cause": "scene confusion in frame embedding"
+    }
+  ]
+}

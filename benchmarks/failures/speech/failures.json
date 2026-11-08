@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-11-08T18:02:41+00:00",
+  "items": [
+    {
+      "query_id": "q003",
+      "video_id": "lecture1",
+      "type": "speech",
+      "query": "where he says lack of support at home",
+      "intervals": [
+        [
+          706.0,
+          735.0
+        ]
+      ],
+      "top1_timestamp": 765.2,
+      "top1_score": 0.032266458495966696,
+      "predicted_path": null,
+      "predicted_text": "they need. This sentence develops the idea by explaining what lack of support actually looks like in practice. And the phrase where parents are absent or struggling financially is a relative clause so it sits inside the sentence and adds detail without needing a separate sentence. That's a useful structure for your grammar score. Next,",
+      "cause": "speech retrieval or transcript miss (P5)"
+    },
+    {
+      "query_id": "q004",
+      "video_id": "lecture1",
+      "type": "speech",
+      "query": "where he says peer pressure plays a role",
+      "intervals": [
+        [
+          911.0,
+          930.0
+        ]
+      ],
+      "top1_timestamp": 714.64,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": null,
+      "predicted_text": "pressure. So they see examples of their friends and peer pressure and environment. Let's write about it. One of the main reasons young people turn to crime is a lack of support at home. Just like in essay one we start with a topic sentence but notice the difference. In essay one we wrote those who support equal punishment argue because",
+      "cause": "speech retrieval or transcript miss (P5)"
+    }
+  ]
+}

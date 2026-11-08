@@ -41,6 +41,27 @@ class MergeTests(unittest.TestCase):
         )
         self.assertEqual(segments[0]["layers"], ["frame", "object"])
 
+    def test_segment_end_extends_a_long_chunk(self) -> None:
+        speech = {
+            "video_id": "v1",
+            "timestamp": 10.0,
+            "start": 10.0,
+            "end": 40.0,
+            "segment_end": 40.0,
+            "score": 0.5,
+            "layer": "speech",
+            "doc_id": "v1:speech:0",
+        }
+        segments = merge_hits([speech], gap_s=3.0, min_segment_s=1.0)
+        self.assertEqual(segments[0]["start"], 10.0)
+        self.assertEqual(segments[0]["end"], 40.0)
+
+    def test_legacy_hits_ignore_their_end_field(self) -> None:
+        object_hit = hit(10)
+        object_hit["end"] = 30.0  # track duration, intentionally not a segment end
+        segments = merge_hits([object_hit], gap_s=3.0, min_segment_s=1.0)
+        self.assertEqual(segments[0]["end"], 11.0)
+
     def test_peak_score_and_thumbnail(self) -> None:
         segments = merge_hits([hit(10, score=0.2), hit(11, score=0.9)])
         self.assertEqual(segments[0]["score"], 0.9)

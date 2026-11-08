@@ -79,7 +79,16 @@ def _build_segments(
 
     peak = max(hits, key=lambda hit: float(hit.get("score", 0.0)))
     start = hit_timestamp(hits[0])
-    end = max(hit_timestamp(hits[-1]), start + max(0.0, min_segment_s))
+    # Speech chunks carry a real duration. Other layers keep the historical
+    # timestamp-only behavior so their benchmark numbers remain comparable.
+    segment_end = max(
+        float(hit.get("segment_end", hit_timestamp(hit))) for hit in hits
+    )
+    end = max(
+        hit_timestamp(hits[-1]),
+        segment_end,
+        start + max(0.0, min_segment_s),
+    )
     layers = sorted(
         {
             layer

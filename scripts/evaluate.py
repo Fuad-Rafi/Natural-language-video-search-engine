@@ -40,29 +40,38 @@ if str(REPO_ROOT) not in sys.path:
 from src.config import ConfigError, load_config  # noqa: E402
 from src.index import store  # noqa: E402
 from src.index.frames import embed_texts, load_siglip, resolve_device  # noqa: E402
+from src.index.text import (  # noqa: E402
+    DEFAULT_TEXT_MODEL,
+    encode_texts,
+    load_text_encoder,
+)
 from src.search.fusion import reciprocal_rank_fusion  # noqa: E402
 from src.search.query import (  # noqa: E402
     filter_object_matches,
     load_frame_index,
     load_object_index,
+    load_speech_index,
     parse_object_query,
+    rank_speech_hits,
 )
 from src.search.temporal import duplicate_rate, merge_hits  # noqa: E402
 from src.utils.logging import format_duration, get_logger, setup_logging  # noqa: E402
 
-METRIC_KS = (1, 5, 10)
+METRIC_KS = (1, 3, 5, 10)
 DEFAULT_MIN_SEGMENT_S = 1.0
 DEFAULT_TOLERANCE_S = 0.5
 
-MODES = ("A", "B", "AB")
+MODES = ("A", "B", "D", "AB", "ABD")
 MODE_LABELS = {
     "A": "A (frames)",
     "B": "B (objects)",
+    "D": "D (speech)",
     "AB": "A+B (RRF)",
+    "ABD": "A+B+D (routed)",
 }
 
 _CAUSE_BY_TYPE = {
-    "speech": "speech layer not implemented (P5)",
+    "speech": "speech retrieval or transcript miss (P5)",
     "ocr": "OCR layer not implemented (P6)",
     "object": "object crop missed the target instance (P3)",
     "spatial": "no spatial reasoning beyond object boxes",
@@ -83,7 +92,12 @@ def build_parser() -> argparse.ArgumentParser:
         "--mode",
         default="A",
         choices=MODES,
-        help="A=frames, B=objects, AB=RRF fusion",
+        help="A=frames, B=objects, D=speech, AB/ABD=RRF fusion",
+    )
+    parser.add_argument(
+        "--types",
+        default=None,
+        help="comma-separated query types to score, e.g. speech or object,spatial",
     )
     parser.add_argument("--out", default=None)
     parser.add_argument("--markdown", default=None)
@@ -230,6 +244,20 @@ def summarize(results: list[dict[str, Any]]) -> dict[str, Any]:
 # ---------------------------------------------------------------------------
 
 
+def _segment_previews(segments: list[dict[str, Any]], count: int) -> list[dict[str, Any]]:
+    return [
+        {
+            "timestamp": float(segment["peak_timestamp"]),
+            "start": float(segment["start"]),
+            "end": float(segment["end"]),
+            "score": float(segment["score"]),
+            "path": segment.get("peak_path"),
+            "layers": segment.get("layers", []),
+        }
+        for segment in segments[:count]
+    ]
+
+
 def rank_frames(
     index: Any,
     records: list[dict[str, Any]],
@@ -301,30 +329,53 @@ def build_gallery(
     max_items: int,
 ) -> Path | None:
     tiles = []
+    tile_width, tile_height = 320, 180
     for failure in failures[:max_items]:
-        if not failure.get("predicted_path"):
-            continue
-        image = cv2.imread(str(config.resolve(failure["predicted_path"])), cv2.IMREAD_COLOR)
-        if image is None:
-            continue
-        tile_width, tile_height = 320, 180
-        scale = min(tile_width / image.shape[1], tile_height / image.shape[0])
-        resized = cv2.resize(
-            image,
-            (max(1, int(image.shape[1] * scale)), max(1, int(image.shape[0] * scale))),
-            interpolation=cv2.INTER_AREA,
-        )
-        tile = np.zeros((tile_height + 58, tile_width, 3), dtype=np.uint8)
-        offset_x = (tile_width - resized.shape[1]) // 2
-        offset_y = (tile_height - resized.shape[0]) // 2
-        tile[offset_y : offset_y + resized.shape[0], offset_x : offset_x + resized.shape[1]] = resized
+        image = None
+        if failure.get("predicted_path"):
+            image = cv2.imread(
+                str(config.resolve(failure["predicted_path"])), cv2.IMREAD_COLOR
+            )
+        tile = np.zeros((tile_height + 74, tile_width, 3), dtype=np.uint8)
+        if image is not None:
+            scale = min(tile_width / image.shape[1], tile_height / image.shape[0])
+            resized = cv2.resize(
+                image,
+                (
+                    max(1, int(image.shape[1] * scale)),
+                    max(1, int(image.shape[0] * scale)),
+                ),
+                interpolation=cv2.INTER_AREA,
+            )
+            offset_x = (tile_width - resized.shape[1]) // 2
+            offset_y = (tile_height - resized.shape[0]) // 2
+            tile[
+                offset_y : offset_y + resized.shape[0],
+                offset_x : offset_x + resized.shape[1],
+            ] = resized
+        else:
+            tile[:tile_height] = (30, 30, 30)
+            cv2.putText(
+                tile,
+                "no frame thumbnail",
+                (8, 22),
+                cv2.FONT_HERSHEY_SIMPLEX,
+                0.45,
+                (170, 170, 170),
+                1,
+                cv2.LINE_AA,
+            )
 
         gt = failure["intervals"][0]
+        peak = failure.get("top1_timestamp")
+        peak_text = f"{peak:.1f}s" if peak is not None else "n/a"
         lines = [
             failure["query"][:44],
-            f"peak {failure['top1_timestamp']:.1f}s | GT {gt[0]:.1f}-{gt[1]:.1f}s",
+            f"peak {peak_text} | GT {gt[0]:.1f}-{gt[1]:.1f}s",
             failure["cause"][:52],
         ]
+        if failure.get("predicted_text"):
+            lines.append(str(failure["predicted_text"])[:50])
         for row, text in enumerate(lines):
             cv2.putText(
                 tile,
@@ -368,6 +419,7 @@ def write_markdown(path: Path, payload: dict[str, Any]) -> None:
         "| Metric | Value |",
         "|---|---|",
         f"| Recall@1 | {aggregate['recall@1']:.3f} |",
+        f"| Recall@3 | {aggregate['recall@3']:.3f} |",
         f"| Recall@5 | {aggregate['recall@5']:.3f} |",
         f"| Recall@10 | {aggregate['recall@10']:.3f} |",
         f"| mIoU (segments) | {aggregate['miou']:.3f} |",
@@ -378,13 +430,14 @@ def write_markdown(path: Path, payload: dict[str, Any]) -> None:
         "",
         "## Per query type",
         "",
-        "| Type | Queries | R@1 | R@5 | R@10 | mIoU | Dup raw | Dup merged |",
-        "|---|---|---|---|---|---|---|---|",
+        "| Type | Queries | R@1 | R@3 | R@5 | R@10 | mIoU | Dup raw | Dup merged |",
+        "|---|---|---|---|---|---|---|---|---|",
     ]
     for query_type, summary in sorted(payload["per_type"].items()):
         lines.append(
             f"| {query_type} | {summary['queries']} | {summary['recall@1']:.3f} | "
-            f"{summary['recall@5']:.3f} | {summary['recall@10']:.3f} | {summary['miou']:.3f} | "
+            f"{summary['recall@3']:.3f} | {summary['recall@5']:.3f} | "
+            f"{summary['recall@10']:.3f} | {summary['miou']:.3f} | "
             f"{summary['duplicate_raw']:.3f} | {summary['duplicate_segment']:.3f} |"
         )
     lines.extend(
@@ -428,7 +481,9 @@ def main(argv: list[str] | None = None) -> int:
     defaults = {
         "A": (f"benchmarks/results/{prefix}baseline.json", f"benchmarks/results/{prefix}baseline.md", f"benchmarks/failures/{prefix}a" if heldout else "benchmarks/failures"),
         "B": (f"benchmarks/results/{prefix}objects.json", f"benchmarks/results/{prefix}objects.md", f"benchmarks/failures/{prefix}b" if heldout else "benchmarks/failures/objects"),
+        "D": (f"benchmarks/results/{prefix}speech.json", f"benchmarks/results/{prefix}speech.md", f"benchmarks/failures/{prefix}d" if heldout else "benchmarks/failures/speech"),
         "AB": (f"benchmarks/results/{prefix}ab.json", f"benchmarks/results/{prefix}ab.md", f"benchmarks/failures/{prefix}ab" if heldout else "benchmarks/failures/ab"),
+        "ABD": (f"benchmarks/results/{prefix}abd.json", f"benchmarks/results/{prefix}abd.md", f"benchmarks/failures/{prefix}abd" if heldout else "benchmarks/failures/abd"),
     }[mode]
     out_path = config.resolve(args.out or defaults[0])
     markdown_path = config.resolve(args.markdown or defaults[1])
@@ -442,31 +497,70 @@ def main(argv: list[str] | None = None) -> int:
         print(f"error: {exc}", file=sys.stderr)
         return 2
     groups = group_queries(rows)
+    if args.types:
+        wanted = {value.strip().lower() for value in args.types.split(",") if value.strip()}
+        groups = [group for group in groups if group["type"] in wanted]
+        if not groups:
+            print(
+                f"error: no queries left after --types {args.types!r}",
+                file=sys.stderr,
+            )
+            return 2
+        _LOG.info(
+            "filtered to %d queries of type %s",
+            len(groups),
+            ", ".join(sorted(wanted)),
+        )
     if args.top_k < max(METRIC_KS):
         print(f"error: --top-k must be at least {max(METRIC_KS)}", file=sys.stderr)
         return 2
 
     video_ids = sorted({group["video_id"] for group in groups})
-    device = resolve_device(args.device or config.get("frames.device", "auto"))
-    model_name = str(config.get("frames.model"))
+    need_siglip = mode in ("A", "B", "AB", "ABD")
+    need_speech = mode in ("D", "ABD")
 
-    _LOG.info("mode %s: loading %s on %s", mode, model_name, device)
-    processor, model = load_siglip(model_name, device)
+    device = resolve_device(args.device or config.get("frames.device", "auto"))
+    siglip_model = str(config.get("frames.model"))
+    text_model_name = str(
+        config.get("text.embedding_model") or DEFAULT_TEXT_MODEL
+    )
+    text_device = resolve_device(args.device or config.get("text.device", "auto"))
+    model_name = siglip_model if need_siglip else text_model_name
+
+    processor = None
+    model = None
+    if need_siglip:
+        _LOG.info("mode %s: loading %s on %s", mode, siglip_model, device)
+        processor, model = load_siglip(siglip_model, device)
+
+    text_encoder = None
+    if need_speech:
+        _LOG.info("mode %s: loading %s on %s", mode, text_model_name, text_device)
+        text_encoder = load_text_encoder(text_model_name, text_device)
 
     frame_indexes: dict[str, tuple[Any, dict[str, Any]]] = {}
     object_indexes: dict[str, tuple[Any, dict[str, Any]]] = {}
-    if mode in ("A", "AB"):
+    speech_indexes: dict[str, tuple[Any, dict[str, Any]]] = {}
+    if mode in ("A", "AB", "ABD"):
         for video_id in video_ids:
             frame_indexes[video_id] = load_frame_index(config, video_id)
-    if mode in ("B", "AB"):
+    if mode in ("B", "AB", "ABD"):
         for video_id in video_ids:
             try:
                 object_indexes[video_id] = load_object_index(config, video_id)
             except store.StoreError as exc:
                 _LOG.warning("no object index for %s: %s", video_id, exc)
                 object_indexes[video_id] = (None, {"records": [], "empty": True})
+    if need_speech:
+        for video_id in video_ids:
+            try:
+                speech_indexes[video_id] = load_speech_index(config, video_id)
+            except store.StoreError as exc:
+                _LOG.warning("no speech index for %s: %s", video_id, exc)
+                speech_indexes[video_id] = (None, {"records": [], "empty": True})
 
-    embed_texts(["warmup"], processor, model, device=device)
+    if need_siglip and processor is not None and model is not None:
+        embed_texts(["warmup"], processor, model, device=device)
 
     gap_s = float(config.get("search.merge_gap_s", 3.0))
     min_segment_s = float(config.get("search.min_segment_s", 1.0))
@@ -475,21 +569,30 @@ def main(argv: list[str] | None = None) -> int:
     weights = {
         "frame": float(config.get("search.weights.frame", 1.0)),
         "object": float(config.get("search.weights.object", 1.0)),
+        "speech": float(config.get("search.weights.speech", 1.2)),
     }
+    use_bm25 = bool(config.get("text.use_bm25", True))
+    text_batch_size = int(config.get("text.batch_size", 32))
+    text_query_prefix = bool(config.get("text.query_prefix", True))
+    route_speech = bool(config.get("search.route_speech", True))
 
     results: list[dict[str, Any]] = []
     for number, group in enumerate(groups, start=1):
         query_started = time.perf_counter()
-        vector = embed_texts([group["query"]], processor, model, device=device)[0]
+        vector = None
+        if need_siglip and processor is not None and model is not None:
+            vector = embed_texts([group["query"]], processor, model, device=device)[0]
 
         frame_hits: list[dict[str, Any]] = []
         object_hits: list[dict[str, Any]] = []
-        if mode in ("A", "AB"):
+        speech_hits: list[dict[str, Any]] = []
+
+        if mode in ("A", "AB", "ABD"):
             index, sidecar = frame_indexes[group["video_id"]]
             frame_hits = rank_frames(
                 index, sidecar["records"], vector, group["video_id"], args.candidates
             )
-        if mode in ("B", "AB"):
+        if mode in ("B", "AB", "ABD"):
             index, sidecar = object_indexes[group["video_id"]]
             _, class_constraints, night = parse_object_query(group["query"])
             use_objects = mode == "B" or (
@@ -506,22 +609,71 @@ def main(argv: list[str] | None = None) -> int:
                     group["video_id"],
                     args.candidates,
                 )
+        if need_speech:
+            use_speech = mode == "D" or group["type"] == "speech"
+            if use_speech and text_encoder is not None:
+                text_vector = encode_texts(
+                    [group["query"]],
+                    text_encoder,
+                    batch_size=text_batch_size,
+                    query=True,
+                    query_prefix=text_query_prefix,
+                )[0]
+                index, sidecar = speech_indexes[group["video_id"]]
+                if index is not None and int(index.ntotal) > 0:
+                    scores, positions = store.search(
+                        index, text_vector, int(index.ntotal)
+                    )
+                    speech_hits = rank_speech_hits(
+                        sidecar.get("records") or [],
+                        scores,
+                        positions,
+                        group["query"],
+                        video_id=group["video_id"],
+                        use_bm25=use_bm25,
+                        rrf_k=rrf_k,
+                    )[: args.candidates]
 
         if mode == "A":
             raw = frame_hits
         elif mode == "B":
             raw = object_hits
-        elif object_hits:
-            raw = reciprocal_rank_fusion(
-                {"frame": frame_hits, "object": object_hits},
-                k=rrf_k,
-                weights=weights,
-                window_s=rrf_window_s,
-                max_per_layer=args.candidates,
-            )
-        else:
-            # No object candidates for this query: fall back to the frame ranking.
-            raw = frame_hits
+        elif mode == "D":
+            raw = speech_hits
+        elif mode == "AB":
+            if object_hits:
+                raw = reciprocal_rank_fusion(
+                    {"frame": frame_hits, "object": object_hits},
+                    k=rrf_k,
+                    weights=weights,
+                    window_s=rrf_window_s,
+                    max_per_layer=args.candidates,
+                )
+            else:
+                # No object candidates for this query: fall back to frames.
+                raw = frame_hits
+        else:  # ABD
+            if speech_hits and route_speech:
+                # Frame hits saturate the transcript timeline, so RRF would let
+                # a strong visual cluster outrank the correct spoken passage.
+                # Speech queries are routed to Layer D; other queries fuse.
+                raw = speech_hits
+            else:
+                rankings: dict[str, list[dict[str, Any]]] = {"frame": frame_hits}
+                if object_hits:
+                    rankings["object"] = object_hits
+                if speech_hits:
+                    rankings["speech"] = speech_hits
+                if len(rankings) > 1:
+                    raw = reciprocal_rank_fusion(
+                        rankings,
+                        k=rrf_k,
+                        weights=weights,
+                        window_s=rrf_window_s,
+                        max_per_layer=args.candidates,
+                    )
+                else:
+                    raw = frame_hits
 
         raw = list(raw)
         segments = merge_hits(
@@ -550,6 +702,8 @@ def main(argv: list[str] | None = None) -> int:
                     "top1_timestamp": None,
                     "top1_score": 0.0,
                     "predicted_path": None,
+                    "predicted_text": None,
+                    "top3": [],
                     "top5": [],
                 }
             )
@@ -590,17 +744,9 @@ def main(argv: list[str] | None = None) -> int:
                 "top1_timestamp": float(top1["peak_timestamp"]),
                 "top1_score": float(top1["score"]),
                 "predicted_path": top1.get("peak_path"),
-                "top5": [
-                    {
-                        "timestamp": float(segment["peak_timestamp"]),
-                        "start": float(segment["start"]),
-                        "end": float(segment["end"]),
-                        "score": float(segment["score"]),
-                        "path": segment.get("peak_path"),
-                        "layers": segment.get("layers", []),
-                    }
-                    for segment in segments[:5]
-                ],
+                "predicted_text": (top1.get("evidence") or {}).get("text"),
+                "top3": _segment_previews(segments, 3),
+                "top5": _segment_previews(segments, 5),
             }
         )
         top1_mark = "HIT" if hits[1] else "miss"
@@ -642,24 +788,37 @@ def main(argv: list[str] | None = None) -> int:
                 "top1_timestamp": result["top1_timestamp"],
                 "top1_score": result["top1_score"],
                 "predicted_path": result["predicted_path"],
+                "predicted_text": result.get("predicted_text"),
                 "cause": cause,
             }
         )
 
     payload = {
-        "schema_version": 2,
+        "schema_version": 3,
         "generated_at": datetime.now(timezone.utc).isoformat(timespec="seconds"),
         "mode": mode,
         "config": MODE_LABELS[mode],
         "model": model_name,
-        "device": device,
+        "text_model": text_model_name if need_speech else None,
+        "device": device if need_siglip else text_device,
         "queries_file": store.relative_path(queries_path, config.repo_root),
         "queries_sha256": sha256_file(queries_path),
         "query_count": len(results),
         "temporal": {"gap_s": gap_s, "min_segment_s": min_segment_s},
         "fusion": (
-            {"k": rrf_k, "weights": weights, "window_s": rrf_window_s}
-            if mode == "AB"
+            {
+                "k": rrf_k,
+                "weights": weights,
+                "window_s": rrf_window_s,
+                "speech_gated_to_speech_queries": mode == "ABD",
+                "speech_routed_to_layer_d": mode == "ABD" and route_speech,
+            }
+            if mode in ("AB", "ABD")
+            else None
+        ),
+        "text": (
+            {"model": text_model_name, "use_bm25": use_bm25}
+            if need_speech
             else None
         ),
         "aggregate": summarize(results),
@@ -673,13 +832,19 @@ def main(argv: list[str] | None = None) -> int:
     write_markdown(markdown_path, payload)
 
     gallery_path = None
-    if not args.no_gallery and failures:
-        gallery_path = build_gallery(failures, config, failures_dir, args.max_failures)
-        if gallery_path is not None:
-            store.write_json(
-                failures_dir / "failures.json",
-                {"generated_at": payload["generated_at"], "items": failures[: args.max_failures]},
+    if failures:
+        if not args.no_gallery:
+            gallery_path = build_gallery(
+                failures, config, failures_dir, args.max_failures
             )
+        store.write_json(
+            failures_dir / "failures.json",
+            {
+                "generated_at": payload["generated_at"],
+                "items": failures[: args.max_failures],
+            },
+        )
+        if gallery_path is not None:
             _LOG.info("failure gallery: %s", gallery_path)
 
     elapsed = time.perf_counter() - started
@@ -688,6 +853,7 @@ def main(argv: list[str] | None = None) -> int:
     print(f"  {MODE_LABELS[mode]} — segments")
     print(f"  Queries          : {aggregate['queries']}")
     print(f"  Recall@1         : {aggregate['recall@1']:.3f}")
+    print(f"  Recall@3         : {aggregate['recall@3']:.3f}")
     print(f"  Recall@5         : {aggregate['recall@5']:.3f}")
     print(f"  Recall@10        : {aggregate['recall@10']:.3f}")
     print(f"  mIoU (segments)  : {aggregate['miou']:.3f}")
