@@ -25,6 +25,7 @@ Results are returned as time segments with a source badge, so you can see **why*
 ## Requirements
 
 - **Python 3.10+**
+- **Gradio 6.31+** (installed by `requirements.txt`; the UI mounts its theme and CSS through Gradio 6)
 - **FFmpeg** on `PATH` (required for audio and video decoding)
 - **GPU recommended** (tested target: NVIDIA RTX 3060 12 GB). CPU works but indexing is much slower.
 - **Disk:** model weights several GB on first run; roughly 50–400 MB per hour of indexed video depending on thumbnail settings.
@@ -227,6 +228,10 @@ The public number uses **50 Charades-STA test videos and 399 queries**, selected
 | Any overlap | 0.692 |
 
 This is a frame-retrieval baseline, not a trained temporal-grounding model. The project's 1-second segment policy is too narrow for 30-second Charades clips (R@1 IoU 0.5 = 0.008); the fixed-window protocol is reported explicitly in `benchmarks/public/results/`. Reproduce with `scripts/prepare_charades_sta.py`, `scripts/index_public.py`, and `scripts/evaluate_public.py`.
+
+Benchmark clips stay under `data/public/` and are hidden from the interactive
+video picker and from *All videos* searches; use the evaluation scripts or
+`/search?video_id=<ID>` to query them.
 
 ## Optional VLM reranker
 

@@ -177,6 +177,7 @@ def search(
     device: Optional[str] = None,
     use_bm25: Optional[bool] = None,
     adaptive: bool = True,
+    only_selectable: bool = False,
 ) -> dict[str, Any]:
     """Run a UI search and return ranked, enriched segments."""
     text = query.strip()
@@ -197,6 +198,12 @@ def search(
     else:
         layer_keys = [LAYER_KEY.get(str(item), str(item)) for item in requested]
 
+    allowed_video_ids: Optional[set[str]] = None
+    if only_selectable and video_id is None:
+        allowed_video_ids = {
+            str(item["video_id"]) for item in selectable_videos(config)
+        }
+
     hits_by_layer: dict[str, list[dict[str, Any]]] = {}
     for layer_key in layer_keys:
         hits = _search_layer(
@@ -208,6 +215,7 @@ def search(
             device=device,
             use_bm25=use_bm25,
         )
+        hits = _restrict_to_videos(hits, allowed_video_ids)
         if hits:
             hits_by_layer[layer_key] = hits
 
@@ -409,6 +417,17 @@ def segment_relevance(segment: dict[str, Any], config: Config) -> float:
             evidence.get("dense_score"), evidence.get("bm25_score"), config
         )
     return 0.0
+
+
+def _restrict_to_videos(
+    hits: list[dict[str, Any]], allowed: Optional[set[str]]
+) -> list[dict[str, Any]]:
+    """Drop hits whose video is outside the allowed set."""
+    if allowed is None:
+        return hits
+    return [
+        hit for hit in hits if str(hit.get("video_id")) in allowed
+    ]
 
 
 def select_adaptive(

@@ -43,5 +43,5 @@ ffmpeg-python>=0.2
 # API and UI
 fastapi>=0.115
 uvicorn[standard]>=0.30
-gradio>=4.44
+gradio>=6.31,<7      # mount_gradio_app(theme=..., css=...) requires Gradio 6
 python-multipart>=0.0.9

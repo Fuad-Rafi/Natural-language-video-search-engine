@@ -14,7 +14,7 @@ import gradio as gr
 from src.api.jobs import get_config, get_job, start_job
 from src.search import service
 
-ALL_VIDEOS = "All indexed videos"
+ALL_VIDEOS = "All videos"
 LAYERS = [
     ("Auto (route by query)", "auto"),
     ("All layers (RRF)", "all"),
@@ -138,6 +138,20 @@ footer { display: none !important; }
   letter-spacing: 0.06em;
   text-transform: uppercase;
 }
+#vs-max .wrap { gap: 6px; }
+#vs-max label {
+  padding: 6px 14px !important;
+  border: 1px solid #e2e8f0 !important;
+  border-radius: 8px !important;
+  text-transform: none;
+  letter-spacing: 0;
+}
+#vs-max label.selected {
+  border-color: transparent !important;
+  background: #4f46e5 !important;
+}
+#vs-max label.selected span { color: #ffffff !important; }
+#vs-max label:not(.selected) span { color: #475569 !important; }
 #vs-refresh {
   border-radius: 11px !important;
   color: #475569 !important;
@@ -426,6 +440,7 @@ def run_search(
             layers=layer or "auto",
             top_k=int(max_results or DEFAULT_MAX_RESULTS),
             adaptive=bool(config.get("search.adaptive", True)),
+            only_selectable=True,
         )
     except Exception as exc:  # noqa: BLE001 - UI boundary
         return (

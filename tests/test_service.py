@@ -5,10 +5,13 @@ from __future__ import annotations
 import tempfile
 import unittest
 from pathlib import Path
+from unittest.mock import patch
 
 from src.config import Config, load_config
+from src.search import service
 from src.search.service import (
     _nearest_frame_path,
+    _restrict_to_videos,
     infer_layers,
     is_selectable_source,
     segment_relevance,
@@ -102,6 +105,56 @@ class SelectableVideoTests(unittest.TestCase):
         ]
         selected = selectable_videos(self.config, videos)
         self.assertEqual([item["video_id"] for item in selected], ["good"])
+
+
+class SearchScopeTests(unittest.TestCase):
+    def test_restrict_hits_to_allowed_videos(self) -> None:
+        hits = [
+            {"video_id": "visible"},
+            {"video_id": "hidden"},
+            {"video_id": None},
+        ]
+        self.assertEqual(
+            _restrict_to_videos(hits, {"visible"}),
+            [{"video_id": "visible"}],
+        )
+        self.assertEqual(_restrict_to_videos(hits, None), hits)
+
+    def test_only_selectable_drops_hidden_hits(self) -> None:
+        config = load_config()
+        layer_hits = [
+            {
+                "video_id": "visible",
+                "layer": "frame",
+                "score": 0.12,
+                "timestamp": 1.0,
+                "start": 1.0,
+                "end": 2.0,
+                "path": "data/frames/visible/000001.jpg",
+            },
+            {
+                "video_id": "hidden",
+                "layer": "frame",
+                "score": 0.50,
+                "timestamp": 1.0,
+                "start": 1.0,
+                "end": 2.0,
+                "path": "data/frames/hidden/000001.jpg",
+            },
+        ]
+        with patch.object(
+            service,
+            "selectable_videos",
+            return_value=[{"video_id": "visible"}],
+        ), patch.object(service, "_search_layer", return_value=layer_hits):
+            payload = service.search(
+                "test", config, layers="frames", top_k=5, only_selectable=True
+            )
+        self.assertEqual(payload["videos"], ["visible"])
+        self.assertEqual(
+            [segment["video_id"] for segment in payload["segments"]],
+            ["visible"],
+        )
 
 
 class AdaptiveResultTests(unittest.TestCase):
