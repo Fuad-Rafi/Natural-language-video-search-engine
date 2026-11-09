@@ -26,6 +26,23 @@ DEFAULT_QUERY_PREFIX = "Represent this sentence for searching relevant passages:
 
 _TOKEN = re.compile(r"[a-z0-9]+")
 _CAMEL = re.compile(r"(?<=[a-z])(?=[A-Z][a-z])")
+_NORMALIZE = re.compile(r"[^a-z0-9]+")
+
+
+def normalize_text(text: str) -> str:
+    """Lowercase and strip punctuation for similarity comparisons."""
+    return _NORMALIZE.sub(" ", str(text or "").lower()).strip()
+
+
+def text_similarity(first: str, second: str) -> float:
+    """Return a 0–1 similarity between two short texts."""
+    from rapidfuzz import fuzz
+
+    left = normalize_text(first)
+    right = normalize_text(second)
+    if not left or not right:
+        return 0.0
+    return float(fuzz.ratio(left, right)) / 100.0
 
 
 def tokenize(text: str) -> list[str]:

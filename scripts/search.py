@@ -22,6 +22,7 @@ if str(REPO_ROOT) not in sys.path:
 from src.config import ConfigError, load_config  # noqa: E402
 from src.search.query import (  # noqa: E402
     find_video_id,
+    search_caption,
     search_frames,
     search_objects,
     search_ocr,
@@ -41,7 +42,7 @@ def build_parser() -> argparse.ArgumentParser:
     parser.add_argument(
         "--layer",
         default="frames",
-        choices=["frames", "objects", "speech", "ocr"],
+        choices=["frames", "objects", "speech", "ocr", "caption"],
         help="retrieval layer to query (default: frames)",
     )
     parser.add_argument("--top-k", type=int, default=None, help="number of results")
@@ -79,6 +80,7 @@ def main(argv: list[str] | None = None) -> int:
         "objects": search_objects,
         "speech": search_speech,
         "ocr": search_ocr,
+        "caption": search_caption,
     }[args.layer]
     try:
         payload = search(
@@ -113,8 +115,12 @@ def main(argv: list[str] | None = None) -> int:
                 f"  {rank:>3}  {format_timestamp(result['timestamp']):>9}  "
                 f"{result['score']:>7.4f}  {str(result.get('class_name')):<12}  {result['path']}"
             )
-    elif payload["layer"] in ("speech", "ocr"):
-        label = "Transcript" if payload["layer"] == "speech" else "On-screen text"
+    elif payload["layer"] in ("speech", "ocr", "caption"):
+        label = {
+            "speech": "Transcript",
+            "ocr": "On-screen text",
+            "caption": "Caption",
+        }[payload["layer"]]
         print(f"  {'#':>3}  {'Time':>9}  {'Score':>7}  {label}")
         for rank, result in enumerate(payload["results"], start=1):
             text = str(result.get("text") or "").replace("\n", " ")[:100]

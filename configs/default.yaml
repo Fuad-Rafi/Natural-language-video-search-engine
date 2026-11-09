@@ -30,10 +30,16 @@ objects:
   device: auto
 
 captions:
-  enabled: false
-  model: Qwen/Qwen2.5-VL-3B-Instruct
-  load_in_4bit: true
+  enabled: true
+  backend: blip             # blip | qwen
+  model: Salesforce/blip-image-captioning-base
+  qwen_model: Qwen/Qwen2.5-VL-3B-Instruct
+  rerank_enabled: false
+  keyframe_interval_s: 5.0
   max_keyframes: 300
+  dedupe_similarity: 0.9
+  max_gap_s: 10.0
+  device: auto
 
 speech:
   enabled: true
@@ -81,6 +87,7 @@ search:
   min_segment_s: 1.0
   route_speech: true       # speech queries use the transcript layer, not RRF
   route_ocr: false         # fuse frames + OCR for OCR queries (visual context helps)
+  route_caption: false     # fuse frames + captions for action/caption queries
   rerank_top_n: 3
   weights:
     frame: 1.0

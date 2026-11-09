@@ -116,6 +116,7 @@ PyYAML==6.0.2
 rank-bm25==0.2.2
 RapidFuzz==3.14.5
 regex==2026.9.29
+remotezip==0.12.6
 requests==2.34.2
 rich==15.0.0
 ruamel.yaml==0.19.1

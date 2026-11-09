@@ -13,19 +13,23 @@ from __future__ import annotations
 
 import json
 import os
-import re
 from datetime import datetime, timezone
 from pathlib import Path
 from typing import Any, Optional
 
 import cv2
 import numpy as np
-from rapidfuzz import fuzz
 
 from src.config import Config
 from src.index import store
 from src.index.frames import resolve_device
-from src.index.text import DEFAULT_TEXT_MODEL, encode_texts, load_text_encoder
+from src.index.text import (
+    DEFAULT_TEXT_MODEL,
+    encode_texts,
+    load_text_encoder,
+    normalize_text,
+    text_similarity,
+)
 from src.utils.logging import StageTimer, get_logger
 
 try:  # progress bars are optional
@@ -42,9 +46,6 @@ DEFAULT_MAX_INTERVAL_S = 5.0
 DEFAULT_MAX_GAP_S = 8.0
 DEFAULT_DEDUPE_SIMILARITY = 0.9
 DEFAULT_MIN_CONFIDENCE = 0.5
-
-_NORMALIZE = re.compile(r"[^a-z0-9]+")
-
 
 # ---------------------------------------------------------------------------
 # Paths
@@ -80,16 +81,7 @@ def _read_metadata(config: Config, video_id: str) -> dict[str, Any]:
 
 def normalize_ocr_text(text: str) -> str:
     """Lowercase and strip punctuation so OCR noise does not defeat dedupe."""
-    return _NORMALIZE.sub(" ", str(text or "").lower()).strip()
-
-
-def text_similarity(first: str, second: str) -> float:
-    """Return a 0–1 similarity between two OCR texts."""
-    left = normalize_ocr_text(first)
-    right = normalize_ocr_text(second)
-    if not left or not right:
-        return 0.0
-    return float(fuzz.ratio(left, right)) / 100.0
+    return normalize_text(text)
 
 
 # ---------------------------------------------------------------------------

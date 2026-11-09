@@ -24,6 +24,9 @@ gallery is written to `failures/heldout_a/`.
 - **OCR slide failures** often come from repeated titles (many slides say
   "essay 2 introduction") or handwritten chalkboards; unique screen/UI text
   ranks correctly (`failures/ocr/`).
+- **Caption failures** come from generic BLIP captions ("a man is sitting") and
+  from frames already answering the query; captions are kept standalone
+  (`failures/captions/`).
 - **Night scenes** are hard: taillights and low brightness dominate colour and
   object cues.
 

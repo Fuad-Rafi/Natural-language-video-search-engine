@@ -1,0 +1,74 @@
+{
+  "schema_version": 1,
+  "generated_at": "2026-11-09T07:16:23+00:00",
+  "model": "Qwen/Qwen2.5-VL-3B-Instruct",
+  "queries": 5,
+  "top_n": 3,
+  "latency_p50_ms": 1398.7,
+  "latency_mean_ms": 1668.6,
+  "latency_p95_ms": 2247.3,
+  "yes_rate": 0.733,
+  "elapsed_s": 8.3,
+  "items": [
+    {
+      "query_id": "q006",
+      "query": "the slide titled essay introductions",
+      "flags": [
+        true,
+        true,
+        true
+      ],
+      "latency_ms": 1341.5,
+      "top1_before": 133.133,
+      "top1_after": 133.133
+    },
+    {
+      "query_id": "q007",
+      "query": "the slide that says our goal present the topic",
+      "flags": [
+        false,
+        false,
+        false
+      ],
+      "latency_ms": 1334.6,
+      "top1_before": 399.399,
+      "top1_after": 399.399
+    },
+    {
+      "query_id": "q008",
+      "query": "the ultimate IELTS playbook",
+      "flags": [
+        true,
+        true,
+        true
+      ],
+      "latency_ms": 1398.7,
+      "top1_before": 334.334,
+      "top1_after": 334.334
+    },
+    {
+      "query_id": "q013",
+      "query": "the chalkboard says 6.006 lecture 1",
+      "flags": [
+        true,
+        true,
+        false
+      ],
+      "latency_ms": 2247.3,
+      "top1_before": 1.0,
+      "top1_after": 1.0
+    },
+    {
+      "query_id": "q014",
+      "query": "the chalkboard heading correctness",
+      "flags": [
+        true,
+        true,
+        true
+      ],
+      "latency_ms": 2020.8,
+      "top1_before": 197.0,
+      "top1_after": 197.0
+    }
+  ]
+}

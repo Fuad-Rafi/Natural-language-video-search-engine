@@ -1,0 +1,344 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-09T07:17:11+00:00",
+  "mode": "C",
+  "config": "C (captions)",
+  "model": "BAAI/bge-small-en-v1.5",
+  "text_model": "BAAI/bge-small-en-v1.5",
+  "device": "cuda",
+  "queries_file": "benchmarks/heldout.csv",
+  "queries_sha256": "64b80d920204d73dae31c75341880a83c7f0b007d6dc27151c2b16da261b6868",
+  "query_count": 2,
+  "temporal": {
+    "gap_s": 3.0,
+    "min_segment_s": 1.0
+  },
+  "fusion": null,
+  "text": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "use_bm25": true
+  },
+  "aggregate": {
+    "queries": 2,
+    "recall@1": 0.0,
+    "recall@3": 0.5,
+    "recall@5": 0.5,
+    "recall@10": 0.5,
+    "miou": 0.0,
+    "r1_iou_0_5": 0.0,
+    "r1_iou_0_7": 0.0,
+    "latency_p50_ms": 61.75010005244985,
+    "latency_p95_ms": 1393.9695000299253,
+    "duplicate_raw": 0.0,
+    "duplicate_segment": 0.0
+  },
+  "per_type": {
+    "action": {
+      "queries": 1,
+      "recall@1": 0.0,
+      "recall@3": 0.0,
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "miou": 0.0,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 1393.9695000299253,
+      "latency_p95_ms": 1393.9695000299253,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "caption": {
+      "queries": 1,
+      "recall@1": 0.0,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.0,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 61.75010005244985,
+      "latency_p95_ms": 61.75010005244985,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_video": {
+    "indoor1": {
+      "queries": 2,
+      "recall@1": 0.0,
+      "recall@3": 0.5,
+      "recall@5": 0.5,
+      "recall@10": 0.5,
+      "miou": 0.0,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 61.75010005244985,
+      "latency_p95_ms": 1393.9695000299253,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_query": [
+    {
+      "query_id": "h012",
+      "video_id": "indoor1",
+      "query": "a man standing by a window",
+      "type": "action",
+      "notes": "cafe window",
+      "intervals": [
+        [
+          125.0,
+          140.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 1393.9695000299253,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 425.0,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": "data/frames/indoor1/000425.jpg",
+      "predicted_text": "a man is standing in front of a window",
+      "top3": [
+        {
+          "timestamp": 425.0,
+          "start": 425.0,
+          "end": 430.0,
+          "score": 0.03252247488101534,
+          "path": "data/frames/indoor1/000425.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 240.0,
+          "start": 240.0,
+          "end": 245.0,
+          "score": 0.0315136476426799,
+          "path": "data/frames/indoor1/000240.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 95.0,
+          "start": 95.0,
+          "end": 100.0,
+          "score": 0.03149801587301587,
+          "path": "data/frames/indoor1/000095.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 425.0,
+          "start": 425.0,
+          "end": 430.0,
+          "score": 0.03252247488101534,
+          "path": "data/frames/indoor1/000425.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 240.0,
+          "start": 240.0,
+          "end": 245.0,
+          "score": 0.0315136476426799,
+          "path": "data/frames/indoor1/000240.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 95.0,
+          "start": 95.0,
+          "end": 100.0,
+          "score": 0.03149801587301587,
+          "path": "data/frames/indoor1/000095.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 105.0,
+          "start": 105.0,
+          "end": 110.0,
+          "score": 0.03149801587301587,
+          "path": "data/frames/indoor1/000105.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 45.0,
+          "start": 45.0,
+          "end": 50.0,
+          "score": 0.030309988518943745,
+          "path": "data/frames/indoor1/000045.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h013",
+      "video_id": "indoor1",
+      "query": "a person watching television in a dark room",
+      "type": "caption",
+      "notes": "TV and candles",
+      "intervals": [
+        [
+          435.0,
+          450.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 61.75010005244985,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 335.0,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": "data/frames/indoor1/000335.jpg",
+      "predicted_text": "a person standing in a dark room with a light on",
+      "top3": [
+        {
+          "timestamp": 335.0,
+          "start": 335.0,
+          "end": 340.0,
+          "score": 0.03252247488101534,
+          "path": "data/frames/indoor1/000335.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 355.0,
+          "start": 355.0,
+          "end": 360.0,
+          "score": 0.032266458495966696,
+          "path": "data/frames/indoor1/000355.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 435.0,
+          "start": 435.0,
+          "end": 440.0,
+          "score": 0.03200204813108039,
+          "path": "data/frames/indoor1/000435.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 335.0,
+          "start": 335.0,
+          "end": 340.0,
+          "score": 0.03252247488101534,
+          "path": "data/frames/indoor1/000335.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 355.0,
+          "start": 355.0,
+          "end": 360.0,
+          "score": 0.032266458495966696,
+          "path": "data/frames/indoor1/000355.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 435.0,
+          "start": 435.0,
+          "end": 440.0,
+          "score": 0.03200204813108039,
+          "path": "data/frames/indoor1/000435.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 445.0,
+          "start": 445.0,
+          "end": 450.0,
+          "score": 0.031009615384615385,
+          "path": "data/frames/indoor1/000445.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 460.0,
+          "start": 460.0,
+          "end": 465.0,
+          "score": 0.031009615384615385,
+          "path": "data/frames/indoor1/000460.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ]
+    }
+  ],
+  "failures": {
+    "count": 2,
+    "items": [
+      {
+        "query_id": "h012",
+        "video_id": "indoor1",
+        "type": "action",
+        "query": "a man standing by a window",
+        "intervals": [
+          [
+            125.0,
+            140.0
+          ]
+        ],
+        "top1_timestamp": 425.0,
+        "top1_score": 0.03252247488101534,
+        "predicted_path": "data/frames/indoor1/000425.jpg",
+        "predicted_text": "a man is standing in front of a window",
+        "cause": "caption retrieval or caption miss (P7)"
+      },
+      {
+        "query_id": "h013",
+        "video_id": "indoor1",
+        "type": "caption",
+        "query": "a person watching television in a dark room",
+        "intervals": [
+          [
+            435.0,
+            450.0
+          ]
+        ],
+        "top1_timestamp": 335.0,
+        "top1_score": 0.03252247488101534,
+        "predicted_path": "data/frames/indoor1/000335.jpg",
+        "predicted_text": "a person standing in a dark room with a light on",
+        "cause": "caption retrieval or caption miss (P7)"
+      }
+    ]
+  }
+}

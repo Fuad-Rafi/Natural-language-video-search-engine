@@ -105,6 +105,10 @@ class Config:
         return self.data_dir / "ocr"
 
     @property
+    def captions_dir(self) -> Path:
+        return self.data_dir / "captions"
+
+    @property
     def indexes_dir(self) -> Path:
         return self.data_dir / "indexes"
 

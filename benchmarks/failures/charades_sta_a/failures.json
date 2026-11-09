@@ -1,0 +1,90 @@
+{
+  "generated_at": "2026-11-09T07:11:54+00:00",
+  "items": [
+    {
+      "query_id": "charades_0298",
+      "video_id": "QMHK8",
+      "type": "action",
+      "query": "person walks into room holding a bag.",
+      "intervals": [
+        [
+          0.0,
+          16.7
+        ]
+      ],
+      "top1_timestamp": 43.663472,
+      "top1_score": 0.13483792543411255,
+      "predicted_path": "data/frames/QMHK8/000041.jpg",
+      "predicted_text": null,
+      "cause": "caption retrieval or caption miss (P7)"
+    },
+    {
+      "query_id": "charades_0299",
+      "video_id": "QMHK8",
+      "type": "action",
+      "query": "person closes the door behind them.",
+      "intervals": [
+        [
+          0.9,
+          14.1
+        ]
+      ],
+      "top1_timestamp": 52.183174,
+      "top1_score": 0.12866844236850739,
+      "predicted_path": "data/frames/QMHK8/000049.jpg",
+      "predicted_text": null,
+      "cause": "caption retrieval or caption miss (P7)"
+    },
+    {
+      "query_id": "charades_0300",
+      "video_id": "QMHK8",
+      "type": "action",
+      "query": "person closes the door.",
+      "intervals": [
+        [
+          0.9,
+          14.1
+        ]
+      ],
+      "top1_timestamp": 52.183174,
+      "top1_score": 0.1028941199183464,
+      "predicted_path": "data/frames/QMHK8/000049.jpg",
+      "predicted_text": null,
+      "cause": "caption retrieval or caption miss (P7)"
+    },
+    {
+      "query_id": "charades_0302",
+      "video_id": "QMHK8",
+      "type": "action",
+      "query": "this person puts their shoes.",
+      "intervals": [
+        [
+          17.1,
+          26.1
+        ]
+      ],
+      "top1_timestamp": 35.14377,
+      "top1_score": 0.08795442432165146,
+      "predicted_path": "data/frames/QMHK8/000033.jpg",
+      "predicted_text": null,
+      "cause": "caption retrieval or caption miss (P7)"
+    },
+    {
+      "query_id": "charades_0306",
+      "video_id": "QMHK8",
+      "type": "action",
+      "query": "person takes off sweater to put in bag.",
+      "intervals": [
+        [
+          39.5,
+          46.4
+        ]
+      ],
+      "top1_timestamp": 10.649627,
+      "top1_score": 0.14851398766040802,
+      "predicted_path": "data/frames/QMHK8/000010.jpg",
+      "predicted_text": null,
+      "cause": "caption retrieval or caption miss (P7)"
+    }
+  ]
+}

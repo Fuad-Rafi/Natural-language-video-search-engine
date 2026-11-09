@@ -34,6 +34,9 @@ faster-whisper>=1.0
 paddleocr>=2.8
 paddlepaddle>=2.6
 
+# Benchmark tooling
+remotezip>=0.12          # fetch selected Charades-STA videos via HTTP range requests
+
 # Media
 ffmpeg-python>=0.2
 

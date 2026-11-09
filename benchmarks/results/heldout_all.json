@@ -1,0 +1,2737 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-09T07:17:41+00:00",
+  "mode": "ALL",
+  "config": "A+B+D+E+C (routed)",
+  "model": "google/siglip-base-patch16-224",
+  "text_model": "BAAI/bge-small-en-v1.5",
+  "device": "cuda",
+  "queries_file": "benchmarks/heldout.csv",
+  "queries_sha256": "64b80d920204d73dae31c75341880a83c7f0b007d6dc27151c2b16da261b6868",
+  "query_count": 20,
+  "temporal": {
+    "gap_s": 3.0,
+    "min_segment_s": 1.0
+  },
+  "fusion": {
+    "k": 60,
+    "weights": {
+      "frame": 1.0,
+      "object": 1.0,
+      "speech": 1.2,
+      "ocr": 1.2,
+      "caption": 0.6
+    },
+    "window_s": 2.0,
+    "speech_gated_to_speech_queries": true,
+    "speech_routed_to_layer_d": true,
+    "ocr_gated_to_ocr_queries": true,
+    "ocr_routed_to_layer_e": false,
+    "caption_gated_to_caption_queries": true,
+    "caption_routed_to_layer_c": false
+  },
+  "text": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "use_bm25": true
+  },
+  "aggregate": {
+    "queries": 20,
+    "recall@1": 0.35,
+    "recall@3": 0.55,
+    "recall@5": 0.65,
+    "recall@10": 0.7,
+    "miou": 0.08395853406463871,
+    "r1_iou_0_5": 0.05,
+    "r1_iou_0_7": 0.0,
+    "latency_p50_ms": 27.910200005862862,
+    "latency_p95_ms": 338.7138999532908,
+    "duplicate_raw": 0.1,
+    "duplicate_segment": 0.0
+  },
+  "per_type": {
+    "action": {
+      "queries": 1,
+      "recall@1": 0.0,
+      "recall@3": 0.0,
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "miou": 0.0,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 36.745999997947365,
+      "latency_p95_ms": 36.745999997947365,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "caption": {
+      "queries": 1,
+      "recall@1": 0.0,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.0,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 29.931999975815415,
+      "latency_p95_ms": 29.931999975815415,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "object": {
+      "queries": 5,
+      "recall@1": 0.4,
+      "recall@3": 0.6,
+      "recall@5": 0.6,
+      "recall@10": 0.8,
+      "miou": 0.03538461538461539,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 19.445699988864362,
+      "latency_p95_ms": 38.15879998728633,
+      "duplicate_raw": 0.04,
+      "duplicate_segment": 0.0
+    },
+    "ocr": {
+      "queries": 4,
+      "recall@1": 0.25,
+      "recall@3": 0.5,
+      "recall@5": 0.75,
+      "recall@10": 0.75,
+      "miou": 0.008333333333333333,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 82.42400002200156,
+      "latency_p95_ms": 338.7138999532908,
+      "duplicate_raw": 0.025,
+      "duplicate_segment": 0.0
+    },
+    "speech": {
+      "queries": 4,
+      "recall@1": 0.75,
+      "recall@3": 0.75,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.3111061187794992,
+      "r1_iou_0_5": 0.25,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 81.96280000265688,
+      "latency_p95_ms": 1104.2170000146143,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "visual": {
+      "queries": 5,
+      "recall@1": 0.2,
+      "recall@3": 0.4,
+      "recall@5": 0.4,
+      "recall@10": 0.4,
+      "miou": 0.044897959183673466,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 10.56540000718087,
+      "latency_p95_ms": 12.723600026220083,
+      "duplicate_raw": 0.34,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_video": {
+    "dashcam": {
+      "queries": 3,
+      "recall@1": 0.0,
+      "recall@3": 0.3333333333333333,
+      "recall@5": 0.3333333333333333,
+      "recall@10": 0.3333333333333333,
+      "miou": 0.0,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 12.736100004985929,
+      "latency_p95_ms": 38.15879998728633,
+      "duplicate_raw": 0.03333333333333333,
+      "duplicate_segment": 0.0
+    },
+    "indoor1": {
+      "queries": 2,
+      "recall@1": 0.0,
+      "recall@3": 0.5,
+      "recall@5": 0.5,
+      "recall@10": 0.5,
+      "miou": 0.0,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 29.931999975815415,
+      "latency_p95_ms": 36.745999997947365,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "indoor2": {
+      "queries": 2,
+      "recall@1": 0.5,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.05,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 9.465000010095537,
+      "latency_p95_ms": 10.56540000718087,
+      "duplicate_raw": 0.4,
+      "duplicate_segment": 0.0
+    },
+    "lecture1": {
+      "queries": 3,
+      "recall@1": 0.6666666666666666,
+      "recall@3": 0.6666666666666666,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.07306347443333759,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 338.7138999532908,
+      "latency_p95_ms": 1104.2170000146143,
+      "duplicate_raw": 0.03333333333333333,
+      "duplicate_segment": 0.0
+    },
+    "lecture2": {
+      "queries": 3,
+      "recall@1": 0.6666666666666666,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.352855795050439,
+      "r1_iou_0_5": 0.3333333333333333,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 26.29269997123629,
+      "latency_p95_ms": 28.519899991806597,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "screen-recording": {
+      "queries": 2,
+      "recall@1": 0.0,
+      "recall@3": 0.0,
+      "recall@5": 0.5,
+      "recall@10": 0.5,
+      "miou": 0.0,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 27.910200005862862,
+      "latency_p95_ms": 82.42400002200156,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "streetcctv1": {
+      "queries": 3,
+      "recall@1": 0.6666666666666666,
+      "recall@3": 0.6666666666666666,
+      "recall@5": 0.6666666666666666,
+      "recall@10": 0.6666666666666666,
+      "miou": 0.10047095761381475,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 11.451800004579127,
+      "latency_p95_ms": 35.314899985678494,
+      "duplicate_raw": 0.2333333333333333,
+      "duplicate_segment": 0.0
+    },
+    "streetcctv2": {
+      "queries": 2,
+      "recall@1": 0.0,
+      "recall@3": 0.0,
+      "recall@5": 0.0,
+      "recall@10": 0.5,
+      "miou": 0.0,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 12.723600026220083,
+      "latency_p95_ms": 19.445699988864362,
+      "duplicate_raw": 0.15,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_query": [
+    {
+      "query_id": "h001",
+      "video_id": "lecture1",
+      "query": "where he plans ideas for the first body paragraph",
+      "type": "speech",
+      "notes": "body paragraph planning",
+      "intervals": [
+        [
+          379.0,
+          413.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.18585708996667946,
+      "latency_ms": 1104.2170000146143,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 358.98,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": null,
+      "predicted_text": "is to write an introduction, body paragraph one for the first view, body paragraph two for the second view and a conclusion. There is a more advanced structure we're learning in my courses but for now let's stick to this one because it works in most cases really well. Now let's plan our ideas for the first body paragraph. We're looking at the view we disagree with that young people should be",
+      "top3": [
+        {
+          "timestamp": 358.98,
+          "start": 358.98,
+          "end": 389.04,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 333.86,
+          "start": 333.86,
+          "end": 363.96,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 612.78,
+          "start": 612.78,
+          "end": 642.86,
+          "score": 0.031009615384615385,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 358.98,
+          "start": 358.98,
+          "end": 389.04,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 333.86,
+          "start": 333.86,
+          "end": 363.96,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 612.78,
+          "start": 612.78,
+          "end": 642.86,
+          "score": 0.031009615384615385,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 637.86,
+          "start": 637.86,
+          "end": 667.9,
+          "score": 0.03057889822595705,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 102.42,
+          "start": 102.42,
+          "end": 132.48,
+          "score": 0.029857397504456328,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h002",
+      "video_id": "lecture1",
+      "query": "where he explains the conclusion for the first essay",
+      "type": "speech",
+      "notes": "conclusion section",
+      "intervals": [
+        [
+          1012.0,
+          1045.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 81.96280000265688,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 358.98,
+      "top1_score": 0.03225806451612903,
+      "predicted_path": null,
+      "predicted_text": "is to write an introduction, body paragraph one for the first view, body paragraph two for the second view and a conclusion. There is a more advanced structure we're learning in my courses but for now let's stick to this one because it works in most cases really well. Now let's plan our ideas for the first body paragraph. We're looking at the view we disagree with that young people should be",
+      "top3": [
+        {
+          "timestamp": 358.98,
+          "start": 358.98,
+          "end": 389.04,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 1097.96,
+          "start": 1097.96,
+          "end": 1128.44,
+          "score": 0.03149801587301587,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 1123.7,
+          "start": 1123.7,
+          "end": 1154.0,
+          "score": 0.03125763125763126,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 358.98,
+          "start": 358.98,
+          "end": 389.04,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 1097.96,
+          "start": 1097.96,
+          "end": 1128.44,
+          "score": 0.03149801587301587,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 1123.7,
+          "start": 1123.7,
+          "end": 1154.0,
+          "score": 0.03125763125763126,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 333.86,
+          "start": 333.86,
+          "end": 363.96,
+          "score": 0.031099324975891997,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 995.1,
+          "start": 995.1,
+          "end": 1025.8,
+          "score": 0.030117753623188408,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h003",
+      "video_id": "lecture1",
+      "query": "the slide titled essay 2 introduction",
+      "type": "ocr",
+      "notes": "essay 2 slide",
+      "intervals": [
+        [
+          240.0,
+          270.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.03333333333333333,
+      "latency_ms": 338.7138999532908,
+      "duplicate_raw": 0.1,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 260.26,
+      "top1_score": 0.034854981084489284,
+      "predicted_path": "data/frames/lecture1/000260.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 260.26,
+          "start": 260.26,
+          "end": 261.26,
+          "score": 0.034854981084489284,
+          "path": "data/frames/lecture1/000260.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 715.715,
+          "start": 715.715,
+          "end": 716.715,
+          "score": 0.02552926525529265,
+          "path": "data/frames/lecture1/000715.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 314.314,
+          "start": 314.314,
+          "end": 315.314,
+          "score": 0.02529088351873162,
+          "path": "data/frames/lecture1/000314.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 260.26,
+          "start": 260.26,
+          "end": 261.26,
+          "score": 0.034854981084489284,
+          "path": "data/frames/lecture1/000260.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 715.715,
+          "start": 715.715,
+          "end": 716.715,
+          "score": 0.02552926525529265,
+          "path": "data/frames/lecture1/000715.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 314.314,
+          "start": 314.314,
+          "end": 315.314,
+          "score": 0.02529088351873162,
+          "path": "data/frames/lecture1/000314.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 17.017,
+          "start": 17.017,
+          "end": 18.017,
+          "score": 0.019672131147540982,
+          "path": "data/frames/lecture1/000017.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 692.692,
+          "start": 692.692,
+          "end": 693.692,
+          "score": 0.01935483870967742,
+          "path": "data/frames/lecture1/000692.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h004",
+      "video_id": "lecture2",
+      "query": "where he defines an algorithm as a procedure",
+      "type": "speech",
+      "notes": "algorithm definition",
+      "intervals": [
+        [
+          144.0,
+          164.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.6666666666666666,
+      "latency_ms": 28.519899991806597,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 138.19,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": null,
+      "predicted_text": "of the level of description that we'll be looking for you in the theory parts of this. I can do whatever I want, but I have to take one of these inputs and I have to produce an output. And at the end, it better be correct. So it's just a procedure. You can think of it as like a recipe. You can think of it as it's just some kind of procedure. It's a sequence of things that you should do. And then at the end, you will return an output. OK, so here's a possible algorithm for solving",
+      "top3": [
+        {
+          "timestamp": 138.19,
+          "start": 138.19,
+          "end": 168.19,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 517.78,
+          "start": 517.78,
+          "end": 548.3,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 726.88,
+          "start": 726.88,
+          "end": 757.09,
+          "score": 0.030117753623188408,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 138.19,
+          "start": 138.19,
+          "end": 168.19,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 517.78,
+          "start": 517.78,
+          "end": 548.3,
+          "score": 0.03225806451612903,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 726.88,
+          "start": 726.88,
+          "end": 757.09,
+          "score": 0.030117753623188408,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 249.36,
+          "start": 249.36,
+          "end": 279.48,
+          "score": 0.029877369007803793,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 752.29,
+          "start": 752.29,
+          "end": 782.53,
+          "score": 0.02976190476190476,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h005",
+      "video_id": "lecture2",
+      "query": "where he explains theta notation is tight",
+      "type": "speech",
+      "notes": "asymptotic notation",
+      "intervals": [
+        [
+          704.0,
+          716.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.3919007184846505,
+      "latency_ms": 26.29269997123629,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 700.6,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": null,
+      "predicted_text": "to lower bounds. And we have theta, which corresponds to both, right? This thing is tight. It is bounded from above and below by a function of this form, OK? Now, we have a couple common ways, a couple common functions that algorithms,",
+      "top3": [
+        {
+          "timestamp": 700.6,
+          "start": 700.6,
+          "end": 731.22,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 674.66,
+          "start": 674.66,
+          "end": 705.48,
+          "score": 0.03200204813108039,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 803.63,
+          "start": 803.63,
+          "end": 835.3,
+          "score": 0.031754032258064516,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 700.6,
+          "start": 700.6,
+          "end": 731.22,
+          "score": 0.03278688524590164,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 674.66,
+          "start": 674.66,
+          "end": 705.48,
+          "score": 0.03200204813108039,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 803.63,
+          "start": 803.63,
+          "end": 835.3,
+          "score": 0.031754032258064516,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 544.04,
+          "start": 544.04,
+          "end": 574.44,
+          "score": 0.03125763125763126,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        },
+        {
+          "timestamp": 882.48,
+          "start": 882.48,
+          "end": 912.88,
+          "score": 0.031009615384615385,
+          "path": null,
+          "layers": [
+            "speech"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h006",
+      "video_id": "lecture2",
+      "query": "the chalkboard says algorithm f from i to o",
+      "type": "ocr",
+      "notes": "blackboard definition",
+      "intervals": [
+        [
+          60.0,
+          100.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 25.741999968886375,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 125.0,
+      "top1_score": 0.0360655737704918,
+      "predicted_path": "data/frames/lecture2/000125.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 125.0,
+          "start": 125.0,
+          "end": 126.0,
+          "score": 0.0360655737704918,
+          "path": "data/frames/lecture2/000125.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 67.0,
+          "start": 67.0,
+          "end": 68.0,
+          "score": 0.026353944562899786,
+          "path": "data/frames/lecture2/000067.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 85.0,
+          "start": 85.0,
+          "end": 86.0,
+          "score": 0.02516399895040672,
+          "path": "data/frames/lecture2/000085.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 125.0,
+          "start": 125.0,
+          "end": 126.0,
+          "score": 0.0360655737704918,
+          "path": "data/frames/lecture2/000125.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 67.0,
+          "start": 67.0,
+          "end": 68.0,
+          "score": 0.026353944562899786,
+          "path": "data/frames/lecture2/000067.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 85.0,
+          "start": 85.0,
+          "end": 86.0,
+          "score": 0.02516399895040672,
+          "path": "data/frames/lecture2/000085.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 863.0,
+          "start": 863.0,
+          "end": 864.0,
+          "score": 0.01935483870967742,
+          "path": "data/frames/lecture2/000863.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 844.0,
+          "start": 844.0,
+          "end": 845.0,
+          "score": 0.019047619047619046,
+          "path": "data/frames/lecture2/000844.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h007",
+      "video_id": "streetcctv1",
+      "query": "a man walking with a cane",
+      "type": "object",
+      "notes": "foreground pedestrian",
+      "intervals": [
+        [
+          15.0,
+          28.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.07692307692307693,
+      "latency_ms": 35.314899985678494,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 16.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/objects/streetcctv1/tm1000025_0.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 16.0,
+          "start": 16.0,
+          "end": 17.0,
+          "score": 0.03278688524590164,
+          "path": "data/objects/streetcctv1/tm1000025_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 32.0,
+          "start": 32.0,
+          "end": 33.0,
+          "score": 0.031746031746031744,
+          "path": "data/objects/streetcctv1/t000050_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 58.0,
+          "start": 58.0,
+          "end": 59.0,
+          "score": 0.030117753623188408,
+          "path": "data/objects/streetcctv1/t000059_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 16.0,
+          "start": 16.0,
+          "end": 17.0,
+          "score": 0.03278688524590164,
+          "path": "data/objects/streetcctv1/tm1000025_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 32.0,
+          "start": 32.0,
+          "end": 33.0,
+          "score": 0.031746031746031744,
+          "path": "data/objects/streetcctv1/t000050_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 58.0,
+          "start": 58.0,
+          "end": 59.0,
+          "score": 0.030117753623188408,
+          "path": "data/objects/streetcctv1/t000059_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 163.0,
+          "start": 163.0,
+          "end": 164.0,
+          "score": 0.009174311926605505,
+          "path": "data/objects/streetcctv1/t000264_0.jpg",
+          "layers": [
+            "object"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h008",
+      "video_id": "streetcctv1",
+      "query": "a wet street with shops in the background",
+      "type": "visual",
+      "notes": "rainy crossing",
+      "intervals": [
+        [
+          0.0,
+          20.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.22448979591836735,
+      "latency_ms": 11.451800004579127,
+      "duplicate_raw": 0.4,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 26.0,
+      "top1_score": 0.09282273054122925,
+      "predicted_path": "data/frames/streetcctv1/000026.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 26.0,
+          "start": 9.0,
+          "end": 49.0,
+          "score": 0.09282273054122925,
+          "path": "data/frames/streetcctv1/000026.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 55.0,
+          "start": 53.0,
+          "end": 60.0,
+          "score": 0.08014184236526489,
+          "path": "data/frames/streetcctv1/000055.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 3.0,
+          "start": 2.0,
+          "end": 3.0,
+          "score": 0.07506731897592545,
+          "path": "data/frames/streetcctv1/000003.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 26.0,
+          "start": 9.0,
+          "end": 49.0,
+          "score": 0.09282273054122925,
+          "path": "data/frames/streetcctv1/000026.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 55.0,
+          "start": 53.0,
+          "end": 60.0,
+          "score": 0.08014184236526489,
+          "path": "data/frames/streetcctv1/000055.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 3.0,
+          "start": 2.0,
+          "end": 3.0,
+          "score": 0.07506731897592545,
+          "path": "data/frames/streetcctv1/000003.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h009",
+      "video_id": "streetcctv1",
+      "query": "a silver car crossing the street",
+      "type": "visual",
+      "notes": "silver hatchback",
+      "intervals": [
+        [
+          15.0,
+          30.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 9.546699991915375,
+      "duplicate_raw": 0.3,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 66.0,
+      "top1_score": 0.1109570637345314,
+      "predicted_path": "data/frames/streetcctv1/000066.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 66.0,
+          "start": 64.0,
+          "end": 66.0,
+          "score": 0.1109570637345314,
+          "path": "data/frames/streetcctv1/000066.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 162.0,
+          "start": 147.0,
+          "end": 168.0,
+          "score": 0.10979893803596497,
+          "path": "data/frames/streetcctv1/000162.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 176.0,
+          "start": 172.0,
+          "end": 176.0,
+          "score": 0.10847443342208862,
+          "path": "data/frames/streetcctv1/000176.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 66.0,
+          "start": 64.0,
+          "end": 66.0,
+          "score": 0.1109570637345314,
+          "path": "data/frames/streetcctv1/000066.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 162.0,
+          "start": 147.0,
+          "end": 168.0,
+          "score": 0.10979893803596497,
+          "path": "data/frames/streetcctv1/000162.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 176.0,
+          "start": 172.0,
+          "end": 176.0,
+          "score": 0.10847443342208862,
+          "path": "data/frames/streetcctv1/000176.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 215.0,
+          "start": 213.0,
+          "end": 215.0,
+          "score": 0.10844682902097702,
+          "path": "data/frames/streetcctv1/000215.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 136.0,
+          "start": 136.0,
+          "end": 138.0,
+          "score": 0.10817870497703552,
+          "path": "data/frames/streetcctv1/000136.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h010",
+      "video_id": "streetcctv2",
+      "query": "a black car crossing the zebra crossing",
+      "type": "object",
+      "notes": "black car",
+      "intervals": [
+        [
+          40.0,
+          50.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 19.445699988864362,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 220.0,
+      "top1_score": 0.030621785881252923,
+      "predicted_path": "data/objects/streetcctv2/tm1000327_0.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 220.0,
+          "start": 220.0,
+          "end": 221.0,
+          "score": 0.030621785881252923,
+          "path": "data/objects/streetcctv2/tm1000327_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 270.0,
+          "start": 270.0,
+          "end": 271.0,
+          "score": 0.030621785881252923,
+          "path": "data/objects/streetcctv2/tm1000390_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 120.0,
+          "start": 120.0,
+          "end": 121.0,
+          "score": 0.030090497737556562,
+          "path": "data/objects/streetcctv2/tm1000181_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 220.0,
+          "start": 220.0,
+          "end": 221.0,
+          "score": 0.030621785881252923,
+          "path": "data/objects/streetcctv2/tm1000327_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 270.0,
+          "start": 270.0,
+          "end": 271.0,
+          "score": 0.030621785881252923,
+          "path": "data/objects/streetcctv2/tm1000390_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 120.0,
+          "start": 120.0,
+          "end": 121.0,
+          "score": 0.030090497737556562,
+          "path": "data/objects/streetcctv2/tm1000181_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 399.0,
+          "start": 396.0,
+          "end": 399.0,
+          "score": 0.03007688828584351,
+          "path": "data/objects/streetcctv2/t000312_2.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 106.0,
+          "start": 106.0,
+          "end": 107.0,
+          "score": 0.028373015873015873,
+          "path": "data/objects/streetcctv2/tm1000158_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h011",
+      "video_id": "streetcctv2",
+      "query": "a residential street corner with a white building",
+      "type": "visual",
+      "notes": "Abbey Road corner",
+      "intervals": [
+        [
+          5.0,
+          30.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 12.723600026220083,
+      "duplicate_raw": 0.3,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 236.0,
+      "top1_score": 0.05084969475865364,
+      "predicted_path": "data/frames/streetcctv2/000236.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 236.0,
+          "start": 236.0,
+          "end": 240.0,
+          "score": 0.05084969475865364,
+          "path": "data/frames/streetcctv2/000236.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 119.0,
+          "start": 115.0,
+          "end": 120.0,
+          "score": 0.0475463941693306,
+          "path": "data/frames/streetcctv2/000119.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 318.0,
+          "start": 316.0,
+          "end": 320.0,
+          "score": 0.045895181596279144,
+          "path": "data/frames/streetcctv2/000318.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 236.0,
+          "start": 236.0,
+          "end": 240.0,
+          "score": 0.05084969475865364,
+          "path": "data/frames/streetcctv2/000236.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 119.0,
+          "start": 115.0,
+          "end": 120.0,
+          "score": 0.0475463941693306,
+          "path": "data/frames/streetcctv2/000119.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 318.0,
+          "start": 316.0,
+          "end": 320.0,
+          "score": 0.045895181596279144,
+          "path": "data/frames/streetcctv2/000318.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 409.0,
+          "start": 406.0,
+          "end": 420.0,
+          "score": 0.045534320175647736,
+          "path": "data/frames/streetcctv2/000409.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 354.0,
+          "start": 352.0,
+          "end": 354.0,
+          "score": 0.04470841959118843,
+          "path": "data/frames/streetcctv2/000354.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h012",
+      "video_id": "indoor1",
+      "query": "a man standing by a window",
+      "type": "action",
+      "notes": "cafe window",
+      "intervals": [
+        [
+          125.0,
+          140.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 36.745999997947365,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 237.0,
+      "top1_score": 0.02607086197778953,
+      "predicted_path": "data/frames/indoor1/000237.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 237.0,
+          "start": 237.0,
+          "end": 238.0,
+          "score": 0.02607086197778953,
+          "path": "data/frames/indoor1/000237.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 108.0,
+          "start": 108.0,
+          "end": 109.0,
+          "score": 0.02565284178187404,
+          "path": "data/frames/indoor1/000108.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 15.0,
+          "start": 15.0,
+          "end": 16.0,
+          "score": 0.024963924963924963,
+          "path": "data/frames/indoor1/000015.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 237.0,
+          "start": 237.0,
+          "end": 238.0,
+          "score": 0.02607086197778953,
+          "path": "data/frames/indoor1/000237.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 108.0,
+          "start": 108.0,
+          "end": 109.0,
+          "score": 0.02565284178187404,
+          "path": "data/frames/indoor1/000108.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 15.0,
+          "start": 15.0,
+          "end": 16.0,
+          "score": 0.024963924963924963,
+          "path": "data/frames/indoor1/000015.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 36.0,
+          "start": 36.0,
+          "end": 37.0,
+          "score": 0.02415614236509759,
+          "path": "data/frames/indoor1/000036.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 91.0,
+          "start": 91.0,
+          "end": 92.0,
+          "score": 0.022033227848101265,
+          "path": "data/frames/indoor1/000091.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h013",
+      "video_id": "indoor1",
+      "query": "a person watching television in a dark room",
+      "type": "caption",
+      "notes": "TV and candles",
+      "intervals": [
+        [
+          435.0,
+          450.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 29.931999975815415,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 340.0,
+      "top1_score": 0.025965097831835007,
+      "predicted_path": "data/frames/indoor1/000340.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 340.0,
+          "start": 340.0,
+          "end": 341.0,
+          "score": 0.025965097831835007,
+          "path": "data/frames/indoor1/000340.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 438.0,
+          "start": 438.0,
+          "end": 439.0,
+          "score": 0.02591725214676034,
+          "path": "data/frames/indoor1/000438.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 451.0,
+          "start": 451.0,
+          "end": 452.0,
+          "score": 0.024526515151515153,
+          "path": "data/frames/indoor1/000451.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 340.0,
+          "start": 340.0,
+          "end": 341.0,
+          "score": 0.025965097831835007,
+          "path": "data/frames/indoor1/000340.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 438.0,
+          "start": 438.0,
+          "end": 439.0,
+          "score": 0.02591725214676034,
+          "path": "data/frames/indoor1/000438.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 451.0,
+          "start": 451.0,
+          "end": 452.0,
+          "score": 0.024526515151515153,
+          "path": "data/frames/indoor1/000451.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 422.0,
+          "start": 422.0,
+          "end": 423.0,
+          "score": 0.020715249662618083,
+          "path": "data/frames/indoor1/000422.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 317.0,
+          "start": 317.0,
+          "end": 318.0,
+          "score": 0.020460358056265983,
+          "path": "data/frames/indoor1/000317.jpg",
+          "layers": [
+            "caption",
+            "frame"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h014",
+      "video_id": "indoor2",
+      "query": "a yellow mug",
+      "type": "object",
+      "notes": "ornate yellow mug",
+      "intervals": [
+        [
+          10.0,
+          20.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.1,
+      "latency_ms": 9.465000010095537,
+      "duplicate_raw": 0.2,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 15.0,
+      "top1_score": 0.09057337045669556,
+      "predicted_path": "data/frames/indoor2/000015.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 15.0,
+          "start": 14.0,
+          "end": 15.0,
+          "score": 0.09057337045669556,
+          "path": "data/frames/indoor2/000015.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 111.0,
+          "start": 98.0,
+          "end": 117.0,
+          "score": 0.03705177456140518,
+          "path": "data/frames/indoor2/000111.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 45.0,
+          "start": 45.0,
+          "end": 54.0,
+          "score": 0.034575436264276505,
+          "path": "data/frames/indoor2/000045.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 15.0,
+          "start": 14.0,
+          "end": 15.0,
+          "score": 0.09057337045669556,
+          "path": "data/frames/indoor2/000015.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 111.0,
+          "start": 98.0,
+          "end": 117.0,
+          "score": 0.03705177456140518,
+          "path": "data/frames/indoor2/000111.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 45.0,
+          "start": 45.0,
+          "end": 54.0,
+          "score": 0.034575436264276505,
+          "path": "data/frames/indoor2/000045.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 153.0,
+          "start": 153.0,
+          "end": 157.0,
+          "score": 0.030962660908699036,
+          "path": "data/frames/indoor2/000153.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 22.0,
+          "start": 22.0,
+          "end": 23.0,
+          "score": 0.028641482815146446,
+          "path": "data/frames/indoor2/000022.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h015",
+      "video_id": "indoor2",
+      "query": "a man in a suit standing by a door",
+      "type": "visual",
+      "notes": "entrance",
+      "intervals": [
+        [
+          115.0,
+          130.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 10.56540000718087,
+      "duplicate_raw": 0.6,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 266.999999,
+      "top1_score": 0.12045188248157501,
+      "predicted_path": "data/frames/indoor2/000267.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 266.999999,
+          "start": 265.999999,
+          "end": 269.999999,
+          "score": 0.12045188248157501,
+          "path": "data/frames/indoor2/000267.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 120.0,
+          "start": 116.0,
+          "end": 121.0,
+          "score": 0.1096356138586998,
+          "path": "data/frames/indoor2/000120.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 37.0,
+          "start": 37.0,
+          "end": 51.0,
+          "score": 0.08254629373550415,
+          "path": "data/frames/indoor2/000037.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 266.999999,
+          "start": 265.999999,
+          "end": 269.999999,
+          "score": 0.12045188248157501,
+          "path": "data/frames/indoor2/000267.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 120.0,
+          "start": 116.0,
+          "end": 121.0,
+          "score": 0.1096356138586998,
+          "path": "data/frames/indoor2/000120.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 37.0,
+          "start": 37.0,
+          "end": 51.0,
+          "score": 0.08254629373550415,
+          "path": "data/frames/indoor2/000037.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 0.0,
+          "start": 0.0,
+          "end": 16.0,
+          "score": 0.0817234218120575,
+          "path": "data/frames/indoor2/000000.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 105.0,
+          "start": 105.0,
+          "end": 106.0,
+          "score": 0.07665113359689713,
+          "path": "data/frames/indoor2/000105.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h016",
+      "video_id": "screen-recording",
+      "query": "Windows 8 compatibility mode",
+      "type": "ocr",
+      "notes": "compatibility troubleshooter",
+      "intervals": [
+        [
+          95.0,
+          115.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 82.42400002200156,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 92.0,
+      "top1_score": 0.0360655737704918,
+      "predicted_path": "data/frames/screen-recording/000092.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 92.0,
+          "start": 92.0,
+          "end": 93.0,
+          "score": 0.0360655737704918,
+          "path": "data/frames/screen-recording/000092.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 231.0,
+          "start": 231.0,
+          "end": 232.0,
+          "score": 0.02769423558897243,
+          "path": "data/frames/screen-recording/000231.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 52.0,
+          "start": 52.0,
+          "end": 53.0,
+          "score": 0.026495726495726495,
+          "path": "data/frames/screen-recording/000052.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 92.0,
+          "start": 92.0,
+          "end": 93.0,
+          "score": 0.0360655737704918,
+          "path": "data/frames/screen-recording/000092.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 231.0,
+          "start": 231.0,
+          "end": 232.0,
+          "score": 0.02769423558897243,
+          "path": "data/frames/screen-recording/000231.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 52.0,
+          "start": 52.0,
+          "end": 53.0,
+          "score": 0.026495726495726495,
+          "path": "data/frames/screen-recording/000052.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 270.0,
+          "start": 270.0,
+          "end": 271.0,
+          "score": 0.026178451178451176,
+          "path": "data/frames/screen-recording/000270.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 70.0,
+          "start": 70.0,
+          "end": 71.0,
+          "score": 0.02570873786407767,
+          "path": "data/frames/screen-recording/000070.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h017",
+      "video_id": "screen-recording",
+      "query": "the command chkdsk c: /f /r",
+      "type": "ocr",
+      "notes": "command prompt",
+      "intervals": [
+        [
+          125.0,
+          140.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 27.910200005862862,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 158.0,
+      "top1_score": 0.0360655737704918,
+      "predicted_path": "data/frames/screen-recording/000158.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 158.0,
+          "start": 158.0,
+          "end": 159.0,
+          "score": 0.0360655737704918,
+          "path": "data/frames/screen-recording/000158.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 59.0,
+          "start": 59.0,
+          "end": 60.0,
+          "score": 0.02490842490842491,
+          "path": "data/frames/screen-recording/000059.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 45.0,
+          "start": 45.0,
+          "end": 46.0,
+          "score": 0.023434343434343433,
+          "path": "data/frames/screen-recording/000045.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 158.0,
+          "start": 158.0,
+          "end": 159.0,
+          "score": 0.0360655737704918,
+          "path": "data/frames/screen-recording/000158.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 59.0,
+          "start": 59.0,
+          "end": 60.0,
+          "score": 0.02490842490842491,
+          "path": "data/frames/screen-recording/000059.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 45.0,
+          "start": 45.0,
+          "end": 46.0,
+          "score": 0.023434343434343433,
+          "path": "data/frames/screen-recording/000045.jpg",
+          "layers": [
+            "frame",
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 70.0,
+          "start": 70.0,
+          "end": 71.0,
+          "score": 0.01846153846153846,
+          "path": "data/frames/screen-recording/000070.jpg",
+          "layers": [
+            "ocr"
+          ]
+        },
+        {
+          "timestamp": 131.0,
+          "start": 131.0,
+          "end": 132.0,
+          "score": 0.01818181818181818,
+          "path": "data/frames/screen-recording/000131.jpg",
+          "layers": [
+            "ocr"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h018",
+      "video_id": "dashcam",
+      "query": "a blue car driving ahead",
+      "type": "object",
+      "notes": "blue car",
+      "intervals": [
+        [
+          415.0,
+          430.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 38.15879998728633,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 433.0,
+      "top1_score": 0.03021353930031804,
+      "predicted_path": "data/frames/dashcam/000433.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 433.0,
+          "start": 433.0,
+          "end": 434.0,
+          "score": 0.03021353930031804,
+          "path": "data/frames/dashcam/000433.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 502.0,
+          "start": 502.0,
+          "end": 503.0,
+          "score": 0.027236652236652236,
+          "path": "data/objects/dashcam/tm1000620_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 411.0,
+          "start": 411.0,
+          "end": 412.0,
+          "score": 0.027146130794993832,
+          "path": "data/frames/dashcam/000411.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 433.0,
+          "start": 433.0,
+          "end": 434.0,
+          "score": 0.03021353930031804,
+          "path": "data/frames/dashcam/000433.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 502.0,
+          "start": 502.0,
+          "end": 503.0,
+          "score": 0.027236652236652236,
+          "path": "data/objects/dashcam/tm1000620_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 411.0,
+          "start": 411.0,
+          "end": 412.0,
+          "score": 0.027146130794993832,
+          "path": "data/frames/dashcam/000411.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 358.0,
+          "start": 358.0,
+          "end": 359.0,
+          "score": 0.026500526500526502,
+          "path": "data/objects/dashcam/t000204_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 462.0,
+          "start": 462.0,
+          "end": 463.0,
+          "score": 0.026399331662489554,
+          "path": "data/frames/dashcam/000462.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h019",
+      "video_id": "dashcam",
+      "query": "a white box truck",
+      "type": "object",
+      "notes": "box truck",
+      "intervals": [
+        [
+          295.0,
+          310.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 12.736100004985929,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 326.0,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": "data/objects/dashcam/tm1000357_0.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 326.0,
+          "start": 326.0,
+          "end": 327.0,
+          "score": 0.03252247488101534,
+          "path": "data/objects/dashcam/tm1000357_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 308.0,
+          "start": 308.0,
+          "end": 309.0,
+          "score": 0.0265113137453563,
+          "path": "data/objects/dashcam/tm1000331_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 302.0,
+          "start": 302.0,
+          "end": 303.0,
+          "score": 0.01639344262295082,
+          "path": "data/frames/dashcam/000302.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 326.0,
+          "start": 326.0,
+          "end": 327.0,
+          "score": 0.03252247488101534,
+          "path": "data/objects/dashcam/tm1000357_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 308.0,
+          "start": 308.0,
+          "end": 309.0,
+          "score": 0.0265113137453563,
+          "path": "data/objects/dashcam/tm1000331_0.jpg",
+          "layers": [
+            "frame",
+            "object"
+          ]
+        },
+        {
+          "timestamp": 302.0,
+          "start": 302.0,
+          "end": 303.0,
+          "score": 0.01639344262295082,
+          "path": "data/frames/dashcam/000302.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 200.0,
+          "start": 200.0,
+          "end": 201.0,
+          "score": 0.015625,
+          "path": "data/objects/dashcam/tm1000174_0.jpg",
+          "layers": [
+            "object"
+          ]
+        },
+        {
+          "timestamp": 602.0,
+          "start": 602.0,
+          "end": 603.0,
+          "score": 0.015625,
+          "path": "data/frames/dashcam/000602.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "h020",
+      "video_id": "dashcam",
+      "query": "an empty city street",
+      "type": "visual",
+      "notes": "quiet block",
+      "intervals": [
+        [
+          335.0,
+          350.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 10.381100000813603,
+      "duplicate_raw": 0.1,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 260.0,
+      "top1_score": 0.11881434172391891,
+      "predicted_path": "data/frames/dashcam/000260.jpg",
+      "predicted_text": null,
+      "top3": [
+        {
+          "timestamp": 260.0,
+          "start": 249.0,
+          "end": 263.0,
+          "score": 0.11881434172391891,
+          "path": "data/frames/dashcam/000260.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 401.0,
+          "start": 396.0,
+          "end": 404.0,
+          "score": 0.1170000433921814,
+          "path": "data/frames/dashcam/000401.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 289.0,
+          "start": 280.0,
+          "end": 293.0,
+          "score": 0.11437828838825226,
+          "path": "data/frames/dashcam/000289.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 260.0,
+          "start": 249.0,
+          "end": 263.0,
+          "score": 0.11881434172391891,
+          "path": "data/frames/dashcam/000260.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 401.0,
+          "start": 396.0,
+          "end": 404.0,
+          "score": 0.1170000433921814,
+          "path": "data/frames/dashcam/000401.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 289.0,
+          "start": 280.0,
+          "end": 293.0,
+          "score": 0.11437828838825226,
+          "path": "data/frames/dashcam/000289.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 364.0,
+          "start": 358.0,
+          "end": 365.0,
+          "score": 0.11411921679973602,
+          "path": "data/frames/dashcam/000364.jpg",
+          "layers": [
+            "frame"
+          ]
+        },
+        {
+          "timestamp": 213.0,
+          "start": 213.0,
+          "end": 214.0,
+          "score": 0.11310410499572754,
+          "path": "data/frames/dashcam/000213.jpg",
+          "layers": [
+            "frame"
+          ]
+        }
+      ]
+    }
+  ],
+  "failures": {
+    "count": 13,
+    "items": [
+      {
+        "query_id": "h002",
+        "video_id": "lecture1",
+        "type": "speech",
+        "query": "where he explains the conclusion for the first essay",
+        "intervals": [
+          [
+            1012.0,
+            1045.0
+          ]
+        ],
+        "top1_timestamp": 358.98,
+        "top1_score": 0.03225806451612903,
+        "predicted_path": null,
+        "predicted_text": "is to write an introduction, body paragraph one for the first view, body paragraph two for the second view and a conclusion. There is a more advanced structure we're learning in my courses but for now let's stick to this one because it works in most cases really well. Now let's plan our ideas for the first body paragraph. We're looking at the view we disagree with that young people should be",
+        "cause": "speech retrieval or transcript miss (P5)"
+      },
+      {
+        "query_id": "h006",
+        "video_id": "lecture2",
+        "type": "ocr",
+        "query": "the chalkboard says algorithm f from i to o",
+        "intervals": [
+          [
+            60.0,
+            100.0
+          ]
+        ],
+        "top1_timestamp": 125.0,
+        "top1_score": 0.0360655737704918,
+        "predicted_path": "data/frames/lecture2/000125.jpg",
+        "predicted_text": null,
+        "cause": "OCR retrieval or keyframe/text miss (P6)"
+      },
+      {
+        "query_id": "h009",
+        "video_id": "streetcctv1",
+        "type": "visual",
+        "query": "a silver car crossing the street",
+        "intervals": [
+          [
+            15.0,
+            30.0
+          ]
+        ],
+        "top1_timestamp": 66.0,
+        "top1_score": 0.1109570637345314,
+        "predicted_path": "data/frames/streetcctv1/000066.jpg",
+        "predicted_text": null,
+        "cause": "scene confusion in frame embedding"
+      },
+      {
+        "query_id": "h010",
+        "video_id": "streetcctv2",
+        "type": "object",
+        "query": "a black car crossing the zebra crossing",
+        "intervals": [
+          [
+            40.0,
+            50.0
+          ]
+        ],
+        "top1_timestamp": 220.0,
+        "top1_score": 0.030621785881252923,
+        "predicted_path": "data/objects/streetcctv2/tm1000327_0.jpg",
+        "predicted_text": null,
+        "cause": "object crop missed the target instance (P3)"
+      },
+      {
+        "query_id": "h011",
+        "video_id": "streetcctv2",
+        "type": "visual",
+        "query": "a residential street corner with a white building",
+        "intervals": [
+          [
+            5.0,
+            30.0
+          ]
+        ],
+        "top1_timestamp": 236.0,
+        "top1_score": 0.05084969475865364,
+        "predicted_path": "data/frames/streetcctv2/000236.jpg",
+        "predicted_text": null,
+        "cause": "scene confusion in frame embedding"
+      },
+      {
+        "query_id": "h012",
+        "video_id": "indoor1",
+        "type": "action",
+        "query": "a man standing by a window",
+        "intervals": [
+          [
+            125.0,
+            140.0
+          ]
+        ],
+        "top1_timestamp": 237.0,
+        "top1_score": 0.02607086197778953,
+        "predicted_path": "data/frames/indoor1/000237.jpg",
+        "predicted_text": null,
+        "cause": "caption retrieval or caption miss (P7)"
+      },
+      {
+        "query_id": "h013",
+        "video_id": "indoor1",
+        "type": "caption",
+        "query": "a person watching television in a dark room",
+        "intervals": [
+          [
+            435.0,
+            450.0
+          ]
+        ],
+        "top1_timestamp": 340.0,
+        "top1_score": 0.025965097831835007,
+        "predicted_path": "data/frames/indoor1/000340.jpg",
+        "predicted_text": null,
+        "cause": "caption retrieval or caption miss (P7)"
+      },
+      {
+        "query_id": "h015",
+        "video_id": "indoor2",
+        "type": "visual",
+        "query": "a man in a suit standing by a door",
+        "intervals": [
+          [
+            115.0,
+            130.0
+          ]
+        ],
+        "top1_timestamp": 266.999999,
+        "top1_score": 0.12045188248157501,
+        "predicted_path": "data/frames/indoor2/000267.jpg",
+        "predicted_text": null,
+        "cause": "scene confusion in frame embedding"
+      },
+      {
+        "query_id": "h016",
+        "video_id": "screen-recording",
+        "type": "ocr",
+        "query": "Windows 8 compatibility mode",
+        "intervals": [
+          [
+            95.0,
+            115.0
+          ]
+        ],
+        "top1_timestamp": 92.0,
+        "top1_score": 0.0360655737704918,
+        "predicted_path": "data/frames/screen-recording/000092.jpg",
+        "predicted_text": null,
+        "cause": "OCR retrieval or keyframe/text miss (P6)"
+      },
+      {
+        "query_id": "h017",
+        "video_id": "screen-recording",
+        "type": "ocr",
+        "query": "the command chkdsk c: /f /r",
+        "intervals": [
+          [
+            125.0,
+            140.0
+          ]
+        ],
+        "top1_timestamp": 158.0,
+        "top1_score": 0.0360655737704918,
+        "predicted_path": "data/frames/screen-recording/000158.jpg",
+        "predicted_text": null,
+        "cause": "OCR retrieval or keyframe/text miss (P6)"
+      },
+      {
+        "query_id": "h018",
+        "video_id": "dashcam",
+        "type": "object",
+        "query": "a blue car driving ahead",
+        "intervals": [
+          [
+            415.0,
+            430.0
+          ]
+        ],
+        "top1_timestamp": 433.0,
+        "top1_score": 0.03021353930031804,
+        "predicted_path": "data/frames/dashcam/000433.jpg",
+        "predicted_text": null,
+        "cause": "object crop missed the target instance (P3)"
+      },
+      {
+        "query_id": "h019",
+        "video_id": "dashcam",
+        "type": "object",
+        "query": "a white box truck",
+        "intervals": [
+          [
+            295.0,
+            310.0
+          ]
+        ],
+        "top1_timestamp": 326.0,
+        "top1_score": 0.03252247488101534,
+        "predicted_path": "data/objects/dashcam/tm1000357_0.jpg",
+        "predicted_text": null,
+        "cause": "object crop missed the target instance (P3)"
+      },
+      {
+        "query_id": "h020",
+        "video_id": "dashcam",
+        "type": "visual",
+        "query": "an empty city street",
+        "intervals": [
+          [
+            335.0,
+            350.0
+          ]
+        ],
+        "top1_timestamp": 260.0,
+        "top1_score": 0.11881434172391891,
+        "predicted_path": "data/frames/dashcam/000260.jpg",
+        "predicted_text": null,
+        "cause": "scene confusion in frame embedding"
+      }
+    ]
+  }
+}

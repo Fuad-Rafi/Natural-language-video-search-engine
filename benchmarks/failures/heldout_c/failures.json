@@ -1,0 +1,39 @@
+{
+  "generated_at": "2026-11-09T07:17:11+00:00",
+  "items": [
+    {
+      "query_id": "h012",
+      "video_id": "indoor1",
+      "type": "action",
+      "query": "a man standing by a window",
+      "intervals": [
+        [
+          125.0,
+          140.0
+        ]
+      ],
+      "top1_timestamp": 425.0,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": "data/frames/indoor1/000425.jpg",
+      "predicted_text": "a man is standing in front of a window",
+      "cause": "caption retrieval or caption miss (P7)"
+    },
+    {
+      "query_id": "h013",
+      "video_id": "indoor1",
+      "type": "caption",
+      "query": "a person watching television in a dark room",
+      "intervals": [
+        [
+          435.0,
+          450.0
+        ]
+      ],
+      "top1_timestamp": 335.0,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": "data/frames/indoor1/000335.jpg",
+      "predicted_text": "a person standing in a dark room with a light on",
+      "cause": "caption retrieval or caption miss (P7)"
+    }
+  ]
+}

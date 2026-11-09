@@ -2,7 +2,7 @@
 
 Search long videos with plain English. Ask a question, get a timestamp, a thumbnail, and a playable clip.
 
-> **Status: P6 implemented — OCR.** Results are returned as timestamped segments with source badges. A+B+D remains the strongest configuration: Recall@5 **0.960** dev / **0.700** held-out, vs **0.860 / 0.600** for frames alone. The new OCR layer works for unique screen text — **6/6** dev screen/UI queries land in the top 3 — but it does not improve the fused system: A+B+D+E scores **0.920** dev / **0.650** held-out, below A+B+D. Repeated slide titles and handwritten chalkboards remain hard. Captions and UI are next.
+> **Status: P7 complete — captions + public benchmark.** All five retrieval layers are implemented. A+B+D remains the strongest configuration: Recall@5 **0.960** dev / **0.700** held-out, vs **0.860 / 0.600** for frames alone. Captions are searchable but not additive (C: 0.714 dev R@5 on action/caption queries; A+B+D+E+C: 0.920 dev / 0.650 held-out). On a **50-video, 399-query Charades-STA test subset**, Layer A scores **R@1 IoU 0.5 = 0.421**, IoU 0.7 = 0.241, mIoU = 0.377. The optional Qwen2.5-VL top-3 reranker costs **1.40 s p50 / 2.25 s p95** per query. UI and release are next (P8).
 
 ---
 
@@ -16,7 +16,7 @@ Index a video once, then search it across five layers:
 | Objects | people, cars, bags | "person in a red jacket" | ✅ |
 | Speech | what is said | "where he says gradient descent" | ✅ |
 | On-screen text | slides, signs, labels | "the slide about transformers" | ✅ (P6) |
-| Captions | actions and context | "someone arguing" | planned (P7) |
+| Captions | actions and context | "someone arguing" | ✅ (P7) |
 
 Results are returned as time segments with a source badge, so you can see **why** each hit matched.
 
@@ -85,9 +85,18 @@ python scripts/search.py --query "where he says gradient descent" --layer speech
 # 7. Build the OCR layer and search on-screen text
 python scripts/index_ocr.py --video data/videos/screen_recording.mp4
 python scripts/search.py --query "the command sfc /scannow in command prompt" --layer ocr --video screen-recording
+
+# 8. Build captions and search actions/context
+python scripts/index_captions.py --video data/videos/indoor1.mp4
+python scripts/search.py --query "a man making espresso" --layer caption --video indoor1
+
+# 9. Public Charades-STA test subset
+python scripts/prepare_charades_sta.py --download --max-videos 50
+python scripts/index_public.py
+python scripts/evaluate_public.py --window-s 7.5
 ```
 
-Search returns frame, object, transcript, or OCR hits; the evaluator merges them into segments. Omitting `--video` searches every indexed video. The first run loads the SigLIP model (about 2 seconds on the RTX 3060) plus Whisper/BGE for speech and PaddleOCR/BGE for OCR.
+Search returns frame, object, transcript, OCR, or caption hits; the evaluator merges them into segments. Omitting `--video` searches every indexed video. The first run loads SigLIP (about 2 seconds on the RTX 3060), Whisper/BGE for speech, PaddleOCR/BGE for OCR, and BLIP/BGE for captions.
 
 ### Evaluate (available)
 
@@ -96,20 +105,27 @@ python scripts/evaluate.py --mode A    # frames
 python scripts/evaluate.py --mode B    # objects
 python scripts/evaluate.py --mode D    # speech (transcript only)
 python scripts/evaluate.py --mode E    # OCR (on-screen text only)
+python scripts/evaluate.py --mode C    # captions (action/caption only)
 python scripts/evaluate.py --mode AB   # RRF fusion, segments
 python scripts/evaluate.py --mode ABD  # frames + objects + speech
 python scripts/evaluate.py --mode ABDE # frames + objects + speech + OCR
+python scripts/evaluate.py --mode ALL  # all five layers
 
 # Per-layer subsets, and held-out validation
 python scripts/evaluate.py --mode D --types speech
 python scripts/evaluate.py --mode E --types ocr
+python scripts/evaluate.py --mode C --types action,caption,counting
 python scripts/evaluate.py --mode D --types speech --queries benchmarks/heldout.csv
 python scripts/evaluate.py --mode E --types ocr --queries benchmarks/heldout.csv
+python scripts/evaluate.py --mode C --types action,caption --queries benchmarks/heldout.csv
 python scripts/evaluate.py --mode ABD --queries benchmarks/heldout.csv
-python scripts/evaluate.py --mode ABDE --queries benchmarks/heldout.csv
+python scripts/evaluate.py --mode ALL --queries benchmarks/heldout.csv
+
+# Optional VLM top-3 reranker latency (Qwen2.5-VL-3B)
+python scripts/measure_rerank.py --limit 5 --top-n 3
 ```
 
-All modes merge hits into segments (gap 3 s, minimum 1 s) and report Recall@1/3/5/10, segment mIoU, duplicate rate, and latency. Speech queries are routed to Layer D inside A+B+D because frame hits saturate the transcript timeline (C-27). OCR is fused as an ablation in A+B+D+E; it does not beat A+B+D, so the headline stays A+B+D.
+All modes merge hits into segments (gap 3 s, minimum 1 s) and report Recall@1/3/5/10, segment mIoU, R@1 IoU 0.5/0.7, duplicate rate, and latency. Speech queries are routed to Layer D inside A+B+D because frame hits saturate the transcript timeline (C-27). OCR and captions are fused as ablations in A+B+D+E and ALL; neither beats A+B+D, so the headline stays A+B+D.
 
 ### UI (planned, P8)
 
@@ -121,7 +137,7 @@ Indexing is cached at every stage: re-running the same video reuses existing fra
 
 ## Results
 
-Segment policy: every config merges hits with a 3-second gap and a 1-second minimum before scoring, so Recall and mIoU are comparable across A, B, D, A+B, and A+B+D.
+Segment policy: every config merges hits with a 3-second gap and a 1-second minimum before scoring, so Recall and mIoU are comparable across all layers and fusions.
 
 | Config | Dev Recall@5 | Held-out Recall@5 | Dev mIoU | Duplicate rate (raw → merged) |
 |---|---|---|---|---|
@@ -129,15 +145,36 @@ Segment policy: every config merges hits with a 3-second gap and a 1-second mini
 | B — objects | 0.440 (50) | 0.450 (20) | 0.042 | 0.112 → 0.000 |
 | D — speech | **1.000** (9) | **1.000** (4) | **0.310** | 0.000 → 0.000 |
 | E — OCR | 0.750 (12) | 0.500 (4) | 0.270 | 0.117 → 0.000 |
+| C — captions | 0.714 (7) | 0.500 (2) | 0.157 | 0.000 → 0.000 |
 | A+B — RRF | **0.880** (50) | **0.600** (20) | 0.242 | 0.384 → 0.000 |
 | A+B+D — routed | **0.960** (50) | **0.700** (20) | 0.280 | 0.328 → 0.000 |
 | A+B+D+E | 0.920 (50) | 0.650 (20) | 0.204 | 0.188 → 0.000 |
+| A+B+D+E+C | 0.920 (50) | 0.650 (20) | 0.148 | 0.120 → 0.000 |
 
-The 50-query set is the development benchmark used for tuning; the 20-query held-out set is the honest headline (`benchmarks/heldout.lock.json`). Parentheses show query counts: the D and E rows are scored only on their own query types (D: 9 dev / 4 held-out; E: 12 dev / 4 held-out), while the other rows cover the full set.
+The 50-query set is the development benchmark used for tuning; the 20-query held-out set is the honest headline (`benchmarks/heldout.lock.json`). Parentheses show query counts: the D, E, and C rows are scored only on their own query types (D: 9 dev / 4 held-out; E: 12 dev / 4 held-out; C: 7 dev / 2 held-out), while the other rows cover the full set.
 
 A+B improves dev by 2 points but ties frames on held-out. Adding speech and routing speech queries to Layer D raises held-out Recall@5 from 0.600 to **0.700** and mIoU from 0.115 to **0.163** — the first held-out gain beyond frames. On dev, speech alone returns the correct moment in the top 3 for **9/9** queries and the top 5 for **9/9**; held-out is **3/4** top-3 and **4/4** top-5.
 
 OCR behaves like Layer B: useful on its own but not additive. Dev OCR Recall@3 is **0.750** and all **6/6** screen/UI queries are top-3; held-out OCR is 1/4 top-3. Repeated slide titles (multiple slides say "essay 2 introduction") and handwritten chalkboards defeat text-only retrieval, while frames use visual context. Fusing OCR into A+B+D lowers the held-out R@5 from 0.700 to 0.650, so **A+B+D remains the headline**. Duplicate results fall to **0.000** after merging in every config, including OCR (raw 0.117 → merged 0.000).
+
+Captions are also non-additive. On the 7 dev action/caption/counting queries, Layer C scores R@5 **0.714** and mIoU 0.157, while frames already score 1.000 / 0.475. Fusing captions into ALL lowers dev mIoU to 0.148 and held-out R@5 to 0.650. Captions are retained for UI snippets and future re-ranking; **A+B+D remains the production configuration**.
+
+## Public benchmark — Charades-STA test subset
+
+The public number uses **50 Charades-STA test videos and 399 queries**, selected from the official test split and downloaded with HTTP range requests (`scripts/prepare_charades_sta.py`). Videos are indexed at 1 fps with Layer A. The top-1 frame becomes a **7.5 s window** centred on the peak; the window is chosen from the Charades-STA **train-split median duration (7.4 s)**, not tuned on test.
+
+| Metric | Layer A |
+|---|---|
+| R@1 IoU 0.5 | **0.421** |
+| R@1 IoU 0.7 | **0.241** |
+| mIoU | **0.377** |
+| Any overlap | 0.692 |
+
+This is a frame-retrieval baseline, not a trained temporal-grounding model. The project's 1-second segment policy is too narrow for 30-second Charades clips (R@1 IoU 0.5 = 0.008); the fixed-window protocol is reported explicitly in `benchmarks/public/results/`. Reproduce with `scripts/prepare_charades_sta.py`, `scripts/index_public.py`, and `scripts/evaluate_public.py`.
+
+## Optional VLM reranker
+
+`scripts/measure_rerank.py` runs Qwen2.5-VL-3B as a yes/no check on the top 3 candidates. Measured on 5 dev queries (15 images) after warm-up: **p50 1.40 s**, mean 1.67 s, **p95 2.25 s** per query; yes-rate 0.733. It is optional (`captions.rerank_enabled: false`) and not part of the headline metrics.
 
 Full tables, per-type breakdowns, and failure notes: `benchmarks/results/`, `benchmarks/failures/`.
 
@@ -164,6 +201,13 @@ ocr:
   scene_threshold: 0.08
   dedupe_similarity: 0.9
 
+captions:
+  backend: blip
+  model: Salesforce/blip-image-captioning-base
+  keyframe_interval_s: 5.0
+  max_keyframes: 300
+  dedupe_similarity: 0.9
+
 text:
   embedding_model: BAAI/bge-small-en-v1.5
   use_bm25: true
@@ -177,6 +221,7 @@ search:
   min_segment_s: 1.0
   route_speech: true
   route_ocr: false
+  route_caption: false
   weights:
     frame: 1.0
     object: 1.0
@@ -195,6 +240,7 @@ Downloaded automatically on first use:
 | Object detection | YOLO11n | ~6 MB |
 | Speech | faster-whisper small | ~500 MB |
 | OCR | PaddleOCR PP-OCRv5 mobile (English) | ~20 MB |
+| Captions | BLIP-base (Qwen2.5-VL-3B optional reranker) | ~1 GB / ~6 GB |
 | Text embeddings | bge-small-en-v1.5 | ~130 MB |
 
 Models are downloaded to the Hugging Face / Ultralytics cache, not into this repository.
@@ -208,6 +254,7 @@ Models are downloaded to the Hugging Face / Ultralytics cache, not into this rep
 | Whisper CUDA DLL error | Install `nvidia-cublas-cu12` / `nvidia-cudnn-cu12` (already in the lock file), or run `--device cpu` |
 | PaddleOCR oneDNN crash | `ocr.enable_mkldnn: false` is already the default on Windows; keep it false |
 | OCR indexing slow on CPU | Use the mobile models (default), raise `ocr.keyframe_max_interval_s`, or install a GPU Paddle build |
+| Caption model OOM | BLIP-base is the default (~1 GB); Qwen 3B needs ~8 GB VRAM and is only used for top-3 reranking |
 | No audio stream | The speech layer is skipped; other layers still work |
 | No text found | OCR may need higher-resolution keyframes |
 | Slow first run | Model download + one-time indexing |

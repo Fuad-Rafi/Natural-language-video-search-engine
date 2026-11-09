@@ -1,0 +1,1006 @@
+{
+  "schema_version": 4,
+  "generated_at": "2026-11-09T07:06:04+00:00",
+  "mode": "C",
+  "config": "C (captions)",
+  "model": "BAAI/bge-small-en-v1.5",
+  "text_model": "BAAI/bge-small-en-v1.5",
+  "device": "cuda",
+  "queries_file": "benchmarks/queries.csv",
+  "queries_sha256": "0b728db337406e3195e9063323eaf0938ac241e5e96ab499bfa377c9885f62bd",
+  "query_count": 7,
+  "temporal": {
+    "gap_s": 3.0,
+    "min_segment_s": 1.0
+  },
+  "fusion": null,
+  "text": {
+    "model": "BAAI/bge-small-en-v1.5",
+    "use_bm25": true
+  },
+  "aggregate": {
+    "queries": 7,
+    "recall@1": 0.2857142857142857,
+    "recall@3": 0.5714285714285714,
+    "recall@5": 0.7142857142857143,
+    "recall@10": 0.8571428571428571,
+    "miou": 0.15714285714285717,
+    "r1_iou_0_5": 0.2857142857142857,
+    "r1_iou_0_7": 0.0,
+    "latency_p50_ms": 20.27750003617257,
+    "latency_p95_ms": 995.8245999878272,
+    "duplicate_raw": 0.0,
+    "duplicate_segment": 0.0
+  },
+  "per_type": {
+    "action": {
+      "queries": 5,
+      "recall@1": 0.2,
+      "recall@3": 0.6,
+      "recall@5": 0.8,
+      "recall@10": 1.0,
+      "miou": 0.1,
+      "r1_iou_0_5": 0.2,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 25.592899997718632,
+      "latency_p95_ms": 995.8245999878272,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "caption": {
+      "queries": 1,
+      "recall@1": 0.0,
+      "recall@3": 0.0,
+      "recall@5": 0.0,
+      "recall@10": 0.0,
+      "miou": 0.0,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 15.830199990887195,
+      "latency_p95_ms": 15.830199990887195,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "counting": {
+      "queries": 1,
+      "recall@1": 1.0,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.6,
+      "r1_iou_0_5": 1.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 17.996100010350347,
+      "latency_p95_ms": 17.996100010350347,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_video": {
+    "dashcam": {
+      "queries": 1,
+      "recall@1": 0.0,
+      "recall@3": 1.0,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.0,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 18.023099983111024,
+      "latency_p95_ms": 18.023099983111024,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "indoor1": {
+      "queries": 2,
+      "recall@1": 0.0,
+      "recall@3": 0.5,
+      "recall@5": 1.0,
+      "recall@10": 1.0,
+      "miou": 0.0,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 20.27750003617257,
+      "latency_p95_ms": 25.592899997718632,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "indoor2": {
+      "queries": 3,
+      "recall@1": 0.6666666666666666,
+      "recall@3": 0.6666666666666666,
+      "recall@5": 0.6666666666666666,
+      "recall@10": 0.6666666666666666,
+      "miou": 0.3666666666666667,
+      "r1_iou_0_5": 0.6666666666666666,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 17.996100010350347,
+      "latency_p95_ms": 32.59700001217425,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    },
+    "streetcctv2": {
+      "queries": 1,
+      "recall@1": 0.0,
+      "recall@3": 0.0,
+      "recall@5": 0.0,
+      "recall@10": 1.0,
+      "miou": 0.0,
+      "r1_iou_0_5": 0.0,
+      "r1_iou_0_7": 0.0,
+      "latency_p50_ms": 995.8245999878272,
+      "latency_p95_ms": 995.8245999878272,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0
+    }
+  },
+  "per_query": [
+    {
+      "query_id": "q027",
+      "video_id": "streetcctv2",
+      "query": "cars driving through the intersection",
+      "type": "action",
+      "notes": "continuous traffic",
+      "intervals": [
+        [
+          390.0,
+          415.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 995.8245999878272,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 215.0,
+      "top1_score": 0.03177805800756621,
+      "predicted_path": "data/frames/streetcctv2/000215.jpg",
+      "predicted_text": "a bus is driving down the street in a city",
+      "top3": [
+        {
+          "timestamp": 215.0,
+          "start": 215.0,
+          "end": 225.0,
+          "score": 0.03177805800756621,
+          "path": "data/frames/streetcctv2/000215.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 260.0,
+          "start": 260.0,
+          "end": 265.0,
+          "score": 0.029513888888888888,
+          "path": "data/frames/streetcctv2/000260.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 225.0,
+          "start": 225.0,
+          "end": 230.0,
+          "score": 0.02900988017658188,
+          "path": "data/frames/streetcctv2/000225.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 215.0,
+          "start": 215.0,
+          "end": 225.0,
+          "score": 0.03177805800756621,
+          "path": "data/frames/streetcctv2/000215.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 260.0,
+          "start": 260.0,
+          "end": 265.0,
+          "score": 0.029513888888888888,
+          "path": "data/frames/streetcctv2/000260.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 225.0,
+          "start": 225.0,
+          "end": 230.0,
+          "score": 0.02900988017658188,
+          "path": "data/frames/streetcctv2/000225.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 420.0,
+          "start": 420.0,
+          "end": 422.14,
+          "score": 0.028373015873015873,
+          "path": "data/frames/streetcctv2/000420.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 110.0,
+          "start": 110.0,
+          "end": 115.0,
+          "score": 0.02699859747545582,
+          "path": "data/frames/streetcctv2/000110.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q028",
+      "video_id": "indoor1",
+      "query": "a man making espresso",
+      "type": "action",
+      "notes": "espresso machine close-up",
+      "intervals": [
+        [
+          145.0,
+          172.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 20.27750003617257,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 395.0,
+      "top1_score": 0.03177805800756621,
+      "predicted_path": "data/frames/indoor1/000395.jpg",
+      "predicted_text": "a person is making a cup of coffee",
+      "top3": [
+        {
+          "timestamp": 395.0,
+          "start": 395.0,
+          "end": 400.0,
+          "score": 0.03177805800756621,
+          "path": "data/frames/indoor1/000395.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 165.0,
+          "start": 165.0,
+          "end": 170.0,
+          "score": 0.031754032258064516,
+          "path": "data/frames/indoor1/000165.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 155.0,
+          "start": 155.0,
+          "end": 160.0,
+          "score": 0.030798389007344232,
+          "path": "data/frames/indoor1/000155.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 395.0,
+          "start": 395.0,
+          "end": 400.0,
+          "score": 0.03177805800756621,
+          "path": "data/frames/indoor1/000395.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 165.0,
+          "start": 165.0,
+          "end": 170.0,
+          "score": 0.031754032258064516,
+          "path": "data/frames/indoor1/000165.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 155.0,
+          "start": 155.0,
+          "end": 160.0,
+          "score": 0.030798389007344232,
+          "path": "data/frames/indoor1/000155.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 380.0,
+          "start": 380.0,
+          "end": 385.0,
+          "score": 0.030158730158730156,
+          "path": "data/frames/indoor1/000380.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 400.0,
+          "start": 400.0,
+          "end": 405.0,
+          "score": 0.029857397504456328,
+          "path": "data/frames/indoor1/000400.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q029",
+      "video_id": "indoor1",
+      "query": "hands holding an open book",
+      "type": "action",
+      "notes": "reading in a chair",
+      "intervals": [
+        [
+          275.0,
+          285.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 25.592899997718632,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 255.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/indoor1/000255.jpg",
+      "predicted_text": "a person holding a book in their hand",
+      "top3": [
+        {
+          "timestamp": 255.0,
+          "start": 255.0,
+          "end": 260.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/indoor1/000255.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 285.0,
+          "start": 285.0,
+          "end": 290.0,
+          "score": 0.03149801587301587,
+          "path": "data/frames/indoor1/000285.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 265.0,
+          "start": 265.0,
+          "end": 270.0,
+          "score": 0.030621785881252923,
+          "path": "data/frames/indoor1/000265.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 255.0,
+          "start": 255.0,
+          "end": 260.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/indoor1/000255.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 285.0,
+          "start": 285.0,
+          "end": 290.0,
+          "score": 0.03149801587301587,
+          "path": "data/frames/indoor1/000285.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 265.0,
+          "start": 265.0,
+          "end": 270.0,
+          "score": 0.030621785881252923,
+          "path": "data/frames/indoor1/000265.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 290.0,
+          "start": 290.0,
+          "end": 295.0,
+          "score": 0.030303030303030304,
+          "path": "data/frames/indoor1/000290.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 280.0,
+          "start": 280.0,
+          "end": 285.0,
+          "score": 0.029631255487269532,
+          "path": "data/frames/indoor1/000280.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q032",
+      "video_id": "indoor2",
+      "query": "a man wearing headphones sitting at a desk",
+      "type": "action",
+      "notes": "gaming setup",
+      "intervals": [
+        [
+          145.0,
+          155.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.5,
+      "latency_ms": 32.59700001217425,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 145.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/indoor2/000145.jpg",
+      "predicted_text": "a man in a black jacket and headphones",
+      "top3": [
+        {
+          "timestamp": 145.0,
+          "start": 145.0,
+          "end": 150.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/indoor2/000145.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 150.0,
+          "start": 150.0,
+          "end": 155.0,
+          "score": 0.03200204813108039,
+          "path": "data/frames/indoor2/000150.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 135.0,
+          "start": 135.0,
+          "end": 140.0,
+          "score": 0.030621785881252923,
+          "path": "data/frames/indoor2/000135.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 145.0,
+          "start": 145.0,
+          "end": 150.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/indoor2/000145.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 150.0,
+          "start": 150.0,
+          "end": 155.0,
+          "score": 0.03200204813108039,
+          "path": "data/frames/indoor2/000150.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 135.0,
+          "start": 135.0,
+          "end": 140.0,
+          "score": 0.030621785881252923,
+          "path": "data/frames/indoor2/000135.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 230.999999,
+          "start": 230.999999,
+          "end": 235.999999,
+          "score": 0.02877846790890269,
+          "path": "data/frames/indoor2/000231.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 260.999999,
+          "start": 260.999999,
+          "end": 265.999999,
+          "score": 0.028594771241830064,
+          "path": "data/frames/indoor2/000261.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q033",
+      "video_id": "indoor2",
+      "query": "a family playing a game together",
+      "type": "caption",
+      "notes": "three people with a controller",
+      "intervals": [
+        [
+          225.0,
+          240.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": false,
+        "5": false,
+        "10": false
+      },
+      "miou": 0.0,
+      "latency_ms": 15.830199990887195,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 215.999999,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/indoor2/000216.jpg",
+      "predicted_text": "a person holding a video game controller",
+      "top3": [
+        {
+          "timestamp": 215.999999,
+          "start": 215.999999,
+          "end": 220.999999,
+          "score": 0.03278688524590164,
+          "path": "data/frames/indoor2/000216.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 90.0,
+          "start": 90.0,
+          "end": 95.0,
+          "score": 0.031754032258064516,
+          "path": "data/frames/indoor2/000090.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 100.0,
+          "start": 100.0,
+          "end": 105.0,
+          "score": 0.0304147465437788,
+          "path": "data/frames/indoor2/000100.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 215.999999,
+          "start": 215.999999,
+          "end": 220.999999,
+          "score": 0.03278688524590164,
+          "path": "data/frames/indoor2/000216.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 90.0,
+          "start": 90.0,
+          "end": 95.0,
+          "score": 0.031754032258064516,
+          "path": "data/frames/indoor2/000090.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 100.0,
+          "start": 100.0,
+          "end": 105.0,
+          "score": 0.0304147465437788,
+          "path": "data/frames/indoor2/000100.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 245.999999,
+          "start": 245.999999,
+          "end": 250.999999,
+          "score": 0.02821869488536155,
+          "path": "data/frames/indoor2/000246.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 210.999999,
+          "start": 210.999999,
+          "end": 215.999999,
+          "score": 0.027777777777777776,
+          "path": "data/frames/indoor2/000211.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q035",
+      "video_id": "indoor2",
+      "query": "two people standing in a doorway",
+      "type": "counting",
+      "notes": "couple at the entrance",
+      "intervals": [
+        [
+          5.0,
+          14.0
+        ]
+      ],
+      "hits": {
+        "1": true,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.6,
+      "latency_ms": 17.996100010350347,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 0.0,
+      "top1_score": 0.031099324975891997,
+      "predicted_path": "data/frames/indoor2/000000.jpg",
+      "predicted_text": "a man and woman standing in front of a door",
+      "top3": [
+        {
+          "timestamp": 0.0,
+          "start": 0.0,
+          "end": 15.0,
+          "score": 0.031099324975891997,
+          "path": "data/frames/indoor2/000000.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 140.0,
+          "start": 140.0,
+          "end": 145.0,
+          "score": 0.031009615384615385,
+          "path": "data/frames/indoor2/000140.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 75.0,
+          "start": 75.0,
+          "end": 80.0,
+          "score": 0.0304147465437788,
+          "path": "data/frames/indoor2/000075.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 0.0,
+          "start": 0.0,
+          "end": 15.0,
+          "score": 0.031099324975891997,
+          "path": "data/frames/indoor2/000000.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 140.0,
+          "start": 140.0,
+          "end": 145.0,
+          "score": 0.031009615384615385,
+          "path": "data/frames/indoor2/000140.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 75.0,
+          "start": 75.0,
+          "end": 80.0,
+          "score": 0.0304147465437788,
+          "path": "data/frames/indoor2/000075.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 205.999999,
+          "start": 205.999999,
+          "end": 210.999999,
+          "score": 0.030117753623188408,
+          "path": "data/frames/indoor2/000206.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 200.0,
+          "start": 200.0,
+          "end": 205.999999,
+          "score": 0.029957522915269395,
+          "path": "data/frames/indoor2/000200.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ]
+    },
+    {
+      "query_id": "q050",
+      "video_id": "dashcam",
+      "query": "a red car at an intersection",
+      "type": "action",
+      "notes": "traffic light crossing",
+      "intervals": [
+        [
+          590.0,
+          605.0
+        ]
+      ],
+      "hits": {
+        "1": false,
+        "3": true,
+        "5": true,
+        "10": true
+      },
+      "miou": 0.0,
+      "latency_ms": 18.023099983111024,
+      "duplicate_raw": 0.0,
+      "duplicate_segment": 0.0,
+      "top1_timestamp": 315.0,
+      "top1_score": 0.03278688524590164,
+      "predicted_path": "data/frames/dashcam/000315.jpg",
+      "predicted_text": "a red car driving down a street next to tall buildings",
+      "top3": [
+        {
+          "timestamp": 315.0,
+          "start": 315.0,
+          "end": 320.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/dashcam/000315.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 600.0,
+          "start": 600.0,
+          "end": 605.0,
+          "score": 0.03225806451612903,
+          "path": "data/frames/dashcam/000600.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 45.0,
+          "start": 45.0,
+          "end": 50.0,
+          "score": 0.029957522915269395,
+          "path": "data/frames/dashcam/000045.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ],
+      "top5": [
+        {
+          "timestamp": 315.0,
+          "start": 315.0,
+          "end": 320.0,
+          "score": 0.03278688524590164,
+          "path": "data/frames/dashcam/000315.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 600.0,
+          "start": 600.0,
+          "end": 605.0,
+          "score": 0.03225806451612903,
+          "path": "data/frames/dashcam/000600.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 45.0,
+          "start": 45.0,
+          "end": 50.0,
+          "score": 0.029957522915269395,
+          "path": "data/frames/dashcam/000045.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 605.0,
+          "start": 605.0,
+          "end": 609.833333,
+          "score": 0.02674825174825175,
+          "path": "data/frames/dashcam/000605.jpg",
+          "layers": [
+            "caption"
+          ]
+        },
+        {
+          "timestamp": 580.0,
+          "start": 580.0,
+          "end": 585.0,
+          "score": 0.02664576802507837,
+          "path": "data/frames/dashcam/000580.jpg",
+          "layers": [
+            "caption"
+          ]
+        }
+      ]
+    }
+  ],
+  "failures": {
+    "count": 5,
+    "items": [
+      {
+        "query_id": "q027",
+        "video_id": "streetcctv2",
+        "type": "action",
+        "query": "cars driving through the intersection",
+        "intervals": [
+          [
+            390.0,
+            415.0
+          ]
+        ],
+        "top1_timestamp": 215.0,
+        "top1_score": 0.03177805800756621,
+        "predicted_path": "data/frames/streetcctv2/000215.jpg",
+        "predicted_text": "a bus is driving down the street in a city",
+        "cause": "caption retrieval or caption miss (P7)"
+      },
+      {
+        "query_id": "q028",
+        "video_id": "indoor1",
+        "type": "action",
+        "query": "a man making espresso",
+        "intervals": [
+          [
+            145.0,
+            172.0
+          ]
+        ],
+        "top1_timestamp": 395.0,
+        "top1_score": 0.03177805800756621,
+        "predicted_path": "data/frames/indoor1/000395.jpg",
+        "predicted_text": "a person is making a cup of coffee",
+        "cause": "caption retrieval or caption miss (P7)"
+      },
+      {
+        "query_id": "q029",
+        "video_id": "indoor1",
+        "type": "action",
+        "query": "hands holding an open book",
+        "intervals": [
+          [
+            275.0,
+            285.0
+          ]
+        ],
+        "top1_timestamp": 255.0,
+        "top1_score": 0.03278688524590164,
+        "predicted_path": "data/frames/indoor1/000255.jpg",
+        "predicted_text": "a person holding a book in their hand",
+        "cause": "caption retrieval or caption miss (P7)"
+      },
+      {
+        "query_id": "q033",
+        "video_id": "indoor2",
+        "type": "caption",
+        "query": "a family playing a game together",
+        "intervals": [
+          [
+            225.0,
+            240.0
+          ]
+        ],
+        "top1_timestamp": 215.999999,
+        "top1_score": 0.03278688524590164,
+        "predicted_path": "data/frames/indoor2/000216.jpg",
+        "predicted_text": "a person holding a video game controller",
+        "cause": "caption retrieval or caption miss (P7)"
+      },
+      {
+        "query_id": "q050",
+        "video_id": "dashcam",
+        "type": "action",
+        "query": "a red car at an intersection",
+        "intervals": [
+          [
+            590.0,
+            605.0
+          ]
+        ],
+        "top1_timestamp": 315.0,
+        "top1_score": 0.03278688524590164,
+        "predicted_path": "data/frames/dashcam/000315.jpg",
+        "predicted_text": "a red car driving down a street next to tall buildings",
+        "cause": "caption retrieval or caption miss (P7)"
+      }
+    ]
+  }
+}

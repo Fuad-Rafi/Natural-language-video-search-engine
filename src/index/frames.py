@@ -9,6 +9,7 @@ from __future__ import annotations
 
 import json
 from datetime import datetime, timezone
+from functools import lru_cache
 from pathlib import Path
 from typing import Any, Iterable, Optional
 
@@ -46,8 +47,9 @@ def resolve_device(preference: Optional[str] = "auto") -> str:
     raise ValueError(f"unsupported device {preference!r}; use auto, cuda, or cpu")
 
 
+@lru_cache(maxsize=2)
 def load_siglip(model_name: str = DEFAULT_MODEL, device: str = "auto") -> tuple[Any, Any]:
-    """Load the SigLIP processor and model once."""
+    """Load the SigLIP processor and model once per process."""
     from transformers import AutoModel, AutoProcessor
     from transformers.utils import logging as hf_logging
 

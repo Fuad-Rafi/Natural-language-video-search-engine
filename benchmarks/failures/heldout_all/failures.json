@@ -1,0 +1,226 @@
+{
+  "generated_at": "2026-11-09T07:17:41+00:00",
+  "items": [
+    {
+      "query_id": "h002",
+      "video_id": "lecture1",
+      "type": "speech",
+      "query": "where he explains the conclusion for the first essay",
+      "intervals": [
+        [
+          1012.0,
+          1045.0
+        ]
+      ],
+      "top1_timestamp": 358.98,
+      "top1_score": 0.03225806451612903,
+      "predicted_path": null,
+      "predicted_text": "is to write an introduction, body paragraph one for the first view, body paragraph two for the second view and a conclusion. There is a more advanced structure we're learning in my courses but for now let's stick to this one because it works in most cases really well. Now let's plan our ideas for the first body paragraph. We're looking at the view we disagree with that young people should be",
+      "cause": "speech retrieval or transcript miss (P5)"
+    },
+    {
+      "query_id": "h006",
+      "video_id": "lecture2",
+      "type": "ocr",
+      "query": "the chalkboard says algorithm f from i to o",
+      "intervals": [
+        [
+          60.0,
+          100.0
+        ]
+      ],
+      "top1_timestamp": 125.0,
+      "top1_score": 0.0360655737704918,
+      "predicted_path": "data/frames/lecture2/000125.jpg",
+      "predicted_text": null,
+      "cause": "OCR retrieval or keyframe/text miss (P6)"
+    },
+    {
+      "query_id": "h009",
+      "video_id": "streetcctv1",
+      "type": "visual",
+      "query": "a silver car crossing the street",
+      "intervals": [
+        [
+          15.0,
+          30.0
+        ]
+      ],
+      "top1_timestamp": 66.0,
+      "top1_score": 0.1109570637345314,
+      "predicted_path": "data/frames/streetcctv1/000066.jpg",
+      "predicted_text": null,
+      "cause": "scene confusion in frame embedding"
+    },
+    {
+      "query_id": "h010",
+      "video_id": "streetcctv2",
+      "type": "object",
+      "query": "a black car crossing the zebra crossing",
+      "intervals": [
+        [
+          40.0,
+          50.0
+        ]
+      ],
+      "top1_timestamp": 220.0,
+      "top1_score": 0.030621785881252923,
+      "predicted_path": "data/objects/streetcctv2/tm1000327_0.jpg",
+      "predicted_text": null,
+      "cause": "object crop missed the target instance (P3)"
+    },
+    {
+      "query_id": "h011",
+      "video_id": "streetcctv2",
+      "type": "visual",
+      "query": "a residential street corner with a white building",
+      "intervals": [
+        [
+          5.0,
+          30.0
+        ]
+      ],
+      "top1_timestamp": 236.0,
+      "top1_score": 0.05084969475865364,
+      "predicted_path": "data/frames/streetcctv2/000236.jpg",
+      "predicted_text": null,
+      "cause": "scene confusion in frame embedding"
+    },
+    {
+      "query_id": "h012",
+      "video_id": "indoor1",
+      "type": "action",
+      "query": "a man standing by a window",
+      "intervals": [
+        [
+          125.0,
+          140.0
+        ]
+      ],
+      "top1_timestamp": 237.0,
+      "top1_score": 0.02607086197778953,
+      "predicted_path": "data/frames/indoor1/000237.jpg",
+      "predicted_text": null,
+      "cause": "caption retrieval or caption miss (P7)"
+    },
+    {
+      "query_id": "h013",
+      "video_id": "indoor1",
+      "type": "caption",
+      "query": "a person watching television in a dark room",
+      "intervals": [
+        [
+          435.0,
+          450.0
+        ]
+      ],
+      "top1_timestamp": 340.0,
+      "top1_score": 0.025965097831835007,
+      "predicted_path": "data/frames/indoor1/000340.jpg",
+      "predicted_text": null,
+      "cause": "caption retrieval or caption miss (P7)"
+    },
+    {
+      "query_id": "h015",
+      "video_id": "indoor2",
+      "type": "visual",
+      "query": "a man in a suit standing by a door",
+      "intervals": [
+        [
+          115.0,
+          130.0
+        ]
+      ],
+      "top1_timestamp": 266.999999,
+      "top1_score": 0.12045188248157501,
+      "predicted_path": "data/frames/indoor2/000267.jpg",
+      "predicted_text": null,
+      "cause": "scene confusion in frame embedding"
+    },
+    {
+      "query_id": "h016",
+      "video_id": "screen-recording",
+      "type": "ocr",
+      "query": "Windows 8 compatibility mode",
+      "intervals": [
+        [
+          95.0,
+          115.0
+        ]
+      ],
+      "top1_timestamp": 92.0,
+      "top1_score": 0.0360655737704918,
+      "predicted_path": "data/frames/screen-recording/000092.jpg",
+      "predicted_text": null,
+      "cause": "OCR retrieval or keyframe/text miss (P6)"
+    },
+    {
+      "query_id": "h017",
+      "video_id": "screen-recording",
+      "type": "ocr",
+      "query": "the command chkdsk c: /f /r",
+      "intervals": [
+        [
+          125.0,
+          140.0
+        ]
+      ],
+      "top1_timestamp": 158.0,
+      "top1_score": 0.0360655737704918,
+      "predicted_path": "data/frames/screen-recording/000158.jpg",
+      "predicted_text": null,
+      "cause": "OCR retrieval or keyframe/text miss (P6)"
+    },
+    {
+      "query_id": "h018",
+      "video_id": "dashcam",
+      "type": "object",
+      "query": "a blue car driving ahead",
+      "intervals": [
+        [
+          415.0,
+          430.0
+        ]
+      ],
+      "top1_timestamp": 433.0,
+      "top1_score": 0.03021353930031804,
+      "predicted_path": "data/frames/dashcam/000433.jpg",
+      "predicted_text": null,
+      "cause": "object crop missed the target instance (P3)"
+    },
+    {
+      "query_id": "h019",
+      "video_id": "dashcam",
+      "type": "object",
+      "query": "a white box truck",
+      "intervals": [
+        [
+          295.0,
+          310.0
+        ]
+      ],
+      "top1_timestamp": 326.0,
+      "top1_score": 0.03252247488101534,
+      "predicted_path": "data/objects/dashcam/tm1000357_0.jpg",
+      "predicted_text": null,
+      "cause": "object crop missed the target instance (P3)"
+    },
+    {
+      "query_id": "h020",
+      "video_id": "dashcam",
+      "type": "visual",
+      "query": "an empty city street",
+      "intervals": [
+        [
+          335.0,
+          350.0
+        ]
+      ],
+      "top1_timestamp": 260.0,
+      "top1_score": 0.11881434172391891,
+      "predicted_path": "data/frames/dashcam/000260.jpg",
+      "predicted_text": null,
+      "cause": "scene confusion in frame embedding"
+    }
+  ]
+}

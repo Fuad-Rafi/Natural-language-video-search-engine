@@ -1,0 +1,400 @@
+query_id,video_id,query,type,start,end
+charades_0001,0KZYF,a person walks in holding dishes.,action,0.0,9.5
+charades_0002,0KZYF,a person is eating a sandwich.,action,2.3,7.8
+charades_0003,0KZYF,person eating something off of a plate.,action,2.3,7.8
+charades_0004,0KZYF,proceeds to keep eating in a happy manner.,action,2.3,7.8
+charades_0005,0KZYF,person continuing to eat the sandwich.,action,2.3,7.8
+charades_0006,0KZYF,person eating a sandwich.,action,2.3,7.8
+charades_0007,0KZYF,person opens the door.,action,5.8,12.3
+charades_0008,0KZYF,person opens a door.,action,5.8,12.3
+charades_0009,0KZYF,the person starts smiling.,action,25.8,32.0
+charades_0010,0O6RK,a person opens a refrigerator door.,action,0.6,7.4
+charades_0011,0O6RK,person fixes a light.,action,2.8,17.7
+charades_0012,0O6RK,a person puts a light inside of a refrigerator.,action,12.5,17.6
+charades_0013,0O6RK,person closing the refrigerator door.,action,17.0,23.6
+charades_0014,0O6RK,the person closes the door.,action,17.0,23.6
+charades_0015,0O6RK,person cooks food on the stove.,action,22.9,31.0
+charades_0016,0O6RK,person starts cooking on a stove.,action,22.9,31.0
+charades_0017,0O6RK,person cooking their food.,action,22.9,31.0
+charades_0018,0Z1PC,person is holding a pillow.,action,3.4,9.4
+charades_0019,0Z1PC,the person opens a closet door.,action,10.4,17.7
+charades_0020,0Z1PC,person opens the doors of a closet.,action,10.4,17.7
+charades_0021,0Z1PC,the person is also tidying up the closet.,action,11.8,28.8
+charades_0022,0Z1PC,person puts the pillow in there.,action,18.0,25.1
+charades_0023,0Z1PC,person puts a pillow.,action,18.0,25.1
+charades_0024,0Z1PC,person closes the closet doors.,action,25.0,32.5
+charades_0025,120YL,the person opens the box.,action,4.8,9.7
+charades_0026,120YL,the person opens the box of cookies.,action,4.8,9.7
+charades_0027,120YL,person sitting at the table.,action,35.0,43.0
+charades_0028,120YL,person sits down in a chair at the table.,action,35.0,43.0
+charades_0029,120YL,the person sits down in a chair.,action,35.5,43.0
+charades_0030,120YL,person begins to eat the cookie.,action,37.0,43.0
+charades_0031,120YL,person eats the cookie.,action,37.0,43.0
+charades_0032,120YL,person takes the plate to the table to eat.,action,37.0,43.0
+charades_0033,12XD3,person eating some food.,action,0.0,4.0
+charades_0034,12XD3,a person is eating.,action,0.0,4.0
+charades_0035,12XD3,the person begins eating the sandwich.,action,0.0,4.0
+charades_0036,12XD3,the person is look at a picture.,action,1.4,7.9
+charades_0037,12XD3,person looks at the picture.,action,1.4,7.9
+charades_0038,12XD3,person looks outy the window.,action,4.1,11.9
+charades_0039,12XD3,person watching something out the window.,action,4.1,11.9
+charades_0040,1BGZ0,a person runs into their entryway holding a bag.,action,0.0,9.2
+charades_0041,1BGZ0,a man runs in with a bag of groceries.,action,0.0,6.2
+charades_0042,1BGZ0,person they run to the door.,action,0.0,6.2
+charades_0043,1BGZ0,a person is holding a bag.,action,0.0,9.2
+charades_0044,1BGZ0,the person opens the door.,action,4.2,9.4
+charades_0045,1BGZ0,"person shoe,ran out of the room opening the door.",action,4.2,9.4
+charades_0046,1BGZ0,person they open the door.,action,4.2,9.4
+charades_0047,1BGZ0,person went out of the room closing the door.,action,9.5,15.2
+charades_0048,1BGZ0,person closes the door.,action,9.5,15.2
+charades_0049,1FIGA,the person closes the box.,action,9.6,15.1
+charades_0050,1FIGA,a person runs into the closet with a box.,action,9.6,15.1
+charades_0051,1FIGA,person takes it to a cabinet they open the cabinet.,action,11.8,21.2
+charades_0052,1FIGA,person puts it onto the shelf.,action,14.3,21.9
+charades_0053,1FIGA,person puts the book inside.,action,15.5,23.7
+charades_0054,1FIGA,person put something in it closes the door.,action,18.1,24.9
+charades_0055,1FIGA,person closes the door.,action,18.1,24.9
+charades_0056,1QP1S,a person eats some food.,action,8.3,14.9
+charades_0057,1QP1S,a person is eating a sandwich.,action,8.3,14.9
+charades_0058,1QP1S,a person eats some sort of fruit.,action,8.3,14.9
+charades_0059,1QP1S,another person is eating something from a bag.,action,8.3,14.9
+charades_0060,1QP1S,one person awakens.,action,14.8,21.2
+charades_0061,1QP1S,another person awakens.,action,14.8,21.2
+charades_0062,1QP1S,person laughing at a picture.,action,21.9,35.0
+charades_0063,28BVI,a person is undressing in their kitchen.,action,2.8,15.4
+charades_0064,28BVI,person eats some food.,action,19.0,34.2
+charades_0065,28BVI,person eats something.,action,19.0,34.2
+charades_0066,28BVI,a person standing in a kitchen takes off a sweatshirt.,action,19.0,34.2
+charades_0067,28BVI,person they eat a plate of food.,action,19.0,34.2
+charades_0068,28BVI,person drinks out of a glass.,action,25.0,34.4
+charades_0069,28BVI,the person began tidying the kitchen table.,action,35.6,44.0
+charades_0070,28BVI,person puts down the glass.,action,36.2,42.4
+charades_0071,28BVI,person holding a glass of water.,action,36.7,43.1
+charades_0072,3QL7J,person cooks some food on the stove.,action,0.0,15.6
+charades_0073,3QL7J,a person is cooking some eggs on a frying pan.,action,0.0,15.6
+charades_0074,3QL7J,person takes some food out of it.,action,19.1,25.8
+charades_0075,3QL7J,person getting a bite to eat out of the fridge.,action,20.9,27.8
+charades_0076,3QL7J,person eats it.,action,20.9,27.8
+charades_0077,3QL7J,person looking out the window.,action,25.8,31.6
+charades_0078,3QL7J,person looking out of the window.,action,25.8,31.6
+charades_0079,3W1GP,a person opens the door.,action,0.0,2.6
+charades_0080,3W1GP,a person opens a door.,action,0.0,2.6
+charades_0081,3W1GP,person walks through the doorway carrying a bag.,action,0.0,2.5
+charades_0082,3W1GP,person closes the door.,action,2.9,8.7
+charades_0083,3W1GP,person open a bag.,action,14.0,31.0
+charades_0084,3W1GP,person open the bag.,action,14.0,31.0
+charades_0085,3W1GP,person takes out a laptop.,action,25.2,31.3
+charades_0086,3W1GP,person they put the bag on the ground.,action,32.2,36.0
+charades_0087,4BEZX,a person opens the front door that leads outside.,action,0.0,4.0
+charades_0088,4BEZX,a person opens the door.,action,0.0,4.0
+charades_0089,4BEZX,person opening a door.,action,0.0,4.0
+charades_0090,4BEZX,a person opens the door outside.,action,0.0,4.0
+charades_0091,4BEZX,the person closes the door.,action,15.8,24.3
+charades_0092,4BEZX,person closes the door.,action,15.8,24.3
+charades_0093,4BEZX,person sit down in a chair.,action,39.6,44.0
+charades_0094,4BEZX,person they sit down in a chair.,action,39.6,44.0
+charades_0095,4BEZX,the person sits down in a chair.,action,39.6,44.0
+charades_0096,4BEZX,person eventually sitting in a chair.,action,39.6,44.0
+charades_0097,5EEXF,a person opens a cabinet.,action,1.0,7.0
+charades_0098,5EEXF,person is opening a cabinet.,action,1.0,7.0
+charades_0099,5EEXF,the person opens a closet door.,action,1.0,7.0
+charades_0100,5EEXF,person opens a closet door.,action,1.0,7.0
+charades_0101,5EEXF,person open their closet put the blanket inside it.,action,1.0,7.0
+charades_0102,5EEXF,person takes out a blanket.,action,2.2,7.7
+charades_0103,5EEXF,the person takes a towel from the cabinet.,action,2.4,8.7
+charades_0104,5EEXF,person puts the towel away.,action,16.9,23.8
+charades_0105,6ZWSU,person closes the door.,action,0.0,4.5
+charades_0106,6ZWSU,person puts the books down.,action,1.4,7.2
+charades_0107,6ZWSU,person they immediately put their books down.,action,1.4,7.2
+charades_0108,6ZWSU,person take their shoes off.,action,10.6,19.3
+charades_0109,6ZWSU,the person takes their phone out.,action,16.2,21.8
+charades_0110,6ZWSU,the person takes their phone.,action,16.2,21.8
+charades_0111,6ZWSU,person plays with their phone.,action,19.1,32.0
+charades_0112,86E2E,the person is sitting on the floor.,action,0.0,8.8
+charades_0113,86E2E,a person sits on the floor.,action,0.0,8.8
+charades_0114,86E2E,person holds a pillow.,action,1.3,8.4
+charades_0115,86E2E,person snuggling with a pillow.,action,2.2,8.2
+charades_0116,86E2E,person begins to eat from a bowl on the floor.,action,15.3,20.8
+charades_0117,86E2E,person eats something.,action,15.3,20.8
+charades_0118,86E2E,person eating as they are laying down.,action,15.3,20.8
+charades_0119,86E2E,person eating food in a home office / study.,action,15.3,20.8
+charades_0120,8N4O9,person leaves the closet with the door still open.,action,1.4,7.4
+charades_0121,8N4O9,person opens the door.,action,1.4,7.4
+charades_0122,8N4O9,the person opens the cabinet door.,action,1.4,7.4
+charades_0123,8N4O9,person opens a door.,action,1.4,7.4
+charades_0124,8N4O9,person turns on the light.,action,6.3,10.8
+charades_0125,8N4O9,a person turns on a light.,action,6.3,10.8
+charades_0126,8N4O9,person turning on the light.,action,6.3,10.8
+charades_0127,8N4O9,person takes some towels out.,action,11.3,17.7
+charades_0128,8N4O9,person turns off the light.,action,19.5,23.0
+charades_0129,8N4O9,person turns the light off.,action,19.5,23.0
+charades_0130,95GB4,person playing with a phone.,action,0.0,11.2
+charades_0131,95GB4,person playing with their phone.,action,0.0,11.2
+charades_0132,95GB4,the person puts the phone away.,action,5.1,13.1
+charades_0133,95GB4,person takes a picture with a camera.,action,8.8,19.8
+charades_0134,95GB4,the person takes a picture of something.,action,8.8,19.8
+charades_0135,95GB4,person takes a picture.,action,8.8,19.8
+charades_0136,95GB4,person washes their hands with hand sanitizer.,action,18.3,31.0
+charades_0137,9JZO2,person holding a glass cup.,action,0.0,9.9
+charades_0138,9JZO2,a person eats some food.,action,0.0,12.6
+charades_0139,9JZO2,a person is in a entryway eating a sandwich.,action,0.0,15.1
+charades_0140,9JZO2,person holding a glass of water.,action,0.0,9.9
+charades_0141,9JZO2,person stands in doorway holding a glass.,action,0.0,9.9
+charades_0142,9JZO2,person eating a sandwich.,action,0.0,15.1
+charades_0143,9JZO2,person holding a cup in the doorway.,action,0.0,9.9
+charades_0144,9JZO2,the person walks into the house puts down the food.,action,11.6,20.8
+charades_0145,9JZO2,the person puts the cup down.,action,14.1,20.3
+charades_0146,9JZO2,person start smiling as the dress.,action,22.9,29.8
+charades_0147,9JZO2,person put on their shoes.,action,26.1,36.0
+charades_0148,9JZO2,person puts on some shoes.,action,26.1,36.0
+charades_0149,9MNZ5,person starts eating them.,action,26.9,41.2
+charades_0150,9MNZ5,person begin eating those chips.,action,26.9,41.2
+charades_0151,9MNZ5,person pick up some food eat it from bowl.,action,26.9,41.2
+charades_0152,9MNZ5,person eats crackers.,action,26.9,41.2
+charades_0153,9MNZ5,person opens a book over their head.,action,40.1,50.1
+charades_0154,9MNZ5,person they hold a book up.,action,41.4,53.0
+charades_0155,9MNZ5,person start reading the book.,action,43.0,53.0
+charades_0156,9RRED,person drinking from a water bottle.,action,0.0,5.8
+charades_0157,9RRED,person drinking from a plastic water bottle.,action,0.0,5.8
+charades_0158,9RRED,person takes off his shoes.,action,18.3,25.3
+charades_0159,9RRED,this person takes off their shoes.,action,18.3,25.3
+charades_0160,9RRED,the person takes off a pair of shoes.,action,18.3,25.3
+charades_0161,9RRED,person sits down on a sofa.,action,25.5,32.0
+charades_0162,9RRED,person sits on a couch.,action,25.5,32.0
+charades_0163,9YOI8,person opening a window.,action,4.8,11.9
+charades_0164,9YOI8,a person opens the window in the laundry room.,action,4.8,11.9
+charades_0165,9YOI8,person opens the window.,action,4.8,11.9
+charades_0166,9YOI8,person take a drink from the cup they are holding.,action,14.8,22.7
+charades_0167,9YOI8,person drinking from the cup.,action,14.8,22.7
+charades_0168,9YOI8,person close the window.,action,24.6,30.3
+charades_0169,9YOI8,person closes the window.,action,24.6,30.3
+charades_0170,AAQHJ,person holding a pillow.,action,0.8,11.9
+charades_0171,AAQHJ,a person is seen eating.,action,4.3,16.7
+charades_0172,AAQHJ,a person eating something off of a plate.,action,4.3,16.7
+charades_0173,AAQHJ,a person sits in a chair eating.,action,4.3,16.7
+charades_0174,AAQHJ,person eating from a plate of food.,action,4.3,16.7
+charades_0175,AAQHJ,a person is sitting on a chair.,action,5.7,15.0
+charades_0176,AAQHJ,person grab a pillow to snuggle with.,action,16.4,26.7
+charades_0177,BEAAA,person eating food in a hallway.,action,0.0,3.5
+charades_0178,BEAAA,person sitting in a chair eating.,action,0.0,3.5
+charades_0179,BEAAA,person eating a sandwich.,action,0.0,3.5
+charades_0180,BEAAA,a person is sitting on a chair eating food.,action,0.0,3.5
+charades_0181,BEAAA,person continues eating the food.,action,0.0,3.5
+charades_0182,BEAAA,the person undresses their jacket.,action,0.7,10.9
+charades_0183,BEAAA,a person is undressing.,action,0.7,10.9
+charades_0184,BFCU9,a person is holding some food.,action,0.0,8.2
+charades_0185,BFCU9,person eating it.,action,0.2,5.3
+charades_0186,BFCU9,a person is eating from a can.,action,0.2,5.3
+charades_0187,BFCU9,a person eats something from a jar.,action,0.2,5.3
+charades_0188,BFCU9,person eats it.,action,0.2,5.3
+charades_0189,BFCU9,person the put the food down.,action,3.2,8.4
+charades_0190,BFCU9,person puts the jar down on a table.,action,14.0,18.0
+charades_0191,E002I,a person runs into the bedroom.,action,0.3,7.3
+charades_0192,E002I,a person runs into a room.,action,0.3,7.3
+charades_0193,E002I,person snuggling up to a pillow.,action,4.1,13.4
+charades_0194,E002I,person lies down on the bed.,action,4.7,14.1
+charades_0195,E002I,person lies down on a bed.,action,4.7,14.1
+charades_0196,E002I,person goes back to close the door.,action,12.9,19.7
+charades_0197,E002I,person closes the door.,action,12.9,19.7
+charades_0198,E002I,person closes a door.,action,12.9,19.7
+charades_0199,E002I,the person gets up to close the door.,action,12.9,19.7
+charades_0200,F66WG,a person holding shoes enters a bathroom.,action,1.0,14.0
+charades_0201,F66WG,a person opens a door.,action,4.5,11.9
+charades_0202,F66WG,person they put their shoes on the ground.,action,8.6,14.8
+charades_0203,F66WG,person goes into the bathroom put shoes on the floor.,action,8.6,14.8
+charades_0204,F66WG,person holding a camera in the bathroom.,action,9.0,19.0
+charades_0205,F66WG,person began to eat something in hand.,action,18.7,30.3
+charades_0206,F66WG,person eats in a doorway.,action,18.7,30.3
+charades_0207,F66WG,a person eats.,action,18.7,30.3
+charades_0208,F66WG,person stand in the doorway eating something.,action,18.7,30.3
+charades_0209,FFYL6,a person puts a broom into the closet.,action,0.0,6.3
+charades_0210,FFYL6,a person puts a broom away in a closet.,action,0.0,6.3
+charades_0211,FFYL6,a person puts a broom inside a closet.,action,0.0,6.3
+charades_0212,FFYL6,person takes out a box.,action,5.2,10.9
+charades_0213,FFYL6,person takes a box out of the same  closet.,action,5.2,10.9
+charades_0214,FFYL6,the person takes a box out.,action,5.2,10.9
+charades_0215,FFYL6,person they pretend to start sneezing.,action,9.9,15.0
+charades_0216,H608V,person eats a sandwich.,action,0.9,7.9
+charades_0217,H608V,person take a bite of a sandwich.,action,1.0,6.4
+charades_0218,H608V,a person is running in the living room in circles.,action,11.6,22.0
+charades_0219,H608V,person begins to run around in a circle again.,action,11.6,22.0
+charades_0220,H608V,a person runs around the room in a circle.,action,11.6,22.0
+charades_0221,H608V,person continue to run.,action,11.6,22.0
+charades_0222,H608V,person start running again.,action,11.6,22.0
+charades_0223,HHNTA,person eating something.,action,0.0,14.5
+charades_0224,HHNTA,a person is walking around the room eating a sandwich.,action,0.0,14.7
+charades_0225,HHNTA,person removes a sweatshirt.,action,0.0,14.5
+charades_0226,HHNTA,person takes off a sweatshirt.,action,0.0,14.5
+charades_0227,HHNTA,the person takes off their hoodie/sweater.,action,0.0,14.5
+charades_0228,HHNTA,person start undressing.,action,13.9,26.2
+charades_0229,HHNTA,person open a box.,action,24.9,31.1
+charades_0230,HXUI5,a person puts on shoes.,action,0.0,14.5
+charades_0231,HXUI5,a person is putting on some shoes.,action,0.0,14.5
+charades_0232,HXUI5,a person dresses up in a jacket.,action,13.4,28.7
+charades_0233,HXUI5,a person is also dressing.,action,13.4,28.7
+charades_0234,HXUI5,person fixing their hair.,action,29.2,36.1
+charades_0235,HXUI5,person fixes their hair.,action,29.2,36.1
+charades_0236,HXUI5,the person takes out their phone.,action,34.0,39.0
+charades_0237,HXUI5,person takes out a phone.,action,34.0,39.0
+charades_0238,J2XFQ,person proceeds to open the refrigerator.,action,16.0,21.5
+charades_0239,J2XFQ,person open the refrigerator.,action,16.0,21.5
+charades_0240,J2XFQ,person opening the fridge door.,action,16.1,21.8
+charades_0241,J2XFQ,person opens the door.,action,16.1,21.8
+charades_0242,J2XFQ,the person takes a sandwich from the refrigerator.,action,17.2,22.5
+charades_0243,J2XFQ,person eat a sandwich.,action,18.7,30.0
+charades_0244,J2XFQ,person grabbing something to eat.,action,19.3,30.0
+charades_0245,J2XFQ,person eats it.,action,19.3,30.0
+charades_0246,JFBTV,a person opens a closet door.,action,0.0,5.8
+charades_0247,JFBTV,a person flips a light switch.,action,0.0,3.2
+charades_0248,JFBTV,a person opens up a closet door.,action,0.0,5.8
+charades_0249,JFBTV,person opens a door to a closet.,action,0.0,5.8
+charades_0250,JFBTV,the person closes the door.,action,16.8,22.6
+charades_0251,JFBTV,person walks out of the closet closing the door.,action,16.8,22.6
+charades_0252,JFBTV,person drinks from a bottle.,action,21.5,30.3
+charades_0253,K7NRW,a person opens a bag.,action,0.0,4.6
+charades_0254,K7NRW,person eating it.,action,5.8,14.9
+charades_0255,K7NRW,person the other continues to eat.,action,5.8,14.9
+charades_0256,K7NRW,person eats a sandwich out of a bag.,action,5.8,14.9
+charades_0257,K7NRW,the eating man watches his friend fix the door.,action,5.8,14.9
+charades_0258,K7NRW,another person tries to fix a loose doorknob.,action,13.2,23.7
+charades_0259,K7NRW,another person is fixing a doorknob.,action,13.2,23.7
+charades_0260,LSFJG,a person puts on a pair of shoes.,action,1.8,9.4
+charades_0261,LSFJG,person start watching themselves in a mirror.,action,13.3,20.6
+charades_0262,LSFJG,person starts running in place.,action,20.7,26.0
+charades_0263,LSFJG,person begins running in place.,action,20.7,26.0
+charades_0264,LSFJG,person they start running in place again.,action,20.7,26.0
+charades_0265,LSFJG,person start running in palce again.,action,20.7,26.0
+charades_0266,LSFJG,person starts running in place again.,action,20.7,26.0
+charades_0267,MZZK2,a person is standing in the garage holding a book.,action,0.0,6.4
+charades_0268,MZZK2,person turns the light off.,action,6.6,10.9
+charades_0269,MZZK2,person turns off the light.,action,6.6,10.9
+charades_0270,MZZK2,the person turns the light off.,action,6.6,10.9
+charades_0271,MZZK2,the person undresses.,action,8.4,21.0
+charades_0272,MZZK2,the person puts the book down on the table.,action,17.7,23.1
+charades_0273,MZZK2,person laying on the floor.,action,21.2,32.0
+charades_0274,MZZK2,person lays down on the floor.,action,21.2,32.0
+charades_0275,NO1GJ,a person is undressing in their laundry room.,action,0.0,10.2
+charades_0276,NO1GJ,a person is undressing in the laundry room.,action,0.0,10.2
+charades_0277,NO1GJ,person they take a towel from a cabinet.,action,8.0,16.1
+charades_0278,NO1GJ,person washes clothes.,action,15.9,25.8
+charades_0279,NO1GJ,a person is washing the clothes.,action,15.9,25.8
+charades_0280,NO1GJ,person their other clothes into the washer.,action,15.9,25.8
+charades_0281,NO1GJ,person talking a towel off the shelf.,action,16.4,25.4
+charades_0282,OT35M,person they put the towel down.,action,4.4,9.8
+charades_0283,OT35M,person throwing the towel to the floor.,action,4.4,9.8
+charades_0284,OT35M,person throw it on the floor.,action,4.4,9.8
+charades_0285,OT35M,a person is putting on a towel.,action,4.4,9.8
+charades_0286,OT35M,a person put a towels around their neck.,action,4.4,9.8
+charades_0287,OT35M,person takes a picture of themselves.,action,9.6,15.0
+charades_0288,OT35M,person take a picture.,action,9.6,15.0
+charades_0289,OT35M,person take their phone out to take a picture.,action,9.6,15.0
+charades_0290,OY3LS,person opened the laptop.,action,2.5,10.1
+charades_0291,OY3LS,a person is standing in their entryway undressing.,action,7.2,23.6
+charades_0292,OY3LS,person they get undresses.,action,7.2,23.6
+charades_0293,OY3LS,person played with his phone.,action,22.3,33.1
+charades_0294,OY3LS,the person puts their phone on a table.,action,28.6,37.6
+charades_0295,OY3LS,person lied down on the couch.,action,34.0,46.0
+charades_0296,OY3LS,the person sits on a couch.,action,34.9,41.4
+charades_0297,OY3LS,person sit on a couch under a blanket.,action,34.9,41.4
+charades_0298,QMHK8,person walks into room holding a bag.,action,0.0,16.7
+charades_0299,QMHK8,person closes the door behind them.,action,0.9,14.1
+charades_0300,QMHK8,person closes the door.,action,0.9,14.1
+charades_0301,QMHK8,person puts a plastic bag on the handle.,action,9.5,17.3
+charades_0302,QMHK8,this person puts their shoes.,action,17.1,26.1
+charades_0303,QMHK8,person puts shoes in the bag.,action,17.1,26.1
+charades_0304,QMHK8,the person undresses (removes socks.,action,20.1,44.4
+charades_0305,QMHK8,person takes the bag off the doorknob.,action,39.5,46.4
+charades_0306,QMHK8,person takes off sweater to put in bag.,action,39.5,46.4
+charades_0307,QMHK8,person puts bag on shelf.,action,42.1,54.7
+charades_0308,QMHK8,person puts it on the shelf.,action,42.1,54.7
+charades_0309,QMHK8,person puts the bag on a shelf.,action,42.1,54.7
+charades_0310,R971Z,a person opens a closet.,action,0.0,7.2
+charades_0311,R971Z,a person opens up a closet.,action,0.0,7.2
+charades_0312,R971Z,a person opens the door to a walk-in closet.,action,0.0,6.1
+charades_0313,R971Z,person puts on the shoes.,action,11.1,19.8
+charades_0314,R971Z,person they stand up.,action,14.0,23.4
+charades_0315,R971Z,person smile at themselves in the mirror.,action,19.4,25.0
+charades_0316,R971Z,person adjusts their hair holding a mirror.,action,19.6,32.8
+charades_0317,R971Z,person fixing their hair.,action,20.7,30.6
+charades_0318,RBQ9Y,a man begins to undress.,action,0.0,13.1
+charades_0319,RBQ9Y,person sit on the bed.,action,38.6,51.9
+charades_0320,RBQ9Y,person sits down on the bed to fix his shoes.,action,38.6,51.9
+charades_0321,RBQ9Y,person put on some shoes.,action,39.2,51.9
+charades_0322,RBQ9Y,person putting on shoes.,action,39.2,51.9
+charades_0323,RBQ9Y,person stand up again.,action,47.9,54.9
+charades_0324,RBQ9Y,person putting away clothes in a bedroom.,action,53.2,59.0
+charades_0325,RBQ9Y,person putting his clothes on the bed beside him.,action,53.2,59.0
+charades_0326,SJ51G,a person is seen snuggling up to a blanket.,action,0.0,13.0
+charades_0327,SJ51G,a person is snuggling with a blanket.,action,0.0,13.0
+charades_0328,SJ51G,a person opens a door.,action,9.9,18.9
+charades_0329,SJ51G,person open their closet door.,action,9.9,18.9
+charades_0330,SJ51G,person puts the blanket into a closet.,action,16.0,21.7
+charades_0331,SJ51G,person put the blanket away.,action,16.0,21.7
+charades_0332,SJ51G,person close the door.,action,19.1,29.3
+charades_0333,SLHDI,a person is closing a door.,action,1.1,6.3
+charades_0334,SLHDI,person opening the refrigerator doors.,action,2.8,12.4
+charades_0335,SLHDI,person opens refrigerator.,action,2.8,12.4
+charades_0336,SLHDI,person eating something.,action,21.6,26.1
+charades_0337,SLHDI,a person by the refrigerator was eating.,action,21.6,26.1
+charades_0338,SLHDI,person sneezing into a towel.,action,26.4,31.9
+charades_0339,SLHDI,person sneezing on a towel.,action,26.4,31.9
+charades_0340,TKAUR,person reads a book.,action,0.0,18.7
+charades_0341,TKAUR,person reading a book.,action,0.0,18.7
+charades_0342,TKAUR,a person reads a book.,action,0.0,18.7
+charades_0343,TKAUR,person takes a cup of coffee off of the counter.,action,3.2,8.9
+charades_0344,TKAUR,person puts the book down.,action,14.9,19.7
+charades_0345,TKAUR,person start dressing for the weather.,action,27.0,40.3
+charades_0346,TKAUR,person begins to dress.,action,27.0,40.3
+charades_0347,TYWHY,a person runs into a room gets into a desk.,action,0.0,5.0
+charades_0348,TYWHY,a person runs into their home office.,action,0.0,5.0
+charades_0349,TYWHY,a person runs into the room.,action,0.0,5.0
+charades_0350,TYWHY,person opens a cabinet.,action,1.2,9.2
+charades_0351,TYWHY,the person opens a cabinet.,action,1.2,9.2
+charades_0352,TYWHY,person takes their laptop from inside.,action,5.4,13.0
+charades_0353,TYWHY,a person takes a laptop from a drawer.,action,5.4,13.0
+charades_0354,TYWHY,person closes the cabinet.,action,7.6,14.2
+charades_0355,TYWHY,person takes out a laptop computer.,action,11.3,16.6
+charades_0356,TYWHY,person takes a laptop out the open the laptop.,action,11.9,21.7
+charades_0357,UKSCV,a person is dressing in a hallway.,action,0.0,11.4
+charades_0358,UKSCV,person putting on a dress shirt.,action,0.0,11.4
+charades_0359,UKSCV,another person is dressing.,action,0.0,11.4
+charades_0360,UKSCV,a person is getting dressed.,action,0.0,11.4
+charades_0361,UKSCV,a person is eating groceries.,action,7.7,23.5
+charades_0362,UKSCV,another person is standing behind him eating.,action,7.7,23.5
+charades_0363,UKSCV,person eating something.,action,7.7,23.5
+charades_0364,UKSCV,another person is eating.,action,7.7,23.5
+charades_0365,UQJ5W,person eating a sandwich.,action,0.0,4.2
+charades_0366,UQJ5W,person walks into shower opens the window.,action,5.6,13.2
+charades_0367,UQJ5W,person opens the window.,action,5.6,13.2
+charades_0368,UQJ5W,person takes a cell phone photo through the open window.,action,5.6,13.2
+charades_0369,UQJ5W,person opens the window inside the shower.,action,5.6,13.2
+charades_0370,UQJ5W,person opens a window.,action,5.6,13.2
+charades_0371,UQJ5W,person take a picture through the open window.,action,5.6,13.2
+charades_0372,UQJ5W,person takes a picture of something outside.,action,17.7,28.0
+charades_0373,UQJ5W,person proceeds to take a picture out of the window.,action,17.7,28.0
+charades_0374,UR5TU,a person opens a pantry door.,action,0.4,7.4
+charades_0375,UR5TU,person a girl opens the pantry door.,action,0.4,7.4
+charades_0376,UR5TU,the person opens up a pantry door holding some clothing.,action,0.4,7.4
+charades_0377,UR5TU,a person opens a closet.,action,0.8,7.7
+charades_0378,UR5TU,person opens a cabinet in the pantry.,action,0.8,7.7
+charades_0379,UR5TU,person closes the cabinet door.,action,20.2,27.1
+charades_0380,UR5TU,the person closes the door.,action,20.2,27.1
+charades_0381,UR5TU,person closes the door.,action,20.2,27.1
+charades_0382,VU996,a person walks into their closet holding a pillow.,action,0.0,14.9
+charades_0383,VU996,person turns the light off.,action,0.0,4.0
+charades_0384,VU996,person holding a pillow.,action,0.0,14.9
+charades_0385,VU996,the person turns off the closet light.,action,0.0,4.0
+charades_0386,VU996,person opened up the door.,action,0.4,7.0
+charades_0387,VU996,the person put the pillow into the closet.,action,7.4,14.7
+charades_0388,VU996,person puts some blankets away inside.,action,17.2,24.3
+charades_0389,VU996,person closed the door.,action,23.4,31.0
+charades_0390,VU996,a person opens a door to a closet.,action,23.4,31.0
+charades_0391,VU996,person closes the door behind them.,action,23.4,31.0
+charades_0392,XJE7I,a person opens the bathroom door using the doorknob.,action,2.9,9.6
+charades_0393,XJE7I,person opening the door.,action,2.9,9.6
+charades_0394,XJE7I,a person opens a door.,action,2.9,9.6
+charades_0395,XJE7I,person they turn the light on.,action,8.4,13.7
+charades_0396,XJE7I,person they turn on the light.,action,8.4,13.7
+charades_0397,XJE7I,person they take a bag form a counter.,action,20.2,27.9
+charades_0398,XJE7I,person take a bag from the counter.,action,20.2,27.9
+charades_0399,XJE7I,person close the door.,action,24.7,30.0

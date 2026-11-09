@@ -15,6 +15,7 @@ from src.index.frames import (
     load_siglip,
     resolve_device,
 )
+from src.index.captions import caption_index_paths
 from src.index.objects import object_index_paths
 from src.index.ocr import ocr_index_paths
 from src.index.speech import speech_index_paths
@@ -29,7 +30,7 @@ from src.utils.logging import get_logger
 
 _LOG = get_logger("search.query")
 
-LAYERS = ("frame", "object", "speech", "ocr")
+LAYERS = ("frame", "object", "speech", "ocr", "caption")
 
 _COLOR_ALIASES = {
     "red": "red",
@@ -175,6 +176,7 @@ def list_indexed_videos(config: Config, layer: str = "frame") -> list[str]:
         "object": object_index_paths,
         "speech": speech_index_paths,
         "ocr": ocr_index_paths,
+        "caption": caption_index_paths,
     }[layer]
     base = config.indexes_dir
     if not base.is_dir():
@@ -211,11 +213,15 @@ def _load_index(
         index_path, ids_path = ocr_index_paths(config, video_id)
         hint = "scripts/index_ocr.py"
         model_key = "embedding_model"
+    elif layer == "caption":
+        index_path, ids_path = caption_index_paths(config, video_id)
+        hint = "scripts/index_captions.py"
+        model_key = "embedding_model"
     else:
         raise ValueError(f"unknown layer {layer!r}")
 
     if not index_path.is_file() or not ids_path.is_file():
-        if layer in ("object", "speech", "ocr") and ids_path.is_file():
+        if layer in ("object", "speech", "ocr", "caption") and ids_path.is_file():
             payload = store.read_json(ids_path)
             if payload.get("empty"):
                 return None, payload, model_key, hint
@@ -249,6 +255,11 @@ def load_speech_index(config: Config, video_id: str) -> tuple[Any, dict[str, Any
 
 def load_ocr_index(config: Config, video_id: str) -> tuple[Any, dict[str, Any]]:
     index, payload, _, _ = _load_index(config, video_id, "ocr")
+    return index, payload
+
+
+def load_caption_index(config: Config, video_id: str) -> tuple[Any, dict[str, Any]]:
+    index, payload, _, _ = _load_index(config, video_id, "caption")
     return index, payload
 
 
@@ -531,6 +542,28 @@ def rank_ocr_hits(
     )
 
 
+def rank_caption_hits(
+    records: list[dict[str, Any]],
+    scores: Any,
+    positions: Any,
+    query_text: str,
+    *,
+    video_id: str,
+    use_bm25: bool = True,
+    rrf_k: int = 60,
+) -> list[dict[str, Any]]:
+    return rank_text_hits(
+        records,
+        scores,
+        positions,
+        query_text,
+        layer="caption",
+        video_id=video_id,
+        use_bm25=use_bm25,
+        rrf_k=rrf_k,
+    )
+
+
 def _search_text_layer(
     query: str,
     config: Config,
@@ -662,6 +695,30 @@ def search_ocr(
         config,
         layer="ocr",
         hint="scripts/index_ocr.py",
+        video_id=video_id,
+        top_k=top_k,
+        device=device,
+        model_name=model_name,
+        use_bm25=use_bm25,
+    )
+
+
+def search_caption(
+    query: str,
+    config: Config,
+    *,
+    video_id: Optional[str] = None,
+    top_k: Optional[int] = None,
+    device: Optional[str] = None,
+    model_name: Optional[str] = None,
+    use_bm25: Optional[bool] = None,
+) -> dict[str, Any]:
+    """Search the caption layer (dense + BM25, fused with RRF)."""
+    return _search_text_layer(
+        query,
+        config,
+        layer="caption",
+        hint="scripts/index_captions.py",
         video_id=video_id,
         top_k=top_k,
         device=device,
