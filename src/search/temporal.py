@@ -82,7 +82,10 @@ def _build_segments(
     # Speech chunks carry a real duration. Other layers keep the historical
     # timestamp-only behavior so their benchmark numbers remain comparable.
     segment_end = max(
-        float(hit.get("segment_end", hit_timestamp(hit))) for hit in hits
+        float(hit["segment_end"])
+        if hit.get("segment_end") is not None
+        else hit_timestamp(hit)
+        for hit in hits
     )
     end = max(
         hit_timestamp(hits[-1]),

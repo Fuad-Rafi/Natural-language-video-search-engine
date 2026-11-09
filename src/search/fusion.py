@@ -93,6 +93,7 @@ def reciprocal_rank_fusion(
                 "score": float(score),
                 "layer": "fusion",
                 "layers": sorted(best_rank),
+                "segment_end": peak.get("segment_end"),
                 "thumbnail": peak.get("path") or peak.get("thumbnail"),
                 "path": peak.get("path") or peak.get("thumbnail"),
                 "doc_id": peak.get("doc_id"),
