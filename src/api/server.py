@@ -46,6 +46,7 @@ class SearchRequest(BaseModel):
     video_id: Optional[str] = None
     layers: str = "auto"
     top_k: int = Field(10, ge=1, le=50)
+    adaptive: bool = True
 
 
 @app.get("/health")
@@ -72,14 +73,19 @@ def search_get(
     video_id: Optional[str] = None,
     layers: str = "auto",
     top_k: int = Query(10, ge=1, le=50),
+    adaptive: bool = True,
 ) -> dict[str, Any]:
-    return _search(q, video_id, layers, top_k)
+    return _search(q, video_id, layers, top_k, adaptive)
 
 
 @app.post("/search")
 def search_post(request: SearchRequest) -> dict[str, Any]:
     return _search(
-        request.query, request.video_id, request.layers, request.top_k
+        request.query,
+        request.video_id,
+        request.layers,
+        request.top_k,
+        request.adaptive,
     )
 
 
@@ -88,6 +94,7 @@ def _search(
     video_id: Optional[str],
     layers: str,
     top_k: int,
+    adaptive: bool,
 ) -> dict[str, Any]:
     config = get_config()
     if video_id:
@@ -101,6 +108,7 @@ def _search(
             video_id=video_id,
             layers=layers,
             top_k=top_k,
+            adaptive=adaptive,
         )
     except ValueError as exc:
         raise HTTPException(status_code=400, detail=str(exc)) from exc

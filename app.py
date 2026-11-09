@@ -17,9 +17,15 @@ import gradio as gr
 import uvicorn
 
 from src.api.server import app as api_app
-from src.ui.app import build_ui
+from src.ui.app import UI_CSS, UI_THEME, build_ui
 
-app = gr.mount_gradio_app(api_app, build_ui(), path="/")
+app = gr.mount_gradio_app(
+    api_app,
+    build_ui(),
+    path="/",
+    theme=UI_THEME,
+    css=UI_CSS,
+)
 
 
 def main() -> None:

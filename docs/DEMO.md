@@ -30,5 +30,7 @@ If you record the Gradio UI instead, keep it under 60 s:
 5. **35–45 s** — switch layer to **All layers** and run a visual query.
 6. **45–60 s** — open the Index tab and show the stage log.
 
-The result cards show a thumbnail, time range, source badges, score, matched
-text, and an inline `<video>` clip.
+The result cards show a thumbnail, time range, source badges, match strength
+(Strong / Related / Best guess), matched text, and an inline `<video>` clip.
+The result count is adaptive: the app returns fewer than the chosen maximum
+when only a few moments genuinely match.

@@ -176,6 +176,7 @@ def search(
     candidates: int = 50,
     device: Optional[str] = None,
     use_bm25: Optional[bool] = None,
+    adaptive: bool = True,
 ) -> dict[str, Any]:
     """Run a UI search and return ranked, enriched segments."""
     text = query.strip()
@@ -217,6 +218,8 @@ def search(
             "videos": [],
             "segments": [],
             "count": 0,
+            "adaptive": adaptive,
+            "strong": False,
         }
 
     weights = {
@@ -234,11 +237,19 @@ def search(
             max_per_layer=candidates,
         )
 
-    segments = merge_hits(
-        raw,
-        gap_s=float(config.get("search.merge_gap_s", 3.0)),
-        min_segment_s=float(config.get("search.min_segment_s", 1.0)),
-    )[:top_k]
+    segments = select_adaptive(
+        merge_hits(
+            raw,
+            gap_s=float(config.get("search.merge_gap_s", 3.0)),
+            min_segment_s=float(config.get("search.min_segment_s", 1.0)),
+        ),
+        config,
+        max_results=top_k,
+        enabled=adaptive,
+    )
+    strong = bool(segments) and not any(
+        segment.get("weak") for segment in segments
+    )
 
     video_ids = sorted({segment["video_id"] for segment in segments})
     metadata = {vid: _video_metadata(config, vid) for vid in video_ids}
@@ -276,6 +287,8 @@ def search(
         "videos": video_ids,
         "segments": enriched,
         "count": len(enriched),
+        "adaptive": adaptive,
+        "strong": strong,
     }
 
 
@@ -298,6 +311,146 @@ def list_videos(config: Config) -> list[dict[str, Any]]:
             }
         )
     return videos
+
+
+def is_selectable_source(source: Optional[str], config: Config) -> bool:
+    """True when a video's source file exists and is not benchmark data.
+
+    Dead indexes (source deleted) cannot play clips, and the public Charades-STA
+    subset under ``data/public`` is for offline evaluation rather than the
+    interactive picker.
+    """
+    if not source:
+        return False
+    path = config.resolve(source).resolve()
+    if not path.is_file():
+        return False
+    public_root = (config.data_dir / "public").resolve()
+    return not path.is_relative_to(public_root)
+
+
+def selectable_videos(
+    config: Config, videos: Optional[Iterable[dict[str, Any]]] = None
+) -> list[dict[str, Any]]:
+    """Return indexed videos suitable for the interactive video picker."""
+    items = list_videos(config) if videos is None else list(videos)
+    return [
+        video
+        for video in items
+        if is_selectable_source(video.get("source_path"), config)
+    ]
+
+
+def _clamp01(value: float) -> float:
+    return max(0.0, min(1.0, float(value)))
+
+
+def _normalise(value: float, floor: float, ceiling: float) -> float:
+    if ceiling <= floor:
+        return 1.0 if value >= ceiling else 0.0
+    return _clamp01((value - floor) / (ceiling - floor))
+
+
+def _text_relevance(
+    dense: Optional[float], bm25: Optional[float], config: Config
+) -> float:
+    """Blend the dense cosine with the lexical BM25 signal."""
+    bm25_ceiling = float(config.get("search.relevance.bm25_ceiling", 12.0))
+    if dense is None:
+        return _normalise(float(bm25 or 0.0), 0.0, bm25_ceiling)
+    dense_rel = _normalise(
+        float(dense),
+        float(config.get("search.relevance.dense_floor", 0.42)),
+        float(config.get("search.relevance.dense_ceiling", 0.75)),
+    )
+    lexical_rel = _normalise(float(bm25 or 0.0), 0.0, bm25_ceiling)
+    weight = float(config.get("search.relevance.dense_weight", 0.8))
+    return _clamp01(weight * dense_rel + (1.0 - weight) * lexical_rel)
+
+
+def segment_relevance(segment: dict[str, Any], config: Config) -> float:
+    """Estimate how strongly a segment matches the query, on a 0-1 scale.
+
+    Layers use different score scales, so relevance is derived from the
+    evidence the layer actually produced: SigLIP cosine for frames/objects,
+    dense cosine plus BM25 for text layers, and the best of both for a fused
+    cluster.
+    """
+    evidence = segment.get("evidence") or {}
+    cosine = evidence.get("best_cosine")
+    dense = evidence.get("best_dense")
+    bm25 = evidence.get("best_bm25")
+    if cosine is not None or dense is not None or bm25 is not None:
+        visual = (
+            _normalise(
+                float(cosine),
+                float(config.get("search.relevance.cosine_floor", 0.075)),
+                float(config.get("search.relevance.cosine_ceiling", 0.13)),
+            )
+            if cosine is not None
+            else 0.0
+        )
+        textual = (
+            _text_relevance(dense, bm25, config)
+            if dense is not None or bm25 is not None
+            else 0.0
+        )
+        return max(visual, textual)
+
+    layer = evidence.get("layer")
+    if layer in ("frame", "object"):
+        return _normalise(
+            float(evidence.get("score", 0.0)),
+            float(config.get("search.relevance.cosine_floor", 0.075)),
+            float(config.get("search.relevance.cosine_ceiling", 0.13)),
+        )
+    if layer in ("speech", "ocr", "caption"):
+        return _text_relevance(
+            evidence.get("dense_score"), evidence.get("bm25_score"), config
+        )
+    return 0.0
+
+
+def select_adaptive(
+    segments: list[dict[str, Any]],
+    config: Config,
+    *,
+    max_results: int,
+    enabled: bool = True,
+) -> list[dict[str, Any]]:
+    """Keep only relevant segments, never padding to ``max_results``.
+
+    Always returns at least the top-ranked segment; if nothing clears the
+    relevance floor it is marked ``weak`` so the UI can say "best guess".
+    """
+    if not segments:
+        return []
+    for segment in segments:
+        segment["relevance"] = round(segment_relevance(segment, config), 4)
+
+    limit = max(1, int(max_results))
+    if not enabled:
+        return segments[:limit]
+
+    floor = float(config.get("search.relevance.min", 0.30))
+    ratio = float(config.get("search.relevance.ratio", 0.55))
+    best = max(float(segment["relevance"]) for segment in segments)
+    kept: list[dict[str, Any]] = []
+    for segment in segments:
+        if len(kept) >= limit:
+            break
+        relevance = float(segment["relevance"])
+        if relevance >= floor and relevance >= ratio * best:
+            kept.append(segment)
+
+    if not kept:
+        guess = segments[0].copy()
+        guess["weak"] = True
+        kept = [guess]
+
+    for segment in kept:
+        segment.setdefault("weak", False)
+    return kept
 
 
 def resolve_source(config: Config, video_id: str) -> Optional[Path]:

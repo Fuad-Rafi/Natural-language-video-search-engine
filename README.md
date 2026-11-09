@@ -140,9 +140,13 @@ python app.py
 The app has two tabs:
 
 - **Search** — query box, video selector, layer selector (`Auto`, `All layers`,
-  `Frames`, `Objects`, `Speech`, `On-screen text`, `Captions`), and result cards
-  with a thumbnail, time range, source badges, score, matched text, and an
-  inline playable clip.
+  `Frames`, `Objects`, `Speech`, `On-screen text`, `Captions`), a **max results**
+  control (3 or 5), and adaptive result cards with a thumbnail, time range,
+  source badges, match strength, matched text, and an inline playable clip.
+  Results are filtered by relevance: the app returns fewer than the maximum
+  when only a few moments genuinely match, and marks the closest result as
+  *Best guess* when nothing clears the relevance floor.
+  Use `/search?...&adaptive=false` to return the exact `top_k` instead.
 - **Index** — local video path, layer checkboxes, background job, and a stage
   log (`frames → objects → speech → ocr → captions`).
 
@@ -152,8 +156,8 @@ API (same process, documented at `/docs`):
 |---|---|
 | `GET /health` | status + indexed video count |
 | `GET /videos` | indexed videos and their layers |
-| `GET /search?q=...&video_id=...&layers=auto&top_k=10` | search |
-| `POST /search` | JSON search (`query`, `video_id`, `layers`, `top_k`) |
+| `GET /search?q=...&video_id=...&layers=auto&top_k=10&adaptive=true` | search (adaptive by default) |
+| `POST /search` | JSON search (`query`, `video_id`, `layers`, `top_k`, `adaptive`) |
 | `POST /index` | start a background indexing job |
 | `GET /index/{job_id}` | job status, stage, and log |
 | `GET /media/{path}` | frame/crop thumbnail |
@@ -274,6 +278,7 @@ search:
   route_speech: true
   route_ocr: false
   route_caption: false
+  adaptive: true          # hide low-relevance results instead of padding top_k
   weights:
     frame: 1.0
     object: 1.0

@@ -88,6 +88,16 @@ search:
   route_speech: true       # speech queries use the transcript layer, not RRF
   route_ocr: false         # fuse frames + OCR for OCR queries (visual context helps)
   route_caption: false     # fuse frames + captions for action/caption queries
+  adaptive: true           # return only relevant segments, never pad to top_k
+  relevance:
+    min: 0.30              # keep segments above this 0-1 relevance floor
+    ratio: 0.55            # ...and within this fraction of the best match
+    cosine_floor: 0.075    # SigLIP cosine below this is not a match
+    cosine_ceiling: 0.13   # SigLIP cosine at/above this is a strong match
+    dense_floor: 0.42      # bge cosine below this is not a text match
+    dense_ceiling: 0.75    # bge cosine at/above this is a strong text match
+    bm25_ceiling: 12.0     # BM25 score treated as maximal lexical evidence
+    dense_weight: 0.8      # dense vs BM25 weight in the text relevance blend
   rerank_top_n: 3
   weights:
     frame: 1.0

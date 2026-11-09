@@ -22,6 +22,16 @@ def hit_timestamp(hit: dict[str, Any]) -> float:
     return float(hit.get("start", 0.0))
 
 
+def _max_field(hits: Iterable[dict[str, Any]], key: str) -> float | None:
+    """Highest non-null numeric value for ``key`` across ``hits``."""
+    values = [
+        float(hit[key])
+        for hit in hits
+        if hit.get(key) is not None
+    ]
+    return max(values) if values else None
+
+
 def reciprocal_rank_fusion(
     rankings: dict[str, Iterable[dict[str, Any]]],
     *,
@@ -84,6 +94,14 @@ def reciprocal_rank_fusion(
         peak_point = max(cluster, key=lambda point: float(point["hit"].get("score", 0.0)))
         peak = peak_point["hit"]
         timestamps = [point["timestamp"] for point in cluster]
+        visual_hits = [
+            point["hit"] for point in cluster if point["layer"] in ("frame", "object")
+        ]
+        text_hits = [
+            point["hit"]
+            for point in cluster
+            if point["layer"] in ("speech", "ocr", "caption")
+        ]
         fused.append(
             {
                 "video_id": cluster[0]["video_id"],
@@ -99,6 +117,9 @@ def reciprocal_rank_fusion(
                 "doc_id": peak.get("doc_id"),
                 "evidence": peak,
                 "hit_count": len(cluster),
+                "best_cosine": _max_field(visual_hits, "score"),
+                "best_dense": _max_field(text_hits, "dense_score"),
+                "best_bm25": _max_field(text_hits, "bm25_score"),
             }
         )
 
